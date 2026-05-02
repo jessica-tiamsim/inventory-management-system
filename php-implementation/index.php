@@ -1,4 +1,4 @@
-<?php
+<?php // Verification Update ?>
 
 session_start();
 
