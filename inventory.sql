@@ -34,3 +34,14 @@ CREATE TABLE PRODUCTS (
     FOREIGN KEY (category_id) REFERENCES CATEGORIES(id)
 );
 
+CREATE TABLE STOCK_MOVEMENTS (
+	id VARCHAR(255) PRIMARY KEY,
+    product_id VARCHAR(255),
+    user_id INT,
+    movement_type ENUM('in', 'out', 'adjustment'),
+    quality INT,
+    note TEXT,
+    created_at DATETIME,
+    FOREIGN KEY (product_id) REFERENCES PRODUCTS(id),
+    FOREIGN KEY (user_id) REFERENCES USERS(id)
+);
