@@ -11,3 +11,9 @@ CREATE TABLE PRODUCTS (
     created_at DATETIME,
     updated_at DATETIME
 );
+
+CREATE TABLE CATEGORIES (
+	id VARCHAR(255),
+    name VARCHAR(255) UNIQUE,
+    description TEXT
+);
