@@ -1,6 +1,7 @@
 /*
 dashboard page including sidebar and header
-*/<?php
+*/
+<?php
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,7 +9,7 @@ dashboard page including sidebar and header
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel = "stylesheet" href = "general.css"/>
+>>>>>>> ec4b502a29206ca766803ca243bf08c450c73d6d
 
 </head>
 <body>
