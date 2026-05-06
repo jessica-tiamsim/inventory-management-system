@@ -39,7 +39,7 @@ CREATE TABLE STOCK_MOVEMENTS (
     product_id VARCHAR(255),
     user_id INT,
     movement_type ENUM('in', 'out', 'adjustment'),
-    quality INT,
+    quantity INT,
     note TEXT,
     created_at DATETIME,
     FOREIGN KEY (product_id) REFERENCES PRODUCTS(id),
