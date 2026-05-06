@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+ <html lang = "en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+     * {
+        box-sizing: border-box;
+     }
+     body {
+        margin: 0;
+        display: flex;
+        background: #f5f5f5
+      }
+     .sidebar {
+        color: white;
+        font-family: Arial;
+        flex-direction: column;
+        background: linear-gradient(to bottom, #801B32, #5A1424);
+        width: 256px;
+        padding: 20px;
+        min-height: 100vh;
+     }
+     .header {
+        color: black;
+        background: white;
+        width: 100%;
+        padding: 20px;
+        height: 10vh;
+        align-items: center;
+      
+     }
+     .content {
+        flex: 1;
+        min-height: 100vh;
+       
+     }
+     .top {
+        flex: 1;
+        min-height: 10vh;
+        padding-top: 15px;
+
+     }
+     .bottom {
+        flex: 2;
+        min-height: 10vh;
+
+     }
+     .mid {
+        flex: 1;
+        background: linear-gradient(to bottom, #801B32, #5A1424);
+        padding-top: 15px;
+
+     }
+     .line {
+      background: gray;
+      width: 100%;
+      margin: 0;
+      border: none;
+      height: 1px;
+     }
+    </style>
+    <body>
+        <aside class ="sidebar">
+         <div class="top">
+            <h2>PRISM</h2>
+            <h5>Admin Portal</h5>
+            <div class="line"></div>
+         </div>
+         <button class ="mid"><h4>Dashboard</h4></button>
+         <button class ="mid"><h4>Dashboard</h4></button>
+            <h4>Products</h4>
+            <h4>Stock Movements</h4>
+            <h4>Reports</h4>
+            <h4>Profile</h4>
+         </div>
+         <div class ="bottom">
+            <div class="line"></div>
+            <h4>Admin User</h4>
+            <h5>Admin Portal</h5>
+            <h5>Logout</h5>
+         </div>
+      </aside>
+        <div class ="header"></div>
+        <div class ="content"></div>
+    </body>
+   </title>
+  </head>
+ </html>
