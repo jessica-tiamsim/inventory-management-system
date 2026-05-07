@@ -1,89 +1,85 @@
 <!DOCTYPE html>
- <html lang = "en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-    <style>
-     * {
-        box-sizing: border-box;
-     }
-     body {
-        margin: 0;
-        display: flex;
-        background: #f5f5f5
-      }
-     .sidebar {
-        color: white;
-        font-family: Arial;
-        flex-direction: column;
-        background: linear-gradient(to bottom, #801B32, #5A1424);
-        width: 256px;
-        padding: 20px;
-        min-height: 100vh;
-     }
-     .header {
-        color: black;
-        background: white;
-        width: 100%;
-        padding: 20px;
-        height: 10vh;
-        align-items: center;
-      
-     }
-     .content {
-        flex: 1;
-        min-height: 100vh;
+<html lang = "en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PRISM</title>
+   <link rel="stylesheet" href="inventory_stock.css">
+</head>
+<body>
+   <aside class ="sidebar">
+      <h2 class="logo">
+         <img src="image.png" class="logo_size">
+         <div class="logo_text">
+            <span>PRISM</span>
+            <p class="subtitle">Admin Portal</p>
+         </div>
+      </h2>
+
+      <nav>
+         <a href="#" class="nav-item">
+               Dashboard
+         </a>
+         <a href="#" class="nav-item">
+               Products
+         </a>
+         <a href="#" class="nav-item">
+               Stock Movements
+         </a>
+         <a href="#" class="nav-item_active">
+               Reports
+         </a>
+         <a href="#" class="nav-item">
+               Profile
+         </a>
+      </nav>
        
-     }
-     .top {
-        flex: 1;
-        min-height: 10vh;
-        padding-top: 15px;
+      <div class ="user-panel">
+            <p>Admin User</p>
+            <p class="subtitle">Admin</p>
+            <button>Logout</button>
+      </div>
+   </aside>
 
-     }
-     .bottom {
-        flex: 2;
-        min-height: 10vh;
+   <div class="main">
+      <header class ="topbar">
+         <h3>PRISM  |  Inventory Management</h3>
+         <div class="user-info">
+            <span class>Admin</span>
+            <span class>Alex Reyes</span>
+        </div>   
+      </header>  
+      
+      <div class="breadcrumb">
+         PRISM / INVENTORY / DASHBOARD
+      </div>
 
-     }
-     .mid {
-        flex: 1;
-        background: linear-gradient(to bottom, #801B32, #5A1424);
-        padding-top: 15px;
+      <main class ="content">
+         <div class="box1">
+            <h2>Reports</h2>
+            <p class="box1_sub">Insight across your inventory operations</p>
+         </div>
 
-     }
-     .line {
-      background: gray;
-      width: 100%;
-      margin: 0;
-      border: none;
-      height: 1px;
-     }
-    </style>
-    <body>
-        <aside class ="sidebar">
-         <div class="top">
-            <h2>PRISM</h2>
-            <h5>Admin Portal</h5>
-            <div class="line"></div>
+         <div class="box2">
+            <h4>Low Stock Report</h4>
+            <p class="box2_sub">Active products at or below their reorder threshold</p>
          </div>
-         <button class ="mid"><h4>Dashboard</h4></button>
-         <button class ="mid"><h4>Dashboard</h4></button>
-            <h4>Products</h4>
-            <h4>Stock Movements</h4>
-            <h4>Reports</h4>
-            <h4>Profile</h4>
+
+         <div class="box3">
+            <div class="stock_table">
+               <table class="column">
+               <th>
+                     <th>SKU</th>
+                     <th>Product</th>
+                     <th>Country</th>
+                     <th>Quantity</th>
+                     <th>Reorder Threshold</th>
+                     <th>Supplier</th>
+               </th>
+            </table>
          </div>
-         <div class ="bottom">
-            <div class="line"></div>
-            <h4>Admin User</h4>
-            <h5>Admin Portal</h5>
-            <h5>Logout</h5>
-         </div>
-      </aside>
-        <div class ="header"></div>
-        <div class ="content"></div>
-    </body>
-   </title>
-  </head>
- </html>
+      </div>
+   </main>
+  </div>
+ </body>
+</html>
