@@ -45,7 +45,7 @@
       <header class ="topbar">
          <h3>PRISM  |  Inventory Management</h3>
          <div class="user-info">
-            <span class>Admin</span>
+            <span class ="role">Admin</span>
             <span class>Alex Reyes</span>
         </div>   
       </header>  
@@ -58,11 +58,43 @@
          <div class="box1">
             <h2>Reports</h2>
             <p class="box1_sub">Insight across your inventory operations</p>
+            <div class="date">
+               <label for="date">From </label>
+               <input type="date" id="date1">
+
+               <label for="date">To </label>
+               <input type="date" id="date2">
+            </div>
+            <div class="choices">
+               <span class="active">Low Stock</span>
+               <span>Valuation</span>
+               <span>Movement Ledger</span>
+               <span>Top Movers</span>
+            </div>
          </div>
 
          <div class="box2">
+            <div class="box2_left">
             <h4>Low Stock Report</h4>
             <p class="box2_sub">Active products at or below their reorder threshold</p>
+            </div>
+            <div class="box2_right">
+               <div class="dropdowns">
+                  <select name="productDropdown" id="product">
+                     <option value="allProducts">All Products</option>
+                     <option value="product1">Category 1</option>
+                     <option value="product2">Category 2</option>
+                     <option value="product3">Category 3</option>
+                  </select>
+                  <select name="quantityDropdown" id="product">
+                     <option value="allProducts">Quantity</option>
+                     <option value="quantity1">1</option>
+                     <option value="quantity2">2</option>
+                     <option value="quantity3">3</option>
+                  </select>
+                  <button class="excel">CSV.</button>
+               </div>
+            </div>
          </div>
 
          <div class="box3">
