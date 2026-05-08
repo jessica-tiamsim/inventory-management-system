@@ -58,6 +58,3 @@ if (isset($_GET['logout'])) {
                 height: 100vh;
             }
 
-            
-
-
