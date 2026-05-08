@@ -43,7 +43,7 @@
         .login-card {
             background: var(--white);
             padding: 40px;
-            border-radius: 16px:0;
+            border-radius: 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
             width: 350px;
         }
@@ -103,7 +103,7 @@
 
     <div id="login-screen">
         <div class="logo-area">
-            <image src="image.png" alt="PRISM Logo" class="main-logo">
+            <img src="image.png" alt="PRISM Logo" class="main-logo">
             <h1 style="letter-spacing: 2px; margin: 0;">PRISM</h1>
         </div>
 
@@ -129,37 +129,34 @@
      <div id="dashboard-screen">
         <aside class="sidebar">
             <image scr="image.png" alt="PRISM Logo" style="width: 40px; margin-bottom: 20px;">
-                
-            </image>
-        </aside>
-     </div>
 
+                <h3>PRISM</h3>
+                <p style="opacity: 0.7; font-size: 14px;">Navigation Sidebar</p>
+            </aside>
+            <header class="header">Header inside body</header>
+            <main class="main-body">
+                <div class="main-body">
+                    <h2>Content Area</h2>
+                    <p>Authentication successful. Authorization enforced.</p>
+                    <button onclick="location.reload()" style="width: auto; padding: 10px 20px;">Logout</button>
+                </div>
+            </main>
+         </div>
 
+         <script>
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const user = document.getElementById('userIn').value;
+                const pass = document.getElementById('passIn').value;
 
-
-
-
-
-            </image>
-       
-    </div>
-
-
-
-
-
-
-
-</body>
-
-
-
-
-
-
-
-
-    </style>
-
-
+                if(user === "jc_admin@prism.com" && pass === "password1217") {
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('dashboard-screen').style.display = 'grid';
+                    document.body.style.background = "#fff";
+                } else {
+                    alert("The login credentials doesn't match an account in the system.");
+                }
+            });
+         </script>
+    </body>
 </html>
