@@ -10,7 +10,7 @@ if (isset($_GET['logout'])) {
     $displayDash = "none";
     $bodyBg = "linear-gradient(180deg, #801B32 0%, #5A1424 100%)";
 } 
-else if ($_SERVER["REQUEST METHOD"] == "POST") {
+else if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]== "POST") {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
@@ -107,7 +107,7 @@ else if ($_SERVER["REQUEST METHOD"] == "POST") {
     <body>
         <div id="login-screen">
             <div style="text-align: center; color: white; margin-bottom: 20px;">
-                <img scr="logo.png" alt="PRISM Logo" style="80 px; display: block; margin: 0 auto 10px;">
+                <img src="logo.png" alt="PRISM Logo" style="width: 80px; display: block; margin: 0 auto 10px;">
                     <h1 style="letter-spacing: 2px; margin: 0;">PRISM</h1>
             </div>
 
@@ -128,13 +128,13 @@ else if ($_SERVER["REQUEST METHOD"] == "POST") {
                     <button class="logout-btn" onclick="window.location.href='login.php?logout=true'">
                         Logout
                     </button>
-                </main>
+<               /main>
             </div>
 
             <?php if ($errorAlert): ?>
                 <script>
                     alert("The login credentials doesn't match an account in the system.");
-                    windows.history.replaceState({}, document.title, "login.php");
+                    window.history.replaceState({}, document.title, "login.php");
                 </script>
                 <?php endif; ?>
             </body>
