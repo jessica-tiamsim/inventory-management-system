@@ -128,7 +128,7 @@ else if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]== "POST
                     <button class="logout-btn" onclick="window.location.href='login.php?logout=true'">
                         Logout
                     </button>
-<               /main>
+                </main>
             </div>
 
             <?php if ($errorAlert): ?>
