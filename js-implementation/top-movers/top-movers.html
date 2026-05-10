@@ -75,8 +75,8 @@
 
          <div class="box2">
             <div class="box2_left">
-            <h4>Low Stock Report</h4>
-            <p class="box2_sub">Active products at or below their reorder threshold</p>
+            <h4>Top Movers</h4>
+            <p class="box2_sub">Products with highest stock-out volume in range</p>
             </div>
             <div class="box2_right">
                <div class="dropdowns">
@@ -86,11 +86,11 @@
                      <option value="product2">Category 2</option>
                      <option value="product3">Category 3</option>
                   </select>
-                  <select name="quantityDropdown" id="product">
-                     <option value="allProducts">Quantity</option>
-                     <option value="quantity1">1</option>
-                     <option value="quantity2">2</option>
-                     <option value="quantity3">3</option>
+                  <select name="unitsDropdown" id="unit">
+                     <option value="unitsOut">Units Out</option>
+                     <option value="units1">1</option>
+                     <option value="units2">2</option>
+                     <option value="units3">3</option>
                   </select>
                   <button class="excel">CSV</button>
                </div>
@@ -101,19 +101,15 @@
             <table>
                <tr class="header-box">
                   <th>SKU</th>
-                  <th>Product</th>
-                  <th>Country</th>
-                  <th>Quantity</th>
-                  <th>Reorder Threshold</th>
-                  <th>Supplier Name</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Units Out</th>
                </tr>
                <tr>
                   <td>BEV-006</td>
                   <td>Pocari Sweat</td>
                   <td>Bottled Water</td>
-                  <td>7</td>
-                  <td>Reorder Threshold</td>
-                  <td>Alex Reyes</td>
+                  <td>160</td>
                </tr>
             </table>
          </div>
