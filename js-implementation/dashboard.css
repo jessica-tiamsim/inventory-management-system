@@ -70,7 +70,7 @@ nav {
     font-weight: 700;
 }
 
-.nav-item:hove:not(.active) {
+.nav-item:hover:not(.active) {
     background: rgba(255, 255, 255, 0.1);
 }
 
