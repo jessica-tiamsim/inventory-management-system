@@ -1,0 +1,114 @@
+<?php
+
+$active_products = 7;
+$total_units = 193;
+$inventory_value = 1403;
+$low_stock_count = 4;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Inventory Management</title>
+    <link rel="stylesheet" href="dashboard.css">
+    
+</head>
+<body>
+    <aside class="sidebar">
+            <div class="logo">
+                <img src="image.png" alt="Logo">
+                <div class="logo-text">
+                    <span class="brand">PRISM</span>
+                    <p class="subtitle">Admin Portal</p>
+                </div>
+            </div>
+
+            <nav>
+                <a href="#" class="nav-item active">Dashboard</a> 
+                <a href="#" class="nav-item">Products</a>
+                <a href="#" class="nav-item">Stock Movements</a>
+                <a href="#" class="nav-item">Reports</a>
+                <a href="#" class="nav-item">Profile</a>
+            </nav>
+
+            <div class="user-panel">
+                <p>Admin User</p>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </aside>
+
+        <div class="main-content">
+            <header class="top-nav">
+                <div class="top-nav-left">
+                    <img src="image.png" alt="" style="width: 25px; height: 25px; object-fit: contain;">
+                    <span class="nav-title">PRISM | Inventory Management</span>
+                </div>
+                <div class="top-nav-right">
+                    <span class="user-badge">Admin</span>
+                    <span class="user-name">Alex Reyes</span>
+                </div>
+            </header>
+
+            <div class="breadcrumb-bar">
+                PRISM / Inventory Management / Dashboard
+            </div>
+
+            <div class="dashboard-container">
+                <h1 class="welcome-text">Welcome back, Alex!</h1>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card blue-border">
+                        <p class="card-label">ACTIVE PRODUCTS</p>
+                        <h2 class="card-value color-blue">7</h2>
+                        <p class="card-sub">2 Inactive</p>
+                    </div>
+                    <div class="stat-card red-border">
+                        <p class="card-label">UNITS IN STOCK</p>
+                        <h2 class="card-value color-red">193</h2>
+                        <p class="card-sub">across all SKUs</p>
+                    </div>
+                    <div class="stat-card blue-border">
+                        <p class="card-label">INVENTORY VALUE</p>
+                        <h2 class="card-value color-blue">₱1, 403</h2>
+                        <p class="card-sub">at unit cost</p>
+                    </div>
+                    <div class="stat-card green-border">
+                        <p class="card-label">LOW STOCK ALERTS</p>
+                        <h2 class="card-value color-green">4</h2>
+                        <p class="card-sub">at or below threshold</p>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Low Stock</h3>
+                                <p class="sub-text">Products at or below reorder threshold</p>
+                            </div>
+                            <button class="view-report-btn">View Report</button>
+                        </div>
+                        <div class="list-container">
+                            <p class="placeholder-text">Fetching data...</p>
+                        </div>
+                    </section>
+
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Recent Activity</h3>
+                                <p class="sub-text">Latest stock movements</p>
+                            </div>
+                        </div>
+                        <div class="list-container">
+                            <p class="placeholder-text">No recent activity found.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
