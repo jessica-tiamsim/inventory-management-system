@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PRISM</title>
+   <link rel="stylesheet" href="movementLedger.css">
+</head>
+<body>
+   <aside class ="sidebar">
+      <h2 class="logo">
+         <img src="image.png" class="logo_size">
+         <div class="logo_text">
+            <span>PRISM</span>
+            <p class="subtitle-logo">Admin Portal</p>
+         </div>
+      </h2>
+
+
+      <nav>
+         <a href="#" class="nav-item">
+               Dashboard
+         </a>
+         <a href="#" class="nav-item">
+               Products
+         </a>
+         <a href="#" class="nav-item">
+               Stock Movements
+         </a>
+         <a href="#" class="nav-item_active">
+               Reports
+         </a>
+         <a href="#" class="nav-item">
+               Profile
+         </a>
+      </nav>
+       
+      <div class ="user-panel">
+            <p>Admin User</p>
+            <p class="subtitle-user">Admin</p>
+            <button>Logout</button>
+      </div>
+   </aside>
+
+
+   <div class="main">
+      <header class ="topbar">
+         <h4 class="topbar-title">PRISM  |  Inventory Management</h4>
+         <div class="user-info">
+            <span class ="role">Admin</span>
+            <span>Alex Reyes</span>
+        </div>  
+      </header>  
+     
+      <div class="breadcrumb">
+         PRISM / INVENTORY / REPORTS
+      </div>
+
+
+      <main class ="content">
+         <div class="box1">
+            <h1 class="box1_title">Reports</h1>
+            <p class="box1_sub">Insight across your inventory operations</p>
+            <div class="date">
+               <label for="date">From: </label>
+               <input type="date" id="date1">
+
+
+               <label for="date">To: </label>
+               <input type="date" id="date2">
+            </div>
+            <div class="choices">
+               <span>Low Stock</span>
+               <span>Valuation</span>
+               <span class="active">Movement Ledger</span>
+               <span>Top Movers</span>
+            </div>
+         </div>
+
+
+         <div class="box2">
+            <div class="box2_left">
+            <h4>Movement Ledger</h4>
+            <p class="box2_sub">Filterable List of Movements</p>
+            </div>
+            <div class="box2_right">
+               <div class="dropdowns">
+                  <select name="productDropdown" id="product">
+                     <option value="allProducts">All Products</option>
+                     <option value="product1">Category 1</option>
+                     <option value="product2">Category 2</option>
+                     <option value="product3">Category 3</option>
+                  </select>
+                  <select name="quantityDropdown" id="product">
+                     <option value="allProducts">Quantity</option>
+                     <option value="quantity1">1</option>
+                     <option value="quantity2">2</option>
+                     <option value="quantity3">3</option>
+                  </select>
+                  <button class="excel">CSV</button>
+               </div>
+            </div>
+         </div>
+
+
+         <div class="box3">
+            <table>
+               <tr class="header-box">
+                  <th>Date</th>
+                  <th>Product Name</th>
+                  <th>Type</th>
+                  <th>Quantity</th>
+                  <th>Reorder Threshold</th>
+               </tr>
+               <tr>
+                  <td>2023-10-01</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-02</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-03</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-04</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-04</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-04</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-04</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+               <tr>
+                  <td>2023-10-04</td>
+                  <td>Coca-Cola</td>
+                  <td>Out</td>
+                  <td>165</td>
+                  <td>Shop Selling</td>
+               </tr>
+            </table>
+         </div>
+      </div>
+   </main>
+  </div>
+ </body>
+</html>
+
