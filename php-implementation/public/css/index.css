@@ -1,0 +1,67 @@
+:root {
+    --gold: #FFBF00;
+    --maroon: #801B32;
+    --white: #FFFFFF;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    height: 100vh;
+    background: linear-gradient(180deg, #801B32 0%, #5A1424 100%);
+}
+
+.login_screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.logo_div {
+    text-align: center; 
+    color: white; 
+    margin-bottom: 20px;
+}
+
+.logo_text{
+    letter-spacing: 2px; 
+    margin: 0;
+}
+
+.prism_img{
+    width: 80px; 
+    display: block; 
+    margin: 0 auto 10px;
+}
+
+.login_card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    width: 320px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    text-align: center;
+}
+.login_card h2{
+    color: #801B32; 
+    margin-bottom: 20px;
+}
+form input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.btn-gold {
+    width: 100%;
+    background: #FFBF00;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}

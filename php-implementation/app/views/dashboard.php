@@ -1,5 +1,13 @@
 <?php
+session_start();
 
+// Redirect if not logged in
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: index.php");
+    exit;
+}
+
+// These would ideally come from a Database Query later
 $active_products = 7;
 $total_units = 193;
 $inventory_value = 1403;
@@ -12,48 +20,14 @@ $low_stock_count = 4;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRISM | Inventory Management</title>
-    <link rel="stylesheet" href="dashboard.css">
-    
+    <link rel="stylesheet" href="../../public/css/dashboard.css">
+    <link rel="stylesheet" href="../../public/css/sidebar_header.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-    <aside class="sidebar">
-            <div class="logo">
-                <img src="image.png" alt="Logo">
-                <div class="logo-text">
-                    <span class="brand">PRISM</span>
-                    <p class="subtitle">Admin Portal</p>
-                </div>
-            </div>
+    <?php include __DIR__ . '/sidebar_header.php'; ?>
 
-            <nav>
-                <a href="#" class="nav-item active">Dashboard</a> 
-                <a href="#" class="nav-item">Products</a>
-                <a href="#" class="nav-item">Stock Movements</a>
-                <a href="#" class="nav-item">Reports</a>
-                <a href="#" class="nav-item">Profile</a>
-            </nav>
-
-            <div class="user-panel">
-                <p>Admin User</p>
-                <button class="logout-btn">Logout</button>
-            </div>
-        </aside>
-
-        <div class="main-content">
-            <header class="top-nav">
-                <div class="top-nav-left">
-                    <img src="image.png" alt="" style="width: 25px; height: 25px; object-fit: contain;">
-                    <span class="nav-title">PRISM | Inventory Management</span>
-                </div>
-                <div class="top-nav-right">
-                    <span class="user-badge">Admin</span>
-                    <span class="user-name">Alex Reyes</span>
-                </div>
-            </header>
-
-            <div class="breadcrumb-bar">
-                PRISM / Inventory Management / Dashboard
-            </div>
+        <div class="content">
 
             <div class="dashboard-container">
                 <h1 class="welcome-text">Welcome back, Alex!</h1>
@@ -110,5 +84,6 @@ $low_stock_count = 4;
                 </div>
             </div>
         </div>
+</div>
     </body>
 </html>
