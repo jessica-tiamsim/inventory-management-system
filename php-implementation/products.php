@@ -1,3 +1,23 @@
+<?php
+session_start();
+if (!isset($_SESSION['inventory'])) {
+    $_SESSION['inventory'] = [
+        ['sku' => 'BEV-001', 'name' => 'Coca-Cola', 'category' => 'Carbonated', 'status' => 'Active']
+    ];
+}
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sku'])) {
+    $newProduct = [
+        'sku'      => htmlspecialchars($_POST['sku']),
+        'name'     => htmlspecialchars($_POST['name']),
+        'category' => htmlspecialchars($_POST['category']),
+        'status'   => 'Active'
+    ];
+    $_SESSION['inventory'][] = $newProduct;
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +45,6 @@
             height: 100vh;
         }
 
-
         .sidebar {
             background: var(--maroon-grad);
             color: white;
@@ -52,12 +71,12 @@
         }
         .nav-icon { width: 20px; height: 20px; object-fit: contain; }
 
+
         .sidebar-footer {
             margin-top: auto;
             padding: 25px 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
-
 
         .user-profile-container {
             display: flex;
@@ -122,6 +141,7 @@
             height: 16px;
         }
 
+
         .main-body { display: flex; flex-direction: column; background-color: white; }
         .header-top { padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
         .breadcrumb-spacer { background-color: var(--breadcrumb-gray); padding: 8px 40px; font-size: 11px; font-weight: bold; color: #333; }
@@ -135,6 +155,7 @@
 
 
         .btn-new { background-color: var(--maroon); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-weight: bold; display: flex; align-items: center; gap: 8px; cursor: pointer; }
+
 
         .table-container { border-radius: 10px; overflow: hidden; margin-top: 20px; }
         table { width: 100%; border-collapse: collapse; }
@@ -217,7 +238,7 @@
     <aside class="sidebar">
         <div class="sidebar-logo-area">
             <div class="logo-flex">
-                <img src="image.png" class="logo-img" alt="Logo">
+                <img src="logo.png" class="logo-img" alt="Logo">
                 <div class="logo-text-group">
                     <h2>PRISM</h2>
                     <div class="admin-portal-label">Admin Portal</div>
