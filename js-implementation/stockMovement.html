@@ -3,44 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISM</title>
+  <title>PRISM | Stock Movements</title>
   <link rel="stylesheet" href="stockMovement.css">
 </head>
 <body>
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
-
     <h2 class="logo">
-        <img src="image.png" alt="PRISM Logo">
-        <div>
-            <span>PRISM<p class="subtitle">Admin Portal</p></span>
-        </div>
+      <img src="image.png" alt="PRISM Logo">
+      <div>
+        <span>PRISM<p class="subtitle">Admin Portal</p></span>
+      </div>
     </h2>
-   
+
     <!-- NAVIGATION -->
     <nav>
-
-      <a href="#" class="nav-item">
-        Dashboard
-      </a>
-
-      <a href="#" class="nav-item">
-        Products
-      </a>
-
-      <a href="#" class="nav-item active">
-        Stock Movements
-      </a>
-
-      <a href="#" class="nav-item">
-        Reports
-      </a>
-
-      <a href="#" class="nav-item">
-        Profile
-      </a>
-
+      <a href="#" class="nav-item">Dashboard</a>
+      <a href="#" class="nav-item">Products</a>
+      <a href="#" class="nav-item active">Stock Movements</a>
+      <a href="#" class="nav-item">Reports</a>
+      <a href="#" class="nav-item">Profile</a>
     </nav>
 
     <!-- USER -->
@@ -48,7 +31,6 @@
       <p>Admin User</p>
       <button>Logout</button>
     </div>
-
   </aside>
 
   <!-- MAIN -->
@@ -57,57 +39,122 @@
     <!-- HEADER -->
     <header class="topbar">
       <h1>PRISM | Inventory Management</h1>
+      <div class="topbar-user">
+        <span class="topbar-role">Admin</span>
+        <span class="topbar-name">Alex Reyes</span>
+      </div>
     </header>
 
     <!-- BREADCRUMB -->
     <div class="breadcrumb">
-      PRISM / Inventory / Stock Movements
+      PRISM / Inventory Management / Stock Movements
     </div>
 
     <!-- CONTENT -->
     <main class="titleBlock">
-       <div class="box1">
-            <div class="title-group">
-                <span class="pageTitle">Stock Movements</span>
-                <p class="pageSubtitle">
-                    Immutable ledger of stock change.
-                </p>
-                <div class="dropdowns">
-                    <select name="productDropDown" id="product">
-                    <option value="allProducts">All Products</option>
-                    <option value="product1">Category 1</option>
-                    <option value="product2">Category 2</option>
-                    <option value="Product3">Category 3</option>
-                    </select>
-                    <select name="typeDropDown" id="type">
-                    <option value="allTypes">All Types</option>
-                    <option value="product1">Type 1</option>
-                    <option value="product2">Type 2</option>
-                    <option value="Product3">Type 3</option>
-                    </select>
-                </div>
-            </div>
-
-
-            <button class="record">
-                + Record Movement
-            </button>
-
-
+      <div class="box1">
+        <div class="title-group">
+          <span class="pageTitle">Stock Movements</span>
+          <p class="pageSubtitle">Immutable ledger of stock change.</p>
+          <div class="dropdowns">
+            <select name="productDropDown" id="product">
+              <option value="allProducts">All Products</option>
+              <option value="product1">Category 1</option>
+              <option value="product2">Category 2</option>
+              <option value="product3">Category 3</option>
+            </select>
+            <select name="typeDropDown" id="type">
+              <option value="allTypes">All Types</option>
+              <option value="type1">Type 1</option>
+              <option value="type2">Type 2</option>
+              <option value="type3">Type 3</option>
+            </select>
+          </div>
         </div>
-        <div class="box2">
-          The table goes here
-        </div>
+
+        <button class="record" onclick="openModal()">+ Record Movement</button>
+      </div>
+
+      <div class="box2">
+        <table>
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>PRODUCT</th>
+              <th>TYPE</th>
+              <th>QUANTITY</th>
+              <th>NOTES</th>
+              <th>RECORDED BY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-01-01</td>
+              <td>Coca-Cola</td>
+              <td>Inbound</td>
+              <td>100</td>
+              <td>Maria Santos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
-
   </div>
 
+  <!-- RECORD MOVEMENT MODAL -->
+  <div class="modal-overlay" id="recordMovementModal">
+    <div class="modal-content">
+      <button type="button" class="close-btn" onclick="closeModal()">&times;</button>
+      <h2>Record Movement</h2>
+      <p>Log a new stock change to the ledger.</p>
+
+      <form>
+        <div class="details-section">
+          <span class="details-label">Movement Details</span>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Product</label>
+              <select>
+                <option>Select a product...</option>
+                <option>Coca-Cola</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Movement Type</label>
+              <select>
+                <option value="">Select type...</option>
+                <option value="inbound">Stock-In</option>
+                <option value="outbound">Stock-Out</option>
+                <option value="adjustment">Adjustment</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Quantity</label>
+              <input type="number" placeholder="0" min="1">
+              <span class="input-hint">Enter the number of units affected.</span>
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input type="date">
+            </div>
+
+            <div class="form-group full-width">
+              <label>Notes</label>
+              <textarea placeholder="Optional notes about this movement..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-save">Record Movement</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="stockMovement.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
