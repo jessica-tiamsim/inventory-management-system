@@ -1,21 +1,25 @@
-document.getElementById('loginForm').addEventListener('submit', (e) => {
+document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     login();
 });
 
 function login() {
+    const usernameField = document.getElementById('username');
+    const passwordField = document.getElementById('password');
+
     fetch('/login', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            username: username.value,
-            password: password.value
+            username: usernameField.value,
+            password: passwordField.value
         })
     })
     .then(res => res.json())
     .then(data => {alert(data.message);
-        if (data.message === 'Login Successful') {
-            window.location.href = '/dashboard'; // Redirect on success
+        // Corrected spelling to match whatever your server sends
+        if (data.message === 'Login Successful') { 
+            window.location.href = '/dashboard'; 
         }
     })
     .catch(err => console.error("Error:", err));

@@ -38,35 +38,54 @@ app.use(session({
 console.log("log2");
 /*LOGIN*/
 app.post('/login', (req, res) => {
-    const {username, password} = req.body;
 
-    db.query(
-        'SELECT * FROM USERS WHERE username = ?',
-        [username],
-        async (error, results) => {
-            if (results.length === 0) {
-                return res.json({message: 'User not Found'})
-            }
+  const { username, password } = req.body;
 
-            const user = results[0];
+  if (!username || !password) {
+    return res.json({ message: 'Missing fields' });
+  }
 
-            const match = await bcrypt.compare(password, user.password);
+  db.query(
+    'SELECT * FROM users WHERE username = ?',
+    [username],
+    async (err, results) => {
 
-            if (!match) {
-                return res.json({message: 'Wrong Password'});
-            }
+      if (err) {
+        return res.status(500).json({ message: 'Database error' });
+      }
 
-            //CREATE SESSION
-            req.session.user = {
-                id: user.id,
-                username: user.username
-            };
+      if (results.length === 0) {
+        return res.json({ message: 'User not found' });
+      }
 
-            res.json({message: 'Login Sucessful'});
+      const user = results[0];
+
+      // ✅ IMPORTANT: use user_pass here
+      if (!user.password_hash) {
+        return res.json({ message: 'Invalid user data' });
+      }
+
+      try {
+        const match = await bcrypt.compare(password, user.password_hash);
+
+        if (!match) {
+          return res.json({ message: 'Wrong password' });
         }
-    );
-});
 
+        req.session.user = {
+          id: user.id,
+          username: user.username
+        };
+
+        return res.json({ message: 'Login successful' });
+
+      } catch (e) {
+        console.log(e);
+        return res.status(500).json({ message: 'Server error' });
+      }
+    }
+  );
+});
 console.log("log3");
 /* DASHBOARD */
 app.get('/dashboard', (req, res) => {
