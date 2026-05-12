@@ -1,0 +1,20 @@
+# 🔐 environment variables (IMPORTANT)
+.env
+
+# 📦 dependencies
+node_modules/
+
+# 📄 logs
+*.log
+logs/
+
+# 🧠 session / runtime files (if any stored locally)
+session/
+tmp/
+
+# 💻 OS files
+.DS_Store
+Thumbs.db
+
+# ⚙️ editor files (optional)
+.vscode/
