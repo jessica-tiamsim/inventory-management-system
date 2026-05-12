@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '../../../vendor/autoload.php';
 
 // This is the "magic" line that loads your .env file
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../'); 
@@ -28,7 +28,7 @@ echo "Connected to MySQL version: " . $version;
     <body>
         <div class="login_screen">
             <div class = "logo_div">
-                <img src="logo.png" class = "prism_img">
+                <img src="/../../assets/logo.png" class = "prism_img">
                     <h1 class = "logo_text">PRISM</h1>
             </div>
             <div class="login_card">

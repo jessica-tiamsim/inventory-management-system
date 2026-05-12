@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Trim removes accidental spaces; htmlspecialchars handles security for display later
     $username_email = trim($_POST['username_email'] ?? '');
     $password = $_POST['password'] ?? '';
-
+    
     if (empty($username_email) || empty($password)) {
         header("Location: ../views/index.php?error=empty_fields");
         exit();

@@ -4,68 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRISM</title>
-  <link rel="stylesheet" href="stockMovement.css">
+  <link rel="stylesheet" href="../../public/css/stock_movement.css">
+  <link rel="stylesheet" href="../../public/css/sidebar_header.css">
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
+<?php include __DIR__ . '/sidebar_header.php'; ?>
 
-    <h2 class="logo">
-        <img src="image.png" alt="PRISM Logo">
-        <div>
-            <span>PRISM<p class="subtitle">Admin Portal</p></span>
-        </div>
-    </h2>
-   
-    <!-- NAVIGATION -->
-    <nav>
-
-      <a href="#" class="nav-item">
-        Dashboard
-      </a>
-
-      <a href="#" class="nav-item">
-        Products
-      </a>
-
-      <a href="#" class="nav-item active">
-        Stock Movements
-      </a>
-
-      <a href="#" class="nav-item">
-        Reports
-      </a>
-
-      <a href="#" class="nav-item">
-        Profile
-      </a>
-
-    </nav>
-
-    <!-- USER -->
-    <div class="user-panel">
-      <p>Admin User</p>
-      <button>Logout</button>
-    </div>
-
-  </aside>
-
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- HEADER -->
-    <header class="topbar">
-      <h1>PRISM | Inventory Management</h1>
-    </header>
-
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
-      PRISM / Inventory / Stock Movements
-    </div>
-
-    <!-- CONTENT -->
-    <main class="titleBlock">
+    <main class="content">
        <div class="box1">
             <div class="title-group">
                 <span class="pageTitle">Stock Movements</span>
@@ -101,6 +48,6 @@
     </main>
 
   </div>
-
+</div>
 </body>
 </html>

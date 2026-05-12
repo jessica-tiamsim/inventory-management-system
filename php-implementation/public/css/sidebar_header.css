@@ -34,6 +34,11 @@ aside {
     align-items: center;
     gap: 8px;
 }
+.logo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+}
 
 .prism_image {
     width: 49px;
@@ -53,7 +58,7 @@ aside {
     color: rgb(255, 255, 255, 0.60);;
     margin-left: 25px;
 }
-/*nagigation buttons*/
+/*navigation buttons*/
 
 nav {
     display: flex;

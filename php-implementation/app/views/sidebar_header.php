@@ -2,7 +2,7 @@
    <aside>
       <div class= "logo">
          <div class="logo1">
-            <img src= "image.png" class="prism_image">
+            <img src= "../../../assets/logo.png" class="prism_image">
             <h1>PRISM</h1>
          </div>
          <div class="logo_user">
