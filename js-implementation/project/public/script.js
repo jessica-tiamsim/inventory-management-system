@@ -1,3 +1,8 @@
+document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    login();
+});
+
 function login() {
     fetch('/login', {
         method:'POST',
@@ -8,8 +13,14 @@ function login() {
         })
     })
     .then(res => res.json())
-    .then(data => alert(data.message));
-    }
+    .then(data => {alert(data.message);
+        if (data.message === 'Login Successful') {
+            window.location.href = '/dashboard'; // Redirect on success
+        }
+    })
+    .catch(err => console.error("Error:", err));
+}
+
     function dashboard() {
         fetch('/dashboard')
         .then(res => res.text())

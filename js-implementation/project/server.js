@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session')
-const MySQL = require('express-mysql-session')(session);
+const MySQLStore = require('express-mysql-session')(session);
 const bcrypt = require('bcrypt');
 const path = require('path');
 require('dotenv').config();
@@ -12,12 +12,16 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+console.log("log1");
 /* SESSION STORE (MySQL) */
 const sessionStore = new MySQLStore({
     host:process.env.DB_HOST,
     user:process.env.DB_USER,
     password:process.env.DB_PASSWORD,
-    database:process.env.DB_NAME
+    database:process.env.DB_NAME,
+    schema: {
+        tableName: 'sessions_table'
+    }
 });
 
 app.use(session({
@@ -31,15 +35,16 @@ app.use(session({
     }
 }));
 
+console.log("log2");
 /*LOGIN*/
 app.post('/login', (req, res) => {
     const {username, password} = req.body;
 
     db.query(
-        'SELECT * FROM users WHERE username = ?',
+        'SELECT * FROM USERS WHERE username = ?',
         [username],
         async (error, results) => {
-            if (results. length === 0) {
+            if (results.length === 0) {
                 return res.json({message: 'User not Found'})
             }
 
@@ -62,13 +67,14 @@ app.post('/login', (req, res) => {
     );
 });
 
+console.log("log3");
 /* DASHBOARD */
 app.get('/dashboard', (req, res) => {
     if (!req.session.user) {
         return res.status(401).send('Not logged in');
     }
 
-    res.send('Welcome ${req.session.user.username}');
+    res.send(`Welcome ${req.session.user.username}`);
 });
 
 app.get('/logout', (req, res) => {
