@@ -1,20 +1,49 @@
 <?php
 
+session_start();
+require 'db.php';
+
 $displayLogin = "flex";
 $displayDash = "none";
 $bodyBg = "linear-gradient(180deg, #801B32 0%, #5A1424 100%)";
 $errorAlert = false;
 
 if (isset($_GET['logout'])) {
-    $displayLogin = "flex";
-    $displayDash = "none";
-    $bodyBg = "linear-gradient(180deg, #801B32 0%, #5A1424 100%)";
+
+    session_destroy();
+    header("Location: login.php");
+    exit();
 } 
-else if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]== "POST") {
+if (isset($_SESSION['user_id'])) {
+
+    $displayLogin = "none";
+    $displayDash = "grid";
+    $bodyBg = "#ffffff";
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
 
-    if ($email === "jc_admin@prism.com" && $password === "password1217") {
+    $stmt = $pdo->prepare("
+    SELECT * FROM users
+    WHERE email = :email
+    AND password = :password
+    ");
+
+    $stmt->execute([
+        ':email' => $email,
+        ':password' => $password
+    ]);
+
+    $user = $stmt->fetch();
+
+    if ($user) {
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+        $_SESSION['email'] = $user['email'];
+
         $displayLogin = "none";
         $displayDash = "grid";
         $bodyBg = "#ffffff";
@@ -124,7 +153,7 @@ else if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]== "POST
             <div id="dashboard-screen">
                 <aside class="sidebar">
                     <h2>PRISM</h2>
-                    <p>Admin Panel</p>
+                    <p><?= ucfirst($_SESSION['role']) ?> Panel</p>
                     <button class="logout-btn" onclick="window.location.href='login.php?logout=true'">
                         Logout
                     </button>
@@ -138,7 +167,7 @@ else if (isset($_SERVER["REQUEST_METHOD"]) && $_SERVER["REQUEST_METHOD"]== "POST
                 </script>
                 <?php endif; ?>
             </body>
-            </html>
+        </html>
 
 
 

@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --maroon: #6E1A35;
+    --white: #ffffff;
+    --bg: #f6f4f1;
+    --text: #1A1714;
+    --gray: #777;
+    --border: #ddd;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f5f5f5;
+    color: var(--text);
+}
+
+.sidebar {
+    width: 220px;
+    background: linear-gradient(to bottom, #801B32, #5A1424);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+
+.logo {
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.logo_text {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo_size {
+    width: 49px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.subtitle {
+    font-size: 12px;
+    color: gray;
+    margin-bottom: 30px;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: var(--white);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.nav-item_active {
+    background: gold;
+    text-decoration: none;
+    color: var(--maroon);
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.user-panel {
+    padding: 20px;
+    border-top: 1px solid gray;
+    margin-top: auto;
+}
+
+.user-panel p {
+    margin-bottom: 10px;
+}
+.user-panel button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background: rgba(255, 255, 255, 0.15);
+    color: var(--white);
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.role {
+    background: maroon;
+    color: white;
+}
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--white);
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.user-info span {
+    display: inline;
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.breadcrumb {
+    padding: 10px 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color:black;
+    border-bottom: 1px solid var(--border);
+    background: #d0d0d0;
+}
+
+.content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.box1 {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.box1_sub {
+    font-size: 14px;
+    color: gray;
+    margin-bottom: 20px;
+}
+
+.date {
+    margin-bottom: 20px;
+}
+
+#date1 {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+
+#date2 {
+   padding: 5px;
+    border: none;
+    border-radius: 5px;
+    background: #f5f5f5;
+}
+
+.choices {
+    display: flex;
+    gap: 10px;
+}
+
+.choices span {
+    padding: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    background: white;
+    border-color: 2px solid gray;
+    color: black;
+}
+
+.choices span.active {
+    background: maroon;
+    color: white;
+}
+
+.box2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: #ffffff;
+}
+
+.box2_sub {
+    font-size: 12px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+.dropdowns {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dropdowns select {
+    padding: 2px;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+}
+
+.excel {
+    padding: 4px;
+    border-radius: 10px;
+    background: maroon;
+    color: white !important;
+}
+
+#product {
+    width: auto;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+.box3 {
+    padding: 10px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: auto;
+    background: #ffffff;
+}
+
+.stock_table {
+    display: flex;
+    width: 80px;
+    height: 50px;
+    color: black;
+}
+
+.column {
+    border-radius: 10px;
+    background-color: #801b32;
+}

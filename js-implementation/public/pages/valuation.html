@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Reports</title>
+
+    <link rel="stylesheet" href="../css/valuation.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <img src="../../../assets/logo.png" alt="Logo">
+
+            <div class="logo-text">
+                <span class="brand">PRISM</span>
+                <p class="subtitle-logo">Admin Portal</p>
+            </div>
+
+        </div>
+
+        <nav>
+            <a href="#" class="nav-item">
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                Products
+            </a>
+
+            <a href="#" class="nav-item">
+                Stock Movements
+            </a>
+
+            <a href="#" class="nav-item active">
+                Reports
+            </a>
+
+            <a href="#" class="nav-item">
+                Profile
+            </a>
+
+        </nav>
+
+        <div class="user-panel">
+            <p>Admin User</p>
+            <p class="subtitle-user">Administrator</p>
+
+            <button class="logout-btn">
+                Logout
+            </button>
+        </div>
+    </aside>
+
+
+
+   
+    <div class="main-content">
+        <header class="top-nav">
+            <div class="top-nav-left">
+
+                <img
+                    src="../../../assets/logo.png"
+                    alt="logo"
+                    class="top-logo"
+                >
+
+                <span class="nav-title">
+                    PRISM | Inventory Management
+                </span>
+
+            </div>
+
+            <div class="top-nav-right">
+                <span class="user-badge">Admin</span>
+                <span class="user-name">Alex Reyes</span>
+
+            </div>
+
+        </header>
+
+
+        <div class="breadcrumb-bar">
+            PRISM / INVENTORY / REPORTS
+        </div>
+
+
+
+        <main class="dashboard-container">
+
+            <section class="hero-box">
+                <h1 class="welcome-text">
+                    Reports
+                </h1>
+                <p class="hero-subtext">
+                    Insights across your inventory operations
+                </p>
+
+
+
+                <div class="date-filter">
+
+                    <div class="date-group">
+                        <label>From:</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="date-group">
+                        <label>To:</label>
+                        <input type="date">
+                    </div>
+                </div>
+
+
+                <div class="report-tabs">
+
+                    <span>Low Stock</span>
+                    <span class="active-tab">Valuation</span>
+                    <span>Movement Ledger</span>
+                    <span>Top Movers</span>
+                </div>
+            </section>
+
+
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Inventory Valuation Report</h3>
+                        <p class="sub-text">
+                            Current inventory pricing and stock values
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="filters">
+
+                        <select>
+                            <option>All Products</option>
+                            <option>Beverages</option>
+                            <option>Snacks</option>
+                            <option>Frozen Goods</option>
+                        </select>
+
+                        <select>
+                            <option>Sort By</option>
+                            <option>Highest Value</option>
+                            <option>Lowest Value</option>
+                        </select>
+
+                        <button class="view-report-btn">
+                            Export CSV
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+
+                            <tr>
+                                <th>SKU</th>
+                                <th>Product</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Total Value</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>BEV-001</td>
+                                <td>Coca-Cola</td>
+                                <td>Beverages</td>
+                                <td>100</td>
+                                <td>₱60</td>
+                                <td>₱6,000</td>
+                            </tr>
+
+                            <tr>
+                                <td>BEV-002</td>
+                                <td>Royal</td>
+                                <td>Beverages</td>
+                                <td>250</td>
+                                <td>₱40</td>
+                                <td>₱10,000</td>
+                            </tr>
+
+                            <tr>
+                                <td>BEV-003</td>
+                                <td>Pepsi</td>
+                                <td>Beverages</td>
+                                <td>150</td>
+                                <td>₱50</td>
+                                <td>₱7,500</td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+</html>
