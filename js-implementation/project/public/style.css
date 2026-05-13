@@ -41,6 +41,7 @@ body {
     padding: 40px;
     border-radius: 16px;
     width: 320px;
+    height: auto;  
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     text-align: center;
 }
@@ -57,6 +58,33 @@ form input {
     box-sizing: border-box;
 }
 
+#message {
+    display: block;
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.success {
+    color: green;
+    height: 30px;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid green;
+    background: #F0fdf4;
+}
+
+.error {
+    color: red;
+    line-height: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid red;
+    background: #FEF2F2;
+}
+
 .btn-gold {
     width: 100%;
     background: #FFBF00;
@@ -64,4 +92,5 @@ form input {
     padding: 14px;
     border-radius: 8px;
     font-weight: bold;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
