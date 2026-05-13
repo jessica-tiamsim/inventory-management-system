@@ -6,13 +6,12 @@ const path = require('path');
 require('dotenv').config();
 
 const db = require('./db/connection');
-
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-console.log("log1");
+
 /* SESSION STORE (MySQL) */
 const sessionStore = new MySQLStore({
     host:process.env.DB_HOST,
@@ -35,7 +34,7 @@ app.use(session({
     }
 }));
 
-console.log("log2");
+
 /*LOGIN*/
 app.post('/login', (req, res) => {
 
@@ -80,13 +79,11 @@ app.post('/login', (req, res) => {
         return res.json({ message: 'Login successful' });
 
       } catch (e) {
-        console.log(e);
         return res.status(500).json({ message: 'Server error' });
       }
-    }
-  );
+    });
 });
-console.log("log3");
+
 /* DASHBOARD */
 app.get('/dashboard', (req, res) => {
     if (!req.session.user) {
