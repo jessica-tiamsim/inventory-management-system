@@ -9,12 +9,10 @@ $dotenv->load();
 // NOW you can require your database connection
 require_once __DIR__ . '/../models/db_connection.php';
 
-// Add this to the bottom of your index.php to test the connection
-$stmt = $pdo->query("SELECT VERSION()");
-$version = $stmt->fetchColumn();
 
-echo "<h1>Success!</h1>";
-echo "Connected to MySQL version: " . $version;
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +25,13 @@ echo "Connected to MySQL version: " . $version;
     </head>
     <body>
         <div class="login_screen">
+
             <div class = "logo_div">
-                <img src="/../../assets/logo.png" class = "prism_img">
+                
+                <img src="/inventory-management-system/assets/logo.png" class = "prism_img">
                     <h1 class = "logo_text">PRISM</h1>
             </div>
+            
             <div class="login_card">
                 <h2>Log in</h2>
                 <form method="POST" action="../controller/login_controller.php">
@@ -38,7 +39,10 @@ echo "Connected to MySQL version: " . $version;
                     <input type="password" name="password" placeholder="Password" required>
                     <button type="submit" class="btn-gold">Log in</button>
                 </form>
-            </div>
+                <div class = "login_description">
+                
+                </div>
+            </div>  
         </div>
     </body>
 </html>

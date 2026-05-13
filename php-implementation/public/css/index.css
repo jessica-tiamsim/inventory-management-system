@@ -5,7 +5,8 @@
 }
 
 body {
-    margin: 0;
+    display: block;
+    margin: 0px;
     font-family: sans-serif;
     height: 100vh;
     background: linear-gradient(180deg, #801B32 0%, #5A1424 100%);
@@ -64,4 +65,12 @@ form input {
     padding: 14px;
     border-radius: 8px;
     font-weight: bold;
+}
+
+.login_description {
+    width: 100%;
+    height: 50px;
+    margin-top: 10px;
+    border-radius: 8px;
+    background-color: #FFC9C9;
 }

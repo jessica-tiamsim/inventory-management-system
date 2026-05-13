@@ -1,0 +1,87 @@
+:root {
+            --gold: #FFBF00;
+            --maroon: #801B32;
+            --maroon-grad: linear-gradient(180deg, #801B32 0%, #5A1424 100%);
+            --white: #FFFFFF;
+            --bg-gray: #F5F5F5;
+            --font-main: 'Inter', 'Roboto', sans-serif;
+        }
+
+        .table-container p{
+            margin: 0px;
+        }
+
+        .content-box { 
+            background-color: white; 
+            border-radius: 12px; 
+            flex-grow: 1; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            display: flex; 
+            flex-direction: column; 
+        }
+
+
+        .content-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-end; 
+            margin-bottom: 5px; 
+        }
+        .content-header h1 { 
+            margin: 0px; 
+            color: var(--maroon); 
+            font-size: 32px; font-weight: 700; 
+        }
+        .content-header p { 
+            margin: 5px 0px 0px; 
+            color: #666; 
+            font-size: 14px; 
+        }
+
+
+        .btn-new { 
+            background-color: var(--maroon); 
+            color: white; 
+            border: none; 
+            padding: 12px 24px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            cursor: pointer; }
+
+
+        .table-container { 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin-top: 20px; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        thead { 
+            background: var(--maroon); 
+            color: white; 
+        }
+        th { 
+            padding: 10px 10px; 
+            font-size: 12px; 
+            text-align: left; }
+        td { 
+            padding: 10px 20px; 
+            font-size: 13px; 
+            border-bottom: 1px solid #eee; 
+        }
+        .status-active { 
+            color: #2DCA73; 
+            font-weight: 700; 
+        }
+        .action-img { 
+            width: 32px;
+             height: 32px; 
+            cursor: pointer; 
+            margin-right: 8px; 
+        }
+
