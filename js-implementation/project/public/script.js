@@ -1,3 +1,5 @@
+const message = document.getElementById('message');
+
 document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     login();
@@ -16,12 +18,22 @@ function login() {
         })
     })
     .then(res => res.json())
-    .then(data => {alert(data.message); 
-            if (data.message === 'Login successful') {
-                window.location.href = 'dashboard.html';
-         } 
-        })
-    .catch(err => console.error("Error:", err));
+    .then(data => {
+
+        message.classList.remove('success', 'error');
+        message.textContent = data.message;
+
+        if (data.message === 'Login successful') {
+            message.classList.add('success');    
+            setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
+         } else {
+            message.classList.add('error');
+        }
+    })
+    .catch(err => {
+        message.textContent = "Connection error";
+        message.classList.add('error');
+    });
 }
 
     function dashboard() {
