@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Inventory Management</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body id = "menu">
+
+     <div class="main">
+        
+        <div class="content">
+            <div class="dashboard-container">
+                <h1 class="welcome-text">Welcome back, Alex!</h1>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card blue-border">
+                        <p class="card-label">ACTIVE PRODUCTS</p>
+                        <h2 class="card-value color-blue">7</h2>
+                        <p class="card-sub">2 Inactive</p>
+                    </div>
+                    <div class="stat-card red-border">
+                        <p class="card-label">UNITS IN STOCK</p>
+                        <h2 class="card-value color-red">193</h2>
+                        <p class="card-sub">across all SKUs</p>
+                    </div>
+                    <div class="stat-card blue-border">
+                        <p class="card-label">INVENTORY VALUE</p>
+                        <h2 class="card-value color-blue">₱1, 403</h2>
+                        <p class="card-sub">at unit cost</p>
+                    </div>
+                    <div class="stat-card green-border">
+                        <p class="card-label">LOW STOCK ALERTS</p>
+                        <h2 class="card-value color-green">4</h2>
+                        <p class="card-sub">at or below threshold</p>
+                    </div>
+                </div>
+
+                <div class="main-grid">
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Low Stock</h3>
+                                <p class="sub-text">Products at or below reorder threshold</p>
+                            </div>
+                            <button class="view-report-btn">View Report</button>
+                        </div>
+                        <div class="list-container">
+                            <p class="placeholder-text">Fetching data...</p>
+                        </div>
+                    </section>
+
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Recent Activity</h3>
+                                <p class="sub-text">Latest stock movements</p>
+                            </div>
+                        </div>
+                        <div class="list-container">
+                            <p class="placeholder-text">No recent activity found.</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+       window.onload = function() {   
+        loadMenu();
+        dashboard(); 
+        };
+    </script>
+    </body>
+</html>
