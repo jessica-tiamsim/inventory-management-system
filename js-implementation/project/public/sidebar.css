@@ -1,0 +1,284 @@
+@import url('https://rsms.me/inter/inter.css');
+/*body(main window)*/
+body {
+    display: flex;
+    height: 100vh;
+    font-family: 'Inter';
+    background: green;
+    margin: 0px;
+    overflow: hidden;
+}
+/*navigation bar*/
+aside {
+    width: 256px;
+    height: 100vh;
+    font-family: 'Inter';
+    background: linear-gradient(to bottom, #801B32, #5A1424);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0; /* Prevents sidebar from squishing on small screens */
+}
+
+.logo {
+    max-width: 256px;
+    max-height: 120px;
+    padding: 8px 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+.logo1 {
+    display: flex;
+    width: 200px;
+    height: 50px;
+    align-items: center;
+    gap: 8px;
+}
+.logo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+    margin: 0;
+}
+
+.prism_image {
+    width: 49px;
+    height: 41px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+}
+
+.logo_user {
+    width: fit-content;
+    height: 45px;
+}
+
+.logo_user p {
+    font-size: 12px;
+    color: rgb(255, 255, 255, 0.60);;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+/*navigation buttons*/
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Inter' !important;
+    padding: 20px 10px;
+    gap: 6px;
+    
+}
+nav a{
+    display: flex;
+    width: 208px;
+    height: 48px;
+    border-radius: 16px;
+    padding: 0px;
+    padding-left: 16px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 12px;
+    font-family: 'Inter';
+    color: white;
+    text-decoration: none;
+}
+nav img{
+    max-width: 20px;
+    max-height: 20px;
+    align-self: center;
+}
+
+nav a.active {
+    background: #FFBF00 !important;
+    color: maroon;
+}
+
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/*logout panel*/
+.user-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    margin-top: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+.user{
+    gap: 12px;
+    display: flex;
+}
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: #FFBF00;
+}
+.profile img {
+    max-width: 40px;
+    max-height: 40px;
+}
+.status{
+    display: grid;
+    justify-content: center;
+}
+
+.status p{
+    font-weight: 400;
+    margin: 0px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+#admin {
+    margin: 0px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+.user-panel button {
+    font-size: 14px;
+    font-weight: 600;
+    width: 224px;
+    height: 48px;
+    border-radius: 16px;
+    padding: 0px;
+    gap: 6px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: rgba(255, 255, 255, 0.10);
+    cursor: pointer;
+}
+
+.logout_image {
+    align-self: center;
+    max-width: 16px;
+    max-height: 16px;
+}
+#logout{
+    width:fit-content;
+    align-content: center;
+    color: white;
+    margin: 0;
+}
+
+header{
+    display: flex;
+    width: 100%;
+    height: 112px;
+    background-color: white ;
+    flex-direction: column;
+    align-content: center;
+    
+}
+.upper {
+    display: flex;
+    width: 100%;
+    height: 84px;
+    padding-left: 20px;
+    align-items: center;
+    flex-direction: row;
+    background-color: white;
+    box-sizing: border-box;
+}
+.lower{
+    display: flex;
+    width: 100%;
+    height: 28px;
+    padding-left: 20px;
+    align-items: center;
+    background-color: #D0D0D0;
+    box-sizing: border-box;
+}
+.lower p {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+.left {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+}
+.left img {
+    align-self: center;
+    max-width: 33px;
+    max-height: 28px;
+    border: black;
+}
+.upper .left p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+.shape {
+    max-width: 33px;
+    max-height: 28px;
+    background-color: black;
+
+}
+.right {
+    display: flex;
+    width: 200px;
+    align-items: center;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 16px;
+}
+.admin{
+    display: flex;
+    max-width: 75px;
+    max-height: 35px;
+    padding: 8px 14px;
+    border-radius: 32px;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    background-color: #801B32;
+}
+.admin p {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0px;
+    margin: 0px;
+    align-self: center;
+}
+.alex {
+    display: flex;
+    width: 200px;
+    height: 40px;
+}
+.alex p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px;
+    align-self: center;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-sizing: border-box ;
+    background-color: wheat;
+    overflow-y: auto;
+}
