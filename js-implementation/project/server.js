@@ -87,10 +87,9 @@ app.post('/login', (req, res) => {
 /* DASHBOARD */
 app.get('/dashboard', (req, res) => {
     if (!req.session.user) {
-        return res.status(401).send('Not logged in');
+        return res.status(401).json({message: 'Not logged in'});
+    res.send({message:`Welcome ${req.session.user.username}!` });
     }
-
-    res.send(`Welcome ${req.session.user.username}`);
 });
 
 app.get('/logout', (req, res) => {
