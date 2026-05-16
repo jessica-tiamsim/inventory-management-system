@@ -1,140 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Valuation</title>
-    
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        background: #f4f6f8;
-        color: #222;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM</title>
 
-      .container {
-        max-width: 1000px;
-        margin: 40px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      }
+  <!-- EXTERNAL CSS -->
+  <link rel="stylesheet" href="layout.css">
 
-      h1 {
-        margin-bottom: 20px;
-      }
+  <!-- INTERNAL CSS -->
+  <style>
 
-      .summary {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 15px;
-        margin-bottom: 30px;
-      }
+    /* PAGE HEADER */
+    .page-header {
+      background: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
 
-      .card {
-        background: #eaf2ff;
-        padding: 20px;
-        border-radius: 10px;
-        text-align: center;
-      }
+    .page-header h2 {
+      color: #6E1A35;
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
 
-      .card h2 {
-        margin: 0;
-        font-size: 18px;
-        color: #333;
-      }
+    .page-header p {
+      color: #777;
+      font-size: 14px;
+    }
 
-      .card p {
-        font-size: 24px;
-        font-weight: bold;
-        margin: 10px 0 0;
-        color: #0b5ed7
-      }
+    /* FILTER SECTION */
+    .report-filters {
+      background: #ffffff;
+      padding: 15px 20px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-      }
+    .date-filters {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 15px;
+      align-items: center;
+    }
 
-      th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: left;
-      }
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-      th {
-        background: #0b5ed7;
-        color: white;
-      }
+    .filter-group label {
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-      tr:nth-child(even) {
-        background: #f9f9f9;
-      }
+    .filter-group input {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      background: #f5f5f5;
+    }
 
-    </style>
-  </head>
-  <body>
+    /* REPORT BUTTONS */
+    .report-tabs {
+      display: flex;
+      gap: 15px;
+    }
 
-    <div class="container">
-      <h1>PRISM Inventory Valuation</h1>
-      
-      <summary>
-        <div class="summary">
-          <div class="card">
-          <h2>Total Inventory Items</h2>
-          <p>150</p>
-        </div>
+    .tab-btn {
+      padding: 8px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #f0f0f0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        <div class="card">
-          <h2>Total Quantity</h2>
-          <p>2,740</p>
-        </div>
+    .tab-btn:hover {
+      background: #ddd;
+    }
 
-        <div class="card">
-          <h2>Total Inventory Value</h2>
-          <p>₱23,500</p>
-        </div>
-      </div>
+    .tab-btn.active {
+      background: #8B1E3F;
+      color: white;
+    }
 
-      <table>
-        <thead>
+    /* REPORT CARD */
+    .report-card {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 15px;
+    }
 
-          <tr>
-            <th>Item Name</th>
-            <th>Quantity</th>
-            <th>Unit Price</th>
-            <th>Total Value</th>
-          </tr>
-        </thead>
-        <tbody>
+    .report-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
 
-          <tr>
-            <td>Coca-cola</td>
-            <td>100</td>
-            <td>₱60</td>
-            <td>₱6,000</td>
-          </tr>
+    .report-info h3 {
+      color: #8B1E3F;
+      margin-bottom: 5px;
+    }
 
-          <tr>
-            <td>Royal</td>
-            <td>250</td>
-            <td>₱40</td>
-            <td>₱10,000</td>
-          </tr>
+    .report-info p {
+      font-size: 12px;
+      color: #777;
+    }
 
-          <tr>
-            <td>Pepsi</td>
-            <td>150</td>
-            <td>₱50</td>
-            <td>₱7,500</td>
-          </tr>
+    /* ACTIONS */
+    .report-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
 
-        </tbody>
-      </table>
+    .report-actions select {
+      padding: 8px 12px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      background: #f5f5f5;
+    }
+
+    .csv-btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background: #8B1E3F;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* TABLE */
+    .report-table table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .report-table thead {
+      background: #8B1E3F;
+      color: white;
+    }
+
+    .report-table th,
+    .report-table td {
+      padding: 18px;
+      text-align: left;
+    }
+
+    .report-table tbody tr {
+      border-bottom: 1px solid #eee;
+    }
+
+    .report-table tbody tr:hover {
+      background: #f9f9f9;
+    }
+
+    .report-table tfoot {
+      background: #F6BE00;
+      font-weight: bold;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <h2 class="logo">PRISM</h2>
+    <p class="subtitle">Admin Portal</p>
+
+    <nav>
+
+      <a href="#" class="nav-item">
+        Dashboard
+      </a>
+
+      <a href="#" class="nav-item">
+        Products
+      </a>
+
+      <a href="#" class="nav-item">
+        Stock Movements
+      </a>
+
+      <a href="#" class="nav-item active">
+        Reports
+      </a>
+
+      <a href="#" class="nav-item">
+        Profile
+      </a>
+
+    </nav>
+
+    <div class="user-panel">
+      <p>Admin User</p>
+      <button>Logout</button>
     </div>
-    
-  </body>
+
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <h1>Inventory Management</h1>
+    </header>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      PRISM / Inventory Management / Reports
+    </div>
+
+    <!-- CONTENT -->
+    <main class="content">
+
+      <!-- PAGE HEADER -->
+      <section class="page-header">
+
+        <h2>Reports</h2>
+        <p>Insights across your inventory operations.</p>
+
+      </section>
+
+      <!-- FILTERS -->
+      <section class="report-filters">
+
+        <div class="date-filters">
+
+          <div class="filter-group">
+            <label for="fromDate">From:</label>
+            <input type="date" id="fromDate">
+          </div>
+
+          <div class="filter-group">
+            <label for="toDate">To:</label>
+            <input type="date" id="toDate">
+          </div>
+
+        </div>
+
+        <div class="report-tabs">
+
+          <button class="tab-btn">
+            Low Stock
+          </button>
+
+          <button class="tab-btn active">
+            Valuation
+          </button>
+
+          <button class="tab-btn">
+            Movement Ledgers
+          </button>
+
+          <button class="tab-btn">
+            Top Movers
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- REPORT CARD -->
+      <section class="report-card">
+
+        <div class="report-card-header">
+
+          <div class="report-info">
+            <h3>Inventory Valuation</h3>
+            <p>Sum of (unit cost × current quantity) per category</p>
+          </div>
+
+          <div class="report-actions">
+
+            <select id="sortBy">
+
+              <option value="value">
+                Value
+              </option>
+
+              <option value="category">
+                Category
+              </option>
+
+            </select>
+
+            <button class="csv-btn">
+              CSV
+            </button>
+
+          </div>
+
+        </div>
+
+        <!-- TABLE -->
+        <div class="report-table">
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>Category</th>
+                <th>Value</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+                <td>Dry Goods</td>
+                <td>Php 602.00</td>
+              </tr>
+
+              <tr>
+                <td>Beverages</td>
+                <td>Php 408.00</td>
+              </tr>
+
+              <tr>
+                <td>Snacks</td>
+                <td>Php 289.00</td>
+              </tr>
+
+              <tr>
+                <td>Cleaning</td>
+                <td>Php 84.00</td>
+              </tr>
+
+            </tbody>
+
+            <tfoot>
+
+              <tr>
+                <th>Total</th>
+                <th>Php 1,403.00</th>
+              </tr>
+
+            </tfoot>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
 </html>
