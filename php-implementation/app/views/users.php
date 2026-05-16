@@ -1,51 +1,33 @@
+<?php
+// Top of users.php
+session_start();
+
+// 1. Check login
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    header("Location: index.php?error=unauthorized");
+    exit();
+}
+
+// 2. Enforce Role check (RBAC)
+if ($_SESSION['role'] !== 'admin') {
+    header("Location: dashboard.php?error=access_denied");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PRISM | Inventory Management</title>
-        <link rel="stylesheet" href="users.css">
+        <link rel="stylesheet" href="../../public/css/users.css">
+        <link rel="stylesheet" href="../../public/css/sidebar_header.css">
+        <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     </head>
     <body>
+    <?php include __DIR__ . '/sidebar_header.php'; ?>
 
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="image.png" alt="Logo">
-                <div class="logo-text">
-                    <span class="brand">PRISM</span>
-                    <p class="subtitle">Admin</p>
-                </div>
-            </div>
-
-            <nav>
-                <a href="#" class="nav-item">Dashboard</a>
-                <a href="#" class="nav-item">Products</a>
-                <a href="#" class="nav-item">Stock Movements</a>
-                <a href="#" class="nav-item">Reports</a>
-                <a href="#" class="nav-item active">Profile</a>
-            </nav>
-
-            <div class="user-panel">
-                <p>Admin User</p>
-                <button class="logout-btn">Logout</button>
-            </div>
-        </aside>
-
-        <div class="main-content">
-            <header class="top-nav">
-                <div class="top-nav-left">
-                    <img src="image.png" alt="Logo" style="width: 25px;">
-                    <span class="nav-title">PRISM | Inventory Management</span>
-                </div>
-                <div class="top-nav-right">
-                    <span class="user-badge">Admin</span>
-                    <span class="user-name">Alex Reyes</span>
-                </div>
-            </header>
-
-            <div class="breadcrumb-bar">PRISM / Inventory Management / Profile</div>
-
-            <div class="content-body">
+            <div class="content">
                 <div class="page-header">
                     <h1 class="page-title">Users</h1>
                     <p class="page-subtitle">Manage your Employees</p>
@@ -93,63 +75,6 @@
                     </div>
                 </div>
             </div>
-
-            <div id="createAccountModal" class="modal-overlay">
-                <div class="modal-content">
-                    <h2 class="modal-title">User Information</h2>
-
-                    <form id="addEmployeeForm">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <input type="text" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-input">
-                        </div>
-
-                        <div class="form-group">
-                            <label>Role</label>
-                            <select class="form-select">
-                                <option value="" disabled selected></option>
-                                <option value="admin">Admin</option>
-                                <option value="staff">Staff</option>
-                            </select>
-                        </div>
-
-                        <div class="modal-buttons">
-                            <button type="button" class="cancel-btn" id="closeModal">Cancel</button>
-                            <button type="submit" class="add-btn">Add Employee</button>
-                        </div>
-                    </form>
-            </div>
         </div>
-
-        <script>
-            const modal = document.getElementById("createAccountModal");
-            const openBtn = document.querySelector(".create-btn");
-            const closeBtn = document.getElementById("closeModal");
-
-            openBtn.onclick = function() {
-                modal.style.display = "flex";
-            }
-
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
     </body>
 </html>

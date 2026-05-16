@@ -9,8 +9,9 @@ body {
     margin: 0px;
 }
 /*navigation bar*/
+
 aside {
-    width: 200px;
+    width: 256px;
     height: 100vh;
     font-family: 'Inter';
     background: linear-gradient(to bottom, #801B32, #5A1424);
@@ -19,7 +20,7 @@ aside {
 }
 
 .logo {
-    max-width: 200px;
+    max-width: 256px;
     max-height: 120px;
     padding: 8px 16px;
     color: white;
@@ -29,7 +30,7 @@ aside {
 }
 .logo1 {
     display: flex;
-    max-width: 200px;
+    max-width: 256px;
     height: 50px;
     align-items: center;
     gap: 8px;
@@ -63,7 +64,6 @@ aside {
 nav {
     display: flex;
     flex-direction: column;
-    align-items: center;
     font-family: 'Inter' !important;
     padding: 20px 10px;
     gap: 6px;
@@ -76,7 +76,6 @@ nav a{
     border-radius: 16px;
     padding: 0px;
     padding-left: 16px;
-
     font-size: 16px;
     font-weight: 600;
     gap: 12px;
@@ -89,13 +88,6 @@ nav img{
     max-height: 20px;
     align-self: center;
 }
-
-
-nav a.active {
-    background: #FFBF00 !important;
-    color: maroon;
-}
-
 
 nav a:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -168,7 +160,7 @@ nav a:hover {
     align-content: center;
     color: white;
 }
-
+/*HEADER*/
 header{
     display: flex;
     width: 100%;

@@ -4,57 +4,14 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>PRISM</title>
-   <link rel="stylesheet" href="top-movers.css">
+   <link rel="stylesheet" href="../../public/css/top_movers.css">
+   <link rel="stylesheet" href="../../public/css/sidebar_header.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
-   <aside class ="sidebar">
-      <h2 class="logo">
-         <img src="image.png" class="logo_size">
-         <div class="logo_text">
-            <span>PRISM</span>
-            <p class="subtitle-logo">Admin Portal</p>
-         </div>
-      </h2>
-
-      <nav>
-         <a href="#" class="nav-item">
-               Dashboard
-         </a>
-         <a href="#" class="nav-item">
-               Products
-         </a>
-         <a href="#" class="nav-item">
-               Stock Movements
-         </a>
-         <a href="#" class="nav-item_active">
-               Reports
-         </a>
-         <a href="#" class="nav-item">
-               Profile
-         </a>
-      </nav>
-       
-      <div class ="user-panel">
-            <p>Admin User</p>
-            <p class="subtitle-user">Admin</p>
-            <button>Logout</button>
-      </div>
-   </aside>
-
-   <div class="main">
-      <header class ="topbar">
-         <h4 class="topbar-title">PRISM  |  Inventory Management</h4>
-         <div class="user-info">
-            <span class ="role">Admin</span>
-            <span>Alex Reyes</span>
-        </div>   
-      </header>  
-      
-      <div class="breadcrumb">
-         PRISM / INVENTORY / REPORTS
-      </div>
-
-      <main class ="content">
+   <?php include __DIR__ . '/sidebar_header.php'; ?>
+   
+      <div class ="content">
          <div class="box1">
             <h1 class="box1_title">Reports</h1>
             <p class="box1_sub">Insight across your inventory operations</p>
@@ -114,7 +71,6 @@
             </table>
          </div>
       </div>
-   </main>
   </div>
  </body>
 </html>
