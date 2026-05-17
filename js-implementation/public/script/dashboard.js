@@ -39,7 +39,6 @@ const recentActivities = [
     "Keyboard stock updated (-3)"
 ];
 
-
 function loadDashboardStats() {
 
     const activeProducts = products.length;
@@ -68,7 +67,6 @@ function loadDashboardStats() {
     document.getElementById("lowStockAlerts").textContent =
         lowStockProducts.length;
 }
-
 
 function loadLowStockItems() {
 
@@ -112,7 +110,6 @@ function loadLowStockItems() {
     });
 }
 
-
 function loadRecentActivities() {
 
     const recentActivityList =
@@ -134,8 +131,6 @@ function loadRecentActivities() {
     });
 }
 
-
-// Navigation
 function setupNavigation() {
 
     const reportButton =
@@ -150,28 +145,26 @@ function setupNavigation() {
         });
     }
 
-    // Logout
     const logoutBtn =
         document.getElementById("logoutBtn");
 
-    logoutBtn.addEventListener("click", () => {
+    if (logoutBtn) {
 
-        const confirmLogout = confirm(
-            "Are you sure you want to logout?"
-        );
+        logoutBtn.addEventListener("click", () => {
 
-        if (confirmLogout) {
+            const confirmLogout = confirm(
+                "Are you sure you want to logout?"
+            );
 
-            alert("Logged out successfully!");
+            if (confirmLogout) {
 
-            window.location.href =
-                "login.html";
-        }
-    });
+                window.location.href =
+                    "login.html";
+            }
+        });
+    }
 }
 
-
-// Initialize Dashboard
 document.addEventListener("DOMContentLoaded", () => {
 
     loadDashboardStats();
@@ -181,4 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loadRecentActivities();
 
     setupNavigation();
+
+    setupLogout();
 });

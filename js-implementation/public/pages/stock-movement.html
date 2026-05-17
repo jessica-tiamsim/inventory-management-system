@@ -1,181 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRISM | Inventory Management</title>
-    <link rel="stylesheet" href="../css/stock-movement.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://rsms.me">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <title>PRISM | Stock Movements</title>
+  <link rel="stylesheet" href="../css/stock-movement.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link rel="stylesheet" href="../css/global.css">
 </head>
-<body>
 
+<body id = "menu">
 
-<div id="dashboard-container">
-    <aside class="sidebar">
-        <div class="sidebar-logo-area">
-            <div class="logo-flex">
-                <img src="../image.png" class="logo-img" alt="Logo">
-                <div class="logo-text-group">
-                    <h2>PRISM</h2>
-                    <div class="admin-portal-label">Admin Portal</div>
-                </div>
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
+            </div>
+            <div class="logo_user">
+                <p>Admin Portal</p>
             </div>
         </div>
+   
+   <nav>
+      <a href="dashboard.html">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html" class="active">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="low-stock.html">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
 
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
+         </div>
 
-        <nav class="nav-list">
-            <a href="#" class="nav-item"><img src="../assets/dash_icon.png" class="nav-icon"> Dashboard</a>
-            <a href="#" class="nav-item active"><img src="../assets/products_icon.png" class="nav-icon"> Products</a>
-            <a href="#" class="nav-item"><img src="../assets/move_icon.png" class="nav-icon"> Stock Movements</a>
-            <a href="#" class="nav-item"><img src="../assets/report_icon.png" class="nav-icon"> Reports</a>
-            <a href="#" class="nav-item"><img src="../assets/profile_icon.png" class="nav-icon"> Profile</a>
-        </nav>
-
-
-        <div class="sidebar-footer">
-            <div class="user-profile-container">
-                <img src="../assets/user_icon.png" alt="Avatar" class="user-avatar">
-                <div class="user-text">
-                    <span class="user-name">Admin User</span>
-                    <span class="user-role">Admin</span>
-                </div>
-            </div>
-
-
-            <button class="logout-button">
-                <img src="../assets/logout_icon.png" alt="Logout" class="logout-icon-img">
-                <span>Logout</span>
-            </button>
-        </div>
+         <div class="status">
+            <p>Admin User</p>
+            <p id=admin>Admin</p>
+         </div>
+      </div>
+      
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
     </aside>
 
+  <!-- MAIN -->
+  <div class="main">
 
-    <main class="main-body">
-        <header class="header-top">
-            <div style="color: var(--maroon); font-weight: 700;">PRISM | Inventory Management</div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="background: var(--maroon); color: white; padding: 5px 15px; border-radius: 50px; font-size: 11px;">Admin</span>
-                <span style="font-weight: bold; font-size: 13px;">Alex Reyes</span>
-            </div>
-        </header>
+    <!-- HEADER -->
+    <header>
 
+    <div class="upper">
 
-        <div class="breadcrumb-spacer">PRISM / Inventory Management / Products</div>
+        <div class="left">
 
+            <div class="shape"></div>
 
-        <div class="body-wrapper">
-            <div class="content-box">
-                <div class="content-header">
-                    <div>
-                        <h1>Products</h1>
-                        <p>Manage Your Catalog and Stock Threshold</p>
-                    </div>
-                    <button class="btn-new" onclick="openModal()"><span>+</span> New Product</button>
-                </div>
+            <p>PRISM | Inventory Management</p>
 
-
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>SKU</th>
-                                <th>PRODUCT NAME</th>
-                                <th>CATEGORY</th>
-                                <th>STATUS</th>
-                                <th>ACTIONS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>BEV-001</td>
-                                <td>Coca-Cola</td>
-                                <td>Carbonated</td>
-                                <td class="status-active">Active</td>
-                                <td>
-                                    <img src="../assets/edit_icon.png" class="action-img">
-                                    <img src="../assets/delete_icon.png" class="action-img">
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
-    </main>
-</div>
 
+        <div class="right">
 
-<div class="modal-overlay" id="newProductModal">
-    <div class="modal-content">
-        <button type="button" class="close-btn" onclick="closeModal()">&times;</button>
-        <h2>New Product</h2>
-        <p>Add new SKU to your catalog.</p>
-
-
-        <form>
-            <div class="details-section">
-                <span class="details-label">Details</span>
-               
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>SKU</label>
-                        <input type="text">
-                        <span class="input-hint">3-20 alphanumeric characters. Immutable once set.</span>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select><option value=""></option><option>Carbonated</option></select>
-                    </div>
-
-
-                    <div class="form-group full-width">
-                        <label>Name</label>
-                        <input type="text">
-                    </div>
-
-
-                    <div class="form-group full-width">
-                        <label>Description</label>
-                        <textarea></textarea>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label>Unit Price</label>
-                        <input type="text" placeholder="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label>Unit Cost</label>
-                        <input type="text" placeholder="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label>Reorder Threshold</label>
-                        <input type="text">
-                    </div>
-                    <div class="form-group">
-                        <label>Supplier Name</label>
-                        <input type="text">
-                    </div>
-                </div>
+            <div class="admin">
+                <p>Admin</p>
             </div>
 
-
-            <div class="modal-footer">
-                <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-                <button type="submit" class="btn-save">Create Product</button>
+            <div class="alex">
+                <p>Alex Reyes</p>
             </div>
-        </form>
+
+        </div>
+
     </div>
-</div>
+
+    <div class="lower">
+        <p>
+            PRISM / INVENTORY MANAGEMENT / STOCK MOVEMENTS
+        </p>
+    </div>
+
+</header>
+
+    <!-- CONTENT -->
+    <main class="titleBlock">
+      <div class="box1">
+        <div class="title-group">
+          <span class="pageTitle">Stock Movements</span>
+          <p class="pageSubtitle">Immutable ledger of stock change.</p>
+          <div class="dropdowns">
+            <select name="productDropDown" id="product">
+              <option value="allProducts">All Products</option>
+              <option value="product1">Category 1</option>
+              <option value="product2">Category 2</option>
+              <option value="product3">Category 3</option>
+            </select>
+            <select name="typeDropDown" id="type">
+              <option value="allTypes">All Types</option>
+              <option value="type1">Type 1</option>
+              <option value="type2">Type 2</option>
+              <option value="type3">Type 3</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="record" onclick="openModal()">+ Record Movement</button>
+      </div>
+
+      <div class="box2">
+        <table>
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>PRODUCT</th>
+              <th>TYPE</th>
+              <th>QUANTITY</th>
+              <th>NOTES</th>
+              <th>RECORDED BY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>2025-01-01</td>
+              <td>Coca-Cola</td>
+              <td>Adjustment</td>
+              <td>100</td>
+              <td>Initial warehouse stock</td>
+              <td>Maria Santos</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <!-- RECORD MOVEMENT MODAL -->
+  <div class="modal-overlay" id="recordMovementModal">
+    <div class="modal-content">
+      <button type="button" class="close-btn" onclick="closeModal()">&times;</button>
+      <h2>Record Movement</h2>
+      <p>Log a new stock change to the ledger.</p>
+
+      <form>
+        <div class="details-section">
+          <span class="details-label">Movement Details</span>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Product</label>
+              <select>
+                <option>Select a product...</option>
+                <option>Coca-Cola</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Movement Type</label>
+              <select>
+                <option value="">Select type...</option>
+                <option value="inbound">Stock-In</option>
+                <option value="outbound">Stock-Out</option>
+                <option value="adjustment">Adjustment</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Quantity</label>
+              <input type="number" placeholder="0" min="1">
+              <span class="input-hint">Enter the number of units affected.</span>
+            </div>
 
 
-<script>
-    const modal = document.getElementById('newProductModal');
-    function openModal() { modal.style.display = 'flex'; }
-    function closeModal() { modal.style.display = 'none'; }
-    window.onclick = function(e) { if (e.target == modal) closeModal(); }
-</script>
+            <div class="form-group full-width">
+              <label>Notes</label>
+              <textarea placeholder="Optional notes about this movement..."></textarea>
+            </div>
+          </div>
+        </div>
 
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-save">Record Movement</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
+  <script src="../script/stock-movement.js"></script>
 </body>
 </html>
-

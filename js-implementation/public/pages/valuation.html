@@ -3,93 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://rsms.me">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <title>PRISM | Reports</title>
 
     <link rel="stylesheet" href="../css/valuation.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/global.css">
 </head>
+<body id = "menu">
 
-<body>
-    <aside class="sidebar">
-        <div class="logo">
-            <img src="../../../assets/logo.png" alt="Logo">
-
-            <div class="logo-text">
-                <span class="brand">PRISM</span>
-                <p class="subtitle-logo">Admin Portal</p>
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
             </div>
-
+            <div class="logo_user">
+                <p>Admin Portal</p>
+            </div>
         </div>
+   
+   <nav>
+      <a href="dashboard.html">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="reports.html" class="active">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
 
-        <nav>
-            <a href="#" class="nav-item">
-                Dashboard
-            </a>
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
+         </div>
 
-            <a href="#" class="nav-item">
-                Products
-            </a>
-
-            <a href="#" class="nav-item">
-                Stock Movements
-            </a>
-
-            <a href="#" class="nav-item active">
-                Reports
-            </a>
-
-            <a href="#" class="nav-item">
-                Profile
-            </a>
-
-        </nav>
-
-        <div class="user-panel">
+         <div class="status">
             <p>Admin User</p>
-            <p class="subtitle-user">Administrator</p>
-
-            <button class="logout-btn">
-                Logout
-            </button>
-        </div>
+            <p id=admin>Admin</p>
+         </div>
+      </div>
+      
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
     </aside>
 
-
-
-   
-    <div class="main-content">
-        <header class="top-nav">
-            <div class="top-nav-left">
-
-                <img
-                    src="../../../assets/logo.png"
-                    alt="logo"
-                    class="top-logo"
-                >
-
-                <span class="nav-title">
-                    PRISM | Inventory Management
-                </span>
-
-            </div>
-
-            <div class="top-nav-right">
-                <span class="user-badge">Admin</span>
-                <span class="user-name">Alex Reyes</span>
-
-            </div>
-
-        </header>
-
-
-        <div class="breadcrumb-bar">
-            PRISM / INVENTORY / REPORTS
-        </div>
-
-
+<div class="main">
+<header>
+   <div class= "upper">
+      <div class= "left">
+         
+         <div class="shape">asd</div>
+         <p>PRISM | Inventory Management</p>
+      </div>
+      <div class="right">
+         <div class = "admin">
+            <p>Admin</p>
+         </div>
+         <div class = "alex">
+            <p>Alex Reyes</p>
+         </div> 
+      </div>
+   </div>
+   <div class="lower">
+      <p>PRISM / INVENTORY MANAGEMENT / REPORTS</p>
+   </div>
+</header>
 
         <main class="dashboard-container">
 
-            <section class="hero-box">
+            <div class="box1">
                 <h1 class="welcome-text">
                     Reports
                 </h1>
@@ -99,7 +103,7 @@
 
 
 
-                <div class="date-filter">
+                <div class="date">
 
                     <div class="date-group">
                         <label>From:</label>
@@ -113,54 +117,56 @@
                 </div>
 
 
-                <div class="report-tabs">
+                <div class="choices">
+               <a href="low-stock.html">
+                  Low Stock
+               </a>
 
-                    <span>Low Stock</span>
-                    <span class="active-tab">Valuation</span>
-                    <span>Movement Ledger</span>
-                    <span>Top Movers</span>
-                </div>
-            </section>
+               <a href="valuation.html"  class="active">
+                  Valuation
+               </a>
 
+               <a href="movement-ledger.html">
+                  Movement Ledger
+               </a>
 
-            <section class="content-card">
-                <div class="card-header">
-                    <div>
+               <a href="top-movers.html">
+                  Top Movers
+               </a>
+            </div>
+         </div>
+
+            <div class="box2">
+
+                    <div class="box2_left">
                         <h3>Inventory Valuation Report</h3>
-                        <p class="sub-text">
+
+                        <p class="box2_sub">
                             Current inventory pricing and stock values
                         </p>
-
                     </div>
 
+                    <div class="box2_right">
+                        <div class="dropdowns">
 
+                            <select id="sortFilter">
+                                <option value="default">Sort By</option>
+                                <option value="highest">Highest</option>
+                                <option value="lowest">Lowest</option>
+                            </select>
 
-                    <div class="filters">
+                            <button class="excel" id="csvButton">
+                                CSV
+                            </button>
 
-                        <select>
-                            <option>All Products</option>
-                            <option>Beverages</option>
-                            <option>Snacks</option>
-                            <option>Frozen Goods</option>
-                        </select>
-
-                        <select>
-                            <option>Sort By</option>
-                            <option>Highest Value</option>
-                            <option>Lowest Value</option>
-                        </select>
-
-                        <button class="view-report-btn">
-                            Export CSV
-                        </button>
+                        </div>
                     </div>
+
                 </div>
 
-
-                <div class="table-container">
-                    <table>
+                <div class="box3">
+                    <table id="valuationTable">
                         <thead>
-
                             <tr>
                                 <th>SKU</th>
                                 <th>Product</th>
@@ -169,7 +175,6 @@
                                 <th>Unit Price</th>
                                 <th>Total Value</th>
                             </tr>
-
                         </thead>
 
                         <tbody>
@@ -202,16 +207,16 @@
                             </tr>
 
                         </tbody>
-
                     </table>
-
                 </div>
 
-            </section>
+            </div>
 
         </main>
 
     </div>
+
+    <script src="../script/valuation.js"></script>
 
 </body>
 </html>

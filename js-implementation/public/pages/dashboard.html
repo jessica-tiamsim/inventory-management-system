@@ -3,121 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://rsms.me">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <title>PRISM | Inventory Management</title>
-
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/global.css">
 </head>
-<body>
 
-    <aside class="sidebar">
-        <div class="logo">
-            <img src="../../../assets/logo.png" alt="Logo">
-            <div class="logo-text">
-                <span class="brand">PRISM</span>
-                <p class="subtitle">Admin Portal</p>
+<body id = "menu">
+
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
+            </div>
+            <div class="logo_user">
+                <p>Admin Portal</p>
             </div>
         </div>
+   
+   <nav>
+      <a href="dashboard.html" class="active">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="low-stock.html">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
 
-        <nav>
-            <a href="dashboard.html" class="nav-item active">Dashboard</a>
-            <a href="products.html" class="nav-item">Products</a>
-            <a href="stock-movement.html" class="nav-item">Stock Movements</a>
-            <a href="valuation.html" class="nav-item">Reports</a>
-            <a href="users.html" class="nav-item">Profile</a>
-        </nav>
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
+         </div>
 
-        <div class="user-panel">
+         <div class="status">
             <p>Admin User</p>
-            <button class="logout-btn" id="logoutBtn">Logout</button>
-        </div>
+            <p id=admin>Admin</p>
+         </div>
+      </div>
+      
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
     </aside>
 
-    <div class="main-content">
+<div class="main">
+<header>
+   <div class= "upper">
+      <div class= "left">
+         
+         <div class="shape">asd</div>
+         <p>PRISM | Inventory Management</p>
+      </div>
+      <div class="right">
+         <div class = "admin">
+            <p>Admin</p>
+         </div>
+         <div class = "alex">
+            <p>Alex Reyes</p>
+         </div> 
+      </div>
+   </div>
+   <div class="lower">
+      <p>PRISM / INVENTORY MANAGEMENT / DASHBOARD</p>
+   </div>
+</header>
+        
+        <div class="content">
+            <div class="dashboard-container">
+                <h1 class="welcome-text">Welcome back, Alex!</h1>
 
-        <header class="top-nav">
-            <div class="top-nav-left">
-                <img src="../../../assets/logo.png" alt="Logo"
-                    style="width: 25px; height: 25px; object-fit: contain;">
+                <div class="stats-grid">
 
-                <span class="nav-title">PRISM | Inventory Management</span>
-            </div>
-
-            <div class="top-nav-right">
-                <span class="user-badge">Admin</span>
-                <span class="user-name">Alex Reyes</span>
-            </div>
-        </header>
-
-        <div class="breadcrumb-bar">
-            PRISM / Inventory Management / Dashboard
-        </div>
-
-        <div class="dashboard-container">
-
-            <h1 class="welcome-text">Welcome back, Alex!</h1>
-
-            <div class="stats-grid">
-
-                <div class="stat-card blue-border">
-                    <p class="card-label">ACTIVE PRODUCTS</p>
-                    <h2 class="card-value color-blue" id="activeProducts"></h2>
-                    <p class="card-sub">Currently available products</p>
+                    <div class="stat-card blue-border">
+                        <p class="card-label">ACTIVE PRODUCTS</p>
+                        <h2 class="card-value color-blue" id="activeProducts">0</h2>
+                        <p class="card-sub">2 Inactive</p>
+                    </div>
+                    <div class="stat-card red-border">
+                        <p class="card-label">UNITS IN STOCK</p>
+                        <h2 class="card-value color-red" id="unitsInStock">0</h2>
+                        <p class="card-sub">across all SKUs</p>
+                    </div>
+                    <div class="stat-card blue-border">
+                        <p class="card-label">INVENTORY VALUE</p>
+                        <h2 class="card-value color-blue" id="inventoryValue">0</h2>
+                        <p class="card-sub">at unit cost</p>
+                    </div>
+                    <div class="stat-card green-border">
+                        <p class="card-label">LOW STOCK ALERTS</p>
+                        <h2 class="card-value color-green" id="lowStockAlerts">0</h2>
+                        <p class="card-sub">at or below threshold</p>
+                    </div>
                 </div>
 
-                <div class="stat-card red-border">
-                    <p class="card-label">UNITS IN STOCK</p>
-                    <h2 class="card-value color-red" id="unitsInStock"></h2>
-                    <p class="card-sub">Across all inventory</p>
-                </div>
-
-                <div class="stat-card blue-border">
-                    <p class="card-label">INVENTORY VALUE</p>
-                    <h2 class="card-value color-blue" id="inventoryValue"></h2>
-                    <p class="card-sub">Based on current stock</p>
-                </div>
-
-                <div class="stat-card green-border">
-                    <p class="card-label">LOW STOCK ALERTS</p>
-                    <h2 class="card-value color-green" id="lowStockAlerts"></h2>
-                    <p class="card-sub">Need immediate attention</p>
-                </div>
-
-            </div>
-
-            <div class="main-grid">
-
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Low Stock</h3>
-                            <p class="sub-text">Products at or below reorder threshold</p>
+                <div class="main-grid">
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Low Stock</h3>
+                                <p class="sub-text">Products at or below reorder threshold</p>
+                            </div>
+                            <button class="view-report-btn" id="viewReportBtn">View Report</button>
                         </div>
-
-                        <button class="view-report-btn" id="viewReportBtn">
-                            View Report
-                        </button>
-                    </div>
-
-                    <div class="list-container" id="lowStockList">
-                    </div>
-                </section>
-
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Recent Activity</h3>
-                            <p class="sub-text">Latest stock movements</p>
+                        <div class="list-container" id="lowStockList">
+                            <p class="placeholder-text">Fetching data...</p>
                         </div>
-                    </div>
+                    </section>
 
-                    <div class="list-container" id="recentActivityList">
-                    </div>
-                </section>
-
+                    <section class="content-card">
+                        <div class="card-header">
+                            <div>
+                                <h3>Recent Activity</h3>
+                                <p class="sub-text">Latest stock movements</p>
+                            </div>
+                        </div>
+                        <div class="list-container" id="recentActivityList">
+                            <p class="placeholder-text">No recent activity found.</p>
+                        </div>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
-
+    
     <script src="../script/dashboard.js"></script>
-</body>
+    
+    </body>
 </html>

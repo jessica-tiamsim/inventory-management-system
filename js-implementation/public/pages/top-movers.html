@@ -3,58 +3,94 @@
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="preconnect" href="https://rsms.me">
+   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
    <title>PRISM</title>
-   <link rel="stylesheet" href="inventory_stock.css">
+   <link rel="stylesheet" href="../css/top-movers.css">
+   <link rel="stylesheet" href="../css/sidebar.css">
+   <link rel="stylesheet" href="../css/global.css">
 </head>
-<body>
-   <aside class ="sidebar">
-      <h2 class="logo">
-         <img src="image.png" class="logo_size">
-         <div class="logo_text">
-            <span>PRISM</span>
-            <p class="subtitle">Admin Portal</p>
+<body id = "menu">
+
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
+            </div>
+            <div class="logo_user">
+                <p>Admin Portal</p>
+            </div>
+        </div>
+   
+   <nav>
+      <a href="dashboard.html">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="top-movers.html" class="active">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
+
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
          </div>
-      </h2>
 
-      <nav>
-         <a href="#" class="nav-item">
-               Dashboard
-         </a>
-         <a href="#" class="nav-item">
-               Products
-         </a>
-         <a href="#" class="nav-item">
-               Stock Movements
-         </a>
-         <a href="#" class="nav-item_active">
-               Reports
-         </a>
-         <a href="#" class="nav-item">
-               Profile
-         </a>
-      </nav>
-       
-      <div class ="user-panel">
+         <div class="status">
             <p>Admin User</p>
-            <p class="subtitle">Admin</p>
-            <button>Logout</button>
+            <p id=admin>Admin</p>
+         </div>
       </div>
-   </aside>
-
-   <div class="main">
-      <header class ="topbar">
-         <h3>PRISM  |  Inventory Management</h3>
-         <div class="user-info">
-            <span class ="role">Admin</span>
-            <span class>Alex Reyes</span>
-        </div>   
-      </header>  
       
-      <div class="breadcrumb">
-         PRISM / INVENTORY / DASHBOARD
-      </div>
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
+    </aside>
 
-      <main class ="content">
+<div class="main">
+<header>
+   <div class= "upper">
+      <div class= "left">
+         
+         <div class="shape">asd</div>
+         <p>PRISM | Inventory Management</p>
+      </div>
+      <div class="right">
+         <div class = "admin">
+            <p>Admin</p>
+         </div>
+         <div class = "alex">
+            <p>Alex Reyes</p>
+         </div> 
+      </div>
+   </div>
+   <div class="lower">
+      <p>PRISM / INVENTORY MANAGEMENT / REPORTS</p>
+   </div>
+</header>
+
+   <main class ="content">
          <div class="box1">
             <h2>Reports</h2>
             <p class="box1_sub">Insight across your inventory operations</p>
@@ -66,52 +102,99 @@
                <input type="date" id="date2">
             </div>
             <div class="choices">
-               <span class="active">Low Stock</span>
-               <span>Valuation</span>
-               <span>Movement Ledger</span>
-               <span>Top Movers</span>
+               <a href="low-stock.html">
+                  Low Stock
+               </a>
+
+               <a href="valuation.html">
+                  Valuation
+               </a>
+
+               <a href="movement-ledger.html">
+                  Movement Ledger
+               </a>
+
+               <a href="top-movers.html" class="active">
+                  Top Movers
+               </a>
             </div>
          </div>
+            <div class="box2">
 
-         <div class="box2">
-            <div class="box2_left">
-            <h4>Low Stock Report</h4>
-            <p class="box2_sub">Active products at or below their reorder threshold</p>
+    <div class="box2_left">
+
+        <h4>Top Movers Report</h4>
+
+        <p class="box2_sub">
+            Products with the highest outbound movement
+        </p>
+
+    </div>
+
+         <div class="box2_right">
+
+            <div class="dropdowns">
+
+                  <button class="excel" id="csvButton">
+                     CSV
+                  </button>
+
             </div>
-            <div class="box2_right">
-               <div class="dropdowns">
-                  <select name="productDropdown" id="product">
-                     <option value="allProducts">All Products</option>
-                     <option value="product1">Category 1</option>
-                     <option value="product2">Category 2</option>
-                     <option value="product3">Category 3</option>
-                  </select>
-                  <select name="quantityDropdown" id="product">
-                     <option value="allProducts">Quantity</option>
-                     <option value="quantity1">1</option>
-                     <option value="quantity2">2</option>
-                     <option value="quantity3">3</option>
-                  </select>
-                  <button class="excel">CSV.</button>
-               </div>
-            </div>
+
          </div>
 
-         <div class="box3">
-            <div class="stock_table">
-               <table class="column">
-               <th>
+      </div>
+
+      <div class="box3">
+
+         <table id="topMoversTable">
+
+            <thead>
+
+                  <tr class="header-box">
                      <th>SKU</th>
-                     <th>Product</th>
-                     <th>Country</th>
-                     <th>Quantity</th>
-                     <th>Reorder Threshold</th>
-                     <th>Supplier</th>
-               </th>
-            </table>
+                     <th>PRODUCT NAME</th>
+                     <th>CATEGORY</th>
+                     <th>UNITS OUT</th>
+                  </tr>
+
+            </thead>
+
+            <tbody>
+
+                  <tr>
+                     <td>BEV-001</td>
+                     <td>Coca-Cola</td>
+                     <td>Beverages</td>
+                     <td>240</td>
+                  </tr>
+
+                  <tr>
+                     <td>SNK-003</td>
+                     <td>Piattos</td>
+                     <td>Snacks</td>
+                     <td>180</td>
+                  </tr>
+
+                  <tr>
+                     <td>DRY-002</td>
+                     <td>Bear Brand</td>
+                     <td>Dairy</td>
+                     <td>150</td>
+                  </tr>
+
+            </tbody>
+
+         </table>
+
+      </div>
+         
          </div>
       </div>
    </main>
   </div>
+
+  <script src="../script/top-movers.js"></script>
+
  </body>
 </html>

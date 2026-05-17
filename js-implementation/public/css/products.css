@@ -1,405 +1,159 @@
-:root {
-            --gold: #FFBF00;
-            --maroon: #801B32;
-            --maroon-grad: linear-gradient(180deg, #801B32 0%, #5A1424 100%);
-            --white: #FFFFFF;
-            --bg-gray: #F5F5F5;
-            --breadcrumb-gray: #D9D9D9;
-            --font-main: 'Inter', 'Roboto', sans-serif;
-        }
-
-
-        body, html { margin: 0; 
-            padding: 0; 
-            font-family: var(--font-main); 
-            height: 100vh; 
-            overflow: hidden; 
-        }
-
-
-        #dashboard-container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            height: 100vh;
-        }
-
-
-        .sidebar {
-            background: var(--maroon-grad);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            padding: 40px 0 20px 0;
-        }
-       
-        .sidebar-logo-area { 
-            padding: 0 25px 40px 25px; 
-        }
-        .logo-flex { 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        }
-        .logo-img { width: 35px; 
-            height: 35px; 
-            object-fit: contain; 
-        }
-        .logo-text-group h2 { 
-            margin: 0; 
-            font-size: 24px; 
-            font-weight: 700; 
-            letter-spacing: 0.5px; 
-            line-height: 1; 
-        }
-        .admin-portal-label { 
-            margin-top: 4px; 
-            color: rgba(255,255,255,0.6); 
-            font-size: 13px; 
-        }
-
-
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 12px 20px;
-            text-decoration: none;
-            color: rgba(255,255,255,0.8);
-            font-size: 14px;
-            margin-bottom: 5px;
-            border-radius: 25px 0 0 25px;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-        }
-
-        .nav-item:hover:not(.active) {
-            background-color: rgba(255,255,255,0.12);
-            color: white;
-            transform: translateX(3px);
-        }
-
-        .nav-item.active {
-            background-color: var(--gold);
-            color: var(--maroon);
-            font-weight: bold;
-        }
-        .nav-icon { 
-            width: 20px; 
-            height: 20px; 
-            object-fit: contain; 
-        }
-
-        .sidebar-footer {
-            margin-top: auto;
-            padding: 25px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-
-        .user-profile-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-            color: white;
-        }
-
-
-        .user-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-
-        .user-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-        .user-name {
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-
-        .user-role {
-            font-size: 12px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-
-        .logout-button {
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 50px;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            color: white;
-            font-weight: 600;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-
-
-        .logout-button:hover {
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-
-        .logout-icon-img {
-            width: 16px;
-            height: 16px;
-        }
-
-        .main-body { 
-            display: flex; 
-            flex-direction: column; 
-            background-color: white; 
-        }
-
-        .header-top { 
-            padding: 15px 40px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-        }
-
-        .breadcrumb-spacer { 
-            background-color: var(--breadcrumb-gray); 
-            padding: 8px 40px; 
-            font-size: 11px; 
-            font-weight: bold; 
-            color: #333; 
-        }
-
-        .body-wrapper { 
-            background-color: var(--bg-gray); 
-            padding: 30px; flex-grow: 1; 
-            display: flex; 
-            flex-direction: column; 
-        }
-
-        .content-box { 
-            background-color: white; 
-            border-radius: 12px; 
-            padding: 35px; 
-            flex-grow: 1; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            display: flex; 
-            flex-direction: column; 
-        }
-
-
-        .content-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: flex-end; 
-            margin-bottom: 25px; 
-        }
-
-        .content-header h1 { 
-            margin: 0; 
-            color: var(--maroon); 
-            font-size: 32px; 
-            font-weight: 700; 
-        }
-
-        .content-header p { 
-            margin: 5px 0 0; 
-            color: #666; 
-            font-size: 14px; 
-        }
-
-
-        .btn-new { 
-            background-color: var(--maroon); 
-            color: white; 
-            border: none; 
-            padding: 12px 24px; 
-            border-radius: 50px; 
-            font-weight: bold; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px; 
-            cursor: pointer; 
-        }
-
-        .table-container { 
-            border-radius: 10px; 
-            overflow: hidden; 
-            margin-top: 20px; 
-        }
-
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-        }
-
-        thead { 
-            background: var(--maroon); 
-            color: white; 
-        }
-
-        th { 
-            padding: 15px 20px; 
-            font-size: 12px; 
-            text-align: left; 
-        }
-
-        td { 
-            padding: 18px 20px; 
-            font-size: 13px; 
-            border-bottom: 1px solid #eee; 
-        }
-
-        .status-active { 
-            color: #2DCA73; 
-            font-weight: 700; 
-        }
-
-        .action-img { 
-            width: 32px; 
-            height: 32px; 
-            cursor: pointer; 
-            margin-right: 8px; 
-        }
-
-        .modal-overlay {
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4); 
-            display: none;
-            justify-content: center; 
-            align-items: center; 
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background: white; 
-            width: 750px; 
-            border-radius: 16px;
-            padding: 40px; 
-            position: relative; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .modal-content h2 { 
-            margin: 0 0 5px 0; 
-            font-size: 24px; 
-            font-weight: 700; 
-        }
-
-        .modal-content p { 
-            margin: 0 0 25px 0; 
-            color: #666; 
-            font-size: 14px; 
-        }
-
-        .details-section {
-            border: 1px solid #EAEAEA; 
-            border-radius: 12px;
-            padding: 25px; 
-            position: relative;
-        }
-
-
-        .details-label {
-            font-weight: 700; 
-            font-size: 14px;
-            margin-bottom: 20px; 
-            display: block;
-            position: absolute; 
-            top: -10px; 
-            left: 20px; 
-            background: white; 
-            padding: 0 10px;
-        }
-
-        .close-btn {
-            position: absolute; 
-            top: 20px; 
-            right: 20px; 
-            background: none;
-            border: none; 
-            font-size: 24px; 
-            cursor: pointer; 
-            color: #999;
-        }
-
-        .form-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 20px; 
-        }
-
-        .full-width { 
-            grid-column: span 2; 
-        }
-
-        .form-group label {
-            display: block; 
-            font-size: 12px; 
-            font-weight: 800;
-            margin-bottom: 8px; 
-            color: #333; 
-            text-transform: none;
-        }
-
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; 
-            padding: 12px; 
-            border-radius: 8px;
-            border: 1.5px solid #E8E8E8; 
-            font-size: 14px; 
-            box-sizing: border-box;
-        }
-
-        .form-group textarea { 
-            height: 80px; 
-            resize: none; 
-        }
-
-        .input-hint { font-size: 10px; 
-            color: #AAA; 
-            margin-top: 5px; 
-            display: block; 
-        }
-
-        .modal-footer {
-            display: flex; 
-            justify-content: flex-end; 
-            gap: 12px; 
-            margin-top: 30px;
-        }
-
-
-        .btn-save { 
-            background-color: var(--maroon); 
-            color: white; 
-            border: none; 
-            padding: 12px 30px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-        }
-
-        .btn-cancel { 
-            background: none; 
-            border: 1px solid #DDD; 
-            color: #333; 
-            padding: 12px 30px; 
-            border-radius: 8px; 
-            font-weight: bold; 
-            cursor: pointer; 
-        }
+.products-container {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.products-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products-header h1 {
+    margin: 0;
+    color: #801B32;
+    font-size: 32px;
+}
+
+.products-header p {
+    margin-top: 6px;
+    color: #777;
+}
+
+.btn-new {
+    background: #801B32;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.table-wrapper {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    overflow-x: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #801B32;
+    color: white;
+}
+
+th {
+    text-align: left;
+    padding: 18px;
+    font-size: 11px;
+}
+
+td {
+    padding: 18px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.status-active {
+    color: green;
+    font-weight: 700;
+}
+
+.action-img {
+    width: 28px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+/* MODAL */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    width: 700px;
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
+}
+
+.full-width {
+    grid-column: span 2;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.form-group textarea {
+    height: 100px;
+    resize: none;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.btn-cancel {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+}
+
+.btn-save {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #801B32;
+    color: white;
+    cursor: pointer;
+}

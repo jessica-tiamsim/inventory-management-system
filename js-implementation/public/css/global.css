@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --gold: #FFBF00;
+    --maroon: #801B32;
+    --maroon-dark: #5A1424;
+    --white: #FFFFFF;
+    --bg-gray: #F5F5F5;
+    --breadcrumb-gray: #D0D0D0;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #F5F5F5;
+}
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}

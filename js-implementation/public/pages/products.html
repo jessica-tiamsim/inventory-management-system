@@ -3,174 +3,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PRISM | Inventory Management</title>
+
+    <link rel="preconnect" href="https://rsms.me">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <title>PRISM | Products</title>
+
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
     <link rel="stylesheet" href="../css/products.css">
 </head>
-<body>
 
+<body id="menu">
 
-<div id="dashboard-container">
-    <aside class="sidebar">
-        <div class="sidebar-logo-area">
-            <div class="logo-flex">
-                <img src="image.png" class="logo-img" alt="Logo">
-                <div class="logo-text-group">
-                    <h2>PRISM</h2>
-                    <div class="admin-portal-label">Admin Portal</div>
-                </div>
+    <aside>
+
+        <div class="logo">
+            <div class="logo1">
+                <img src="../../../assets/logo.png" class="prism_image">
+                <h1>PRISM</h1>
+            </div>
+
+            <div class="logo_user">
+                <p>Admin Portal</p>
             </div>
         </div>
 
+        <nav>
 
-        <nav class="nav-list">
-            <a href="dashboard.html" class="nav-item"><img src="../assets/dash_icon.png" class="nav-icon"> Dashboard</a>
-            <a href="products.html" class="nav-item active"><img src="../assets/products_icon.png" class="nav-icon"> Products</a>
-            <a href="stock-movement.html" class="nav-item"><img src="../assets/move_icon.png" class="nav-icon"> Stock Movements</a>
-            <a href="valuation.html" class="nav-item"><img src="../assets/report_icon.png" class="nav-icon"> Reports</a>
-            <a href="users.html" class="nav-item"><img src="../assets/profile_icon.png" class="nav-icon"> Profile</a>
+            <a href="dashboard.html">
+                <img src="../assets/dash_icon.png">
+                <p>Dashboard</p>
+            </a>
+
+            <a href="products.html" class="active">
+                <img src="../assets/products_icon.png">
+                <p>Products</p>
+            </a>
+
+            <a href="stock-movement.html">
+                <img src="../assets/move_icon.png">
+                <p>Stock Movements</p>
+            </a>
+
+            <a href="low-stock.html">
+                <img src="../assets/report_icon.png">
+                <p>Reports</p>
+            </a>
+
+            <a href="users.html">
+                <img src="../assets/profile_icon.png">
+                <p>Profile</p>
+            </a>
+
         </nav>
 
+        <div class="user-panel">
 
-        <div class="sidebar-footer">
-            <div class="user-profile-container">
-                <img src="../assets/user_icon.png" alt="Avatar" class="user-avatar">
-                <div class="user-text">
-                    <span class="user-name">Admin User</span>
-                    <span class="user-role">Admin</span>
+            <div class="user">
+
+                <div class="profile">
+                    <img src="../assets/user_icon.png">
                 </div>
+
+                <div class="status">
+                    <p>Admin User</p>
+                    <p id="admin">Admin</p>
+                </div>
+
             </div>
 
+            <button id="logoutBtn">
 
-            <button class="logout-button">
-                <img src="../assets/logout_icon.png" alt="Logout" class="logout-icon-img">
-                <span>Logout</span>
+                <img src="../assets/logout_icon.png" class="logout_image">
+
+                <p id="logout">Logout</p>
+
             </button>
+
         </div>
+
     </aside>
 
+    <div class="main">
 
-    <main class="main-body">
-        <header class="header-top">
-            <div style="color: var(--maroon); font-weight: 700;">PRISM | Inventory Management</div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <span style="background: var(--maroon); color: white; padding: 5px 15px; border-radius: 50px; font-size: 11px;">Admin</span>
-                <span style="font-weight: bold; font-size: 13px;">Alex Reyes</span>
-            </div>
-        </header>
+        <header>
 
+            <div class="upper">
 
-        <div class="breadcrumb-spacer">PRISM / Inventory Management / Products</div>
-
-
-        <div class="body-wrapper">
-            <div class="content-box">
-                <div class="content-header">
-                    <div>
-                        <h1>Products</h1>
-                        <p>Manage Your Catalog and Stock Threshold</p>
-                    </div>
-                    <button class="btn-new" onclick="openModal()"><span>+</span> New Product</button>
+                <div class="left">
+                    <div class="shape"></div>
+                    <p>PRISM | Inventory Management</p>
                 </div>
 
+                <div class="right">
 
-                <div class="table-container">
+                    <div class="admin">
+                        <p>Admin</p>
+                    </div>
+
+                    <div class="alex">
+                        <p>Alex Reyes</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="lower">
+                <p>PRISM / INVENTORY MANAGEMENT / PRODUCTS</p>
+            </div>
+
+        </header>
+
+        
+        <div class="content">
+
+            <div class="products-container">
+
+                <div class="products-header">
+
+                    <div>
+                        <h1>Products</h1>
+                        <p>Manage your catalog and stock thresholds</p>
+                    </div>
+
+                    <button class="btn-new" onclick="openModal()">
+                        + New Product
+                    </button>
+
+                </div>
+
+                <div class="table-controls">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        class="search-input"
+                        placeholder="Search products..."
+                    >
+
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="all">All Categories</option>
+                        <option value="Carbonated">Carbonated</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Dairy">Dairy</option>
+                    </select>
+
+                    <select id="statusFilter" class="filter-select">
+                        <option value="all">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+
+                </div>
+
+                <!-- TABLE -->
+                <div class="table-wrapper">
+
                     <table>
+
                         <thead>
+
                             <tr>
                                 <th>SKU</th>
                                 <th>PRODUCT NAME</th>
+                                <th>DESCRIPTION</th>
                                 <th>CATEGORY</th>
+                                <th>UNIT PRICE</th>
+                                <th>UNIT COST</th>
+                                <th>REORDER THRESHOLD</th>
+                                <th>SUPPLIER NAME</th>
                                 <th>STATUS</th>
-                                <th>ACTIONS</th>
+                                <th></th>
                             </tr>
+
                         </thead>
-                        <tbody>
+
+                        <tbody id="productTableBody">
+
                             <tr>
                                 <td>BEV-001</td>
                                 <td>Coca-Cola</td>
+                                <td>330ml Soft Drink</td>
                                 <td>Carbonated</td>
+                                <td>₱25.00</td>
+                                <td>₱18.00</td>
+                                <td>10</td>
+                                <td>Coca-Cola FEMSA</td>
                                 <td class="status-active">Active</td>
+
                                 <td>
-                                    <img src="../assets/edit_icon.png"  class="action-img edit-btn" alt="Edit">
-                                    <img src="../assets/delete_icon.png" class="action-img delete-btn" alt="Delete">
+
+                                    <img src="../assets/edit_icon.png"
+                                        class="action-img edit-btn">
+
+                                    <img src="../assets/delete_icon.png"
+                                        class="action-img delete-btn">
+
                                 </td>
+
                             </tr>
+
                         </tbody>
+
                     </table>
+
                 </div>
+
             </div>
+
         </div>
-    </main>
-</div>
 
+    </div>
 
-<div class="modal-overlay" id="newProductModal">
-    <div class="modal-content">
-        <button type="button" class="close-btn" onclick="closeModal()">&times;</button>
-        <h2>New Product</h2>
-        <p>Add new SKU to your catalog.</p>
+    <!-- MODAL -->
+    <div class="modal-overlay" id="newProductModal">
 
+        <div class="modal-content">
 
-        <form>
-            <div class="details-section">
-                <span class="details-label">Details</span>
-               
+            <button
+                type="button"
+                class="close-btn"
+                onclick="closeModal()">
+
+                &times;
+
+            </button>
+
+            <h2>New Product</h2>
+
+            <p>Add new SKU to your catalog.</p>
+
+            <form id="productForm">
+
                 <div class="form-grid">
+
                     <div class="form-group">
                         <label>SKU</label>
                         <input type="text">
-                        <span class="input-hint">3-20 alphanumeric characters. Immutable once set.</span>
-                    </div>
-                    <div class="form-group">
-                        <label>Category</label>
-                        <select><option value=""></option><option>Carbonated</option></select>
                     </div>
 
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select>
+                            <option value="">Select</option>
+                            <option>Carbonated</option>
+                        </select>
+                    </div>
 
                     <div class="form-group full-width">
                         <label>Name</label>
                         <input type="text">
                     </div>
 
-
                     <div class="form-group full-width">
                         <label>Description</label>
                         <textarea></textarea>
                     </div>
 
-
                     <div class="form-group">
                         <label>Unit Price</label>
-                        <input type="text" placeholder="0.00">
+                        <input type="number" id="unitPrice" placeholder="0.00">
                     </div>
+
                     <div class="form-group">
                         <label>Unit Cost</label>
-                        <input type="text" placeholder="0.00">
+                        <input type="number" id="unitCost" placeholder="0.00">
                     </div>
+
                     <div class="form-group">
                         <label>Reorder Threshold</label>
-                        <input type="text">
+                        <input type="number" id="reorderThreshold" placeholder="0">
                     </div>
+
                     <div class="form-group">
                         <label>Supplier Name</label>
-                        <input type="text">
+                        <input type="text" id="supplierName">
                     </div>
+
                 </div>
-            </div>
 
+            </form>
 
-            <div class="modal-footer">
-                <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
-                <button type="submit" class="btn-save">Create Product</button>
-            </div>
-        </form>
+        </div>
+
     </div>
-</div>
 
-
-<script src="../script/products.js"></script>
-
+    <script src="../script/products.js"></script>
 
 </body>
 </html>
-

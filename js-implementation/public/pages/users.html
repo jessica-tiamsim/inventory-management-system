@@ -3,47 +3,92 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://rsms.me">
+        <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
         <title>PRISM | Inventory Management</title>
         <link rel="stylesheet" href="../css/users.css">
+        <link rel="stylesheet" href="../css/sidebar.css">
+        <link rel="stylesheet" href="../css/global.css">
     </head>
-    <body>
+    <body id = "menu">
 
-        <aside class="sidebar">
-            <div class="logo">
-                <img src="image.png" alt="Logo">
-                <div class="logo-text">
-                    <span class="brand">PRISM</span>
-                    <p class="subtitle">Admin</p>
-                </div>
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
             </div>
-
-            <nav>
-                <a href="#" class="nav-item">Dashboard</a>
-                <a href="#" class="nav-item">Products</a>
-                <a href="#" class="nav-item">Stock Movements</a>
-                <a href="#" class="nav-item">Reports</a>
-                <a href="#" class="nav-item active">Profile</a>
-            </nav>
-
-            <div class="user-panel">
-                <p>Admin User</p>
-                <button class="logout-btn">Logout</button>
+            <div class="logo_user">
+                <p>Admin Portal</p>
             </div>
-        </aside>
+        </div>
+   
+   <nav>
+      <a href="dashboard.html">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="low-stock.html">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html"  class="active">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
 
-        <div class="main-content">
-            <header class="top-nav">
-                <div class="top-nav-left">
-                    <img src="image.png" alt="Logo" style="width: 25px;">
-                    <span class="nav-title">PRISM | Inventory Management</span>
-                </div>
-                <div class="top-nav-right">
-                    <span class="user-badge">Admin</span>
-                    <span class="user-name">Alex Reyes</span>
-                </div>
-            </header>
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
+         </div>
 
-            <div class="breadcrumb-bar">PRISM / Inventory Management / Profile</div>
+         <div class="status">
+            <p>Admin User</p>
+            <p id=admin>Admin</p>
+         </div>
+      </div>
+      
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
+    </aside>
+
+<div class="main">
+<header>
+   <div class= "upper">
+      <div class= "left">
+         
+         <div class="shape">asd</div>
+         <p>PRISM | Inventory Management</p>
+      </div>
+      <div class="right">
+         <div class = "admin">
+            <p>Admin</p>
+         </div>
+         <div class = "alex">
+            <p>Alex Reyes</p>
+         </div> 
+      </div>
+   </div>
+   <div class="lower">
+      <p>PRISM / INVENTORY MANAGEMENT / PROFILE</p>
+   </div>
+</header>
 
             <div class="content-body">
                 <div class="page-header">
@@ -92,7 +137,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
 
             <div id="createAccountModal" class="modal-overlay">
                 <div class="modal-content">
@@ -132,23 +176,7 @@
         </div>
 
         <script>
-            const modal = document.getElementById("createAccountModal");
-            const openBtn = document.querySelector(".create-btn");
-            const closeBtn = document.getElementById("closeModal");
-
-            openBtn.onclick = function() {
-                modal.style.display = "flex";
-            }
-
-            closeBtn.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+            
         </script>
 
     </body>

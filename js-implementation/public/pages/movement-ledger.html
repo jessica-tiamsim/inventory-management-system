@@ -1,61 +1,94 @@
 <!DOCTYPE html>
-<html lang = "en">
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <link rel="preconnect" href="https://rsms.me">
+   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
    <title>PRISM</title>
+
    <link rel="stylesheet" href="../css/movement-ledger.css">
+   <link rel="stylesheet" href="../css/sidebar.css">
+   <link rel="stylesheet" href="../css/global.css">
 </head>
-<body>
-   <aside class ="sidebar">
-      <h2 class="logo">
-         <img src="image.png" class="logo_size">
-         <div class="logo_text">
-            <span>PRISM</span>
-            <p class="subtitle-logo">Admin Portal</p>
+<body id = "menu">
+
+    <aside>
+        <div class= "logo">
+            <div class="logo1">
+                <img src= "logo.png" class="prism_image">
+                <h1>PRISM</h1>
+            </div>
+            <div class="logo_user">
+                <p>Admin Portal</p>
+            </div>
+        </div>
+   
+   <nav>
+      <a href="dashboard.html">
+         <img src="image.png">
+         <p>Dashboard</p>
+      </a>
+      <a href="products.html">
+         <img src="image.png">
+         <p>Products</p>
+      </a>
+      <a href="stock-movement.html">
+         <img src="image.png">
+         <p>Stock Movements</p>
+      </a>
+      <a href="movement-ledger.html" class="active">
+         <img src="image.png">
+         <p>Reports</p>
+      </a>
+      <a href="users.html">
+         <img src="image.png">
+         <p>Profile</p>
+      </a>
+   </nav>
+
+    <div class ="user-panel">
+      <div class="user">
+         <div class="profile">
+            <img src="image.png" class="prism_image">
          </div>
-      </h2>
 
-
-      <nav>
-         <a href="#" class="nav-item">
-               Dashboard
-         </a>
-         <a href="#" class="nav-item">
-               Products
-         </a>
-         <a href="#" class="nav-item">
-               Stock Movements
-         </a>
-         <a href="#" class="nav-item_active">
-               Reports
-         </a>
-         <a href="#" class="nav-item">
-               Profile
-         </a>
-      </nav>
-       
-      <div class ="user-panel">
+         <div class="status">
             <p>Admin User</p>
-            <p class="subtitle-user">Admin</p>
-            <button>Logout</button>
+            <p id=admin>Admin</p>
+         </div>
       </div>
-   </aside>
+      
+      <button id="logoutBtn">
+         <img src="image.png" class="logout_image">
+         <p id=logout>Logout</p>
+      </button>
+    </div>
+    </aside>
 
-
-   <div class="main">
-      <header class ="topbar">
-         <h4 class="topbar-title">PRISM  |  Inventory Management</h4>
-         <div class="user-info">
-            <span class ="role">Admin</span>
-            <span>Alex Reyes</span>
-        </div>  
-      </header>  
-     
-      <div class="breadcrumb">
-         PRISM / INVENTORY / REPORTS
+<div class="main">
+<header>
+   <div class= "upper">
+      <div class= "left">
+         
+         <div class="shape">asd</div>
+         <p>PRISM | Inventory Management</p>
       </div>
-
+      <div class="right">
+         <div class = "admin">
+            <p>Admin</p>
+         </div>
+         <div class = "alex">
+            <p>Alex Reyes</p>
+         </div> 
+      </div>
+   </div>
+   <div class="lower">
+      <p>PRISM / INVENTORY MANAGEMENT / REPORTS</p>
+   </div>
+</header>
 
       <main class ="content">
          <div class="box1">
@@ -70,10 +103,21 @@
                <input type="date" id="date2">
             </div>
             <div class="choices">
-               <span>Low Stock</span>
-               <span>Valuation</span>
-               <span class="active">Movement Ledger</span>
-               <span>Top Movers</span>
+               <a href="low-stock.html">
+                  Low Stock
+               </a>
+
+               <a href="valuation.html">
+                  Valuation
+               </a>
+
+               <a href="movement-ledger.html"  class="active">
+                  Movement Ledger
+               </a>
+
+               <a href="top-movers.html">
+                  Top Movers
+               </a>
             </div>
          </div>
 
@@ -85,17 +129,17 @@
             </div>
             <div class="box2_right">
                <div class="dropdowns">
-                  <select name="productDropdown" id="product">
-                     <option value="allProducts">All Products</option>
-                     <option value="product1">Category 1</option>
-                     <option value="product2">Category 2</option>
-                     <option value="product3">Category 3</option>
+                  <select id="productFilter">
+                     <option value="all">All Products</option>
+                     <option value="Coca-Cola">Coca-Cola</option>
+                     <option value="Royal">Royal</option>
+                     <option value="Pepsi">Pepsi</option>
                   </select>
-                  <select name="quantityDropdown" id="product">
-                     <option value="allProducts">Quantity</option>
-                     <option value="quantity1">1</option>
-                     <option value="quantity2">2</option>
-                     <option value="quantity3">3</option>
+                  <select id="quantityFilter">
+                     <option value="all">Quantity</option>
+                     <option value="low">1 - 50</option>
+                     <option value="medium">51 - 150</option>
+                     <option value="high">150+</option>
                   </select>
                   <button class="excel">CSV</button>
                </div>
@@ -104,13 +148,13 @@
 
 
          <div class="box3">
-            <table>
+            <table id="movementTable">
                <tr class="header-box">
-                  <th>Date</th>
-                  <th>Product Name</th>
-                  <th>Type</th>
-                  <th>Quantity</th>
-                  <th>Reorder Threshold</th>
+                  <th>DATE</th>
+                  <th>PRODUCT NAME</th>
+                  <th>TYPE</th>
+                  <th>QUANTITY</th>
+                  <th>REORDER THRESHOLD</th>
                </tr>
                <tr>
                   <td>2023-10-01</td>
@@ -170,8 +214,10 @@
                </tr>
             </table>
          </div>
-      </div>
    </main>
   </div>
+
+  <script src="../script/movement-ledger.js"></script>
+
  </body>
 </html>
