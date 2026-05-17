@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+/* COLORS */
+:root {
+  --maroon: #6E1A35;
+  --white: #ffffff;
+  --bg: #F6F4F1;
+  --text: #1A1714;
+  --gray: #777;
+  --border: #ddd;
+}
+
+/* PAGE CONTENT */
+.content {
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.box1 {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* TITLE SECTION */
+.title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pageTitle {
+margin: 10px 10px;
+font-size: 37px;
+font-weight: 600;
+color: #801B32;
+}
+
+.pageSubtitle {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #777;
+}
+
+/* DROPDOWN CONTAINER */
+.dropdowns {
+  display: flex;
+  gap: 12px;
+  margin-left: 10px;
+  margin-top: 8px;
+}
+
+/* SELECT STYLE */
+.dropdowns select {
+  padding: 10px 14px;
+  min-width: 180px;
+  border: 1px solid #d8d8d8;
+  border-radius: 8px;
+  background: #fff;
+  color: #333;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+/* HOVER */
+.dropdowns select:hover {
+  border-color: #801B32;
+}
+
+/* FOCUS */
+.dropdowns select:focus {
+  border-color: #801B32;
+  box-shadow: 0 0 0 3px rgba(128, 27, 50, 0.12);
+}
+
+.record {
+  margin: 20px 10px;
+  padding: 10px;
+  width: 185px;
+  height: 48px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #801B32;  
+  background-color: #FFBF00;
+  border-color: #FFBF00;
+  border-radius: 10px;
+  display: flex;
+}
+
+.box2 {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
