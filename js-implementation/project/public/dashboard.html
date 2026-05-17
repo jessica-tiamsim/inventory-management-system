@@ -73,8 +73,10 @@
     <script src="script.js"></script>
     <script>
        window.onload = function() {   
-        loadMenu();
+        loadMenu().then(() => {
+        document.querySelector('nav a[href="dashboard.html"]').classList.add('active');
         dashboard(); 
+        });
         };
     </script>
     </body>
