@@ -6,12 +6,6 @@ if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: index.php");
     exit;
 }
-
-// These would ideally come from a Database Query later
-$active_products = 7;
-$total_units = 193;
-$inventory_value = 1403;
-$low_stock_count = 4;
 ?>
 
 <!DOCTYPE html>
