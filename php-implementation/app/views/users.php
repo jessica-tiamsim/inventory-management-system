@@ -26,8 +26,8 @@ if ($_SESSION['role'] !== 'admin') {
     </head>
     <body>
     <?php include __DIR__ . '/sidebar_header.php'; ?>
-
             <div class="content">
+                
                 <div class="page-header">
                     <h1 class="page-title">Users</h1>
                     <p class="page-subtitle">Manage your Employees</p>
