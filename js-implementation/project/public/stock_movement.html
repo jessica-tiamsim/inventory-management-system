@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM</title>
+  <link rel="stylesheet" href="stock_movement.css">
+  <link rel="stylesheet" href="sidebar.css">
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="main">
+    <div class="content">
+       <div class="box1">
+            <div class="title-group">
+                <span class="pageTitle">Stock Movements</span>
+                <p class="pageSubtitle">
+                    Immutable ledger of stock change.
+                </p>
+                <div class="dropdowns">
+                    <select name="productDropDown" id="product">
+                    <option value="allProducts">All Products</option>
+                    <option value="product1">Category 1</option>
+                    <option value="product2">Category 2</option>
+                    <option value="Product3">Category 3</option>
+                    </select>
+                    <select name="typeDropDown" id="type">
+                    <option value="allTypes">All Types</option>
+                    <option value="product1">Type 1</option>
+                    <option value="product2">Type 2</option>
+                    <option value="Product3">Type 3</option>
+                    </select>
+                </div>
+            </div>
+            <button class="record">
+                + Record Movement
+            </button>
+        </div>
+        <div class="box2">
+          The table goes here
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+<script src="script.js"></script>
+    <script>
+       window.onload = function() {   
+        loadMenu().then(() => {
+        document.querySelector('nav a[href="stock_movement.html"]').classList.add('active');
+        stock_movement(); 
+        });
+        };
+    </script>
+</body>
+</html>
