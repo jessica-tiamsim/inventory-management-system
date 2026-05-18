@@ -1,69 +1,20 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PRISM</title>
-  <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="valuation.css">
-
- 
+  <link rel="stylesheet" href="../../public/css/valuation.css">
+    <link rel="stylesheet" href="../../public/css/sidebar_header.css">
+    <link href='
 </head>
-
 <body>
-
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-
-    <h2 class="logo">PRISM</h2>
-    <p class="subtitle">Admin Portal</p>
-
-    <nav>
-
-      <a href="#" class="nav-item">
-        Dashboard
-      </a>
-
-      <a href="#" class="nav-item">
-        Products
-      </a>
-
-      <a href="#" class="nav-item">
-        Stock Movements
-      </a>
-
-      <a href="#" class="nav-item active">
-        Reports
-      </a>
-
-      <a href="#" class="nav-item">
-        Profile
-      </a>
-
-    </nav>
-
-    <div class="user-panel">
-      <p>Admin User</p>
-      <button>Logout</button>
-    </div>
-
-  </aside>
-
-  <!-- MAIN -->
-  <div class="main">
-
-    <!-- TOPBAR -->
-    <header class="topbar">
-      <h1>Inventory Management</h1>
-    </header>
-
-    <!-- BREADCRUMB -->
-    <div class="breadcrumb">
-      PRISM / Inventory Management / Reports
-    </div>
-
+  <?php require __DIR__ . "/sidebar_header.php"; ?>
     <!-- CONTENT -->
-    <main class="content">
+    <div class="content">
 
       <!-- PAGE HEADER -->
       <section class="page-header">
@@ -197,9 +148,7 @@
 
       </section>
 
-    </main>
-
-  </div>
+</div>
 
 </body>
 </html>

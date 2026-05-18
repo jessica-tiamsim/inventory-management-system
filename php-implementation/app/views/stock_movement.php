@@ -3,7 +3,7 @@
 // 1. SESSION MANAGEMENT & ACCESS CONTROL GUARD
 // ==========================================
 session_start();
-
+/*
 // Strict Requirement: Enforce script-level authentication check
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
     header("Location: ../../public/index.php?error=unauthorized");
@@ -23,17 +23,7 @@ if (file_exists(__DIR__ . '/../.env')) {
 
 // Pull central PDO MySQL engine reference
 require_once __DIR__ . '/../models/db_connection.php';
-
-// ==========================================
-// 3. CAPTURE FILTER PARAMETERS & PAGINATION
-// ==========================================
-$filter_sku = $_GET['sku'] ?? 'all';
-$filter_type = $_GET['type'] ?? 'all';
-
-$limit = 10; // Group One constraint rule limit
-$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-if ($page < 1) $page = 1;
-$offset = ($page - 1) * $limit;
+*/
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,15 +38,15 @@ $offset = ($page - 1) * $limit;
 <body>
 
     <?php include __DIR__ . '/sidebar_header.php'; ?>
-
+    
     <div class="content">
         <div class="box1">
+        
             <div class="title-group">
                 <span class="pageTitle">Stock Movements</span>
                 <p class="pageSubtitle">
                     Immutable ledger of stock change.
-                </p>
-                
+                </p><!--
                 <form method="GET" action="" class="dropdowns">
                     <select name="sku" id="product" onchange="this.form.submit()">
                         <option value="all" <?= $filter_sku === 'all' ? 'selected' : '' ?>>All Products</option>
@@ -255,5 +245,6 @@ $offset = ($page - 1) * $limit;
         }
     }
     </script>
+                    -->
 </body>
 </html>
