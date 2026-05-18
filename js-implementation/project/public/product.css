@@ -52,7 +52,7 @@
 
         .search-product {
             margin: 25px 0px 10px 10px;
-            padding: 5px;
+            padding: 7px;
             width: 500px;
             border-radius: 20px;
             border: 1px solid gray; 
@@ -62,7 +62,7 @@
         #category, #active {
             margin: 25px 0px 10px 0px;
             gap: 15px;
-            padding: 5px;
+            padding: 7px;
             border-radius: 20px; 
             border: 1px solid gray; 
             background: #f4f4f4;
