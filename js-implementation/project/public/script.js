@@ -133,6 +133,38 @@ function login() {
         }
     }
 }
+    function stockModal() {
+        const modal = document.getElementById('movementModal');
+        const openBtn = document.querySelector('.record');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const stockform = document.getElementById('movementForm');
+
+        if (!openBtn || !modal) return;
+
+        const hideModal = () => {
+            modal.classList.remove('show');
+            if (stockform) stockform.reset();
+        };
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        if (closeBtn) closeBtn.addEventListener('click', hideModal);
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+
+        if (stockForm) {
+            stockForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                hideModal();
+            });
+        }
+    }
 
     function logout() {
         fetch('index.html')
