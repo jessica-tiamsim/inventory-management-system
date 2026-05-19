@@ -166,6 +166,19 @@ function login() {
         }
     }
 
+    document.addEventListener("DOMContentLoaded", () => {
+        const currentPage = window.location.pathname.split("/").pop();
+        const tabs = document.querySelectorAll(".tab-choices a.tab");
+
+        tabs.forEach(link => {
+            const pageLink = link.getAttribute("href");
+
+            if (currentPage === pageLink) {
+                link.classList.add("current");
+            }
+        });
+    });
+
     function logout() {
         fetch('index.html')
         .then(res => res.json())
