@@ -21,54 +21,46 @@
                <label for="date">To: </label>
                <input type="date" id="date2">
             </div>
-            <div class="choices">
-               <span class="active">Low Stock</span>
-               <span>Valuation</span>
-               <span>Movement Ledger</span>
-               <span>Top Movers</span>
-            </div>
+            <nav class="tab-choices">
+               <a href="low_stock.html" class="tab">Low Stock</a>
+               <a href="valuation.html" class="tab">Valuation</a>
+               <a href="movement_ledger.html" class="tab">Movement Ledger</a>
+               <a href="top.movers.html" class="tab">Top Movers</a>
+            </nav>
          </div>
 
          <div class="box2">
             <div class="box2_left">
-            <h4>Top Movers</h4>
+            <h4 class="box2_title">Top Movers</h4>
             <p class="box2_sub">Products with highest stock-out volume in range</p>
             </div>
             <div class="box2_right">
-               <div class="dropdowns">
-                  <select name="productDropdown" id="product">
-                     <option value="allProducts">All Products</option>
-                     <option value="product1">Category 1</option>
-                     <option value="product2">Category 2</option>
-                     <option value="product3">Category 3</option>
-                  </select>
-                  <select name="unitsDropdown" id="unit">
-                     <option value="unitsOut">Units Out</option>
-                     <option value="units1">1</option>
-                     <option value="units2">2</option>
-                     <option value="units3">3</option>
-                  </select>
-                  <button class="excel">CSV</button>
-               </div>
+               <button class="excel">CSV</button>
             </div>
          </div>
 
          <div class="box3">
+          <div class="low-table">
             <table>
-               <tr class="header-box">
+               <thead>
+               <tr>
                   <th>SKU</th>
                   <th>Product Name</th>
                   <th>Category</th>
                   <th>Units Out</th>
                </tr>
+               </thead>
+               <tbody>
                <tr>
                   <td>BEV-006</td>
                   <td>Pocari Sweat</td>
                   <td>Bottled Water</td>
                   <td>160</td>
                </tr>
+               </tbody>
             </table>
          </div>
+       </div>
       </div>
   </div>
 </div>
