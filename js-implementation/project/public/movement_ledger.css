@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --maroon: #801B32;
+    --white: #ffffff;
+    --bg: #f6f4f1;
+    --text: #1A1714;
+    --gray: #777;
+    --border: #ddd;
+}
+
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f4f4f4;
+}
+
+.box1 {
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: var(--white);
+}
+
+.box1_title {
+    color: #801B32;
+}
+
+.box1_sub {
+    font-size: 14px;
+    color: var(--gray);
+    margin-bottom: 20px;
+}
+
+.date {
+    font-weight: bold;
+    font-size: 12px;
+    margin: 0 10px 0px 0;
+}
+
+#date1 {
+    padding: 5px;
+    border: none;
+    border-radius: 15px;
+    background: #F5F5F5;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+#date2 {
+   padding: 5px;
+    border: none;
+    border-radius: 15px;
+    background: #F5F5F5;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tab-choices {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 10px;
+    font-size: 13px;
+    gap: 20px;
+}
+
+.tab-choices a.tab {
+    all: unset;
+    padding: 10px 30px 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+    background: var(--white);
+    border: 1px solid #e0e0e0;
+    color: black;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tab-choices a.current {
+    background: var(--maroon);
+    color: var(--white);
+}
+
+.box2 {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    background: var(--white);
+}
+
+.box2_title {
+    color: #801B32;
+}
+
+.box2_sub {
+    font-size: 12px;
+    color: var(--text);
+    margin-bottom: 30px;
+}
+
+.dropdowns {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.dropdowns select {
+    padding: 2px;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+    background: #F3F4F6;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.excel {
+    padding: 8px 30px 8px 30px;
+    font-weight: bold;
+    border-radius: 10px;
+    background: var(--maroon);
+    color: var(--white);
+}
+
+#product {
+    width: auto;
+    height: 30px;
+    border: 1px solid var(--gray);
+    border-radius: 20px;
+}
+
+.box3 {
+    padding: 10px;
+    width: 100%;
+    height: 350px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    overflow: auto;
+    background: var(--white);
+}
+
+.low-table {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+th { 
+  padding: 10px 10px; 
+  font-size: 12px; 
+  text-align: center; 
+  color: #ffffff;
+  background: #801B32;
+}
+
+td { 
+  padding: 10px 20px; 
+  font-size: 13px; 
+  text-align: center;
+  border-bottom: 1px solid #eee; 
+}
