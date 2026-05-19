@@ -13,17 +13,25 @@
     --border: #ddd;
 }
 
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f4f4f4
+}
+
 .box1 {
     padding: 10px;
     width: 100%;
-    height: 190px;
+    height: auto;
     margin-bottom: 10px;
     border-radius: 10px;
     background: var(--white);
 }
 
 .box1_title {
-    color: var(--maroon);
+    color: #801B32;
 }
 
 .box1_sub {
@@ -35,14 +43,14 @@
 .date {
     font-weight: bold;
     font-size: 12px;
-    margin: 0 10px 20px 0;
+    margin: 0 10px 0px 0;
 }
 
 #date1 {
     padding: 5px;
     border: none;
     border-radius: 15px;
-    background: #F3F4F6;
+    background: #f4f4f4;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
@@ -51,18 +59,22 @@
    padding: 5px;
     border: none;
     border-radius: 15px;
-    background: #F3F4F6;
+    background: #f4f4f4;
     border: 1px solid #e0e0e0;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-.choices {
+.tab-choices {
     display: flex;
-    gap: 10px;
+    flex-direction: row;
+    padding-bottom: 10px;
+    font-size: 13px;
+    gap: 20px;
 }
 
-.choices span {
-    padding: 10px;
+.tab-choices a.tab {
+    all: unset;
+    padding: 10px 30px 10px 30px;
     border-radius: 20px;
     cursor: pointer;
     background: var(--white);
@@ -71,7 +83,7 @@
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
 }
 
-.choices span.active {
+.tab-choices a.current {
     background: var(--maroon);
     color: var(--white);
 }
@@ -87,31 +99,21 @@
     background: var(--white);
 }
 
+.box2_title {
+    color:#801B32;
+}
+
 .box2_sub {
     font-size: 12px;
     color: var(--text);
     margin-bottom: 30px;
 }
 
-.dropdowns {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.dropdowns select {
-    padding: 2px;
-    border-radius: 8px;
-    border: 2px solid #e0e0e0;
-    background: #F3F4F6;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-}
-
 .excel {
     padding: 8px 30px 8px 30px; 
     font-weight: bold;
     border-radius: 10px;
-    background: var(--maroon);
+    background: #801B32;
     color: var(--white);
 }
 
@@ -125,11 +127,15 @@
 .box3 {
     padding: 10px;
     width: 100%;
-    height: 150px;
     margin-bottom: 10px;
     border-radius: 10px;
     overflow: auto;
     background: var(--white);
+}
+
+.low-table {
+    border-radius: 10px;
+    overflow: hidden;
 }
 
 table {
@@ -138,27 +144,18 @@ table {
     table-layout: fixed;
 }
 
-th, td {
-    padding: 12px 20px;
-    text-align: center;
+th { 
+  padding: 10px 10px; 
+  font-size: 12px; 
+  text-align: center; 
+  color: #ffffff;
+  background: #801B32;
 }
 
-.header-box th {
-    background: var(--maroon);
-    color: var(--white);
+td { 
+  padding: 10px 20px; 
+  font-size: 13px; 
+  text-align: center;
+  border-bottom: 1px solid #eee; 
 }
 
-.header-box th:first-child {
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
-}
-
-.header-box th:last-child {
-    border-top-right-radius: 12px;
-    border-bottom-right-radius: 12px;
-}
-
-.column {
-    border-radius: 10px;
-    background-color: #801b32;
-}
