@@ -10,7 +10,7 @@
         .table-container p{
             margin: 0px;
         }
-
+        
         .content-box { 
             padding: 10px;
             display: flex;
@@ -101,11 +101,12 @@
         th { 
             padding: 10px 10px; 
             font-size: 12px; 
-            text-align: left; 
+            text-align: center; 
         }
         td { 
             padding: 10px 20px; 
             font-size: 13px; 
+            text-align: center;
             border-bottom: 1px solid #eee; 
         }
         .status-active { 
