@@ -77,7 +77,7 @@ function login() {
         const viewReportBtn = document.querySelector('.view-report-btn');
         if(viewReportBtn) {
             viewReportBtn.addEventListener('click', () => {
-                window.location.href = 'stock_movement.html';
+                window.location.href = 'low_stock.html';
             });
         }
     }
@@ -166,6 +166,7 @@ function login() {
         }
     }
 
+    /*Report Nav*/
     document.addEventListener("DOMContentLoaded", () => {
         const currentPage = window.location.pathname.split("/").pop();
         const tabs = document.querySelectorAll(".tab-choices a.tab");
@@ -179,10 +180,13 @@ function login() {
         });
     });
 
-    function logout() {
-        fetch('index.html')
-        .then(res => res.json())
-        .then(data => {
-            window.location.href = 'index.html';
-        })
-    }
+    /*Logout*/
+    document.addEventListener("DOMContentLoaded", function () {
+        const logout = document.getElementById("logoutBtn");
+
+        if (logout) {
+            logout.addEventListener("click", function () {
+                window.location.href = "index.html"
+            });
+        }
+    });
