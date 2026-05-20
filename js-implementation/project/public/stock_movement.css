@@ -115,15 +115,11 @@ table {
   border-collapse: collapse; 
 }
 
-thead { 
-  background: var(--maroon); 
-  color: #801B32; 
-}
-
 th { 
   padding: 10px 10px; 
   font-size: 12px; 
   text-align: center; 
+  color: #801B32; 
   background: #FFBF00;
 }
 
