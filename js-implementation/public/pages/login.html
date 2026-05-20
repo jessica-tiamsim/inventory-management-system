@@ -3,11 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="preconnect" href="https://rsms.me">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <title>PRISM Web App</title>
     <link rel="stylesheet" href="../css/login.css">
 </head>
@@ -15,7 +10,7 @@
 
     <div id="login-screen">
         <div class="logo-area">
-            <img src="../../../assets/logo.png" alt="PRISM Logo" class="main-logo">
+            <img src="../../../assets/logo.png" class="main-logo" alt="PRISM Logo">
             <h1 style="letter-spacing: 2px; margin: 0;">PRISM</h1>
         </div>
 
@@ -55,7 +50,20 @@
             </main>
          </div>
 
-         <script src="../script/login.js"></script>
-         
+         <script>
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const user = document.getElementById('userIn').value;
+                const pass = document.getElementById('passIn').value;
+
+                if(user === "jc_admin@prism.com" && pass === "password1217") {
+                    document.getElementById('login-screen').style.display = 'none';
+                    document.getElementById('dashboard-screen').style.display = 'grid';
+                    document.body.style.background = "#fff";
+                } else {
+                    alert("The login credentials doesn't match an account in the system.");
+                }
+            });
+         </script>
     </body>
 </html>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PRISM</title>
-  <link rel="stylesheet" href="../css/valuation.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PRISM</title>
+   <link rel="stylesheet" href="../css/low_stock.css">
+   <link rel="stylesheet" href="../css/sidebar.css">
+   <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
    <div class="main">
@@ -21,7 +22,7 @@
                <input type="date" id="date2">
             </div>
             <nav class="tab-choices">
-               <a href="../pages/low_stock.html" class="tab">Low Stock</a>
+               <a href="../pages/low_stock.html" class="tab" id="active">Low Stock</a>
                <a href="../pages/valuation.html" class="tab">Valuation</a>
                <a href="../pages/movement_ledger.html" class="tab">Movement Ledger</a>
                <a href="../pages/top_movers.html" class="tab">Top Movers</a>
@@ -30,53 +31,48 @@
 
          <div class="box2">
             <div class="box2_left">
-            <h4 class="box2_title">Valuation</h4>
-            <p class="box2_sub">Sum of (unit x current quantity) per category</p>
+            <h4 class="box2_title">Low Stock Report</h4>
+            <p class="box2_sub">Active products at or below their reorder threshold</p>
             </div>
             <div class="box2_right">
-               <div class="dropdowns">
-                  <select name="valueDropdown" id="values">
-                     <option value="highest">Descending</option>
-                     <option value="lowest">Ascending</option>
-                  </select>
                   <button class="excel">CSV</button>
                </div>
             </div>
-         </div>
 
          <div class="box3">
           <div class="low-table">
             <table>
                <thead>
                <tr>
-                  <th>Category</th>
-                  <th>Value</th>
+                  <th>SKU</th>
+                  <th>Product</th>
+                  <th>Country</th>
+                  <th>Quantity</th>
+                  <th>Reorder Threshold</th>
+                  <th>Supplier Name</th>
                </tr>
                </thead>
                <tbody>
                <tr>
-                  <td>Dry Goods</td>
-                  <td>Php 602.00</td>
-               </tr>
-               <tr>
-                  <td>Bevarages</td>
-                  <td>Php 408.00</td>
-               </tr>
-               <tr>
-                  <td>Snacks</td>
-                  <td>Php 289.00</td>
+                  <td>BEV-006</td>
+                  <td>Pocari Sweat</td>
+                  <td>Bottled Water</td>
+                  <td>7</td>
+                  <td>Reorder Threshold</td>
+                  <td>Alex Reyes</td>
                </tr>
                </tbody>
             </table>
          </div>
-      </div>
-    </div>
+       </div>
+     </div>
    </div>
-   <script src="../script/script.js" defer></script>
+</div>
+  <script src="../script/script.js" defer></script>
     <script>
        window.onload = function() {   
         loadMenu().then(() => {
-        valuation(); 
+        low_stock(); 
         });
         };
     </script>

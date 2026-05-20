@@ -3,93 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="preconnect" href="https://rsms.me">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <title>PRISM | Inventory Management</title>
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <link rel="stylesheet" href="../css/global.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
+<body>
 
-<body id = "menu">
-
-    <aside>
-        <div class= "logo">
-            <div class="logo1">
-                <img src= "logo.png" class="prism_image">
-                <h1>PRISM</h1>
-            </div>
-            <div class="logo_user">
-                <p>Admin Portal</p>
-            </div>
-        </div>
-   
-   <nav>
-      <a href="dashboard.html" class="active">
-         <img src="image.png">
-         <p>Dashboard</p>
-      </a>
-      <a href="products.html">
-         <img src="image.png">
-         <p>Products</p>
-      </a>
-      <a href="stock-movement.html">
-         <img src="image.png">
-         <p>Stock Movements</p>
-      </a>
-      <a href="low-stock.html">
-         <img src="image.png">
-         <p>Reports</p>
-      </a>
-      <a href="users.html">
-         <img src="image.png">
-         <p>Profile</p>
-      </a>
-   </nav>
-
-    <div class ="user-panel">
-      <div class="user">
-         <div class="profile">
-            <img src="image.png" class="prism_image">
-         </div>
-
-         <div class="status">
-            <p>Admin User</p>
-            <p id=admin>Admin</p>
-         </div>
-      </div>
-      
-      <button id="logoutBtn">
-         <img src="image.png" class="logout_image">
-         <p id=logout>Logout</p>
-      </button>
-    </div>
-    </aside>
-
-<div class="main">
-<header>
-   <div class= "upper">
-      <div class= "left">
-         
-         <div class="shape">asd</div>
-         <p>PRISM | Inventory Management</p>
-      </div>
-      <div class="right">
-         <div class = "admin">
-            <p>Admin</p>
-         </div>
-         <div class = "alex">
-            <p>Alex Reyes</p>
-         </div> 
-      </div>
-   </div>
-   <div class="lower">
-      <p>PRISM / INVENTORY MANAGEMENT / DASHBOARD</p>
-   </div>
-</header>
+     <div class="main">
         
         <div class="content">
             <div class="dashboard-container">
@@ -99,22 +20,22 @@
 
                     <div class="stat-card blue-border">
                         <p class="card-label">ACTIVE PRODUCTS</p>
-                        <h2 class="card-value color-blue" id="activeProducts">0</h2>
+                        <h2 class="card-value color-blue">7</h2>
                         <p class="card-sub">2 Inactive</p>
                     </div>
                     <div class="stat-card red-border">
                         <p class="card-label">UNITS IN STOCK</p>
-                        <h2 class="card-value color-red" id="unitsInStock">0</h2>
+                        <h2 class="card-value color-red">193</h2>
                         <p class="card-sub">across all SKUs</p>
                     </div>
                     <div class="stat-card blue-border">
                         <p class="card-label">INVENTORY VALUE</p>
-                        <h2 class="card-value color-blue" id="inventoryValue">0</h2>
+                        <h2 class="card-value color-blue">₱1, 403</h2>
                         <p class="card-sub">at unit cost</p>
                     </div>
                     <div class="stat-card green-border">
                         <p class="card-label">LOW STOCK ALERTS</p>
-                        <h2 class="card-value color-green" id="lowStockAlerts">0</h2>
+                        <h2 class="card-value color-green">4</h2>
                         <p class="card-sub">at or below threshold</p>
                     </div>
                 </div>
@@ -126,9 +47,9 @@
                                 <h3>Low Stock</h3>
                                 <p class="sub-text">Products at or below reorder threshold</p>
                             </div>
-                            <button class="view-report-btn" id="viewReportBtn">View Report</button>
+                            <button class="view-report-btn">View Report</button>
                         </div>
-                        <div class="list-container" id="lowStockList">
+                        <div class="list-container">
                             <p class="placeholder-text">Fetching data...</p>
                         </div>
                     </section>
@@ -140,7 +61,7 @@
                                 <p class="sub-text">Latest stock movements</p>
                             </div>
                         </div>
-                        <div class="list-container" id="recentActivityList">
+                        <div class="list-container">
                             <p class="placeholder-text">No recent activity found.</p>
                         </div>
                     </section>
@@ -149,7 +70,13 @@
         </div>
     </div>
     
-    <script src="../script/dashboard.js"></script>
-    
+    <script src="../script/script.js"></script>
+    <script>
+       window.onload = function() {   
+        loadMenu().then(() => {
+        viewReport();
+        });
+        };
+    </script>
     </body>
 </html>

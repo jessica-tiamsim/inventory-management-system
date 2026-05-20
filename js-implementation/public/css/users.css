@@ -1,61 +1,9 @@
-body {
-    display: flex;
-    height: 100vh;
-    background-color: #F6F4F1;
-    overflow: hidden;
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
-}
-
-header {
-    background: white;
-    border-bottom: 1px solid #eee;
-}
-
-.upper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 30px;
-}
-
-.left,
-.right {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.lower {
-    background: #d9d9d9;
-    padding: 10px 30px;
-    font-size: 12px;
-    font-weight: 700;
-}
-
-.nav-title {
-    color: #801B32;
-    font-weight: 700;
-    margin-left: 10px;
-}
-
-.user-badge {
-    background: #801B32;
-    color: white;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.content-body {
-    padding: 30px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .page-title {
@@ -202,6 +150,7 @@ header {
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    font-family: inherit;
     font-size: 14px;
 }
 

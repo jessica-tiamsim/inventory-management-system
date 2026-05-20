@@ -1,166 +1,270 @@
+@import url('https://rsms.me/inter/inter.css');
+/*body(main window)*/
+body {
+    display: flex;
+    height: 100vh;
+    font-family: 'Inter';
+    background: green;
+    margin: 0px;
+    overflow: hidden;
+}
+/*navigation bar*/
 aside {
     width: 256px;
     height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        var(--maroon),
-        var(--maroon-dark)
-    );
+    font-family: 'Inter';
+    background: linear-gradient(to bottom, #801B32, #5A1424);
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
-    color: white;
+    flex-shrink: 0; /* Prevents sidebar from squishing on small screens */
 }
 
 .logo {
-    padding: 12px 16px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
+    max-width: 256px;
+    max-height: 120px;
+    padding: 8px 16px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
-
 .logo1 {
     display: flex;
+    width: 200px;
+    height: 50px;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
-
-.prism_image {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-}
-
 .logo h1 {
     font-size: 32px;
     font-weight: 700;
-    letter-spacing: 1px;
+    display: block;
+    margin: 0;
+}
+
+.prism_image {
+    width: 49px;
+    height: 41px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
 }
 
 .logo_user {
-    margin-top: 4px;
+    width: fit-content;
+    height: 45px;
 }
 
 .logo_user p {
-    font-size: 13px;
-    color: rgba(255,255,255,0.65);
-    margin-left: 52px;
+    font-size: 12px;
+    color: rgb(255, 255, 255, 0.60);;
+    margin-left: 25px;
+    margin-top: 5px;
 }
+/*navigation buttons*/
 
 nav {
     display: flex;
     flex-direction: column;
-    padding: 20px 12px;
-    gap: 6px;
-}
-
-nav a {
-    width: 100%;
-    height: 48px;
-    border-radius: 14px;
-    display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 0 16px;
-    color: rgba(255,255,255,0.85);
-    font-size: 15px;
-    font-weight: 500;
-    transition:
-        background 0.2s ease,
-        color 0.2s ease;
+    font-family: 'Inter' !important;
+    padding: 20px 10px;
+    gap: 6px;
+    
 }
-
-nav a img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
+nav a{
+    display: flex;
+    width: 208px;
+    height: 48px;
+    border-radius: 16px;
+    padding: 0px;
+    padding-left: 16px;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 12px;
+    font-family: 'Inter';
+    color: white;
+    text-decoration: none;
 }
-
-nav a p {
-    margin: 0;
+nav img{
+    max-width: 20px;
+    max-height: 20px;
+    align-self: center;
 }
 
 nav a.active {
-    background: var(--gold);
-    color: var(--maroon);
-    font-weight: 700;
+    background: #FFBF00 !important;
+    color: maroon;
 }
 
-nav a:not(.active):hover {
-    background: rgba(255,255,255,0.12);
-    color: white;
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.1);
 }
 
+/*logout panel*/
 .user-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
     margin-top: auto;
     padding: 16px;
-    border-top: 1px solid rgba(255,255,255,0.15);
-}
-
-.user {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.profile {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    background: var(--gold);
-    overflow: hidden;
-    flex-shrink: 0;
-}
-
-.profile img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.status {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
-
-.status p {
-    margin: 0;
-    font-size: 14px;
-    color: white;
-}
-
-#admin {
-    font-size: 12px;
-    color: rgba(255,255,255,0.6);
-}
-
-.user-panel button {
-    width: 100%;
-    height: 48px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.10);
-    color: white;
+.user{
+    gap: 12px;
     display: flex;
-    align-items: center;
+}
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: #FFBF00;
+}
+.profile img {
+    max-width: 40px;
+    max-height: 40px;
+}
+.status{
+    display: grid;
     justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: background 0.2s ease;
 }
 
-.user-panel button:hover {
-    background: rgba(255,255,255,0.18);
+.status p{
+    font-weight: 400;
+    margin: 0px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+}
+#admin {
+    margin: 0px;
+    height: 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+.user-panel button {
+    font-size: 14px;
+    font-weight: 600;
+    width: 224px;
+    height: 48px;
+    border-radius: 16px;
+    padding: 0px;
+    gap: 6px;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: rgba(255, 255, 255, 0.10);
+    cursor: pointer;
 }
 
 .logout_image {
-    width: 16px;
-    height: 16px;
+    align-self: center;
+    max-width: 16px;
+    max-height: 16px;
+}
+#logout{
+    width:fit-content;
+    align-content: center;
+    color: white;
+    margin: 0;
 }
 
-#logout {
-    margin: 0;
-    font-size: 14px;
+header{
+    display: flex;
+    width: 100%;
+    height: 112px;
+    background-color: white ;
+    flex-direction: column;
+    align-content: center;
+    
+}
+.upper {
+    display: flex;
+    width: 100%;
+    height: 84px;
+    padding-left: 20px;
+    align-items: center;
+    flex-direction: row;
+    background-color: white;
+    box-sizing: border-box;
+}
+.lower{
+    display: flex;
+    width: 100%;
+    height: 28px;
+    padding-left: 20px;
+    align-items: center;
+    background-color: #D0D0D0;
+    box-sizing: border-box;
+}
+.lower p {
+    font-size: 13px;
     font-weight: 600;
+    margin: 0px;
+    padding: 0px;
+}
+.left {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    flex-direction: row;
+    gap: 16px;
+}
+.left img {
+    align-self: center;
+    max-width: 33px;
+    max-height: 28px;
+    border: black;
+}
+.upper .left p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+}
+.shape {
+    max-width: 33px;
+    max-height: 28px;
+    background-color: black;
+
+}
+.right {
+    display: flex;
+    width: 200px;
+    align-items: center;
+    flex-direction: row;
+    margin-left: auto;
+    gap: 16px;
+}
+.admin{
+    display: flex;
+    max-width: 75px;
+    max-height: 35px;
+    padding: 8px 14px;
+    border-radius: 32px;
+    justify-content: center;
+    align-content: center;
+    color: white;
+    background-color: #801B32;
+}
+.admin p {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0px;
+    margin: 0px;
+    align-self: center;
+}
+.alex {
+    display: flex;
+    width: 200px;
+    height: 40px;
+}
+.alex p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px;
+    align-self: center;
 }
 
 .main {
@@ -169,89 +273,12 @@ nav a:not(.active):hover {
     flex-direction: column;
     height: 100vh;
     overflow: hidden;
-    background: #F5F5F5;
 }
-
-header {
-    width: 100%;
-    height: 112px;
-    background: white;
+.content {
     display: flex;
     flex-direction: column;
-}
-
-.upper {
-    height: 84px;
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.lower {
-    height: 28px;
-    background: var(--gray-light);
-    display: flex;
-    align-items: center;
-    padding: 0 20px;
-}
-
-.lower p {
-    margin: 0;
-    font-size: 12px;
-    font-weight: 600;
-    color: #333;
-}
-
-.left {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.left p {
-    margin: 0;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--maroon);
-}
-
-.shape {
-    width: 32px;
-    height: 32px;
-    background: var(--maroon);
-    border-radius: 8px;
-}
-
-.right {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.admin {
-    background: var(--maroon);
-    color: white;
-    padding: 7px 14px;
-    border-radius: 999px;
-}
-
-.admin p {
-    margin: 0;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.alex p {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
-    color: #222;
-}
-
-.content {
-    flex: 1;
+    height: 100%;
+    box-sizing: border-box ;
+    background-color: wheat;
     overflow-y: auto;
-    padding: 24px;
-    box-sizing: border-box;
 }

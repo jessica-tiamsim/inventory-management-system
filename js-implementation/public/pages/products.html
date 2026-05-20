@@ -3,259 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="preconnect" href="https://rsms.me">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <title>PRISM | Products</title>
-
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+    <title>PRISM | Inventory Management</title>
     <link rel="stylesheet" href="../css/products.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
-
-<body id="menu">
-
-    <aside>
-
-        <div class="logo">
-            <div class="logo1">
-                <img src="../../../assets/logo.png" class="prism_image">
-                <h1>PRISM</h1>
-            </div>
-
-            <div class="logo_user">
-                <p>Admin Portal</p>
-            </div>
-        </div>
-
-        <nav>
-
-            <a href="dashboard.html">
-                <img src="../assets/dash_icon.png">
-                <p>Dashboard</p>
-            </a>
-
-            <a href="products.html" class="active">
-                <img src="../assets/products_icon.png">
-                <p>Products</p>
-            </a>
-
-            <a href="stock-movement.html">
-                <img src="../assets/move_icon.png">
-                <p>Stock Movements</p>
-            </a>
-
-            <a href="low-stock.html">
-                <img src="../assets/report_icon.png">
-                <p>Reports</p>
-            </a>
-
-            <a href="users.html">
-                <img src="../assets/profile_icon.png">
-                <p>Profile</p>
-            </a>
-
-        </nav>
-
-        <div class="user-panel">
-
-            <div class="user">
-
-                <div class="profile">
-                    <img src="../assets/user_icon.png">
-                </div>
-
-                <div class="status">
-                    <p>Admin User</p>
-                    <p id="admin">Admin</p>
-                </div>
-
-            </div>
-
-            <button id="logoutBtn">
-
-                <img src="../assets/logout_icon.png" class="logout_image">
-
-                <p id="logout">Logout</p>
-
-            </button>
-
-        </div>
-
-    </aside>
+<body>
 
     <div class="main">
-
-        <header>
-
-            <div class="upper">
-
-                <div class="left">
-                    <div class="shape"></div>
-                    <p>PRISM | Inventory Management</p>
-                </div>
-
-                <div class="right">
-
-                    <div class="admin">
-                        <p>Admin</p>
-                    </div>
-
-                    <div class="alex">
-                        <p>Alex Reyes</p>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="lower">
-                <p>PRISM / INVENTORY MANAGEMENT / PRODUCTS</p>
-            </div>
-
-        </header>
-
-        
-        <div class="content">
-
-            <div class="products-container">
-
-                <div class="products-header">
-
+    <div class="content">
+            <div class="content-box">
+                <div class="content-header">
                     <div>
                         <h1>Products</h1>
-                        <p>Manage your catalog and stock thresholds</p>
+                        <p>Manage Your Catalog and Stock Threshold</p>
+                        <div class="search-container">
+                            <input type="text" placeholder="Search by Product Name or SKU" class="search-product">
+                            <select name="categoryDropDown" id="category">
+                            <option value="allCategories">All Categories</option>
+                            <option value="category1">Carbonated</option>
+                            <option value="category2">Energy Drink</option>
+                            <option value="category3">Alcholic</option>
+                            </select>
+                            <select name="activeDropDown" id="active">
+                            <option value="activeChoice">Active</option>
+                            <option value="active1">Inactive</option>
+                            </select>
+                        </div>
                     </div>
-
-                    <button class="btn-new" onclick="openModal()">
-                        + New Product
-                    </button>
-
+                    <button class="btn-new" id="openModalBtn"> + New Product</button>
                 </div>
 
-                <div class="table-controls">
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        class="search-input"
-                        placeholder="Search products..."
-                    >
-
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="all">All Categories</option>
-                        <option value="Carbonated">Carbonated</option>
-                        <option value="Snacks">Snacks</option>
-                        <option value="Dairy">Dairy</option>
-                    </select>
-
-                    <select id="statusFilter" class="filter-select">
-                        <option value="all">All Status</option>
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-
-                </div>
-
-                <!-- TABLE -->
-                <div class="table-wrapper">
-
+                <div class="table-border">
+                <div class="table-container">
                     <table>
-
                         <thead>
-
                             <tr>
                                 <th>SKU</th>
                                 <th>PRODUCT NAME</th>
-                                <th>DESCRIPTION</th>
                                 <th>CATEGORY</th>
-                                <th>UNIT PRICE</th>
-                                <th>UNIT COST</th>
-                                <th>REORDER THRESHOLD</th>
-                                <th>SUPPLIER NAME</th>
                                 <th>STATUS</th>
-                                <th></th>
+                                <th>ACTIONS</th>
                             </tr>
-
                         </thead>
-
-                        <tbody id="productTableBody">
-
+                        <tbody>
                             <tr>
                                 <td>BEV-001</td>
                                 <td>Coca-Cola</td>
-                                <td>330ml Soft Drink</td>
                                 <td>Carbonated</td>
-                                <td>₱25.00</td>
-                                <td>₱18.00</td>
-                                <td>10</td>
-                                <td>Coca-Cola FEMSA</td>
                                 <td class="status-active">Active</td>
-
                                 <td>
-
-                                    <img src="../assets/edit_icon.png"
-                                        class="action-img edit-btn">
-
-                                    <img src="../assets/delete_icon.png"
-                                        class="action-img delete-btn">
-
+                                    <img src="edit_icon.png" class="action-img">
+                                    <img src="delete_icon.png" class="action-img">
                                 </td>
-
                             </tr>
-
                         </tbody>
-
                     </table>
-
                 </div>
-
+                </div>
             </div>
-
         </div>
-
     </div>
-
-    <!-- MODAL -->
-    <div class="modal-overlay" id="newProductModal">
-
+     <div class="modal-overlay" id="newProductModal">
         <div class="modal-content">
-
-            <button
-                type="button"
-                class="close-btn"
-                onclick="closeModal()">
-
-                &times;
-
-            </button>
-
-            <h2>New Product</h2>
-
-            <p>Add new SKU to your catalog.</p>
+            <button type="button" class="close-btn" id="closeModalBtn">&times;</button>
+            
+            <h2>Details</h2>
+            <p class="modal-subtitle">Add new SKU to your catalog.</p>
 
             <form id="productForm">
-
                 <div class="form-grid">
-
                     <div class="form-group">
                         <label>SKU</label>
-                        <input type="text">
+                        <input type="text" required>
+                        <small class="input-hint">3-20 alphanumeric characters. Immutable once set.</small>
                     </div>
 
                     <div class="form-group">
                         <label>Category</label>
-                        <select>
+                        <select required>
                             <option value="">Select</option>
-                            <option>Carbonated</option>
+                            <option value="Carbonated">Carbonated</option>
                         </select>
                     </div>
 
-                    <div class="form-group full-width">
+                    <div class="form-group half-width">
                         <label>Name</label>
-                        <input type="text">
+                        <input type="text" required>
                     </div>
 
                     <div class="form-group full-width">
@@ -265,33 +99,42 @@
 
                     <div class="form-group">
                         <label>Unit Price</label>
-                        <input type="number" id="unitPrice" placeholder="0.00">
+                        <input type="number" id="unitPrice" placeholder="0.00" step="0.01" required>
                     </div>
 
                     <div class="form-group">
                         <label>Unit Cost</label>
-                        <input type="number" id="unitCost" placeholder="0.00">
+                        <input type="number" id="unitCost" placeholder="0.00" step="0.01" required>
                     </div>
 
                     <div class="form-group">
                         <label>Reorder Threshold</label>
-                        <input type="number" id="reorderThreshold" placeholder="0">
+                        <input type="number" id="reorderThreshold" placeholder="0" required>
                     </div>
 
                     <div class="form-group">
                         <label>Supplier Name</label>
-                        <input type="text" id="supplierName">
+                        <input type="text" id="supplierName" required>
                     </div>
-
                 </div>
 
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel" id="cancelModalBtn">Cancel</button>
+                    <button type="submit" class="btn-save">Create Product</button>
+                </div>
             </form>
-
         </div>
-
     </div>
-
-    <script src="../script/products.js"></script>
-
+    <script src="../script/script.js"></script>
+    <script>
+        window.onload = function() {
+        loadMenu().then(() => {
+        product(); 
+        productModal();
+       }).catch(err => {
+        productModal();
+        });
+        };
+    </script>
 </body>
 </html>

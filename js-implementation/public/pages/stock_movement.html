@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM</title>
+  <link rel="stylesheet" href="../css/stock_movement.css">
+  <link rel="stylesheet" href="../css/sidebar.css">
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+
+    <div class="main">
+    <div class="content">
+       <div class="box1">
+            <div class="title-group">
+                <span class="pageTitle">Stock Movements</span>
+                <p class="pageSubtitle">
+                    Immutable ledger of stock change.
+                </p>
+                <div class="dropdowns">
+                    <select name="productDropDown" id="product">
+                    <option value="allProducts">All Products</option>
+                    <option value="product1">Category 1</option>
+                    <option value="product2">Category 2</option>
+                    <option value="Product3">Category 3</option>
+                    </select>
+                    <select name="typeDropDown" id="type">
+                    <option value="allTypes">All Types</option>
+                    <option value="product1">Type 1</option>
+                    <option value="product2">Type 2</option>
+                    <option value="Product3">Type 3</option>
+                    </select>
+                </div>
+            </div>
+            <button class="record">
+                + Record Movement
+            </button>
+        </div>
+        <div class="box2">
+            <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Product</th>
+                                <th>Type</th>
+                                <th>Quantity</th>
+                                <th>Note</th>
+                                <th>Recorded By</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>4/28/2026 3:41:03 PM</td>
+                                <td>Sea Salt Chips 150g</td>
+                                <td class="stock-type">Stock-Out</td>
+                                <td>-160</td>
+                                <td>Catering Event</td>
+                                <td>Maria Santos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+          </div>
+        </div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="movementModal">
+    <div class="modal-content">
+        <h2 class="modal-title">New Stock Movement</h2>
+        <p class="modal-sub">Movements are immutable once saved</p>
+
+        <form id="movementForm">
+            <div class="form-group">
+                <label for="modalProduct">Product</label>
+                <select id="modalProduct" required>
+                    <option value="product1">Sting</option>
+                    <option value="product1">Coke</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="modalType">Type</label>
+                    <select id="modalType" required>
+                        <option value="stockIn">Stock-In</option>
+                        <option value="stockOut">Stock-Out</option>
+                        <option value="adjusment">Adjustment</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="modalQuantity">Quantity</label>
+                    <input type="number" id="modalQuantity" min="1" required>
+                </div>
+            </div>
+
+                <div class="form-group">
+                    <label for="modalNote">Note</label>
+                    <textarea id="modalNote" rows="4"></textarea>
+                </div>
+
+                <div class="modal-action">
+                    <button type="button" class="cancelBtn" id="closeModalBtn">Cancel</button>
+                    <button type="submit" class="saveBtn">Save Movement</button>
+                </div>
+        </form>
+    </div>
+  </div>
+<script src="../script/script.js"></script>
+    <script>
+       window.onload = function() {   
+        loadMenu().then(() => {
+        stock_movement(); 
+        stockModal();
+        }).catch(err => {
+        stockModal();
+        });
+        };
+    </script>
+</body>
+</html>
