@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>PRISM</title>
+   <link rel="stylesheet" href="top_movers.css">
+   <link rel="stylesheet" href="sidebar.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+   <div class="main">
+      <div class ="content">
+         <div class="box1">
+            <h1 class="box1_title">Reports</h1>
+            <p class="box1_sub">Insight across your inventory operations</p>
+            <div class="date">
+               <label for="date">From: </label>
+               <input type="date" id="date1">
+
+               <label for="date">To: </label>
+               <input type="date" id="date2">
+            </div>
+            <nav class="tab-choices">
+               <a href="low_stock.html" class="tab">Low Stock</a>
+               <a href="valuation.html" class="tab">Valuation</a>
+               <a href="movement_ledger.html" class="tab">Movement Ledger</a>
+               <a href="top_movers.html" class="tab current">Top Movers</a>
+            </nav>
+         </div>
+
+         <div class="box2">
+            <div class="box2_left">
+            <h4 class="box2_title">Top Movers</h4>
+            <p class="box2_sub">Products with highest stock-out volume in range</p>
+            </div>
+            <div class="box2_right">
+               <button class="excel">CSV</button>
+            </div>
+         </div>
+
+         <div class="box3">
+          <div class="low-table">
+            <table>
+               <thead>
+               <tr>
+                  <th>SKU</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Units Out</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                  <td>BEV-006</td>
+                  <td>Pocari Sweat</td>
+                  <td>Bottled Water</td>
+                  <td>160</td>
+               </tr>
+               </tbody>
+            </table>
+         </div>
+       </div>
+      </div>
+  </div>
+<script src="script.js"></script>
+    <script>
+       window.onload = function() {   
+        loadMenu().then(() => {
+        document.querySelector('nav a[href="top_movers.html"]').classList.add('active');
+        top_movers(); 
+        });
+        };
+    </script>
+ </body>
+</html>
