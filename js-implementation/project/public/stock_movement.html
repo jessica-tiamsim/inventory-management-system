@@ -65,7 +65,6 @@
           </div>
         </div>
     </div>
-  </div>
   <div class="modal-overlay" id="movementModal">
     <div class="modal-content">
         <h2 class="modal-title">New Stock Movement</h2>
@@ -113,7 +112,6 @@
        window.onload = function() {   
         loadMenu().then(() => {
         document.querySelector('nav a[href="stock_movement.html"]').classList.add('active');
-        stock_movement(); 
         stockModal();
         }).catch(err => {
         stockModal();
