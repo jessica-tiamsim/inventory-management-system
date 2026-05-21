@@ -6,161 +6,83 @@
   <title>PRISM</title>
   <link rel="stylesheet" href="valuation.css">
     <link rel="stylesheet" href="sidebar.css">
-
- 
 </head>
-
 <body>
 
   <div class="main">
+      <div class ="content">
+         <div class="box1">
+            <h1 class="box1_title">Reports</h1>
+            <p class="box1_sub">Insight across your inventory operations</p>
+            <div class="date">
+               <label for="date">From: </label>
+               <input type="date" id="date1">
 
-    <!-- CONTENT -->
-    <div class="content">
-
-      <!-- PAGE HEADER -->
-      <section class="page-header">
-
-        <h2>Reports</h2>
-        <p>Insights across your inventory operations.</p>
-
-      </section>
-
-      <!-- FILTERS -->
-      <section class="report-filters">
-
-        <div class="date-filters">
-
-          <div class="filter-group">
-            <label for="fromDate">From:</label>
-            <input type="date" id="fromDate">
-          </div>
-
-          <div class="filter-group">
-            <label for="toDate">To:</label>
-            <input type="date" id="toDate">
-          </div>
-
+               <label for="date">To: </label>
+               <input type="date" id="date2">
+            </div>
+          <nav class="tab-choices">
+               <a href="low_stock.html" class="tab">Low Stock</a>
+               <a href="valuation.html" class="tab current">Valuation</a>
+               <a href="movement_ledger.html" class="tab">Movement Ledger</a>
+               <a href="top_movers.html" class="tab">Top Movers</a>
+            </nav>
         </div>
+      <div class="box2">
+            <div class="box2_left">
+            <h4 class="box2_title">Inventory Valuation</h4>
+            <p class="box2_sub">Sum of (unit cost × current quantity) per categor</p>
+            </div>
+            <div class="box2_right">
+               <button class="excel">CSV</button>
+            </div>
+         </div>
 
-        <div class="report-tabs">
-
-          <button class="tab-btn">
-            Low Stock
-          </button>
-
-          <button class="tab-btn active">
-            Valuation
-          </button>
-
-          <button class="tab-btn">
-            Movement Ledgers
-          </button>
-
-          <button class="tab-btn">
-            Top Movers
-          </button>
-
-        </div>
-
-      </section>
-
-      <!-- REPORT CARD -->
-      <section class="report-card">
-
-        <div class="report-card-header">
-
-          <div class="report-info">
-            <h3>Inventory Valuation</h3>
-            <p>Sum of (unit cost × current quantity) per category</p>
-          </div>
-
-          <div class="report-actions">
-
-            <select id="sortBy">
-
-              <option value="value">
-                Value
-              </option>
-
-              <option value="category">
-                Category
-              </option>
-
-            </select>
-
-            <button class="csv-btn">
-              CSV
-            </button>
-
-          </div>
-
-        </div>
-
-        <!-- TABLE -->
-        <div class="report-table">
-
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>Category</th>
-                <th>Value</th>
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              <tr>
-                <td>Dry Goods</td>
-                <td>Php 602.00</td>
-              </tr>
-
-              <tr>
+         <div class="box3">
+          <div class="low-table">
+            <table>
+               <thead>
+               <tr>
+                  <th>Category</th>
+                  <th>Value</th>
+               </tr>
+               </thead>
+               <tbody>
+               <tr>
+                  <td>Dry Goods</td>
+                  <td>Php 602.00</td>
+               </tr>
+               <tr>
                 <td>Beverages</td>
                 <td>Php 408.00</td>
               </tr>
-
               <tr>
                 <td>Snacks</td>
                 <td>Php 289.00</td>
               </tr>
-
               <tr>
                 <td>Cleaning</td>
                 <td>Php 84.00</td>
               </tr>
-
-            </tbody>
-
-            <tfoot>
-
-              <tr>
-                <th>Total</th>
-                <th>Php 1,403.00</th>
-              </tr>
-
-            </tfoot>
-
-          </table>
-
-        </div>
-
-      </section>
-
-    </div>
-
+               </tbody>
+               <tfoot>
+                <tr>
+                  <td>Total</td>
+                  <td>Php 1,403.00</td>
+                </tr>
+               </tfoot>
+            </table>
+         </div>
+       </div>
+      </div>
   </div>
   <script src="script.js"></script>
     <script>
        window.onload = function() {   
         loadMenu().then(() => {
         document.querySelector('nav a[href="valuation.html"]').classList.add('active');
-        valuation(); 
         });
         };
     </script>
-
 </body>
 </html>
