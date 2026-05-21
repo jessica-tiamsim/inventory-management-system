@@ -1,5 +1,6 @@
 @import url('https://rsms.me/inter/inter.css');
 /*body(main window)*/
+
 body {
     display: flex;
     height: 100vh;
@@ -93,11 +94,10 @@ nav img{
     align-self: center;
 }
 
-nav a.active {
+aside nav a.active {
     background: #FFBF00 !important;
     color: maroon;
 }
-
 
 nav a:hover {
     background: rgba(255, 255, 255, 0.1);
@@ -279,6 +279,5 @@ header{
     flex-direction: column;
     height: 100%;
     box-sizing: border-box ;
-    background-color: wheat;
     overflow-y: auto;
 }
