@@ -22,10 +22,10 @@
                <input type="date" id="date2">
             </div>
             <nav class="tab-choices">
-               <a href="low_stock.html" class="tab">Low Stock</a>
+               <a href="low_stock.html" class="tab current">Low Stock</a>
                <a href="valuation.html" class="tab">Valuation</a>
                <a href="movement_ledger.html" class="tab">Movement Ledger</a>
-               <a href="top.movers.html" class="tab">Top Movers</a>
+               <a href="top_movers.html" class="tab">Top Movers</a>
             </nav>
          </div>
 
@@ -67,13 +67,11 @@
        </div>
      </div>
    </div>
-</div>
   <script src="script.js" defer></script>
     <script>
        window.onload = function() {   
         loadMenu().then(() => {
         document.querySelector('nav a[href="low_stock.html"]').classList.add('active');
-        low_stock(); 
         });
         };
     </script>
