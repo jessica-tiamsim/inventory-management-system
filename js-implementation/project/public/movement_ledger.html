@@ -23,8 +23,8 @@
             <nav class="tab-choices">
                <a href="low_stock.html" class="tab">Low Stock</a>
                <a href="valuation.html" class="tab">Valuation</a>
-               <a href="movement_ledger.html" class="tab">Movement Ledger</a>
-               <a href="top.movers.html" class="tab">Top Movers</a>
+               <a href="movement_ledger.html" class="tab current">Movement Ledger</a>
+               <a href="top_movers.html" class="tab">Top Movers</a>
             </nav>
          </div>
 
@@ -132,7 +132,6 @@
        window.onload = function() {   
         loadMenu().then(() => {
         document.querySelector('nav a[href="movement_ledger.html"]').classList.add('active');
-        movement_ledger(); 
         });
         };
     </script>
