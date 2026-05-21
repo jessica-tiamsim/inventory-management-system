@@ -1,44 +1,55 @@
 let message;
+
+
 document.addEventListener('DOMContentLoaded', () => {
     message = document.getElementById('message');
-});
+    const loginForm = document.getElementById('loginForm');
 
-const loginForm = document.getElementById('loginForm')
-if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    login();
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            login();
+        });
+    }
 });
-}
 
 function login() {
     const usernameField = document.getElementById('username');
     const passwordField = document.getElementById('password');
 
+    if (!usernameField || !passwordField) {
+        console.error("Could not find username or password input fields!");
+        return;
+    }
+
     fetch('/login', {
-        method:'POST',
-        headers: {'Content-Type': 'application/json'},
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-            username: usernameField .value,
+            username: usernameField.value,
             password: passwordField.value
         })
     })
     .then(res => res.json())
     .then(data => {
-
-        message.classList.remove('success', 'error');
-        message.textContent = data.message;
+        if(message) {
+            message.classList.remove('success', 'error');
+            message.textContent = data.message;
+        }
 
         if (data.message === 'Login successful') {
-            message.classList.add('success');    
+            if(message) message.classList.add('success');    
             setTimeout(() => { window.location.href = 'dashboard.html'; }, 1000);
          } else {
-            message.classList.add('error');
+            if(message) message.classList.add('error');
         }
     })
     .catch(err => {
-        message.textContent = "Connection error";
-        message.classList.add('error');
+        console.error("Fetch error:", err);
+        if(message) {
+            message.textContent = "Connection error";
+            message.classList.add('error');
+        }
     });
 }
 

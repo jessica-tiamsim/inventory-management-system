@@ -17,53 +17,25 @@
         <div class="login-card">
             <h2>Log in</h2>
             <form id="loginForm">
-                <label>Email</label>
-                <input type="text" id="userIn" placeholder="Enter your mail" required>
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
 
                 <label>Password</label>
-                <input type="password" id="passIn" placeholder="Enter password" required>
+                <input type="password" id="password" placeholder="Enter password" required>
 
-                <button type="submit" >Log in </button>
+                <button type="submit">Log in</button>
             </form>
 
-            <div class="alert-box">
+            <div id="message" style="margin-top: 10px; font-weight: bold; text-align: center;"></div>
+
+            <div class="alert-box" style="margin-top: 15px;">
                 <strong>Restricted access.</strong><br>
                 All login attempts are logged and monitored.
             </div>
         </div>
      </div>
 
-     <div id="dashboard-screen">
-        <aside class="sidebar">
-            <image scr="image.png" alt="PRISM Logo" style="width: 40px; margin-bottom: 20px;">
-
-                <h3>PRISM</h3>
-                <p style="opacity: 0.7; font-size: 14px;">Navigation Sidebar</p>
-            </aside>
-            <header class="header">Header inside body</header>
-            <main class="main-body">
-                <div class="main-body">
-                    <h2>Content Area</h2>
-                    <p>Authentication successful. Authorization enforced.</p>
-                    <button onclick="location.reload()" style="width: auto; padding: 10px 20px;">Logout</button>
-                </div>
-            </main>
-         </div>
-
-         <script>
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                const user = document.getElementById('userIn').value;
-                const pass = document.getElementById('passIn').value;
-
-                if(user === "jc_admin@prism.com" && pass === "password1217") {
-                    document.getElementById('login-screen').style.display = 'none';
-                    document.getElementById('dashboard-screen').style.display = 'grid';
-                    document.body.style.background = "#fff";
-                } else {
-                    alert("The login credentials doesn't match an account in the system.");
-                }
-            });
-         </script>
-    </body>
+     <script src="../script/script.js"></script>
+     
+     </body>
 </html>

@@ -9,8 +9,7 @@ const db = require('./db/connection');
 const app = express();
 
 app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(express.static(path.join(__dirname, '../public')));
 
 /* SESSION STORE (MySQL) */
 const sessionStore = new MySQLStore({
@@ -18,9 +17,6 @@ const sessionStore = new MySQLStore({
     user:process.env.DB_USER,
     password:process.env.DB_PASSWORD,
     database:process.env.DB_NAME,
-    schema: {
-        tableName: 'sessions_table'
-    }
 });
 
 app.use(session({
@@ -40,13 +36,15 @@ app.post('/login', (req, res) => {
 
   const { username, password } = req.body;
 
+  console.log("BODY RECEIVED:", req.body);
+
   if (!username || !password) {
     return res.json({ message: 'Missing fields' });
   }
 
   db.query(
-    'SELECT * FROM users WHERE username = ?',
-    [username],
+    'SELECT * FROM users WHERE username = ? OR email = ?',
+    [username, username],
     async (err, results) => {
 
       if (err) {
@@ -88,8 +86,8 @@ app.post('/login', (req, res) => {
 app.get('/dashboard', (req, res) => {
     if (!req.session.user) {
         return res.status(401).json({message: 'Not logged in'});
-    res.send({message:`Welcome ${req.session.user.username}!` });
     }
+    res.send({message:`Welcome ${req.session.user.username}!` });
 });
 
 app.get('/logout', (req, res) => {
