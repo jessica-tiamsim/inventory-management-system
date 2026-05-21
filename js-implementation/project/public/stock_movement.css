@@ -56,7 +56,7 @@ color: #801B32;
 
 /* SELECT STYLE */
 .dropdowns select {
-  padding: 10px 14px;
+  padding: 10px 14px ;
   width: 140px;
   border: 1px solid gray;
   border-radius: 20px;
@@ -64,7 +64,7 @@ color: #801B32;
   background: #f4f4f4;
   color: #333;
   font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   outline: none;
   transition: 0.2s ease;
