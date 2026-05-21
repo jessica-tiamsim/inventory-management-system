@@ -11,12 +11,12 @@
     <body>
         <div class="main">
             <div class="content">
-                <div class="page-header">
+
+                <div class="action-bar">
+                    <div class="page-header">
                     <h1 class="page-title">Users</h1>
                     <p class="page-subtitle">Manage your Employees</p>
                 </div>
-
-                <div class="action-bar">
                     <div class="search-and-button-group">
                             <div class="search-container">
                                 <span class="search-icon">🔍</span>
@@ -29,7 +29,8 @@
                     </div>
 
                     <div class="table-container">
-                        <table class="users-table">
+                        <div class="users-table">
+                        <table>
                             <thead>
                                 <tr>
                                     <th>Username</th>
@@ -56,10 +57,9 @@
                             </tbody>
                         </table>
                     </div>
+                 </div>
                 </div>
             </div>
-        </div>
-    </div>
     <script src="script.js"></script>
     <script>
        window.onload = function() {   
