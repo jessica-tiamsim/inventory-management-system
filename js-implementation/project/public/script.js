@@ -59,9 +59,45 @@ function login() {
                 mainLayout.insertAdjacentElement('afterbegin', headerComponent);
                 }
             }
-        })
-            const currentPage = window.location.pathname.split("/").pop();
+        const currentPage = window.location.pathname.split("/").pop();
+        
+        /*Report Nav*/
+        const reportTabs = [
+        "low_stock.html",
+        "valuation.html",
+        "movement_ledger.html",
+        "top_movers.html"
+        ]
+
+        document.querySelectorAll("nav a").forEach(link => {
+        link.classList.remove("active");
+        });
+
+        if (reportTabs.includes(currentPage)) {
+            const reportLink = document.getElementById("nav-report");
+
+            if(reportLink) {
+                reportLink.classList.add("active");
+            }
+        } else {
+            document.querySelectorAll("nav a").forEach(link => {
+                if (link.getAttribute("href") === currentPage) {
+                    link.classList.add("active");
+                }
+            });
+        
+        /*Logout*/
+        const logout = document.getElementById("logoutBtn");
+
+        if (logout) {
+            logout.addEventListener("click", function () {
+                window.location.href = "index.html";
+            });
+        }
+    };
+    })
 }
+    
     function dashboard() {
         fetch('dashboard.html')
         .then(res => {
@@ -166,27 +202,42 @@ function login() {
         }
     }
 
-    /*Report Nav*/
-    document.addEventListener("DOMContentLoaded", () => {
-        const currentPage = window.location.pathname.split("/").pop();
-        const tabs = document.querySelectorAll(".tab-choices a.tab");
+    function userModal() {
+    const modal = document.getElementById('newUserOverlay');
+    const openBtn = document.querySelector('.create-btn');
+    const cancelBtn = document.getElementById('closeUserOverlay');
+    const productForm = document.getElementById('userForm');
+    
+    if (openBtn && modal) {
+        // Function to easily clear and hide modal overlay elements
+        const hideModal = () => {
+            modal.classList.remove('show');
+            if (userForm) userForm.reset();
+        };
 
-        tabs.forEach(link => {
-            const pageLink = link.getAttribute("href");
+        // Open Modal Event
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
 
-            if (currentPage === pageLink) {
-                link.classList.add("current");
+        // Close Triggers
+        if (cancelBtn) cancelBtn.addEventListener('click', hideModal);
+        
+        // Hide if window outside content box boundary is clicked
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
             }
         });
-    });
 
-    /*Logout*/
-    document.addEventListener("DOMContentLoaded", function () {
-        const logout = document.getElementById("logoutBtn");
-
-        if (logout) {
-            logout.addEventListener("click", function () {
-                window.location.href = "index.html"
+        // Prevent standard submission logic reloads
+        if (userForm) {
+            productForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                // Custom item validation or array pushing data handles go here...
+                hideModal();
             });
         }
-    });
+    }
+}
+
