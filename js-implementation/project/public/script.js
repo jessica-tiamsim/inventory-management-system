@@ -67,7 +67,7 @@ function login() {
         "valuation.html",
         "movement_ledger.html",
         "top_movers.html"
-        ]
+        ];
 
         document.querySelectorAll("nav a").forEach(link => {
         link.classList.remove("active");
@@ -85,6 +85,22 @@ function login() {
                     link.classList.add("active");
                 }
             });
+        }
+        const titleMap = {
+            "dashboard.html": "DASHBOARD",
+            "product.html": "PRODUCT",
+            "stock_movement.html": "STOCK MOVEMENT",
+            "low_stock.html": "REPORTS / LOW STOCK",
+            "valuation.html": "REPORTS / VALUATION",
+            "movement_ledger.html": "REPORTS / MOVEMENT LEDGER",
+            "top_movers.html": "REPORTS / TOP MOVERS",
+            "users.html": "USER"
+        };
+
+        const headTitle = document.getElementById("headTitle");
+        if (headTitle) {
+            headTitle.textContent = `PRISM / INVENTORY MANAGEMENT / ${titleMap [currentPage] || "DASHBOARD"}`;
+        }
         
         /*Logout*/
         const logout = document.getElementById("logoutBtn");
@@ -94,8 +110,7 @@ function login() {
                 window.location.href = "index.html";
             });
         }
-    };
-    })
+    });
 }
     
     function dashboard() {
