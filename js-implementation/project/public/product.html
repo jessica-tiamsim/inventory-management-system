@@ -130,7 +130,6 @@
         window.onload = function() {
        loadMenu().then(() => {
         document.querySelector('nav a[href="product.html"]').classList.add('active');
-        product(); 
         productModal();
        }).catch(err => {
         productModal();
