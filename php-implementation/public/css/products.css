@@ -133,7 +133,7 @@
 
 .modal-header h2 {
     font-size: 1.3rem;
-    color: #2d3748;
+    color: #82181a;
     margin: 0;
 }
 
@@ -202,7 +202,7 @@
 }
 
 .btn-save {
-    background-color: #d4af37; /* Match PRISM gold branding guidelines */
+    background-color: #82181a; /* Match PRISM gold branding guidelines */
     color: #fff;
     border: none;
     padding: 10px 20px;
