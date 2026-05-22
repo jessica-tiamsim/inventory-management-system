@@ -1,15 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
 
+.content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #f4f4f4;
+}
+
+.page header {
+    padding: 0;
+}
+
 .page-title {
     color: #801B32;
     font-size: 32px;
     font-weight: 700;
+    margin: 0;
 }
 
 .page-subtitle {
-    color: #801B32;
+    color: #777;
     font-size: 14px;
-    margin-bottom: 25px;
+    margin: 0;
 }
 
 .action-bar {
@@ -19,7 +32,7 @@
     margin-bottom: 20px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -27,6 +40,11 @@
     display: flex;
     align-items: center;
     gap: 20px;
+}
+
+/* Removes default form margin */
+.search-form {
+    margin: 0;
 }
 
 .search-container {
@@ -72,19 +90,28 @@
 .table-container {
     background: white;
     border-radius: 15px;
-    overflow: hidden;
+    overflow: auto;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 10px;
 }
 
 .users-table {
+   border-radius: 10px;
+   overflow: hidden;
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
+    text-align: center;
+    table-layout: fixed;
+    font-size: 13px;
 }
 
 .users-table th {
-    background: #801B32;
+    background: #801B32;  
     color: white;
+    margin: 10px;
     padding: 15px 25px;
     font-weight: 500;
 }
@@ -95,8 +122,9 @@
     color: #333;
 }
 
-.users-table tr:last-child td {
-    border-bottom: none;
+.empty-state {
+    padding: 40px !important;
+    color: #888 !important;
 }
 
 .modal-overlay {
@@ -110,6 +138,11 @@
     z-index: 1000;
     justify-content: center;
     align-items: center;
+}
+
+/* Toggled by JavaScript */
+.modal-overlay.show {
+    display: flex;
 }
 
 .modal-content {
@@ -139,6 +172,7 @@
 }
 
 .form-input, .form-select {
+    box-sizing: border-box;
     width: 100%;
     padding: 12px;
     border: 1px solid #ddd;
