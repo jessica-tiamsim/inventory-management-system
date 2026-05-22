@@ -1,81 +1,82 @@
 <?php
-// At the top of sidebar_header.php
-if (!isset($current_page)) {
-    $current_page = basename($_SERVER['PHP_SELF']); 
-}
+// Replace underscores/dashes with spaces, and replace slashes with spaced slashes!
+$breadcrumbName = strtoupper(str_replace(['_', '-', '/'], [' ', ' ', ' / '], trim(CURRENT_ROUTE, '/')));
 ?>
-   <aside>
-      <div class= "logo">
-         <div class="logo1">
-            <img src= "../../../assets/logo.png" class="prism_image">
-            <h1>PRISM</h1>
-         </div>
-         <div class="logo_user">
-            <p><?= ($_SESSION['role'] === 'admin') ? 'Admin Portal' : 'Staff Portal' ?></p>
-         </div>
-      </div>
-      
-      <nav>
-         <a href="dashboard.php" class="<?= ($current_page == 'dashboard.php') ? 'active' : '' ?>">
-            <img src="image.png">
-            <p>Dashboard</p>
-         </a>
-         <a href="product.php" class="<?= ($current_page == 'product.php') ? 'active' : '' ?>">
-            <img src="image.png">
-            <p>Products</p>
-         </a>
-         <a href="stock_movement.php" class="<?= ($current_page == 'stock_movement.php') ? 'active' : '' ?>">
-            <img src="image.png">
-            <p>Stock Movements</p>
-         </a>
-         <a href="low_stock.php" class="<?= ($current_page == 'low_stock.php') ? 'active' : '' ?>">
-            <img src="image.png">
-            <p>Reports</p>
-         </a>
-         <?php if ($_SESSION['role'] === 'admin'): ?>
-         <a href="users.php" class="<?= ($current_page == 'users.php') ? 'active' : '' ?>">
-            <img src="image.png">
-            <p>Profile</p>
-         </a>
-         <?php endif; ?>
-      </nav>
 
-      <div class ="user-panel">
-         <div class="user">
+<aside>
+    <div class="logo">
+        <div class="logo1">
+            <img src="<?= BASE_URL ?>/assets/logo.png" class="prism_image" alt="PRISM Logo">
+            <h1>PRISM</h1>
+        </div>
+        <div class="logo_user">
+            <p><?= (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') ? 'Admin Portal' : 'Staff Portal' ?></p>
+        </div>
+    </div>
+    
+    <nav>
+        <a href="<?= BASE_URL ?>/dashboard" class="<?= (CURRENT_ROUTE == '/dashboard') ? 'active' : '' ?>">
+            <img src="<?= BASE_URL ?>/assets/dash_icon.png" alt="Dashboard">
+            <p>Dashboard</p>
+        </a>
+        
+        <a href="<?= BASE_URL ?>/products" class="<?= (CURRENT_ROUTE == '/products' || CURRENT_ROUTE == '/product/edit') ? 'active' : '' ?>">
+            <img src="<?= BASE_URL ?>/assets/products_icon.png" alt="Products">
+            <p>Products</p>
+        </a>
+        
+        <a href="<?= BASE_URL ?>/stock-movement" class="<?= (CURRENT_ROUTE == '/stock-movement') ? 'active' : '' ?>">
+            <img src="<?= BASE_URL ?>/assets/move_icon.png" alt="Stock Movements">
+            <p>Stock Movements</p>
+        </a>
+        
+        <a href="<?= BASE_URL ?>/reports/low_stock" class="<?= (CURRENT_ROUTE == '/reports' || CURRENT_ROUTE == '/reports/low_stock' || CURRENT_ROUTE == '/reports/valuation' || CURRENT_ROUTE == '/reports/movement_ledger' || CURRENT_ROUTE == '/reports/top_movers') ? 'active' : '' ?>">
+            <img src="<?= BASE_URL ?>/assets/report_icon.png" alt="Reports">
+            <p>Reports</p>
+        </a>
+        
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+        <a href="<?= BASE_URL ?>/users" class="<?= (CURRENT_ROUTE == '/users') ? 'active' : '' ?>">
+            <img src="<?= BASE_URL ?>/assets/profile_icon.png" alt="Profile">
+            <p>Profile</p>
+        </a>
+        <?php endif; ?>
+    </nav>
+
+    <div class="user-panel">
+        <div class="user">
             <div class="profile">
-               <img src="image.png" class="prism_image">
+                <img src="<?= BASE_URL ?>/assets/user_icon.png" class="prism_image" alt="User">
             </div>
             <div class="status">
-               <p><?= htmlspecialchars($_SESSION['username'] ?? 'User') ?></p>
-               <p id=admin><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff')) ?></p>
+                <p><?= htmlspecialchars($_SESSION['username'] ?? 'User', ENT_QUOTES, 'UTF-8') ?></p>
+                <p id="admin"><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
             </div>
-         </div>
-         <button href="logout.php">
-            <img src="image.png" class="logout_image">
-            <p id=logout>Logout</p>
-         </button>
-      </div>
-   </aside>
-   <div class="main">
-   <header>
-      <div class= "upper">
-         <div class= "left">
-            <!--<img src="C:\xampp\htdocs\inventory-management-system\php-implementation\image.png">-->
-            <div class="shape"><img src="#"></div>
-            <p>PRISM | Inventory Management</p>
-         </div>
-         <div class="right">
-            <div class = "admin">
-               <p><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff')) ?></p>
+        </div>
+        <a href="<?= BASE_URL ?>/logout">
+            <img src="<?= BASE_URL ?>/assets/logout_icon.png" class="logout_image" alt="Logout">
+            <p id="logout">Logout</p>
+        </a>
+    </div>
+</aside>
+
+<div class="main">
+    <header>
+        <div class="upper">
+            <div class="left">
+                <div><img src="<?= BASE_URL ?>/assets/sidebar_icon.png" alt="Menu"></div>
+                <p>PRISM | Inventory Management</p>
             </div>
-            <div class = "alex">
-               <p><?= htmlspecialchars($_SESSION['username'] ?? 'User Name') ?></p>
-            </div> 
-         </div>
-      </div>
-      <div class="lower">
-         <p>PRISM / INVENTORY MANAGEMENT / <?= strtoupper(str_replace(['.php', '_'], ['', ' '], $current_page)) ?></p>
-      </div>
-   </header>
-
-
+            <div class="right">
+                <div class="admin">
+                    <p><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
+                </div>
+                <div class="alex">
+                    <p><?= htmlspecialchars($_SESSION['username'] ?? 'User Name', ENT_QUOTES, 'UTF-8') ?></p>
+                </div> 
+            </div>
+        </div>
+        <div class="lower">
+            <p>PRISM / INVENTORY MANAGEMENT / <?= $breadcrumbName ?></p>
+        </div>
+    </header>
