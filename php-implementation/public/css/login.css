@@ -1,0 +1,100 @@
+/* public/css/login.css */
+body {
+    display: block;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--primary-crimson) 0%, var(--dark-crimson) 100%);
+    align-content: center;
+    justify-items: center;
+}
+
+.login_screen {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: fit-content;
+
+}
+
+.logo_div {
+    justify-items: center;
+    text-align: center; 
+    color: white; 
+}
+
+.logo_text{
+    letter-spacing: 2px; 
+    margin-block: 10px;
+
+}
+
+.prism_img{
+    width: 120px; 
+    height: 100px;
+    display: block; 
+    margin: 0px;
+}
+
+
+.login_card {
+    background: white;
+    flex-direction: column;
+    padding: 32px 40px;
+    border-radius: 16px;
+    height: fit-content;
+    width: 500px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    gap: 6px;
+    box-sizing: border-box;
+
+}
+
+.login_card h2 {
+    font-size: 32px;
+    justify-self: center;
+    margin-block: 15px;
+    color: var(--primary-crimson); 
+}
+
+form input {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    margin: 10px 0px;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-sizing: border-box;
+}
+label {
+    color: #364153;
+    font-size: 14px;
+}
+
+.btn-gold {
+    width: 100%;
+    background: var(--accent-gold);
+    border: none;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login_description {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: var(--error-bg);
+    border: 2px solid var(--error-border);
+    text-align: left;
+    align-content: center;
+    box-sizing: border-box;
+}
+.login_description p {
+    padding-left: 10px;
+    padding-top: 4px;
+    margin: 0px !important;
+    font-size: 14px;
+    color: var(--error-text);
+}
