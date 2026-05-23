@@ -1,0 +1,106 @@
+/* public/css/global.css */
+:root {
+    --primary-crimson: #801B32;
+    --dark-crimson: #5A1424;
+    --accent-gold: #FFBF00;
+    
+    --text-dark: #364153;
+    --bg-white: #ffffff;
+    --border-light: #dddddd;
+    
+    --error-bg: #FEF2F2;
+    --error-border: #FFC9C9;
+    --error-text: #82181A;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}
+
+/* public/css/login.css */
+body {
+    display: block;
+    height: 100vh;
+    background: linear-gradient(180deg, var(--primary-crimson) 0%, var(--dark-crimson) 100%);
+    align-content: center;
+    justify-items: center;
+}
+
+.login_screen {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    width: fit-content;
+
+}
+
+.logo_div {
+    justify-items: center;
+    text-align: center; 
+    color: white; 
+}
+
+.logo_text{
+    letter-spacing: 2px; 
+    margin-block: 10px;
+
+}
+
+.prism_img{
+    width: 120px; 
+    height: 100px;
+    display: block; 
+    margin: 0px;
+}
+
+.login_card {
+    background: white;
+    flex-direction: column;
+    padding: 32px 40px;
+    border-radius: 16px;
+    height: fit-content;
+    width: 500px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    gap: 6px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.error_img{
+    width: 80px; 
+    height: 68px;
+    display: block;
+    margin: 0px;
+}
+
+.login_card h2 {
+    font-size: 32px;
+    justify-self: center;
+    margin-block: 5px;
+    color: var(--primary-crimson); 
+}
+
+.btn-retry {
+    width: 100%;
+    background: var(--primary-crimson);
+    border: none;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--bg-white);
+}
+
+.error_message {
+    width: 100%;
+    min-height: 80px;
+    padding: 5px;
+    text-align: center;
+    box-sizing: border-box;
+}
