@@ -3,6 +3,7 @@
     padding: 0px;
     text-decoration: none;
     font-family: 'Inter', sans-serif;
+    box-sizing: border-box;
     
 }
 :root {
@@ -13,7 +14,7 @@
     
     /* Text & UI Colors */
     --text-dark: #364153;
-    --bg-white: #ffffff;
+    --white: #ffffff;
     --border-light: #dddddd;
     
     /* Error Colors */
