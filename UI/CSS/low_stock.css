@@ -65,7 +65,7 @@
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--white);
     transition: all 0.2s ease;
     display: inline-block;
 }
@@ -102,10 +102,10 @@
 
 #product {
     padding: 10px 35px 10px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--white);
     border-radius: 20px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--white);
+    color: var(--text-dark);
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
@@ -132,7 +132,7 @@
 }
 
 .btn-export:hover {
-    background: #5A1424;
+    background: var(--maroon-dark);
 }
 
 /* =========================================
@@ -168,8 +168,8 @@ thead th:last-child { border-top-right-radius: 8px; }
 tbody td {
     padding: 16px 20px;
     font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
-    color: #444;
+    border-bottom: 1px solid var(--gray-light);
+    color: var(--text-dark);
 }
 
 tbody tr:last-child td {
@@ -182,5 +182,5 @@ tbody tr:last-child td {
 .empty-state {
     text-align: center;
     padding: 50px !important;
-    color: #888;
+    color: var(--gray);
 }
