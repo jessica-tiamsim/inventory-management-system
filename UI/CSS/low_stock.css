@@ -78,11 +78,11 @@
 
 .choices span.inactive-tab {
     background: var(--white);
-    color: #555;
+    color: var(--gray);
 }
 
 .choices span.inactive-tab:hover {
-    background: #f9f9f9;
+    background: var(--border-light);
 }
 
 /* =========================================

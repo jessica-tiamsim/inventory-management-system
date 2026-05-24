@@ -1,20 +1,4 @@
 /* Color Palette Configurations matching PRISM Branding Guidelines */
-:root {
-    --maroon-brand: #801B32;
-    --gold-accent: #FFBF00;
-    --text-primary: #1A1714;
-    --text-muted: #74706C;
-    --surface-white: #FFFFFF;
-    --border-light: #E8E6E3;
-    --bg-main: #F6F4F1;
-}
-
-body {
-    margin: 0;
-    background-color: var(--white-bg);
-    color: var(--black);
-}
-
 .content {
     padding: 30px;
     box-sizing: border-box;
@@ -69,8 +53,8 @@ body {
 
 /* Yellow Button Contours matching the specific design file context */
 .btn-record-movement {
-    background-color: var(--gold-accent);
-    color: #4A0E1A; /* Dark contrast text inside button */
+    background-color: var(--gold);
+    color: var(--dark-maroon); /* Dark contrast text inside button */
     border: none;
     padding: 0 24px;
     height: 48px;
@@ -151,7 +135,7 @@ td {
 }
 
 .note-text-dim {
-    color: #444;
+    color: var(--text-dark);
 }
 
 /* Status Pill Contours */
@@ -190,6 +174,7 @@ td {
 }
 
 /* Modals & Backdrop Core System Overlays */
+/*I dont know the color choice needed for the modal */
 .modal-backdrop {
     display: none;
     position: fixed;
@@ -223,19 +208,33 @@ td {
 }
 
 .close-dismiss-btn {
-    background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted);
+    background: none; 
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer; 
+    color: var(--text-muted);
 }
 
 .field-block {
-    display: flex; flex-direction: column; margin-bottom: 16px;
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 16px;
 }
 
 .field-block label {
-    font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase;
+    font-size: 12px; 
+    font-weight: 700; 
+    color: var(--text-primary); 
+    margin-bottom: 6px; 
+    text-transform: uppercase;
 }
 
 .field-block input, .field-block select, .field-block textarea {
-    padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 6px; font-size: 14px; outline: none;
+    padding: 10px 14px; 
+    border: 1px solid var(--border-light); 
+    border-radius: 6px; 
+    font-size: 14px; 
+    outline: none;
 }
 
 .field-block textarea { height: 75px; resize: none; }
@@ -250,7 +249,7 @@ td {
 }
 
 .save-btn {
-    background: var(--maroon-brand); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
+    background: var(--maroon); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
 }
 
 /* Pagination Control Mechanics */
