@@ -5,6 +5,7 @@
     padding: 30px;
     overflow-y: auto;
     width: 100%;
+    box-sizing: border-box;
 }
 
 /* =========================================
