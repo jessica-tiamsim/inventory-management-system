@@ -1,3 +1,4 @@
+@import url('https://rsms.me/inter/inter.css');
 * {
     margin: 0px;
     padding: 0px;
@@ -11,22 +12,32 @@
     --maroon: #801B32;
     --dark-maroon: #5A1424;
     --gold: #FFBF00;
-    --green: #2DCA73;
     
     /* Text & UI Colors */
     --text-dark: #364153;
     --white: #ffffff;
     --black: black;
+    --white-bg: #F5F5F5;
     --white-60: rgba(255, 255, 255, 0.6);
     --hover-dark: rgba(255, 255, 255, 0.1);
     --border-light: #dddddd;
-    --gray: #666;
+    --gray: #4A5565;
     --td-white: #eee;
     
     /* Error Colors */
     --error-bg: #FEF2F2;
     --error-border: #FFC9C9;
     --error-text: #82181A;
+    
+    /* Product Activity */
+    --active: #2DCA73;
+    --inactive: #ca2d2d;
+
+    /* Overlay Properties */
+    --bg-overlay: rgba(0, 0, 0, 0.5);
+    --overlay-card: rgba(0, 0, 0, 0.2);
+    --overlay-head: #e2e8f0;
+    --close-btn: #a0aec0;
 
 }
 
