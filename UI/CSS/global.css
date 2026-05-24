@@ -1,0 +1,28 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    
+}
+:root {
+    /* Brand Colors */
+    --primary-crimson: #801B32;
+    --dark-crimson: #5A1424;
+    --accent-gold: #FFBF00;
+    
+    /* Text & UI Colors */
+    --text-dark: #364153;
+    --bg-white: #ffffff;
+    --border-light: #dddddd;
+    
+    /* Error Colors */
+    --error-bg: #FEF2F2;
+    --error-border: #FFC9C9;
+    --error-text: #82181A;
+}
+
+body {
+    width: 1736px;
+    height: 776px;
+}
