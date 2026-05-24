@@ -14,7 +14,7 @@
    2. PAGE HEADER & TABS
 ========================================= */
 .page-header {
-    background: #ffffff;
+    background: var(--white);
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -22,14 +22,14 @@
 }
 
 .page-header h2 {
-    color: #801B32; /* PRISM Maroon */
+    color: var(--maroon); /* PRISM Maroon */
     font-size: 32px;
     font-weight: 700;
     margin: 6px;
 }
 
 .page-header p {
-    color: #777;
+    color: var(--gray);
     font-size: 14px;
 }
 
@@ -43,8 +43,8 @@
     padding: 10px 20px;
     border: 1px solid #eaeaea;
     border-radius: 20px;
-    background: #ffffff;
-    color: #555;
+    background: var(--white);
+    color: var(--gray);
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
@@ -57,16 +57,16 @@
 }
 
 .tab-btn.active {
-    background: #801B32;
-    color: #ffffff;
-    border-color: #801B32;
+    background: var(--maroon);
+    color: var(--white);
+    border-color: var(--maroon);
 }
 
 /* =========================================
    3. REPORT CARD & ACTIONS
 ========================================= */
 .report-card {
-    background: #ffffff;
+    background: var(--white);
     border-radius: 10px;
     padding: 25px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
@@ -80,23 +80,23 @@
 }
 
 .report-info h3 {
-    color: #801B32;
+    color: var(--maroon);
     font-size: 18px;
     margin-bottom: 5px;
 }
 
 .report-info p {
     font-size: 13px;
-    color: #777;
+    color: var(--gray);
 }
 
 /* Dropdown Filters */
 .report-actions select {
     padding: 10px 35px 10px 15px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
     border-radius: 20px;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--white);
+    color: var(--text-dark);
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
@@ -113,8 +113,8 @@
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    background: #801B32;
-    color: white;
+    background: var(--maroon);
+    color: var(--white);
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
@@ -122,7 +122,7 @@
 }
 
 .csv-btn:hover {
-    background: #5A1424;
+    background: var(--maroon-dark);
 }
 
 /* =========================================
@@ -140,8 +140,8 @@
 }
 
 .report-table thead th {
-    background: #801B32;
-    color: white;
+    background: var(--maroon);
+    color: var(--white);
     padding: 16px 20px;
     font-weight: 500;
     font-size: 14px;
@@ -157,19 +157,19 @@
     text-align: left;
     font-size: 14px;
     color: #444;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--border-light);
 }
 
 .report-table tbody tr:hover {
-    background: #fafafa;
+    background: var(--border-light);
 }
 
 /* =========================================
    5. GOLD TOTAL ROW (The Magic Touch)
 ========================================= */
 .report-table tfoot td {
-    background: #FFBF00; /* PRISM Gold */
-    color: #1A1714;
+    background: var(--gold); /* PRISM Gold */
+    color: var(--black);
     font-weight: 700;
     font-size: 15px;
     padding: 16px 20px;
