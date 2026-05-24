@@ -8,14 +8,20 @@
 }
 :root {
     /* Brand Colors */
-    --primary-crimson: #801B32;
-    --dark-crimson: #5A1424;
-    --accent-gold: #FFBF00;
+    --maroon: #801B32;
+    --dark-maroon: #5A1424;
+    --gold: #FFBF00;
+    --green: #2DCA73;
     
     /* Text & UI Colors */
     --text-dark: #364153;
     --white: #ffffff;
+    --black: black;
+    --white-60: rgba(255, 255, 255, 0.6);
+    --hover-dark: rgba(255, 255, 255, 0.1);
     --border-light: #dddddd;
+    --gray: #666;
+    --td-white: #eee;
     
     /* Error Colors */
     --error-bg: #FEF2F2;
