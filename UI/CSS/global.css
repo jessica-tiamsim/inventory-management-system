@@ -21,9 +21,11 @@
     --error-bg: #FEF2F2;
     --error-border: #FFC9C9;
     --error-text: #82181A;
+
 }
 
 body {
     width: 1736px;
     height: 776px;
 }
+
