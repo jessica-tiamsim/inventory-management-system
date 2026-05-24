@@ -22,7 +22,8 @@
     --hover-dark: rgba(255, 255, 255, 0.1);
     --border-light: #dddddd;
     --gray: #4A5565;
-    --td-white: #eee;
+    --low-white: #cbd5e0;
+    --search: #718096;
     
     /* Error Colors */
     --error-bg: #FEF2F2;
