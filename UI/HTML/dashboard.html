@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Inventory Management</title>
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="#">
+<body>
+    <!--require sidebar header for php and ejs-->
+    <div class="content">
+            <h1 class="welcome-text">Welcome back, </h1>
+
+            <div class="stats-grid">
+                <div class="stat-card blue-border">
+                    <p class="card-label">ACTIVE PRODUCTS</p>
+                    <h2 class="card-value color-blue">0</h2>
+                    <p class="card-sub">Inactive</p>
+                </div>
+                <div class="stat-card red-border">
+                    <p class="card-label">UNITS IN STOCK</p>
+                    <h2 class="card-value color-red">0</h2>
+                    <p class="card-sub">across all SKUs</p>
+                </div>
+                <div class="stat-card blue-border">
+                    <p class="card-label">INVENTORY VALUE</p>
+                    <h2 class="card-value color-blue">₱0.00</h2>
+                    <p class="card-sub">at unit cost</p>
+                </div>
+                <div class="stat-card green-border">
+                    <p class="card-label">LOW STOCK ALERTS</p>
+                    <h2 class="card-value color-green">0</h2>
+                    <p class="card-sub">at or below threshold</p>
+                </div>
+            </div>
+            <div class="main-grid">
+                <section class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Low Stock</h3>
+                            <p class="sub-text">Products at or below reorder threshold</p>
+                        </div>
+                        <button class="view-report-btn" onclick="location.href='#'">View Report</button>
+                    </div>
+                    <div class="list-container">
+                            <ul class="dashboard-list">
+
+                                    <li class="list-item alert-item">
+                                        <span><strong></strong> </span>
+                                        <span class="badged-alert-text">Qty: </span>
+                                    </li>
+                            </ul>
+                            <p class="placeholder-text">✅ All stock levels are completely healthy.</p>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Recent Activity</h3>
+                            <p class="sub-text">Latest stock movements</p>
+                        </div>
+                    </div>
+                    <div class="list-container">
+
+                            <ul class="dashboard-list">
+                                    <li class="list-item">
+                                        <div>
+                                            <span class="activity-badge badge-<?= $badge_modifier ?>"></span>
+                                            <span><strong></strong> units of </span>
+                                        </div>
+                                        <small class="time-stamp"></small>
+                                    </li>
+
+                            </ul>
+                            <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
+                    </div>
+                </section>
+            </div>
+    </div>
+</body>
+</html>
