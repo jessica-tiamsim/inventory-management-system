@@ -75,6 +75,8 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: var(--bg-white);
+    text-align: center;
+    text-decoration: none;
 }
 
 .error_message {
