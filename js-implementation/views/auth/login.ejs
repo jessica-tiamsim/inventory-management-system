@@ -3,32 +3,39 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>PRISM Web App</title>
+        <title>PRISM</title>
+        <link rel="stylesheet" href="/global.css">
         <link rel="stylesheet" href="/login.css">
     </head>
     <body>
-        <div class="login_screen">
+        <div class="login_screen_div">
             <div class = "logo_div">
-                <img src="logo.png" class ="prism_img">
+                
+                <img src="assets/logo.png" class = "logo_img">
                     <h1 class = "logo_text">PRISM</h1>
-
             </div>
-            <div class="login_card">
+            
+            <div class="forms_card">
                 <h2>Log in</h2>
-                <form id="loginForm" method="POST" action="/login">
-                    <label for="username_email">Username or Email</label>
-                    <input id="username" type="text" name="username" placeholder="Username or Email" required>
-
+                <form method="POST" action="">
+                    <label for="username_em ail">Username or Email</label>
+                    <input type="text" name="username_email" id="username_email" placeholder="Username or Email" required>
+                    
                     <label for="password">Password</label>
-                    <input id="password" type="password" name="password" placeholder="Password" required>
-                    <button type="submit" class="btn-gold">Log in</button>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    
+                    <button type="submit" class="button-gold">Log in</button>
                 </form>
-                <div id="message">
-                    <% if (error) { %>
-                        <div class="error"> <%= error %></div>
-                    <% } %>
+                <div class = "forms_description">
+                        <div class="alert-box">
+                            <% if (typeof error != 'undefined' && error) { %>
+                            <p class='error-msg'> <%= error %></p>
+                            <% } %>
+                        </div>
+                        <p>Restricted access.</p>
+                        <p>All login attempts are logged and monitored.</p>
                 </div>
-            </div>
+            </div>  
         </div>
     </body>
 </html>
