@@ -1,59 +1,69 @@
-const bcrypt = require('bcrypt');
-const UserModel = require('../models/userModel');
-const logger = require('../../config/logger');
+const bcrypt = require('bcryptjs');
+const pool = require('../../config/db');
 
 const AuthController = {
-    showLoginForm(req, res) {
+    // 1. Render Login Screen from /views/auth/login.ejs
+    showLoginForm: (req, res) => {
+        // If user already logged in, bypass login screen
+        if (req.session.userId) {
+            return res.redirect('/dashboard');
+        }
         res.render('auth/login', { error: null });
     },
 
-    async handleLogin(req, res) {
-        const { username, password } = req.body;
+    // 2. Process incoming credentials
+    handleLogin: async (req, res) => {
+        const { username_email: username, password } = req.body;
 
         try {
-            // 1. Search DB for matching user identifiers
-            const user = await UserModel.findByUsernameOrEmail(username);
-            if (!user) {
-                logger.warn(`Security Warning: Unauthorized access attempt for identifier: "${username}"`);
-                return res.render('auth/login', { error: 'Invalid username or password.' });
+            // Find user matching username OR email
+            const [users] = await pool.execute(
+                'SELECT * FROM users WHERE username = ? OR email = ? LIMIT 1',
+                [username, username]
+            );
+
+            if (users.length === 0) {
+                return res.render('auth/login', { error: 'Invalid username, email, or password.' });
             }
 
-            // 2. Enforce your explicit status flag restrictions
-            if (user.is_active !== 1) {
-                logger.warn(`Access Blocked: Suspended profile account "${username}" attempted authentication.`);
-                return res.render('auth/login', { error: 'Your account is deactivated.' });
-            }
+            const user = users[0];
 
-            // 3. Verify the cryptographic password hash match
-            const passwordMatches = await bcrypt.compare(password, user.password_hash);
-            if (!passwordMatches) {
-                logger.warn(`Authentication Failure: Password mismatch recorded for user: "${username}"`);
-                return res.render('auth/login', { error: 'Invalid username or password.' });
-            }
+// 1. Debug check to confirm the data structure (Optional)
+        console.log("Password Hash From DB:", user.password_hash); 
 
-            // 4. Complete Session Initialization
+// 2. FIXED: Reference 'password_hash' precisely to match your MySQL table layout
+        const passwordMatches = await bcrypt.compare(password, user.password_hash);
+
+        if (!passwordMatches) {
+    return res.render('login', { error: 'Invalid username, email, or password.' });
+}
+            // Save variables to session matching your server.js parameters
             req.session.userId = user.id;
             req.session.username = user.username;
-            req.session.email = user.email;
-            req.session.role = user.role; 
+            req.session.role = user.role; // e.g., 'admin' or 'staff'
 
-            logger.info(`Session Authorized: User "${user.username}" logged in. [Role Scope: ${user.role.toUpperCase()}]`);
-            res.redirect('/dashboard');
+            // Save the session to database and redirect cleanly
+            req.session.save((err) => {
+                if (err) {
+                    console.error('Session save exception:', err);
+                    return res.render('auth/login', { error: 'Session creation failed.' });
+                }
+                res.redirect('/dashboard');
+            });
 
-        } catch (err) {
-            logger.error('Critical Error inside Authentication Controller Subsystem', err);
-            res.status(500).render('auth/login', { error: 'An internal server error occurred.' });
+        } catch (error) {
+            console.error('Database auth error:', error);
+            res.render('auth/login', { error: 'A server anomaly occurred. Please try again.' });
         }
     },
 
-    handleLogout(req, res) {
-        const activeUser = req.session.username || 'Guest';
+    // 3. Clear session store variables on leave
+    handleLogout: (req, res) => {
         req.session.destroy((err) => {
             if (err) {
-                logger.error(`Session destruction fault for user ${activeUser}: ${err.message}`);
-                return res.redirect('/dashboard');
+                console.error('Error destroying user session:', err);
             }
-            logger.info(`Session closed: User "${activeUser}" logged out cleanly.`);
+            res.clearCookie('session-cookie');
             res.redirect('/login');
         });
     }
