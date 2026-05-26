@@ -1,0 +1,22 @@
+/* public/css/global.css */
+:root {
+    /* Brand Colors */
+    --primary-crimson: #801B32;
+    --dark-crimson: #5A1424;
+    --accent-gold: #FFBF00;
+    
+    /* Text & UI Colors */
+    --text-dark: #364153;
+    --bg-white: #ffffff;
+    --border-light: #dddddd;
+    
+    /* Error Colors */
+    --error-bg: #FEF2F2;
+    --error-border: #FFC9C9;
+    --error-text: #82181A;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+}

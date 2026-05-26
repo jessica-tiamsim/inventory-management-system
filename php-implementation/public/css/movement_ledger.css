@@ -1,0 +1,230 @@
+/* =========================================
+   PRISM REPORTS & LEDGER CSS (reports.css)
+========================================= */
+
+
+:root {
+    --maroon: #801B32;
+    --white: #ffffff;
+    --bg: #f5f5f5;
+    --text: #333333;
+    --gray: #888888;
+    --border: #e0e0e0;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.content {
+    padding: 25px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+/* =========================================
+   CARDS & CONTAINERS
+========================================= */
+.box1, .box2 {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+/* Ensures the date filters don't get cut off */
+.box1 {
+    height: auto; 
+}
+
+/* =========================================
+   TYPOGRAPHY
+========================================= */
+.page-title {
+    color: var(--maroon);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.section-title {
+    color: var(--maroon);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.box1_sub, .box2_sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin: 0;
+}
+
+/* =========================================
+   PILL TABS
+========================================= */
+.choices {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.tab-link {
+    text-decoration: none;
+}
+
+.choices span {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    border: 1px solid #eaeaea;
+    transition: all 0.2s ease;
+}
+
+.choices span.active {
+    background: var(--maroon);
+    color: var(--white);
+    border: none;
+}
+
+.choices span.inactive-tab {
+    background: var(--white);
+    color: #333;
+}
+
+.choices span.inactive-tab:hover {
+    background: #f9f9f9;
+}
+
+/* =========================================
+   DATE FILTERS
+========================================= */
+.date {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+#date1, #date2 {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: #F3F4F6;
+    border: 1px solid #e0e0e0;
+    font-family: inherit;
+    font-size: 13px;
+    color: #333;
+    outline: none;
+}
+
+/* =========================================
+   FILTER BAR (BOX 2)
+========================================= */
+.box2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.dropdowns {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.dropdowns select {
+    padding: 10px 35px 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    background-color: #F3F4F6;
+    color: #333;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    /* Custom SVG Dropdown Arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+.excel {
+    background: var(--maroon);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.excel:hover {
+    background: #5A1424;
+}
+
+/* =========================================
+   TABLE LAYOUT (BOX 3)
+========================================= */
+.box3 {
+    width: 100%;
+    background: transparent; 
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+thead th {
+    background: var(--maroon);
+    color: var(--white);
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Round the top corners of the maroon table header */
+thead th:first-child { border-top-left-radius: 8px; }
+thead th:last-child { border-top-right-radius: 8px; }
+
+tbody td {
+    padding: 16px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+
+.empty-state {
+    text-align: center;
+    padding: 50px !important;
+    color: #888;
+}

@@ -1,0 +1,297 @@
+:root {
+            --gold: #FFBF00;
+            --maroon: #801B32;
+            --maroon-grad: linear-gradient(180deg, #801B32 0%, #5A1424 100%);
+            --white: #FFFFFF;
+            --bg-gray: #F5F5F5;
+            --font-main: 'Inter';
+        }
+
+        .table-container p{
+            margin: 0px;
+        }
+
+        .content-box { 
+            padding: 20px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        background: white;
+        }
+
+
+        .content-header { 
+            display: flex; 
+            flex-direction: column;
+            margin-bottom: 5px; 
+        }
+        .content-lower {
+            display: flex;  
+            width: 100%;
+            align-items: center;
+            justify-content: space-between; /* Pushes filters to the left, button to the right */
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .content-header h1 { 
+            margin: 0px; 
+            color: var(--maroon); 
+            font-size: 32px; font-weight: 700; 
+        }
+        .content-header p { 
+            margin: 5px 0px 0px; 
+            color: #666; 
+            font-size: 14px; 
+        }
+
+
+        .btn-new { 
+            background-color: var(--maroon); 
+            color: white; 
+            border: none; 
+            width: 250px;
+            height: 37.6px;
+            padding: 12px 24px; 
+            border-radius: 50px; 
+            font-weight: bold; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            cursor: pointer; }
+
+
+        .table-container { 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin-top: 20px; 
+        }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+        }
+        thead { 
+            background: var(--maroon); 
+            color: white; 
+        }
+        th { 
+            padding: 10px 10px; 
+            font-size: 12px; 
+            text-align: left; }
+        td { 
+            padding: 10px; 
+            font-size: 13px; 
+            border-bottom: 1px solid #eee; 
+        }
+        .status-active { 
+            color: #2DCA73; 
+            font-weight: 700; 
+        }
+        .status-inactive { 
+            color: #ca2d2d; 
+            font-weight: 700; 
+        }
+        .action-img { 
+            width: 32px;
+             height: 32px; 
+            cursor: pointer; 
+            margin-right: 8px; 
+        }
+
+/* Dark transparent backdrop covering the whole app window */
+.modal-overlay {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black tint */
+    z-index: 1000; /* Ensures it sits over the sidebar and table layout */
+    justify-content: center;
+    align-items: center;
+}
+
+/* The clear white central interactive form container */
+.modal-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 550px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.25s ease-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 10px;
+}
+
+.modal-header h2 {
+    font-size: 1.3rem;
+    color: #82181a;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #a0aec0;
+}
+
+.close-btn:hover {
+    color: #4a5568;
+}
+
+/* Two-column splits layout properties */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.input-group input, 
+.input-group textarea {
+    padding: 10px;
+    border: 1px solid #cbd5e0;
+    border-radius: 5px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+}
+
+.input-group textarea {
+    resize: vertical;
+    height: 70px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 15px;
+}
+
+.btn-cancel {
+    background-color: #edf2f7;
+    color: #4a5568;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-save {
+    background-color: #82181a; /* Match PRISM gold branding guidelines */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-save:hover {
+    background-color: #aa8c2c;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+.filters-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    
+    width: 100%;
+    /* REMOVED border-radius: 100% which was causing distortion */
+}
+
+/* Parent container for input element and absolute icon */
+.search-wrapper {
+    position: relative; /* CRITICAL: Keeps the absolute search icon bounded inside this box */
+    width: 100%;       /* Allows the search bar to scale dynamically */   /* Prevents the input from stretching too wide */
+}
+.search-wrapper .prism_image {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;        /* Restrict icon size so it fits elegantly */
+    height: 18px;
+    pointer-events: none; /* Prevents the icon from blocking input clicks */
+}
+.add_image  {
+    width: 18px;        /* Restrict icon size so it fits elegantly */
+    height: 18px;
+    pointer-events: none; /* Prevents the icon from blocking input clicks */
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 10px 40px 10px 20px;
+    border: 1px solid #cbd5e0;
+    border-radius: 50px; /* Gives the perfect pill shape */
+    font-size: 0.9rem;
+    background-color: #f7fafc;
+    outline: none;
+    box-sizing: border-box; /* Ensures padding doesn't distort overall width calculations */
+    transition: all 0.2s ease;
+}
+
+.search-wrapper input:focus {
+    border-color: #d4af37;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+}
+
+.search-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #718096;
+    pointer-events: none;
+}
+
+/* Styled drop-down selectors */
+.filters-bar select {
+    padding: 10px 35px 10px 15px;
+    border: 1px solid #cbd5e0;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    color: #4a5568;
+    background-color: #f7fafc;
+    cursor: pointer;
+    outline: none;
+    appearance: none; /* Removes default browser arrows */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
+

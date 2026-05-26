@@ -1,0 +1,188 @@
+/* =========================================
+   PRISM REPORTS MODULE (reports.css)
+========================================= */
+
+/* 1. CONTENT AREA */
+.content {
+    padding: 30px;
+    width: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* =========================================
+   2. PAGE HEADER & TABS
+========================================= */
+.page-header {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.page-header h2 {
+    color: #801B32; /* PRISM Maroon */
+    font-size: 32px;
+    font-weight: 700;
+    margin: 6px;
+}
+
+.page-header p {
+    color: #777;
+    font-size: 14px;
+}
+
+.report-tabs {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    border: 1px solid #eaeaea;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #555;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.tab-btn:hover {
+    background: #f9f9f9;
+}
+
+.tab-btn.active {
+    background: #801B32;
+    color: #ffffff;
+    border-color: #801B32;
+}
+
+/* =========================================
+   3. REPORT CARD & ACTIONS
+========================================= */
+.report-card {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.report-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.report-info h3 {
+    color: #801B32;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.report-info p {
+    font-size: 13px;
+    color: #777;
+}
+
+/* Dropdown Filters */
+.report-actions select {
+    padding: 10px 35px 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    color: #333;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+/* CSV Download Button */
+.csv-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #801B32;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+.csv-btn:hover {
+    background: #5A1424;
+}
+
+/* =========================================
+   4. DATA TABLE
+========================================= */
+.report-table {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.report-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.report-table thead th {
+    background: #801B32;
+    color: white;
+    padding: 16px 20px;
+    font-weight: 500;
+    font-size: 14px;
+    text-align: left; /* Default left */
+}
+
+/* Round the top corners of the table header */
+.report-table thead th:first-child { border-top-left-radius: 8px; }
+.report-table thead th:last-child { border-top-right-radius: 8px; }
+
+.report-table tbody td {
+    padding: 16px 20px;
+    text-align: left;
+    font-size: 14px;
+    color: #444;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.report-table tbody tr:hover {
+    background: #fafafa;
+}
+
+/* =========================================
+   5. GOLD TOTAL ROW (The Magic Touch)
+========================================= */
+.report-table tfoot td {
+    background: #FFBF00; /* PRISM Gold */
+    color: #1A1714;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 16px 20px;
+    border-bottom: none;
+}
+
+/* Round the bottom corners of the gold footer */
+.report-table tfoot td:first-child { border-bottom-left-radius: 8px; }
+.report-table tfoot td:last-child { border-bottom-right-radius: 8px; }
+
+/* =========================================
+   6. UTILITY ALIGNMENTS
+========================================= */
+.text-right { text-align: right !important; }
+.text-center { text-align: center !important; }
+.text-left { text-align: left !important; }
