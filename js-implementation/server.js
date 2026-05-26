@@ -41,9 +41,9 @@ app.use((req, res, next) => {
 });
 
 // --- ROUTING ---
-// We will uncomment these once we build your routes and controllers!
-// const mainRoutes = require('./src/routes/index');
-// app.use('/', mainRoutes);
+
+const mainRoutes = require('./src/routes/index');
+app.use('/', mainRoutes);
 
 // Temporary Test Route
 app.get('/', (req, res) => {
