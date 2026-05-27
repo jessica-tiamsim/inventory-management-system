@@ -3,9 +3,9 @@
 /* body for login page centered, bg red to dark red */
 body {
     display: flex;
-    background: linear-gradient(180deg, var(--primary-crimson) 0%, var(--dark-crimson) 100%);
-    align-content: center;
-    justify-items: center;
+    background: linear-gradient(180deg, var(--maroon) 0%, var(--dark-maroon) 100%);
+    align-items: center;
+    justify-content: center;
 }
 
 /*division*/
@@ -55,7 +55,7 @@ body {
 .forms_card h2 {
     font-size: 32px; /* resized*/
     margin-block: 15px;
-    color: var(--primary-crimson); 
+    color: var(--maroon); 
     justify-self: center;
 }
 /*forms input email and password*/
@@ -80,7 +80,7 @@ label {
     margin-bottom: 12px;
     border-radius: 16px;
     font-size: 16px;
-    background: var(--accent-gold);
+    background: var(--gold);
     font-weight: bold;
     border: none;
 }
