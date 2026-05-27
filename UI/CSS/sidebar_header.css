@@ -69,8 +69,12 @@ nav a{
     font-weight: 600;
     gap: 12px;
     display: flex;
+    justify-self: center;
     color: var(--white);
     text-decoration: none;
+}
+nav p{
+    align-self: center;
 }
 nav a.active {
     background: var(--gold) !important;
@@ -80,7 +84,6 @@ nav a.active {
 nav img{
     max-width: 20px;
     max-height: 20px;
-    align-self: center;
 }
 
 nav a:hover {
@@ -193,12 +196,7 @@ header{
     font-size: 20px;
     font-weight: 600;
 }
-.shape {
-    max-width: 33px;
-    max-height: 28px;
-    background-color: var(--black);
 
-}
 .right {
     gap: 16px;
     padding-left: 10px;
