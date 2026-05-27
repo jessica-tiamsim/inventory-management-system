@@ -1,28 +1,43 @@
 const userModel = require('../models/userModels');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); 
 
 const authController = { 
-    // 1. GET /login
     getLogin: (req, res) => {
         if (req.session && req.session.user) {
             return res.redirect('/dashboard');
+            return res.redirect('/dashboard');
         }
-        res.render('auth/login', { error: null });
+
+        // 👇 Read the URL parameter (like $_GET['error'] in PHP)
+        let errorMessage = null;
+        if (req.query.error === 'unauthorized') {
+            errorMessage = "Please log in first to access the app.";
+        }
+
+        res.render('login', { error: errorMessage }); 
     },
 
-    // 2. POST /login
     postLogin: async (req, res) => {
         const { username_email, password } = req.body;
         
         try {
             const user = await userModel.findByUsernameOrEmail(username_email);
+            
             if (!user) {
-                return res.render('auth/login', { error: 'Invalid authentication credentials provided.' });
+                // 👇 Custom message 1
+                return res.render('login', { error: 'Error: The username/email or password is incorrect.' });
+            }
+
+            // 👇 Custom message 2: The Deactivated Check
+            // (Note: You will need to add a 'status' or 'is_active' column to your database later to fully use this!)
+            if (user.status === 'deactivated') {
+                return res.render('login', { error: 'Account Suspended: This account has been deactivated. Please contact your system administrator.' });
             }
 
             const passwordMatch = await bcrypt.compare(password, user.password_hash);
             if (!passwordMatch) {
-                return res.render('auth/login', { error: 'Invalid authentication credentials provided.' });
+                // 👇 Custom message 1
+                return res.render('login', { error: 'Error: The username/email or password is incorrect.' });
             }
 
             req.session.user = {
@@ -38,14 +53,15 @@ const authController = {
             
         } catch (err) {
             console.error('System validation runtime drop:', err);
-            return res.render('auth/login', { error: 'Internal structural system error. Please retry.' });
+            // 👇 Custom message 3
+            return res.render('login', { error: 'An unexpected server error occurred.' });
         }
     },
 
-    // 3. GET /logout
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) console.error('Session destruction issue:', err);
+            res.redirect('/login'); 
             res.redirect('/login'); 
         });
     }
