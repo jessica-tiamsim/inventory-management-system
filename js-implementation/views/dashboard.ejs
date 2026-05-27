@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Inventory Management</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/sidebar_header.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+<body>
+    <!--require sidebar header for php and ejs-->
+    <%- include('sidebar_header') %>
+    <div class="content">
+            <h1 class="welcome-text">Welcome back, <%= user.username %></h1>
+
+            <div class="stats-grid">
+                <div class="stat-card blue-border">
+                    <p class="card-label">ACTIVE PRODUCTS</p>
+                    <h2 class="card-value color-blue"><%= stats.activeProducts %></h2>
+                    <p class="card-sub"><%= stats.inactiveProducts %>Inactive</p>
+                </div>
+                <div class="stat-card red-border">
+                    <p class="card-label">UNITS IN STOCK</p>
+                    <h2 class="card-value color-red"><%= stats.totalUnits %></h2>
+                    <p class="card-sub">across all SKUs</p>
+                </div>
+                <div class="stat-card blue-border">
+                    <p class="card-label">INVENTORY VALUE</p>
+                    <h2 class="card-value color-blue">
+                        <%= stats.inventoryValue.toLocaleString('en-PH', { style: 'currency', currency: 'PHP'}) %></h2>
+                    <p class="card-sub">at unit cost</p>
+                </div>
+                <div class="stat-card green-border">
+                    <p class="card-label">LOW STOCK ALERTS</p>
+                    <h2 class="card-value color-green"><%= lowStockProducts.length %></h2>
+                    <p class="card-sub">at or below threshold</p>
+                </div>
+            </div>
+            <div class="main-grid">
+                <section class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Low Stock</h3>
+                            <p class="sub-text">Products at or below reorder threshold</p>
+                        </div>
+                        <button class="view-report-btn" onclick="location.href='#'">View Report</button>
+                    </div>
+                    <div class="list-container">
+                            <ul class="dashboard-list">
+                                <% if (lowStockProducts && lowStockProducts.length > 0) { %>
+                                    <% lowStockProducts.forEach(function(product) { %>
+                                    <li class="list-item alert-item">
+                                        <span><strong><%= product.name %></strong> </span>
+                                        <span class="badged-alert-text">Qty: <%= product.current_quantity %></span>
+                                    </li>
+                                    <% }); %>
+                                </ul>
+                            <% } else { %> 
+                                <p class="placeholder-text"> All stock levels are completely healthy.</p>
+                            <% } %>
+                    </div>
+                </section>
+
+                <section class="content-card">
+                    <div class="card-header">
+                        <div>
+                            <h3>Recent Activity</h3>
+                            <p class="sub-text">Latest stock movements</p>
+                        </div>
+                    </div>
+                    <div class="list-container">
+                        <% if (recentActivities && recentActivities.length > 0) { %>
+                            <ul class="dashboard-list">
+                                <% recentActivities.forEach(function(activity) { %>
+                                    <li class="list-item">
+                                        <div>
+                                            <span class="activity-badge badge-<%= activity.type %>"></span>
+                                            <span><strong><%= activity.quantity %></strong> units of <%= activity.productName %></span>
+                                        </div>
+                                        <small class="time-stamp"><%= activity.timestamp %></small>
+                                    </li>
+                                <% }); %>
+                            </ul>
+                        <% } else { %>
+                            <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
+                        <% } %>
+                    </div>
+                </section>
+            </div>
+    </div>
+</body>
+</html>
