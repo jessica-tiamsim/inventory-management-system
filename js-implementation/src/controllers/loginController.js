@@ -1,10 +1,10 @@
-// src/controllers/login_controller.js
 const userModel = require('../models/userModels');
 const bcrypt = require('bcryptjs'); 
 
 const authController = { 
     getLogin: (req, res) => {
         if (req.session && req.session.user) {
+            return res.redirect('/dashboard');
             return res.redirect('/dashboard');
         }
 
@@ -61,6 +61,7 @@ const authController = {
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) console.error('Session destruction issue:', err);
+            res.redirect('/login'); 
             res.redirect('/login'); 
         });
     }
