@@ -7,8 +7,8 @@ const AuthController = require('../controllers/loginController');
 router.get('/', (req, res) => res.redirect('/login'));
 
 // Auth Routes
-router.get('/login', AuthController.showLoginForm);
-router.post('/login', AuthController.login);
+router.get('/login', AuthController.getLogin);
+router.post('/login', AuthController.postLogin);
 router.get('/logout', AuthController.logout);
 
 // Protected Dashboard Route
