@@ -43,6 +43,7 @@
 }
 
 body {
+    display: flex;
     width: 1536px;
     height: 776px;
 }
