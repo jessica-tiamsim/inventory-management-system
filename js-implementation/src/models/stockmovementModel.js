@@ -2,21 +2,20 @@
 const db = require('../../config/db');
 
 const StockMovementModel = {
-    // Get the 5 most recent inventory changes
     getRecentActivity: async () => {
         const query = `
             SELECT 
-                a.type, 
-                a.quantity, 
+                m.movement_type as type, 
+                m.quantity, 
                 p.name as productName,
-                DATE_FORMAT(a.timestamp, '%b %d, %h:%i %p') as timestamp
-            FROM activity_logs a
-            JOIN products p ON a.product_id = p.id
-            ORDER BY a.timestamp DESC
+                DATE_FORMAT(m.created_at, '%b %d, %h:%i %p') as timestamp
+            FROM stock_movements m
+            JOIN products p ON m.product_id = p.id
+            ORDER BY m.created_at DESC
             LIMIT 5
         `;
         const [rows] = await db.execute(query);
-        return rows; // Returns an array of formatted activities
+        return rows; 
     }
 };
 

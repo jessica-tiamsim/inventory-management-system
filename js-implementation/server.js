@@ -15,10 +15,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/assets', express.static(path.join(__dirname, '../assets')));
 
 // Configure Session Store mapping using MySQL Pool
-const sessionStore = new MySQLStore({}, dbPool);
+const sessionStore = new MySQLStore({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+});
 app.use(session({
     key: 'prism_session',
     secret: process.env.SESSION_SECRET || 'fallback-secret',

@@ -4,14 +4,26 @@ const db = require('../../config/db');
 const ProductModel = {
     // 1. Get the aggregate numbers for the top dashboard cards
     getDashboardStats: async () => {
-        // COALESCE ensures we return 0 instead of 'null' if the database is totally empty
         const query = `
             SELECT 
-                COUNT(CASE WHEN status = 'active' THEN 1 END) as activeProducts,
-                COUNT(CASE WHEN status = 'inactive' THEN 1 END) as inactiveProducts,
-                COALESCE(SUM(current_quantity), 0) as totalUnits,
-                COALESCE(SUM(current_quantity * unit_cost), 0) as inventoryValue
-            FROM products
+                COUNT(DISTINCT CASE WHEN p.is_active = 1 THEN p.id END) as activeProducts,
+                COUNT(DISTINCT CASE WHEN p.is_active = 0 THEN p.id END) as inactiveProducts,
+                COALESCE(SUM(
+                    CASE 
+                        WHEN m.movement_type = 'in' THEN m.quantity 
+                        WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                        ELSE 0 
+                    END
+                ), 0) as totalUnits,
+                COALESCE(SUM(
+                    (CASE 
+                        WHEN m.movement_type = 'in' THEN m.quantity 
+                        WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                        ELSE 0 
+                    END) * p.unit_cost
+                ), 0) as inventoryValue
+            FROM products p
+            LEFT JOIN stock_movements m ON p.id = m.product_id
         `;
         const [rows] = await db.execute(query);
         return rows[0]; 
@@ -20,15 +32,25 @@ const ProductModel = {
     // 2. Get active products that are at or below their reorder threshold
     getLowStockProducts: async () => {
         const query = `
-            SELECT name, current_quantity 
-            FROM products 
-            WHERE current_quantity <= reorder_threshold 
-            AND status = 'active'
+            SELECT 
+                p.name, 
+                COALESCE(SUM(
+                    CASE 
+                        WHEN m.movement_type = 'in' THEN m.quantity 
+                        WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                        ELSE 0 
+                    END
+                ), 0) as current_quantity
+            FROM products p
+            LEFT JOIN stock_movements m ON p.id = m.product_id
+            WHERE p.is_active = 1
+            GROUP BY p.id, p.name, p.reorder_threshold
+            HAVING current_quantity <= p.reorder_threshold
             ORDER BY current_quantity ASC 
             LIMIT 5
         `;
         const [rows] = await db.execute(query);
-        return rows; // Returns an array of products
+        return rows; 
     }
 };
 

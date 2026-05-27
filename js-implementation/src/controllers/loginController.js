@@ -5,7 +5,6 @@ const authController = {
     getLogin: (req, res) => {
         if (req.session && req.session.user) {
             return res.redirect('/dashboard');
-            return res.redirect('/dashboard');
         }
 
         // 👇 Read the URL parameter (like $_GET['error'] in PHP)
@@ -61,7 +60,6 @@ const authController = {
     logout: (req, res) => {
         req.session.destroy((err) => {
             if (err) console.error('Session destruction issue:', err);
-            res.redirect('/login'); 
             res.redirect('/login'); 
         });
     }
