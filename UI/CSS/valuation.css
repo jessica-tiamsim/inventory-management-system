@@ -156,7 +156,7 @@
     padding: 16px 20px;
     text-align: left;
     font-size: 14px;
-    color: #444;
+    color: var(--text-dark);
     border-bottom: 1px solid var(--border-light);
 }
 
