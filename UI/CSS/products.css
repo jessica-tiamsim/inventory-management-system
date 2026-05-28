@@ -6,6 +6,8 @@
     margin-bottom: 5px; 
     display: flex; 
     flex-direction: column;
+    background: var(--white);
+    padding: 20px;
 }
         
 .content-lower {  
@@ -224,6 +226,7 @@ td {
 .search-wrapper {
     width: 100%;       /* Allows the search bar to scale dynamically */   /* Prevents the input from stretching too wide */
     position: relative; /* CRITICAL: Keeps the absolute search icon bounded inside this box */
+    border: var(--border-light);
 }
 
 .search-wrapper .prism_image {

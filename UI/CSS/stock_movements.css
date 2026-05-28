@@ -11,6 +11,8 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    background: var(--white);
+    padding: 20px;
 }
 
 .header-left h1 {
