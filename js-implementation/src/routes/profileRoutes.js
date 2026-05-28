@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+// Import the controller file
 const profileController = require('../controllers/profile_controller');
 
 /**
@@ -11,7 +12,6 @@ const verifySession = (req, res, next) => {
     }
     res.redirect('/login?error=unauthorized');
 };
-
 // --- Protected Administrative Resource Endpoints ---
 router.get('/profile', verifySession, profileController.getProfile);
 router.post('/users/add', verifySession, profileController.postCreateUser);

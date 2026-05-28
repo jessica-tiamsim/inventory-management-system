@@ -34,13 +34,20 @@ const profile_controller = {
         try {
             const { username, email, password, role } = req.body;
 
+            // Simple data integrity protection block
+            if (!username || !email || !password) {
+                return res.status(400).send("Bad Request: Missing required creation parameters.");
+            }
+
             // Generate secure rounds and hash plaintext fields
             const salt = await bcrypt.genSalt(10);
             const hashedPasswordHash = await bcrypt.hash(password, salt);
 
+            // Write row to database storage matrix
             await profileModel.createUser(username, email, hashedPasswordHash, role);
+            
+            // Redirect cleanly back to the profiles panel dashboard root path
             res.redirect('/profile'); 
-
 
         } catch (err) {
             console.error('Account execution exception dropped:', err);
@@ -49,4 +56,5 @@ const profile_controller = {
     }
 };
 
+// Exporting using explicit lowercase naming structure to match file system calls perfectly
 module.exports = profile_controller;
