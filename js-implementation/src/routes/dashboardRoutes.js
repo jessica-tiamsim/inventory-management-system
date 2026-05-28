@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const productModel = require('../models/productModel');
-const stockMovementModel = require('../models/stockMovementModel');
+const stockMovementModel = require('../models/stockmovementModel');
 
 // Notice this is '/', which maps to '/dashboard' because of index.js!
 router.get('/', async (req, res) => { 
