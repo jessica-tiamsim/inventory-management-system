@@ -1,16 +1,24 @@
 // src/routes/productsRoutes.js
 const express = require('express');
 const router = express.Router();
+const productController = require('../controllers/product_controller');
 
-// This maps to '/products' 
-router.get('/', (req, res) => {
-    // Standard security check
-    if (!res.locals.user) {
-        return res.redirect('/login?error=unauthorized');
+/**
+ * Route safeguard middleware tracking user session parameters 
+ */
+const verifySession = (req, res, next) => {
+    if (req.session && req.session.user) {
+        return next();
     }
-    
-    // Temporary response until we build products.ejs
-    res.send('<h1>PRISM Inventory Management</h1><p>The products table will go here!</p>');
-});
+    res.redirect('/login?error=unauthorized');
+};
+
+// --- Protected Product Module Resource Endpoints ---
+
+// Handles loading, searching, and viewing the product database table matrix
+router.get('/', verifySession, productController.getProductsPage);
+
+// Handles processing, validating, and saving the add-product overlay form metrics
+router.post('/add', verifySession, productController.postCreateProduct);
 
 module.exports = router;
