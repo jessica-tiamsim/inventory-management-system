@@ -1,86 +1,93 @@
-/* public/css/login.css */
+
+/*BODY*/
+/* body for login page centered, bg red to dark red */
 body {
-    display: block;
-    height: 100vh;
-    background: linear-gradient(180deg, var(--primary-crimson) 0%, var(--dark-crimson) 100%);
-    align-content: center;
-    justify-items: center;
+    display: flex;
+    background: linear-gradient(180deg, var(--maroon) 0%, var(--dark-maroon) 100%);
+    align-items: center;
+    justify-content: center;
 }
 
-.login_screen {
+/*division*/
+/* login screen div, transparent, containg the logo and forms */
+.login_screen_div {
     display: flex;
+    width: fit-content;
     flex-direction: column;
     justify-items: center;
-    width: fit-content;
-
 }
 
+
+/*LOGO*/
+/* logo div containg text and logo */
 .logo_div {
+    color: var(--white); 
     justify-items: center;
     text-align: center; 
-    color: white; 
 }
 
-.logo_text{
+/* text [P R I S M]*/
+.logo_text {
     letter-spacing: 2px; 
     margin-block: 10px;
-
 }
-
-.prism_img{
+/* Image */
+.logo_img {
     width: 120px; 
     height: 100px;
     display: block; 
-    margin: 0px;
 }
 
-
-.login_card {
-    background: white;
-    flex-direction: column;
+/*FORMS*/
+/*forms div*/
+.forms_card {
     padding: 32px 40px;
     border-radius: 16px;
-    height: fit-content;
-    width: 500px; 
+    width: 450px; 
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     gap: 6px;
+    background: var(--white);
+    height: fit-content;
+    flex-direction: column;
     box-sizing: border-box;
-
 }
-
-.login_card h2 {
-    font-size: 32px;
-    justify-self: center;
+/*forms h2*/
+.forms_card h2 {
+    font-size: 32px; /* resized*/
     margin-block: 15px;
-    color: var(--primary-crimson); 
+    color: var(--maroon); 
+    justify-self: center;
 }
-
+/*forms input email and password*/
 form input {
     width: 100%;
     height: 50px;
     padding: 12px;
     margin: 10px 0px;
-    border: 1px solid #ddd;
     border-radius: 16px;
+    border: 1px solid var(--border-light);
     box-sizing: border-box;
 }
+/*forms label*/
 label {
-    color: #364153;
     font-size: 14px;
+    color: var(--text-dark);
 }
-
-.btn-gold {
+/*button [login button]*/
+.button-gold {
     width: 100%;
-    background: var(--accent-gold);
-    border: none;
     padding: 14px;
     margin-bottom: 12px;
     border-radius: 16px;
     font-size: 16px;
+    background: var(--gold);
     font-weight: bold;
+    border: none;
 }
 
-.login_description {
+/* DESCRIPTION*/
+/*description*/
+.forms_description {
     width: 100%;
     min-height: 80px;
     border-radius: 16px;
@@ -91,10 +98,9 @@ label {
     align-content: center;
     box-sizing: border-box;
 }
-.login_description p {
-    padding-left: 10px;
-    padding-top: 4px;
-    margin: 0px !important;
+/*forms description paragraph*/
+.forms_description p {
+    padding: 4px 0px 0px 10px;
     font-size: 14px;
     color: var(--error-text);
 }

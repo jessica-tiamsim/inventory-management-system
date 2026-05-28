@@ -1,21 +1,4 @@
 /* Color Palette Configurations matching PRISM Branding Guidelines */
-:root {
-    --maroon-brand: #801B32;
-    --gold-accent: #FFBF00;
-    --text-primary: #1A1714;
-    --text-muted: #74706C;
-    --surface-white: #FFFFFF;
-    --border-light: #E8E6E3;
-    --bg-main: #F6F4F1;
-}
-
-body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    font-family: 'DM Sans', sans-serif;
-    margin: 0;
-}
-
 .content {
     padding: 30px;
     box-sizing: border-box;
@@ -23,45 +6,45 @@ body {
 
 /* Header Top Split Box Layout Engine Framework */
 .page-top-header {
+    width: 100%;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    width: 100%;
-    margin-bottom: 25px;
 }
 
 .header-left h1 {
     font-size: 34px;
     font-weight: 700;
-    color: var(--maroon-brand);
+    color: var(--maroon);
     margin: 0 0 4px 0;
 }
 
 .header-left .subtitle {
     font-size: 14px;
-    color: var(--text-muted);
+    color: var(--gray);
     margin: 0 0 20px 0;
 }
 
 /* Dropdown Filters Styling */
 .filters-row {
-    display: flex;
     gap: 12px;
+    display: flex;
 }
 
 .filters-row select {
     padding: 10px 40px 10px 18px;
     border: 1px solid var(--border-light);
     border-radius: 20px;
-    background-color: var(--surface-white);
-    color: #333;
-    font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* Dropdown dynamic shadow filter depth */
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
     cursor: pointer;
     outline: none;
     appearance: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* Dropdown dynamic shadow filter depth */
     background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A1714' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 16px center;
@@ -70,8 +53,8 @@ body {
 
 /* Yellow Button Contours matching the specific design file context */
 .btn-record-movement {
-    background-color: var(--gold-accent);
-    color: #4A0E1A; /* Dark contrast text inside button */
+    background-color: var(--gold);
+    color: var(--dark-maroon); /* Dark contrast text inside button */
     border: none;
     padding: 0 24px;
     height: 48px;
@@ -152,7 +135,7 @@ td {
 }
 
 .note-text-dim {
-    color: #444;
+    color: var(--text-dark);
 }
 
 /* Status Pill Contours */
@@ -191,6 +174,7 @@ td {
 }
 
 /* Modals & Backdrop Core System Overlays */
+/*I dont know the color choice needed for the modal */
 .modal-backdrop {
     display: none;
     position: fixed;
@@ -224,19 +208,33 @@ td {
 }
 
 .close-dismiss-btn {
-    background: none; border: none; font-size: 24px; cursor: pointer; color: var(--text-muted);
+    background: none; 
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer; 
+    color: var(--text-muted);
 }
 
 .field-block {
-    display: flex; flex-direction: column; margin-bottom: 16px;
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 16px;
 }
 
 .field-block label {
-    font-size: 12px; font-weight: 700; color: var(--text-primary); margin-bottom: 6px; text-transform: uppercase;
+    font-size: 12px; 
+    font-weight: 700; 
+    color: var(--text-primary); 
+    margin-bottom: 6px; 
+    text-transform: uppercase;
 }
 
 .field-block input, .field-block select, .field-block textarea {
-    padding: 10px 14px; border: 1px solid var(--border-light); border-radius: 6px; font-size: 14px; outline: none;
+    padding: 10px 14px; 
+    border: 1px solid var(--border-light); 
+    border-radius: 6px; 
+    font-size: 14px; 
+    outline: none;
 }
 
 .field-block textarea { height: 75px; resize: none; }
@@ -251,7 +249,7 @@ td {
 }
 
 .save-btn {
-    background: var(--maroon-brand); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
+    background: var(--maroon); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
 }
 
 /* Pagination Control Mechanics */

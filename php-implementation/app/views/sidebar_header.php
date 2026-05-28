@@ -1,12 +1,8 @@
-<?php
-// Replace underscores/dashes with spaces, and replace slashes with spaced slashes!
-$breadcrumbName = strtoupper(str_replace(['_', '-', '/'], [' ', ' ', ' / '], trim(CURRENT_ROUTE, '/')));
-?>
 
 <aside>
-    <div class="logo">
-        <div class="logo1">
-            <img src="<?= BASE_URL ?>/assets/logo.png" class="prism_image" alt="PRISM Logo">
+    <div class="header_div">
+        <div class="logo_div">
+            <img src="<?= BASE_URL ?>/assets/logo.png" class="logo_image" alt="PRISM Logo">
             <h1>PRISM</h1>
         </div>
         <div class="logo_user">
@@ -62,21 +58,18 @@ $breadcrumbName = strtoupper(str_replace(['_', '-', '/'], [' ', ' ', ' / '], tri
 
 <div class="main">
     <header>
-        <div class="upper">
+        <div class="header">
             <div class="left">
                 <div><img src="<?= BASE_URL ?>/assets/sidebar_icon.png" alt="Menu"></div>
                 <p>PRISM | Inventory Management</p>
             </div>
             <div class="right">
-                <div class="admin">
+                <div class="role">
                     <p><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
                 </div>
-                <div class="alex">
+                <div class="user">
                     <p><?= htmlspecialchars($_SESSION['username'] ?? 'User Name', ENT_QUOTES, 'UTF-8') ?></p>
                 </div> 
             </div>
-        </div>
-        <div class="lower">
-            <p>PRISM / INVENTORY MANAGEMENT / <?= $breadcrumbName ?></p>
         </div>
     </header>

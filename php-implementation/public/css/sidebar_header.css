@@ -1,91 +1,81 @@
 
-@import url('https://rsms.me/inter/inter.css');
-/*body(main window)*/
-body {
-    display: flex;
-    height: 100vh;
-    font-family: 'Inter';
-    background: green;
-    margin: 0px;
-}
-/*navigation bar*/
-
+/*NAVIGATION*/
+/*sidebar*/
 aside {
     width: 256px;
-    height: 100vh;
-    font-family: 'Inter';
-    background: linear-gradient(to bottom, #801B32, #5A1424);
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--maroon), var(--dark-maroon));
     display: flex;
     flex-direction: column;
 }
-
-.logo {
+/*header div*/
+.header_div {
     max-width: 256px;
     max-height: 120px;
     padding: 8px 16px;
-    color: white;
+    color: var(--white);
+    border-bottom: 1px solid var(--white-60);
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
-.logo1 {
-    display: flex;
+/*logo div*/
+.logo_div {
+    gap: 8px;
     max-width: 256px;
     height: 50px;
+    display: flex;
     align-items: center;
-    gap: 8px;
 }
+/*logo h1 [PRISM]*/
 .logo h1 {
     font-size: 32px;
     font-weight: 700;
     display: block;
 }
-
-.prism_image {
+/*logo image*/
+.logo_image {
     width: 49px;
     height: 41px;
     display: flex;
     align-content: center;
     flex-direction: column;
 }
-
+/*logo h1 [PRISM]*/
 .logo_user {
-    width: fit-content;
     height: 45px;
+    width: fit-content;
 }
-
+/*logo h1 [PRISM]*/
 .logo_user p {
     font-size: 12px;
-    color: rgb(255, 255, 255, 0.60);;
     margin-left: 25px;
+    color: var(--white-60);
 }
-/*navigation buttons*/
 
+/*NAV BUTTONS*/
+/*nav div*/
 nav {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Inter' !important;
     padding: 20px 10px;
     gap: 6px;
-    
+    display: flex;
+    flex-direction: column;
 }
 nav a{
-    display: flex;
-    max-width: 208px;
+    width: 208px;
     height: 48px;
     border-radius: 16px;
-    padding: 0px;
     padding-left: 16px;
     font-size: 16px;
     font-weight: 600;
     gap: 12px;
-    font-family: 'Inter';
-    color: white;
+    display: flex;
+    align-items: center;
+    color: var(--white);
     text-decoration: none;
 }
 nav a.active {
-    background: #FFBF00 !important;
-    color: maroon;
+    background: var(--gold) !important;
+    color: var(--maroon);
 }
 
 nav img{
@@ -95,14 +85,14 @@ nav img{
 }
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--hover-dark);
 }
 
 /*logout panel*/
 .user-panel {
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    margin-top: auto;
     padding: 16px;
+    border-top: 1px solid var(--white-60);
+    margin-top: auto;
     flex-direction: column;
 }
 .user{
@@ -113,7 +103,7 @@ nav a:hover {
     width: 40px;
     height: 40px;
     border-radius: 100px;
-    background-color: #FFBF00;
+    background-color: var(--gold);
 }
 .profile img {
     max-width: 40px;
@@ -126,128 +116,103 @@ nav a:hover {
 
 .status p{
     font-weight: 400;
-    margin: 0px;
     height: 20px;
+    color: var(--white);
     display: flex;
     flex-direction: column;
-    color: #ffffff;
 }
-#admin {
+#role {
     margin: 0px;
     height: 20px;
-    color: rgba(255, 255, 255, 0.6);
+    color: var(--white-60);
 }
 .user-panel a {
-    display: flex;
     font-size: 14px;
     font-weight: 600;
     width: 100%;
     height: 48px;
-    padding-top: 10px;
     margin-top: 12px;
     border-radius: 16px;
-    padding: 0px;
-    padding-inline: 10px;
     gap: 6px;
+    display: flex;
     border: none;
     justify-content: center;
-    align-content: center;
     text-decoration: none;
     cursor: pointer;
-    background: rgba(255, 255, 255, 0.10);
+    background: var(--hover-dark);
     box-sizing:border-box;
 }
 
 
 .logout_image {
-    align-self: center;
     max-width: 16px;
     max-height: 16px;
+    align-self: center;
 }
 #logout{
     width:fit-content;
     align-content: center;
-    color: white;
+    color: var(--white);
 }
+
 /*HEADER*/
 header{
-    display: flex;
-    width: 100%;
+    min-width: 100%;
     height: 112px;
-    background-color: white ;
+    display: flex;
+    background-color: var(--white);
     flex-direction: column;
     align-content: center;
 
 }
-.upper {
-    display: flex;
+.header {
     width: 100%;
     height: 84px;
     padding-left: 10px;
+    display: flex;
     align-items: center;
     flex-direction: row;
-    background-color: white;
+    background-color: var(--white);
     box-sizing: border-box;
-}
-.lower{
-    display: flex;
-    width: 100%;
-    height: 36px;
-    padding-left: 10px;
-    align-items: center;
-    background-color: #D0D0D0;
-    box-sizing: border-box;
-}
-.lower p {
-    font-size: 13px;
-    font-weight: 600;
-    margin: 0px;
-    padding: 0px;
 }
 .left {
+    gap: 16px;
     display: flex;
     width: fit-content;
     align-items: center;
     flex-direction: row;
-    gap: 16px;
 }
 .left img {
-    align-self: center;
     max-width: 33px;
     max-height: 28px;
-    border: black;
+    border: var(--black);
+    align-self: center;
 }
-.upper .left p {
+.header .left p {
     font-size: 20px;
     font-weight: 600;
 }
-.shape {
-    max-width: 33px;
-    max-height: 28px;
-    background-color: black;
-
-}
 .right {
-    display: flex;
+    gap: 16px;
+    padding-left: 10px;
     width: 200px;
     align-items: center;
     flex-direction: row;
     margin-left: auto;
-    gap: 16px;
-    padding-left: 10px;
-}
-.admin{
     display: flex;
+}
+.role{
     max-width: 75px;
     max-height: 35px;
     padding: 8px 14px;
     border-radius: 32px;
+    color: var(--white);
+    background-color: var(--maroon);
+    display: flex;
     justify-content: center;
     align-content: center;
-    color: white;
-    background-color: #801B32;
 }
-.admin p {
+.role p {
     font-size: 16px;
     font-weight: 500;
     padding: 0px;
@@ -255,13 +220,14 @@ header{
     justify-self: center;
     align-self: center;
 }
-.alex {
-    display: flex;
+.user {
+    
     width: 200px;
     height: 40px;
     margin-block-end: 0px;
+    display: flex;
 }
-.alex p {
+.user p {
     font-size: 14px;
     font-weight: 500;
     margin: 0px;
@@ -270,15 +236,16 @@ header{
 
 .main {
     flex: 1;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background-color: white;
+    background-color: var(--white);
 }
 .content {
+    height: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    height: 100%;
     box-sizing: border-box ;
-    background-color: #F5F5F5;
+    background-color: var(--white-bg);
 }

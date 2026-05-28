@@ -1,24 +1,6 @@
 /* =========================================
    PRISM REPORTS CSS (Universal for all tabs)
 ========================================= */
-
-:root {
-    --maroon: #801B32;
-    --white: #ffffff;
-    --bg: #f5f5f5;
-    --text: #333333;
-    --gray: #888888;
-    --border: #e0e0e0;
-}
-
-body {
-    display: flex;
-    height: 100vh;
-    font-family: 'Inter', Arial, sans-serif;
-    background: var(--bg);
-    color: var(--text);
-}
-
 .content {
     padding: 25px;
     overflow-y: auto;
@@ -73,7 +55,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    border: 1px solid #eaeaea;
+    border: 1px solid var(--border-light);
     transition: all 0.2s ease;
 }
 
@@ -85,11 +67,11 @@ body {
 
 .choices span.inactive-tab {
     background: var(--white);
-    color: #333;
+    color: var(--gray);
 }
 
 .choices span.inactive-tab:hover {
-    background: #f9f9f9;
+    background: var(--border-light);
 }
 
 /* Date Filters */
@@ -104,11 +86,11 @@ body {
 #date1, #date2 {
     padding: 8px 12px;
     border-radius: 8px;
-    background: #F3F4F6;
-    border: 1px solid #e0e0e0;
+    background: var(--white);
+    border: 1px solid var(--border-light);
     font-family: inherit;
     font-size: 13px;
-    color: #333;
+    color: var(--gray);
     outline: none;
 }
 
@@ -134,7 +116,7 @@ body {
 }
 
 .excel:hover {
-    background: #5A1424;
+    background: var(--maroon-dark);
 }
 
 /* Table Layout */
@@ -167,8 +149,8 @@ thead th:last-child { border-top-right-radius: 8px; }
 tbody td {
     padding: 16px 20px;
     font-size: 14px;
-    border-bottom: 1px solid #f0f0f0;
-    color: #444;
+    border-bottom: 1px solid var(--white);
+    color: var(--gray);
 }
 
 tbody tr:last-child td {
@@ -182,5 +164,5 @@ tbody tr:last-child td {
 .empty-state {
     text-align: center;
     padding: 50px !important;
-    color: #888;
+    color: var(--gray);
 }

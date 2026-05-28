@@ -1,19 +1,11 @@
-
 h3 {
     margin: 0px;
-}
-.dashboard-container {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background: white;
 }
 
 .welcome-text {
     display: flex   ;
     justify-self:flex-start;
-    color: #801B32;
+    color: var(--maroon);
     margin-top: 5px;
     margin-bottom: 10px;
     font-size: 28px;
@@ -29,7 +21,7 @@ h3 {
 }
 
 .stat-card {
-    background: white;
+    background: var(--white);
     padding: 5px 20px;
     border-radius: 15px;
     box-shadow: 0 -1px 4px 0 rgba(0, 0, 0, 0.25), 0 4px 6px -1px rgba(0, 0, 0, 0.10), 0 2px 4px -2px rgba(0, 0, 0, 0.10);   
@@ -45,7 +37,7 @@ h3 {
 
 .card-label { 
     font-size: 11px;
-    color: #777;
+    color: var(--gray);
     font-weight: 700;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
@@ -59,7 +51,7 @@ h3 {
 
 .card-sub {
     font-size: 11px;
-    color: #999;
+    color: var(--gray);
 }
 
 .color-red {
@@ -113,25 +105,25 @@ h3 {
 }
 
 .list-container ::-webkit-scrollbar-thumb {
-    background: #e0e0e0;
+    background: var(--white);
     border-radius: 10px;
 }
 
 .card-header h3 {
-    color: #801B32;
+    color: var(--maroon);
     font-size: 24px;
     font-weight: 700;
 }
 
 .sub-text {
-    color: #888;
+    color: var(--gray);
     font-size: 13px;
     margin-top: 5px;
 }
 
 .view-report-btn {
-    background: #801B32;
-    color: white;
+    background: var(--maroon);
+    color: var(--white);
     border: none;
     padding: 10px 20px;
     border-radius: 10px;
@@ -141,7 +133,7 @@ h3 {
 }
 
 .placeholder-text {
-    color: #bbb;
+    color: var(--gray);
     font-style: italic;
     margin-top: 50px;
     text-align: center;
