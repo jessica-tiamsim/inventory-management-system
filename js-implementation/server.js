@@ -20,9 +20,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 const sessionStore = new MySQLStore({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
-    password: process.env.DB_PASS,
+    password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
+
 app.use(session({
     key: 'prism_session',
     secret: process.env.SESSION_SECRET || 'fallback-secret',
@@ -48,11 +49,6 @@ app.use((req, res, next) => {
 
 const mainRoutes = require('./src/routes/index');
 app.use('/', mainRoutes);
-
-// Temporary Test Route
-app.get('/', (req, res) => {
-    res.send("<h2>PRISM Server is alive! Database connected. Ready to build routes.</h2>");
-});
 
 // Fallback Error Middleware
 app.use((err, req, res, next) => {
