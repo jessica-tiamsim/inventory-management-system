@@ -3,9 +3,13 @@
 }
 
 .content-header { 
-    margin-bottom: 5px; 
-    display: flex; 
-    flex-direction: column;
+    background: var(--white);
+    padding: 24px; /* Slightly increased padding so it breathes better */
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 20px;
+    width: 100%;
 }
         
 .content-lower {  
@@ -116,7 +120,7 @@ td {
 
 .modal-header {
     margin-bottom: 20px;
-    border-bottom: 1px solid var(overlay-head);
+    border-bottom: 1px solid var(--overlay-head);
     padding-bottom: 10px;
     display: flex;
     justify-content: space-between;
@@ -222,18 +226,31 @@ td {
 
 /* Parent container for input element and absolute icon */
 .search-wrapper {
-    width: 100%;       /* Allows the search bar to scale dynamically */   /* Prevents the input from stretching too wide */
-    position: relative; /* CRITICAL: Keeps the absolute search icon bounded inside this box */
+    width: 100%;       
+    position: relative; 
 }
 
-.search-wrapper .prism_image {
+/* 1. We position the BUTTON absolutely, not the image */
+.searchBtn {
+    position: absolute;
     right: 15px;
     top: 50%;
     transform: translateY(-50%);
-    width: 18px;        /* Restrict icon size so it fits elegantly */
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    padding: 5px; /* Adding a tiny bit of padding makes it easier to click! */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2; /* Ensures the button sits ON TOP of the input box */
+}
+
+/* 2. The image just controls its own size now */
+.searchBtn .prism_image {
+    width: 18px;        
     height: 18px;
-    position: absolute;
-    pointer-events: none; /* Prevents the icon from blocking input clicks */
+    /* We removed pointer-events: none so the image registers the click! */
 }
 
 .add_image  {

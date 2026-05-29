@@ -11,8 +11,9 @@ aside {
 /*header div*/
 .header_div {
     max-width: 256px;
-    max-height: 120px;
-    padding: 8px 16px;
+    max-height: 112px;
+    padding: 16px;
+    gap: 14px;
     color: var(--white);
     border-bottom: 1px solid var(--white-60);
     display: flex;
@@ -56,19 +57,21 @@ aside {
 /*nav div*/
 nav {
     padding: 20px 10px;
-    gap: 6px;
+    gap: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 nav a{
-    max-width: 208px;
+    width: 220px;
     height: 48px;
     border-radius: 16px;
-    padding: 0px 0px 0px 16px;
+    padding-left: 16px;
     font-size: 16px;
     font-weight: 600;
     gap: 12px;
     display: flex;
+    align-items: center;
     color: var(--white);
     text-decoration: none;
 }
@@ -132,12 +135,10 @@ nav a:hover {
     height: 48px;
     margin-top: 12px;
     border-radius: 16px;
-    padding: 10px 10px 0px 10px;
     gap: 6px;
     display: flex;
     border: none;
     justify-content: center;
-    align-content: center;
     text-decoration: none;
     cursor: pointer;
     background: var(--hover-dark);
@@ -192,12 +193,6 @@ header{
 .header .left p {
     font-size: 20px;
     font-weight: 600;
-}
-.shape {
-    max-width: 33px;
-    max-height: 28px;
-    background-color: var(--black);
-
 }
 .right {
     gap: 16px;
