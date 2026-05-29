@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/products.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/sidebar_header.css">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
     <?php include __DIR__ . '/sidebar_header.php'; ?>
@@ -21,26 +20,37 @@
                 </div>
                 <div class="content-lower">
                     <div class="filters-bar">
-                        <div class="search-wrapper">
-                            <input type="text" placeholder="Search by Product Name or SKU">
-                            <img class="prism_image" src="<?= BASE_URL ?>/assets/searchbar_icon.png" alt="Search">
+                        <div class="filters-bar">
+                            <form method="GET" action="<?= BASE_URL ?>/products" style="display: flex; gap: 15px; align-items: center; margin: 0; width: 100%;">
+                                
+                                <div class="search-wrapper">
+                                    <input type="text" name="search" placeholder="Search by Product Name or SKU" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
+                                    
+                                    <button type="submit" class="searchBtn">
+                                        <img class="prism_image" src="<?= BASE_URL ?>/assets/searchbar_icon.png" alt="Search">
+                                    </button>
+                                </div>
+
+                                <select name="category_filter" onchange="this.form.submit()">
+                                    <option value="">All Categories</option>
+                                    <?php foreach ($categories as $cat): ?>
+                                        <option value="<?= htmlspecialchars($cat['id']) ?>" <?= (isset($_GET['category_filter']) && $_GET['category_filter'] == $cat['id']) ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($cat['name']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+
+                                <select name="status_filter" onchange="this.form.submit()">
+                                    <option value="2" <?= (!isset($_GET['status_filter']) || $_GET['status_filter'] == '2') ? 'selected' : '' ?>>All Status</option>
+                                    <option value="1" <?= (isset($_GET['status_filter']) && $_GET['status_filter'] == '1') ? 'selected' : '' ?>>Active</option>
+                                    <option value="0" <?= (isset($_GET['status_filter']) && $_GET['status_filter'] == '0') ? 'selected' : '' ?>>Inactive</option>
+                                </select>
+                            </form>
+
+                            <button type="button" class="btn-new" onclick="openAddProductModal()"> 
+                                <img src="<?= BASE_URL ?>/assets/add_white.png" class="add_image" alt="Add">New Product
+                            </button>
                         </div>
-                        <select name="category_filter">
-                            <option value="">All Categories</option>
-                            <?php foreach ($categories as $cat): ?>
-                                <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <select name="status_filter">
-                            <option value="2">All Status</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
-                        </select>
-                        <button class="btn-new" onclick="openAddProductModal()"> 
-                            <img src="<?= BASE_URL ?>/assets/add_white.png" class="add_image" alt="Add">New Product
-                        </button>
-                    </div>
-                    
                 </div>
             </div>
 
@@ -161,7 +171,8 @@
         </div>
     </div>
 
-</div> <script>
+</div> 
+<script>
 function openAddProductModal() {
     document.getElementById('addProductModal').style.display = 'flex';
 }

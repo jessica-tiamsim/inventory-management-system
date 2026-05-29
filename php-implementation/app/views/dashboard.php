@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/dashboard.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/sidebar_header.css">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 </head>
 <body>
     <?php include __DIR__ . '/sidebar_header.php'; ?>
@@ -41,58 +40,115 @@
 
             <div class="main-grid">
                 
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Low Stock</h3>
-                            <p class="sub-text">Products at or below reorder threshold</p>
-                        </div>
-                        <button class="view-report-btn" onclick="location.href='<?= BASE_URL ?>/reports'">View Report</button>
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Low Stock</h3>
+                        <p class="sub-text">Products at or below reorder threshold</p>
                     </div>
-                    <div class="list-container">
-                        <?php if (count($low_items) > 0): ?>
-                            <ul class="dashboard-list">
-                                <?php foreach ($low_items as $item): ?>
-                                    <li class="list-item alert-item">
-                                        <span><strong><?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?></strong> (<?= htmlspecialchars($item['sku'], ENT_QUOTES, 'UTF-8') ?>)</span>
-                                        <span class="badged-alert-text">Qty: <?= $item['current_qty'] ?> / Min: <?= $item['reorder_threshold'] ?></span>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php else: ?>
-                            <p class="placeholder-text">✅ All stock levels are completely healthy.</p>
-                        <?php endif; ?>
-                    </div>
-                </section>
-
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Recent Activity</h3>
-                            <p class="sub-text">Latest stock movements</p>
-                        </div>
-                    </div>
-                    <div class="list-container">
-                        <?php if (count($activities) > 0): ?>
-                            <ul class="dashboard-list">
-                                <?php foreach ($activities as $act): 
-                                    $direction_text = ($act['movement_type'] === 'in') ? 'Added' : (($act['movement_type'] === 'out') ? 'Removed' : 'Adjusted');
-                                    $badge_modifier = strtolower($act['movement_type']);
-                                ?>
-                                    <li class="list-item">
-                                        <div>
-                                            <span class="activity-badge badge-<?= $badge_modifier ?>"><?= strtoupper($act['movement_type']) ?></span>
-                                            <span><?= $direction_text ?> <strong><?= $act['quantity'] ?></strong> units of <?= htmlspecialchars($act['name'], ENT_QUOTES, 'UTF-8') ?></span>
+                    <button class="view-report-btn" onclick="location.href='<?= BASE_URL ?>/reports'">View Report</button>
+                </div>
+                <div class="list-container">
+                    <?php if (count($low_items) > 0): ?>
+                        <ul class="dashboard-list">
+                            <?php foreach ($low_items as $item): 
+                                
+                                // 1. Convert to lowercase for easy matching
+                                $category = strtolower($item['category_name'] ?? '');
+                                
+                                // 2. The default fallback image if a category is missing
+                                $icon_file = 'default_icon.png'; 
+                                
+                                // 3. Match your exact PRISM categories
+                                if (strpos($category, 'meat') !== false) {
+                                    $icon_file = 'meat_icon.png';
+                                } elseif (strpos($category, 'seafood') !== false) {
+                                    $icon_file = 'seafood_icon.png';
+                                } elseif (strpos($category, 'vegetables') !== false) {
+                                    $icon_file = 'vegetables_icon.png';
+                                } elseif (strpos($category, 'fruits') !== false) {
+                                    $icon_file = 'fruits_icon.png';
+                                } elseif (strpos($category, 'dairy') !== false) {
+                                    $icon_file = 'dairy_icon.png';
+                                } elseif (strpos($category, 'dry goods') !== false) {
+                                    $icon_file = 'dry_goods_icon.png';
+                                } elseif (strpos($category, 'beverages') !== false) {
+                                    $icon_file = 'beverages_icon.png';
+                                } elseif (strpos($category, 'frozen') !== false) {
+                                    $icon_file = 'frozen_icon.png';
+                                } elseif (strpos($category, 'condiments') !== false || strpos($category, 'sauces') !== false) {
+                                    $icon_file = 'condiments_icon.png';
+                                } elseif (strpos($category, 'spices') !== false || strpos($category, 'seasonings') !== false) {
+                                    $icon_file = 'spices_icon.png';
+                                }
+                            ?>
+                                <li class="list-item alert-item">
+                                    <div class="item-info">
+                                        <span class="warning-icon" title="Category: <?= htmlspecialchars($item['category_name'] ?? 'Uncategorized') ?>">
+                                            <img src="<?= BASE_URL ?>/assets/<?= $icon_file ?>" class="cat-img-icon" alt="Icon">
+                                        </span>
+                                        
+                                        <div class="item-text">
+                                            <strong><?= htmlspecialchars($item['name'], ENT_QUOTES, 'UTF-8') ?></strong>
+                                            <small class="sku-text"><?= htmlspecialchars($item['sku'], ENT_QUOTES, 'UTF-8') ?></small>
                                         </div>
-                                        <small class="time-stamp"><?= date('M d, h:i A', strtotime($act['created_at'])) ?></small>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php else: ?>
-                            <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
-                        <?php endif; ?>
+                                    </div>
+                                    <div class="qty-badge">
+                                        <span class="current-qty"><?= (int)$item['current_qty'] ?> left</span>
+                                        <span class="threshold-qty">/ <?= (int)$item['reorder_threshold'] ?> min</span>
+                                    </div>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="placeholder-text">✅ All stock levels are completely healthy.</p>
+                    <?php endif; ?>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Recent Activity</h3>
+                        <p class="sub-text">Latest stock movements</p>
                     </div>
-                </section>
+                </div>
+                <div class="list-container">
+                    <?php if (count($activities) > 0): ?>
+                        <ul class="dashboard-list">
+                            <?php foreach ($activities as $act): 
+                                // Determine the wording based on the movement type
+                                $type = strtolower($act['movement_type']);
+                                $direction_text = 'Adjusted';
+                                $badge_text = 'ADJ';
+                                
+                                if ($type === 'in') {
+                                    $direction_text = 'Added';
+                                    $badge_text = 'IN';
+                                } elseif ($type === 'out') {
+                                    $direction_text = 'Removed';
+                                    $badge_text = 'OUT';
+                                }
+                            ?>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <span class="badge-pill badge-<?= $type ?>"><?= $badge_text ?></span>
+                                        <div class="item-text">
+                                            <span><?= $direction_text ?> <strong><?= $act['quantity'] ?></strong> units</span>
+                                            <small class="sku-text"><?= htmlspecialchars($act['name'], ENT_QUOTES, 'UTF-8') ?></small>
+                                        </div>
+                                    </div>
+                                    <small class="time-stamp" style="color: var(--gray); font-size: 11px;">
+                                        <?= date('M d, h:i A', strtotime($act['created_at'])) ?>
+                                    </small>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
+                    <?php endif; ?>
+                </div>
+            </section>
             </div>
         </div>
     </div>

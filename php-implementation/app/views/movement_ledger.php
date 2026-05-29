@@ -32,14 +32,17 @@
                 <a href="<?= BASE_URL ?>/reports/movement_ledger" class="tab-link"><span class="active">Movement Ledgers</span></a>
                 <a href="<?= BASE_URL ?>/reports/top_movers" class="tab-link"><span class="inactive-tab">Tops Movers</span></a>
             </div>
-            <form method="GET" action="<?= BASE_URL ?>/reports/top_movers" style="margin-top: 25px;">
-                <div class="date">
+            <form method="GET" action="<?= BASE_URL ?>/reports/movement_ledger" style="margin-top: 25px;">
+                <div class="date" style="display: flex; align-items: center;">
                     <label for="date1" style="margin-right: 5px;">From:</label>
-                    <input type="date" name="start_date" id="date1" value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>">
+                    <input type="date" name="start_date" id="date1" value="<?= htmlspecialchars($_GET['start_date'] ?? '') ?>" style="padding: 6px; border: 1px solid var(--border-light); border-radius: 4px;">
                     
                     <label for="date2" style="margin-left: 15px; margin-right: 5px;">To:</label>
-                    <input type="date" name="end_date" id="date2" value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>">
+                    <input type="date" name="end_date" id="date2" value="<?= htmlspecialchars($_GET['end_date'] ?? '') ?>" style="padding: 6px; border: 1px solid var(--border-light); border-radius: 4px;">
+                    
+                    <button type="submit" style="margin-left: 15px; padding: 8px 16px; background: var(--maroon); color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 600;">Apply Filter</button>
                 </div>
+            </form>
         </div>
 
         <div class="box2">

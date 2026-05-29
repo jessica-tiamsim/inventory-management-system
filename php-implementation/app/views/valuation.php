@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/valuation.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/sidebar_header.css">
-    <link href='https://fonts.googleapis.com/css?family=Inter:wght@400;500;600;700&display=swap' rel='stylesheet'>
 </head>
 <body>
     <?php include __DIR__ . '/sidebar_header.php'; ?>

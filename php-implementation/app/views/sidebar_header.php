@@ -32,7 +32,7 @@
         </a>
         
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-        <a href="<?= BASE_URL ?>/users" class="<?= (CURRENT_ROUTE == '/users') ? 'active' : '' ?>">
+        <a href="<?= BASE_URL ?>/profile" class="<?= (CURRENT_ROUTE == '/profile') ? 'active' : '' ?>">
             <img src="<?= BASE_URL ?>/assets/profile_icon.png" alt="Profile">
             <p>Profile</p>
         </a>
@@ -57,7 +57,6 @@
 </aside>
 
 <div class="main">
-    <header>
         <div class="header">
             <div class="left">
                 <div><img src="<?= BASE_URL ?>/assets/sidebar_icon.png" alt="Menu"></div>
@@ -72,4 +71,3 @@
                 </div> 
             </div>
         </div>
-    </header>

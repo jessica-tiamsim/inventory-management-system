@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRISM | Users</title>
-    <link rel="stylesheet" href="<?= BASE_URL ?>/css/users.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/global.css">
+    <link rel="stylesheet" href="<?= BASE_URL ?>/css/profile.css">
     <link rel="stylesheet" href="<?= BASE_URL ?>/css/sidebar_header.css">
 </head>
 <body>
@@ -19,9 +20,10 @@
             
             <div class="search-and-button-group">
                 <form method="GET" action="<?= BASE_URL ?>/profile" class="search-form">
-                    <div class="search-container">
+                    <div class="search-container" style="display: flex; align-items: center;">
                         <span class="search-icon">🔍</span>
-                        <input type="text" name="search" placeholder="Search by Username" class="search-input" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">  
+                        <input type="text" name="search" placeholder="Search by Username" class="search-input" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>" style="border: none; outline: none; padding-left: 8px;">
+                        <button type="submit" style="background: none; border: none; color: var(--maroon); font-weight: bold; cursor: pointer; margin-left: 10px;">Search</button>
                     </div>
                 </form>
                 
@@ -65,7 +67,7 @@
         <div class="modal-content">
             <h2 class="modal-title">Create Account</h2>
             
-            <form id="userForm" action="<?= BASE_URL ?>/users/add" method="POST">
+            <form id="userForm" action="<?= BASE_URL ?>/profile/add" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" class="form-input" required placeholder="Enter Full Name">
