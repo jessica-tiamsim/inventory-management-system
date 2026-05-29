@@ -114,7 +114,7 @@ switch ($requestUri) {
     case '/reports/low_stock':
         require_once __DIR__ . '/../app/controllers/reports_controller.php';
         $reports = new ReportsController($pdo);
-        $reports->index(); 
+        $reports->low_stock(); 
         break;
 
     case '/reports/valuation':
@@ -136,14 +136,14 @@ switch ($requestUri) {
         break;
 
         // ----------------- PROFILE / USERS -----------------
-    case '/users':
-        require_once __DIR__ . '/../app/controllers/users_controller.php';
+    case '/profile':
+        require_once __DIR__ . '/../app/controllers/profile_controller.php';
         $profile = new ProfileController($pdo);
         $profile->index();
         break;
 
-    case '/users/add':
-        require_once __DIR__ . '/../app/controllers/users_controller.php';
+    case '/profile/add':
+        require_once __DIR__ . '/../app/controllers/profile_controller.php';
         $profile = new ProfileController($pdo);
         $profile->add();
         break;
