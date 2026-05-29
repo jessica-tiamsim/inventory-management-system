@@ -20,6 +20,8 @@
 </head>
 <body>
 
+    <%- include('../views/sidebar_header') %>
+
     <div class="content">
         <div class="box1">
             <h1 class="page-title">Reports</h1>
@@ -32,13 +34,13 @@
                 <a href="/reports/top_movers" class="tab-link"><span class="inactive-tab">Tops Movers</span></a>
             </div>
             
-            <form method="GET" action="/reports/top_movers" style="margin-top: 25px;">
+            <form method="GET" action="/reports/movement_ledger" style="margin-top: 25px;">
                 <div class="date">
                     <label for="date1" style="margin-right: 5px;">From:</label>
-                    <input type="date" name="start_date" id="date1" value="">
+                    <input type="date" name="start_date" id="date1" value="<%= startDate || '' %>" onchange="this.form.submit()">
                     
                     <label for="date2" style="margin-left: 15px; margin-right: 5px;">To:</label>
-                    <input type="date" name="end_date" id="date2" value="">
+                    <input type="date" name="end_date" id="date2" value="<%= endDate || '' %>" onchange="this.form.submit()">
                 </div>
             </form>
         </div>
@@ -64,50 +66,43 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-left" style="white-space: nowrap;">May 25, 2026 09:15 AM</td>
-                        <td class="text-left"><strong>SKU-88492</strong></td>
-                        <td class="text-left">Wireless Mechanical Keyboard</td>
-                        <td class="text-center">
-                            <span class="badge-pill badge-in">Stock-In</span>
-                        </td>
-                        <td class="text-center qty-positive">+50</td>
-                        <td class="text-left">AdminJohn</td>
-                        <td class="text-left" style="color: #666; font-size: 13px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            Restock from Q2 supplier order
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="text-left" style="white-space: nowrap;">May 24, 2026 02:45 PM</td>
-                        <td class="text-left"><strong>SKU-11024</strong></td>
-                        <td class="text-left">Ergonomic Office Chair</td>
-                        <td class="text-center">
-                            <span class="badge-pill badge-out">Stock-Out</span>
-                        </td>
-                        <td class="text-center qty-negative">-12</td>
-                        <td class="text-left">System</td>
-                        <td class="text-left" style="color: #666; font-size: 13px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            Order checkout fulfillment
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td class="text-left" style="white-space: nowrap;">May 23, 2026 11:00 AM</td>
-                        <td class="text-left"><strong>SKU-44190</strong></td>
-                        <td class="text-left">USB-C Hub Multiport</td>
-                        <td class="text-center">
-                            <span class="badge-pill badge-adjustment">Adjustment</span>
-                        </td>
-                        <td class="text-center qty-negative">-2</td>
-                        <td class="text-left">ManagerSarah</td>
-                        <td class="text-left" style="color: #666; font-size: 13px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            Damaged unit found during audit
-                        </td>
-                    </tr>
+                    <% if (movements && movements.length > 0) { %>
+                        <% movements.forEach(row => { %>
+                            <tr>
+                                <td class="text-left" style="white-space: nowrap;">
+                                    <%= new Date(row.date_time).toLocaleString('en-US', { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true }) %>
+                                </td>
+                                <td class="text-left"><strong><%= row.sku %></strong></td>
+                                <td class="text-left"><%= row.product_name %></td>
+                                <td class="text-center">
+                                    <% if (row.movement_type === 'in') { %>
+                                        <span class="badge-pill badge-in">Stock-In</span>
+                                    <% } else if (row.movement_type === 'out') { %>
+                                        <span class="badge-pill badge-out">Stock-Out</span>
+                                    <% } else { %>
+                                        <span class="badge-pill badge-adjustment">Adjustment</span>
+                                    <% } %>
+                                </td>
+                                <td class="text-center <%= (row.movement_type === 'in' || (row.movement_type === 'adjustment' && row.quantity > 0)) ? 'qty-positive' : 'qty-negative' %>">
+                                    <%= (row.movement_type === 'in' || (row.movement_type === 'adjustment' && row.quantity > 0)) ? '+' : '' %><%= row.quantity %>
+                                </td>
+                                <td class="text-left"><%= row.recorded_by || 'System' %></td>
+                                <td class="text-left" style="color: #666; font-size: 13px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;" title="<%= row.notes %>">
+                                    <%= row.notes || '--' %>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="7" class="empty-state">
+                                No movement transaction records found inside selected range profiles.
+                            </td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
     </div>
+
 </body>
 </html>
