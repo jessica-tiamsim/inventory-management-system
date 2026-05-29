@@ -35,7 +35,7 @@ const ProfileModel = {
     createUser: async (username, email, passwordHash, role) => {
         const query = `
             INSERT INTO users (username, email, password_hash, role) 
-            VALUES (?, ?, ?, ?, 'active')
+            VALUES (?, ?, ?, ?)
         `;
         const [result] = await db.execute(query, [username, email, passwordHash, role || 'staff']);
         return result;
