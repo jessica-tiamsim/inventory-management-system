@@ -2,16 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/product_controller');
-
-/**
- * Route safeguard middleware tracking user session parameters 
- */
-const verifySession = (req, res, next) => {
-    if (req.session && req.session.user) {
-        return next();
-    }
-    res.redirect('/login?error=unauthorized');
-};
+const { verifySession } = require('../middlewares/authMiddleware');
 
 // --- Protected Product Module Resource Endpoints ---
 
