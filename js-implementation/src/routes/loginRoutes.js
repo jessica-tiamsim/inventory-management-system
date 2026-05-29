@@ -10,7 +10,7 @@ const validateMiddleware = (req, res, next) => {
         // Safely catch structural flaws and present them inside .forms_description
         return res.render('auth/login', { error: error.details[0].message });
     }
-    next();
+    next(); 
 };
 
 // Route mapping tracking actions to endpoints
