@@ -8,7 +8,7 @@ class ProfileController {
         $this->pdo = $pdo;
     }
 
-    // 1. DISPLAY THE USERS PAGE (Your existing code)
+    // 1. DISPLAY THE USERS PAGE
     public function index() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             header("Location: " . BASE_URL . "/login");
@@ -34,10 +34,10 @@ class ProfileController {
             $users = [];
         }
 
-        require_once __DIR__ . '/../views/users.php';
+        require_once __DIR__ . '/../views/profile.php';
     }
 
-    // 2. PROCESS NEW USER CREATION (New Code!)
+    // 2. PROCESS NEW USER CREATION
     public function add() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             header("Location: " . BASE_URL . "/login");
@@ -54,7 +54,8 @@ class ProfileController {
             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
             try {
-                $sql = "INSERT INTO users (username, email, password, role) VALUES (:user, :email, :pass, :role)";
+                // FIX: Changed 'password' to 'password_hash' to match your database schema
+                $sql = "INSERT INTO users (username, email, password_hash, role) VALUES (:user, :email, :pass, :role)";
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([
                     'user' => $username,
@@ -64,13 +65,13 @@ class ProfileController {
                 ]);
                 
                 // Redirect back to profile page on success
-                header("Location: " . BASE_URL . "/users?success=user_added");
+                header("Location: " . BASE_URL . "/profile?success=user_added");
                 exit();
                 
             } catch (PDOException $e) {
                 error_log("User Creation Error: " . $e->getMessage());
                 // Redirect back with an error message
-                header("Location: " . BASE_URL . "/users?error=creation_failed");
+                header("Location: " . BASE_URL . "/profile?error=creation_failed");
                 exit();
             }
         }

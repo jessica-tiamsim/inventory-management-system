@@ -48,10 +48,12 @@ class DashboardController {
         ")->fetchColumn();
 
         // 6. Low Stock Items List (Updated: product_name -> name, p.product_id -> p.id, product_is_active -> is_active)
+        // 6. Low Stock Items List (Now joined with Categories!)
         $low_items = $this->pdo->query("
-            SELECT p.sku, p.name, p.reorder_threshold, COALESCE(stock.qty, 0) as current_qty
+            SELECT p.sku, p.name, p.reorder_threshold, COALESCE(stock.qty, 0) as current_qty, c.name as category_name
             FROM products p
             LEFT JOIN $current_stock_subquery AS stock ON p.id = stock.product_id
+            LEFT JOIN categories c ON p.category_id = c.id
             WHERE p.is_active = 1 AND COALESCE(stock.qty, 0) <= p.reorder_threshold
             ORDER BY current_qty ASC LIMIT 5
         ")->fetchAll(PDO::FETCH_ASSOC);

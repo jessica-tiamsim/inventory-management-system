@@ -10,27 +10,58 @@ class ProductsController {
     }
 
     /**
-     * 1. DISPLAY THE CATALOG VIEW
+     * 1. DISPLAY THE CATALOG VIEW (With Search & Filters)
      * Triggered when visiting: /products
      */
     public function index() {
         // Guard Check: Protect the route from logged-out users
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            // FIXED: Added BASE_URL for absolute routing
             header("Location: " . BASE_URL . "/login?error=unauthorized");
             exit();
         }
 
+        // 1. Capture all three filters from the URL (from our GET form)
+        $search = trim($_GET['search'] ?? '');
+        $category_filter = $_GET['category_filter'] ?? '';
+        $status_filter = $_GET['status_filter'] ?? '2'; // '2' is our custom code for "All Status"
+
+        // 2. Build dynamic database conditions
+        $conditions = [];
+        $params = [];
+
+        if ($search !== '') {
+            // THE FIX: Using unique placeholders so PDO doesn't crash!
+            $conditions[] = "(p.name LIKE :search_name OR p.sku LIKE :search_sku)";
+            $params['search_name'] = '%' . $search . '%';
+            $params['search_sku']  = '%' . $search . '%';
+        }
+        if ($category_filter !== '') {
+            $conditions[] = "p.category_id = :category";
+            $params['category'] = $category_filter;
+        }
+        if ($status_filter !== '2') { // Only filter status if it's NOT '2' (All)
+            $conditions[] = "p.is_active = :status";
+            $params['status'] = $status_filter;
+        }
+
+        // 3. Assemble the WHERE clause dynamically
+        $where_clause = count($conditions) > 0 ? "WHERE " . implode(" AND ", $conditions) : "";
+
         try {
-            // Fetch complete catalog with category text matching Page 12 requirements
+            // 4. Run the combined query to fetch products
             $catalog_sql = "
                 SELECT p.id, p.sku, p.name, p.description, p.unit_price, p.unit_cost, p.reorder_threshold, p.is_active, c.name as category_name 
                 FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
-                ORDER BY p.created_at DESC";
-            $products = $this->pdo->query($catalog_sql)->fetchAll(PDO::FETCH_ASSOC);
+                $where_clause
+                ORDER BY p.created_at DESC
+            ";
+            
+            $stmt = $this->pdo->prepare($catalog_sql);
+            $stmt->execute($params);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            // Fetch categories to populate your modal & filters dropdowns dynamically
+            // Fetch categories to populate the dropdown filters and add/edit modals
             $categories = $this->pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
         } catch (PDOException $e) {
@@ -39,7 +70,7 @@ class ProductsController {
             $categories = [];
         }
 
-        // Send variables ($products, $categories) safely into the view
+        // Load the view and pass the variables to the HTML
         require_once __DIR__ . '/../views/products.php';
     }
 
@@ -50,7 +81,6 @@ class ProductsController {
     public function add() {
         // Guard Check
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            // FIXED: Added BASE_URL for absolute routing
             header("Location: " . BASE_URL . "/login?error=unauthorized");
             exit();
         }
@@ -84,22 +114,21 @@ class ProductsController {
                     'supplier_name'     => $supplier_name
                 ]);
 
-                // FIXED: Added BASE_URL to prevent the /products/products relative routing loop
+                // Success! Redirect safely using absolute URL
                 header("Location: " . BASE_URL . "/products?success=product_added");
                 exit();
 
             } catch (PDOException $e) {
-                // If it crashes (e.g., duplicate SKU entry), capture error log and bounce back safely
                 error_log("Failed to insert product: " . $e->getMessage());
-                // FIXED: Added BASE_URL for absolute routing
                 header("Location: " . BASE_URL . "/products?error=save_failed");
                 exit();
             }
         }
     }
+
     /**
      * 3. PROCESS DELETION
-     * Triggered by /product/delete?id=123
+     * Triggered by /products/delete?id=123
      */
     public function delete() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -129,7 +158,7 @@ class ProductsController {
 
     /**
      * 4. DISPLAY EDIT FORM & PROCESS UPDATES
-     * Triggered by /product/edit?id=123
+     * Triggered by /products/edit?id=123
      */
     public function edit() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
@@ -175,7 +204,7 @@ class ProductsController {
                 exit();
             } catch (PDOException $e) {
                 error_log("Failed to update product: " . $e->getMessage());
-                $error = "Failed to update product.";
+                // In a real app, you might pass $error down to the view to show a red alert box
             }
         }
 
@@ -189,7 +218,7 @@ class ProductsController {
             exit();
         }
 
-        // Fetch categories for the dropdown
+        // Fetch categories for the dropdown in the edit form
         $categories = $this->pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
         // Load the Edit View

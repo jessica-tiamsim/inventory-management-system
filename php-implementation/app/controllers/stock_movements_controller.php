@@ -26,8 +26,7 @@ class StockMovementsController {
         $filter_type = $_GET['type'] ?? 'all';
 
         try {
-            // Fetch Products for the dropdowns (Modal & Filters)
-            // Note: matching 'is_active = 1' instead of status='active' per your DB setup
+            // Fetch Products for the dropdowns
             $products_stmt = $this->pdo->query("SELECT id, sku, name FROM products WHERE is_active = 1 ORDER BY name ASC");
             $products = $products_stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -40,8 +39,9 @@ class StockMovementsController {
                 $params['sku'] = $filter_sku;
             }
             if ($filter_type !== 'all') {
-                $conditions[] = "m.type = :type";
-                $params['type'] = $filter_type;
+                // Map the HTML filter to the correct DB column and lowercase it
+                $conditions[] = "m.movement_type = :type";
+                $params['type'] = strtolower($filter_type);
             }
 
             $where_clause = count($conditions) > 0 ? "WHERE " . implode(" AND ", $conditions) : "";
@@ -58,9 +58,9 @@ class StockMovementsController {
             $total_pages = ceil($total_rows / $limit);
 
             // Fetch the actual movement data
-            // Assumes stock_movements has user_id, product_id, type, quantity, notes
+            // We use UPPER(m.movement_type) AS type and m.note AS notes so your HTML doesn't break!
             $sql = "
-                SELECT m.created_at, p.name AS product_name, m.type, m.quantity, u.username, m.notes 
+                SELECT m.created_at, p.name AS product_name, UPPER(m.movement_type) AS type, m.quantity, u.username, m.note AS notes 
                 FROM stock_movements m
                 JOIN products p ON m.product_id = p.id
                 LEFT JOIN users u ON m.user_id = u.id
@@ -100,18 +100,16 @@ class StockMovementsController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id = (int)$_POST['product_id'];
-            $type = $_POST['type']; // IN, OUT, ADJUSTMENT
+            // Convert uppercase HTML type to lowercase ENUM for database
+            $type = strtolower($_POST['type']); 
             $quantity = (int)$_POST['quantity'];
             $notes = trim($_POST['notes'] ?? '');
             
-            // Fallback user ID in case session data isn't fully structured yet
             $user_id = $_SESSION['user_id'] ?? 1; 
 
             try {
-                $this->pdo->beginTransaction();
-
-                // 1. Log to ledger
-                $stmt = $this->pdo->prepare("INSERT INTO stock_movements (product_id, user_id, type, quantity, notes, created_at) VALUES (:pid, :uid, :type, :qty, :notes, NOW())");
+                // Just log to the ledger! (We removed the broken update to `current_qty`)
+                $stmt = $this->pdo->prepare("INSERT INTO stock_movements (product_id, user_id, movement_type, quantity, note) VALUES (:pid, :uid, :type, :qty, :notes)");
                 $stmt->execute([
                     'pid' => $product_id,
                     'uid' => $user_id,
@@ -120,19 +118,10 @@ class StockMovementsController {
                     'notes' => $notes
                 ]);
 
-                // 2. Update Master Inventory Math
-                $math_operator = ($type === 'IN' || $type === 'ADJUSTMENT' && $quantity > 0) ? '+' : '-';
-                $update_qty = abs($quantity); // Ensure we don't accidentally subtract a negative
-
-                $update_stmt = $this->pdo->prepare("UPDATE products SET current_qty = current_qty {$math_operator} :qty WHERE id = :pid");
-                $update_stmt->execute(['qty' => $update_qty, 'pid' => $product_id]);
-
-                $this->pdo->commit();
                 header("Location: " . BASE_URL . "/stock-movement?success=recorded");
                 exit();
 
             } catch (PDOException $e) {
-                $this->pdo->rollBack();
                 error_log("Transaction Failed: " . $e->getMessage());
                 header("Location: " . BASE_URL . "/stock-movement?error=failed");
                 exit();

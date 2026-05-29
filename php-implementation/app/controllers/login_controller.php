@@ -95,23 +95,12 @@ class AuthController {
 
     // --- Handles GET requests to /logout ---
     public function logout() {
-        // Clear all session variables
-        $_SESSION = [];
-        
-        // Destroy the session cookie
-        if (ini_get("session.use_cookies")) {
-            $params = session_get_cookie_params();
-            setcookie(session_name(), '', time() - 42000,
-                $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"]
-            );
-        }
-        
-        // Destroy the session server-side 
+        // 1. Destroy the session
+        session_unset();
         session_destroy();
-        
-        // Redirect to login page
-        header("Location: /login");
+
+        // 2. Load the beautiful logout success view instead of redirecting
+        require_once __DIR__ . '/../views/logout.php';
         exit();
     }
 }
