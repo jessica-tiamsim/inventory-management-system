@@ -9,21 +9,28 @@
     width: 100%;
     margin-bottom: 25px;
     display: flex;
+    background: var(--white);
+    padding: 24px; /* Slightly increased padding so it breathes better */
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+
     justify-content: space-between;
     align-items: flex-start;
 }
 
 .header-left h1 {
-    font-size: 34px;
-    font-weight: 700;
     color: var(--maroon);
-    margin: 0 0 4px 0;
+    font-size: 28px;
+    font-weight: 700;
+    padding: 0;
+    margin: 0 0 5px 0;
 }
 
 .header-left .subtitle {
-    font-size: 14px;
+    font-size: 13px;
     color: var(--gray);
-    margin: 0 0 20px 0;
+    margin: 0;
 }
 
 /* Dropdown Filters Styling */

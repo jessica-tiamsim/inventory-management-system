@@ -11,8 +11,9 @@ aside {
 /*header div*/
 .header_div {
     max-width: 256px;
-    max-height: 120px;
-    padding: 8px 16px;
+    max-height: 112px;
+    padding: 16px;
+    gap: 14px;
     color: var(--white);
     border-bottom: 1px solid var(--white-60);
     display: flex;
@@ -56,12 +57,13 @@ aside {
 /*nav div*/
 nav {
     padding: 20px 10px;
-    gap: 6px;
+    gap: 8px;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 nav a{
-    width: 208px;
+    width: 220px;
     height: 48px;
     border-radius: 16px;
     padding-left: 16px;
