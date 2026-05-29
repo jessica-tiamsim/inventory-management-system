@@ -1,10 +1,6 @@
 const db = require('../../config/db');
 
 const ProductModel = {
-    /**
-     * Aggregates dynamic metrics for the system landing dashboard.
-     * Modified to use 'movement_type' and match lowercase ENUM states ('in', 'out', 'adjustment').
-     */
     getDashboardStats: async () => {
         const query = `
             SELECT 
@@ -27,10 +23,6 @@ const ProductModel = {
         return rows[0]; 
     },
 
-    /**
-     * Identifies items falling behind safe inventory thresholds by scanning running transactional totals.
-     * Modified to use 'movement_type' and match lowercase ENUM states ('in', 'out', 'adjustment').
-     */
     getLowStockProducts: async () => {
         const query = `
             SELECT p.name, COALESCE(SUM(CASE 
@@ -77,7 +69,21 @@ const ProductModel = {
             INSERT INTO products (sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name, is_active) 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1)
         `;
-        const [result] = await db.execute(query, [sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name]);
+        
+        const baseCategoryId = (category_id && category_id !== '' && category_id !== '#' && !isNaN(category_id)) 
+            ? parseInt(category_id, 10) 
+            : null;
+        
+        const [result] = await db.execute(query, [
+            sku, 
+            name, 
+            description || null, 
+            baseCategoryId, 
+            unit_cost, 
+            unit_price, 
+            reorder_threshold, 
+            supplier_name || null
+        ]);
         return result;
     },
 

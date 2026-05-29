@@ -1,4 +1,5 @@
 const productModel = require('../models/productModel');
+// const categoryModel = require('../models/categoryModel'); 
 
 const productController = {
     getProductsPage: async (req, res) => {
@@ -12,8 +13,11 @@ const productController = {
                 results = await productModel.getAllProducts();
             }
 
+            // const categoriesList = await categoryModel.getAllCategories(); 
+
             res.render('products', {
                 products: results,
+                categories: [], // Replace with categoriesList when ready
                 currentSearch: searchTerms,
                 currentPath: '/products'
             });
@@ -25,9 +29,21 @@ const productController = {
 
     postCreateProduct: async (req, res) => {
         try {
-            const { sku, name, description, category, unit_cost, unit_price, reorder_threshold, supplier_name } = req.body;
+            let { sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name } = req.body;
 
-            await productModel.createProduct(sku, name, description, category, unit_cost, unit_price, reorder_threshold, supplier_name);
+            sku = sku ? sku.trim() : null;
+            name = name ? name.trim() : null;
+            description = description && description.trim() !== '' ? description.trim() : null;
+            supplier_name = supplier_name && supplier_name.trim() !== '' ? supplier_name.trim() : null;
+
+            category_id = category_id && category_id.trim() !== '' && category_id !== '#' ? parseInt(category_id, 10) : null;
+            
+            // Force numeric formats so empty inputs don't crash MySQL decimals
+            unit_cost = unit_cost && unit_cost !== '' ? parseFloat(unit_cost) : 0.00;
+            unit_price = unit_price && unit_price !== '' ? parseFloat(unit_price) : 0.00;
+            reorder_threshold = reorder_threshold && reorder_threshold !== '' ? parseInt(reorder_threshold, 10) : 10;
+
+            await productModel.createProduct(sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name);
             res.redirect('/products');
         } catch (err) {
             console.error('Database insertion error dropped:', err);

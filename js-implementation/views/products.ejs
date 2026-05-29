@@ -21,7 +21,7 @@
                 <div class="filters-bar">
                     <div class="search-wrapper">
                         <input type="text" placeholder="Search by Product Name or SKU">
-                        <img class="prism_image" src="#" alt="Search">
+                        <img class="prism_image" src="#">
                     </div>
                     <select name="category_filter">
                         <option value="">All Categories</option>
@@ -60,7 +60,7 @@
                         <td><code><%= product.sku %></code></td>
                         <td><strong><%= product.name %></strong></td>
                         <td><%= product.description || 'N/A' %></td>
-                        <td><%= product.category_id || Unassigned %></td>
+                        <td><%= product.category_id || 'Unassigned' %></td>
                         <td><%= parseFloat(product.unit_price).toFixed(2) %></td>
                         <td><%= parseFloat(product.unit_cost).toFixed(2) %></td>
                         <td><%= product.reorder_threshold %></td>
@@ -81,7 +81,7 @@
                     <% } else { %>
                 <tr>
                     <td colspan="9" style="text-align: center; padding: 40px; color: #a0aec0;">
-                        📦 No products found in the database. Click "+ New Product" to add one!
+                         No products found in the database. Click "+ New Product" to add one!
                     </td>
                 </tr>
                 <% } %>
@@ -97,7 +97,7 @@
                 <button class="close-btn" onclick="closeAddProductModal()">&times;</button>
             </div>
             
-            <form method="POST" action="#">
+            <form method="POST" action="/products/add">
                 <div class="form-grid">
                     <div class="input-group">
                         <label for="sku">SKU Code *</label>
@@ -118,7 +118,12 @@
                     <label for="category_id">Category</label>
                     <select id="category_id" name="category_id">
                         <option value="">Select Category</option>
-                            <option value="#">NAME</option>
+                            <option value="1">NAME</option>
+                            <% if (typeof categories !== 'undefined') { %>
+                                <% categories.forEach(function(cat) { %>
+                                    <option value="<%= cat.id %>"><%= cat.name %></option>
+                                <% }); %>
+                             <% } %>
                     </select>
                 </div>
 
