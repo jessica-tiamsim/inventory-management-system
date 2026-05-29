@@ -8,9 +8,10 @@ const dashboardRoutes = require('./dashboardRoutes');
 const productsRoutes = require('./productsRoutes');
 const profileRoutes = require('./profileRoutes');
 const stockMovementRoutes = require('./stockmovementRoutes');
+const lowStockRoutes = require('./lowStockRoutes');
+const valuationRoutes = require('./valuationRoutes');
 
-
-// 2. Delegate the traffic!
+// 1. Delegate the traffic!
 // Anything related to auth (login, logout) goes to loginRoutes.js
 router.use('/', loginRoutes); 
 
@@ -23,6 +24,14 @@ router.use('/dashboard', dashboardRoutes);
 // Anything starting with /products goes to productsRoutes.js
 router.use('/products', productsRoutes); 
 
+//
 router.use('/stock_movement', stockMovementRoutes); 
+
+//
+router.use('/reports/low_stock', lowStockRoutes);
+
+//
+router.use('/reports/valuation', valuationRoutes);
+
 
 module.exports = router;
