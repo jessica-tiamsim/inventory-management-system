@@ -1,4 +1,4 @@
-const db = require('../../config/db'); // Adjust path if needed
+const db = require('../../config/db'); 
 
 const ValuationModel = {
     /**
@@ -9,29 +9,31 @@ const ValuationModel = {
         let query = `
             SELECT 
                 c.name AS category_name,
-                SUM(
-                    p.unit_cost * COALESCE((
-                        SELECT SUM(
-                            CASE 
-                                WHEN sm.movement_type = 'out' AND sm.quantity > 0 THEN -sm.quantity
-                                ELSE sm.quantity
-                            END
-                        )
-                        FROM stock_movements sm
-                        WHERE sm.product_id = p.id
-                    ), 0)
-                ) AS total_value
+                ROUND(SUM(p.unit_cost * COALESCE(sm_summary.current_quantity, 0)), 2) AS total_value
             FROM products p
             LEFT JOIN categories c ON p.category_id = c.id
+            -- Pre-calculate quantities per product to avoid correlated subquery flaws
+            LEFT JOIN (
+                SELECT 
+                    product_id,
+                    SUM(
+                        CASE 
+                            WHEN LOWER(movement_type) = 'out' THEN -ABS(quantity)
+                            ELSE ABS(quantity)
+                        END
+                    ) AS current_quantity
+                FROM stock_movements
+                GROUP BY product_id
+            ) sm_summary ON p.id = sm_summary.product_id
             WHERE p.is_active = 1
             GROUP BY c.id, c.name
         `;
 
-        // Apply sorting criteria based on what your EJS dropdown expects
+        // Apply sorting criteria
         if (sortBy === 'category') {
             query += ` ORDER BY c.name ASC`;
         } else {
-            query += ` ORDER BY total_value DESC`; // Default: Highest value first
+            query += ` ORDER BY total_value DESC`; 
         }
 
         const [rows] = await db.execute(query);
