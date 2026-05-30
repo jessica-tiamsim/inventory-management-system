@@ -17,5 +17,6 @@ const validateMiddleware = (req, res, next) => {
 router.get('/login', authController.getLogin);
 router.post('/login', validateMiddleware, authController.postLogin);
 router.get('/logout', authController.logout);
+router.ger('logout-success', authController.getLogoutSuccess);
 
 module.exports = router;

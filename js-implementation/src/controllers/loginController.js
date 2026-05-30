@@ -29,7 +29,7 @@ const authController = {
 
             // 👇 Custom message 2: The Deactivated Check
             // (Note: You will need to add a 'status' or 'is_active' column to your database later to fully use this!)
-            if (user.status === 'deactivated') {
+            if (user.status === 0) {
                 return res.render('login', { error: 'Account Suspended: This account has been deactivated. Please contact your system administrator.' });
             }
 
@@ -59,9 +59,17 @@ const authController = {
 
     logout: (req, res) => {
         req.session.destroy((err) => {
-            if (err) console.error('Session destruction issue:', err);
-            res.redirect('/login'); 
+            if (err) {
+                console.error('Session destruction issue:', err);
+                res.redirect('/dashboard'); 
+            }
+            res.clearCookie('prism_session');
+            res.redirect('/logout-success');
         });
+    },
+
+    getLogoutSuccess: (req, res) => {
+        res.render('logout-success');
     }
 };
 
