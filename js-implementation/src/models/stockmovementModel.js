@@ -9,7 +9,9 @@ const stockmovementModel = {
      */
     getMovementsByFilters: async (sku, type) => {
         let query = `
-            SELECT sm.*, sm.movement_type AS type, sm.note, p.name AS product_name, p.sku, u.username AS recorded_by
+            SELECT sm.*, sm.movement_type AS type, sm.note, 
+            DATE_FORMAT(sm.created_at, '%Y-%m-%d %h:%i %p') AS date, 
+            p.name AS product_name, p.sku, u.username AS recorded_by
             FROM stock_movements sm
             JOIN products p ON sm.product_id = p.id
             JOIN users u ON sm.user_id = u.id
@@ -66,7 +68,9 @@ const stockmovementModel = {
      */
     getRecentActivity: async () => {
         const query = `
-            SELECT sm.*, sm.movement_type AS type, sm.note, p.name AS product_name, u.username AS recorded_by
+            SELECT sm.*, sm.movement_type AS type, sm.note, 
+            DATE_FORMAT(sm.created_at, '%Y-%m-%d %h:%i %p') AS date, 
+            p.name AS product_name, p.sku, u.username AS recorded_by
             FROM stock_movements sm
             JOIN products p ON sm.product_id = p.id
             JOIN users u ON sm.user_id = u.id
