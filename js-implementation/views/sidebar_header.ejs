@@ -10,27 +10,27 @@
     </div>
     
     <nav>
-        <a href="/dashboard">
+        <a href="/dashboard" class="<%= current === 'dashboard' ? 'active' :  '' %>">
             <img src="/assets/dash_icon.png" alt="Dashboard">
             <p>Dashboard</p>
         </a>
         
-        <a href="/products">
+        <a href="/products" class="<%= current === 'products' ? 'active' :  '' %>">
             <img src="/assets/products_icon.png" alt="Products">
             <p>Products</p>
         </a>
         
-        <a href="/stock_movement">
+        <a href="/stock_movement" class="<%= current === 'stock_movement' ? 'active' :  '' %>">
             <img src="/assets/move_icon.png" alt="Stock Movements">
             <p>Stock Movements</p>
         </a>
         
-        <a href="/reports/low_stock">
+        <a href="/reports/low_stock" class="<%= current === 'low_stock' ? 'active' :  '' %>">
             <img src="/assets/report_icon.png" alt="Reports">
             <p>Reports</p>
         </a>
         
-        <a href="/profile">
+        <a href="/profile" class="<%= current === 'profile' ? 'active' :  '' %>">
             <img src="/assets/profile_icon.png" alt="Profile">
             <p>Profile</p>
         </a>
@@ -47,7 +47,7 @@
             </div>
         </div>
         <a href="/logout">
-            <img src="/assets/sidebar_icon.png" class="logout_image" alt="Logout">
+            <img src="/assets/logout_icon.png" class="logout_image" alt="Logout">
             <p id="logout">Logout</p>
         </a>
     </div>
@@ -57,7 +57,7 @@
     <header>
         <div class="header">
             <div class="left">
-                <div><img src="assets/menu-icon.png"></div>
+                <div><img src="/assets/sidebar_icon.png"></div>
                 <p>PRISM | Inventory Management</p>
             </div>
             <div class="right">

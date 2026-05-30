@@ -10,7 +10,7 @@
 </head>
 <body>
     <!--require sidebar header for php and ejs-->
-    <%- include('sidebar_header') %>
+    <%- include('sidebar_header', { current: 'dashboard' }) %>
     <div class="content">
             <h1 class="welcome-text">Welcome back, <%= user.username %></h1>
 
@@ -44,7 +44,7 @@
                             <h3>Low Stock</h3>
                             <p class="sub-text">Products at or below reorder threshold</p>
                         </div>
-                        <button class="view-report-btn" onclick="location.href='#'">View Report</button>
+                        <button class="view-report-btn" onclick="location.href='/reports/low_stock'">View Report</button>
                     </div>
                     <div class="list-container">
                             <ul class="dashboard-list">
