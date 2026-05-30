@@ -1,5 +1,12 @@
 const userModel = require('../models/userModels');
-const bcrypt = require('bcryptjs'); 
+const bcrypt = require('bcryptjs');
+
+const requireAuth = (req, res, next) => {
+    if (req.session && req.session.user) {
+        return next();
+    }
+    return res.redirect('/login');
+};
 
 const authController = { 
     getLogin: (req, res) => {
@@ -23,19 +30,19 @@ const authController = {
             const user = await userModel.findByUsernameOrEmail(username_email);
             
             if (!user) {
-                // 👇 Custom message 1
+                //  Custom message 1
                 return res.render('login', { error: 'Error: The username/email or password is incorrect.' });
             }
 
-            // 👇 Custom message 2: The Deactivated Check
+            //  Custom message 2: The Deactivated Check
             // (Note: You will need to add a 'status' or 'is_active' column to your database later to fully use this!)
-            if (user.status === 0) {
+            if (user.status === '0') {
                 return res.render('login', { error: 'Account Suspended: This account has been deactivated. Please contact your system administrator.' });
             }
 
             const passwordMatch = await bcrypt.compare(password, user.password_hash);
             if (!passwordMatch) {
-                // 👇 Custom message 1
+                //  Custom message 1
                 return res.render('login', { error: 'Error: The username/email or password is incorrect.' });
             }
 
@@ -52,24 +59,40 @@ const authController = {
             
         } catch (err) {
             console.error('System validation runtime drop:', err);
-            // 👇 Custom message 3
+            // Custom message 3
             return res.render('login', { error: 'An unexpected server error occurred.' });
         }
     },
 
     logout: (req, res) => {
+
+        res.clearCookie('prism_session', { path: '/' });
+
+        res.cookie('logout_flag', 'true', { maxAge: 5000, httpOnly: true });
+
+        if (req.session) {
+            req.session.user = null;
+
         req.session.destroy((err) => {
             if (err) {
                 console.error('Session destruction issue:', err);
                 res.redirect('/dashboard'); 
             }
-            res.clearCookie('prism_session');
             res.redirect('/logout-success');
         });
+    } else {
+        res.redirect('logout-success');
+    }
+        
     },
 
     getLogoutSuccess: (req, res) => {
-        res.render('logout-success');
+        if (!req.cookies || !req.cookies.logout_flag) {
+            res.render('logout');
+        }
+        
+        res.clearCookie('logout_flag');
+        res.render('logout');
     }
 };
 

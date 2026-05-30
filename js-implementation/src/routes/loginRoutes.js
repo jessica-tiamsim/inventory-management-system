@@ -8,7 +8,7 @@ const validateMiddleware = (req, res, next) => {
     const { error } = authValidator.validate(req.body);
     if (error) {
         // Safely catch structural flaws and present them inside .forms_description
-        return res.render('auth/login', { error: error.details[0].message });
+        return res.render('login', { error: error.details[0].message });
     }
     next(); 
 };
@@ -17,6 +17,6 @@ const validateMiddleware = (req, res, next) => {
 router.get('/login', authController.getLogin);
 router.post('/login', validateMiddleware, authController.postLogin);
 router.get('/logout', authController.logout);
-router.ger('logout-success', authController.getLogoutSuccess);
+router.get('/logout-success', authController.getLogoutSuccess);
 
 module.exports = router;
