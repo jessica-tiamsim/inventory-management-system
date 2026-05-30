@@ -4,7 +4,6 @@ const productModel = require('../models/productModel');
 const stockController = {
     getStockMovements: async (req, res) => {
         try {
-            console.log("🟢 Made it to getStockMovements controller!");
             const skuFilter = req.query.sku || 'all';
             const typeFilter = req.query.type || 'all';
             
@@ -26,7 +25,6 @@ const stockController = {
 
     postRecordMovement: async (req, res) => {
     try {
-        console.log("🟢 Made it to postRecordMovement controller!", req.body);
         const { product_id, type, quantity, notes } = req.body;
         const userId = req.session.user.id; 
 
