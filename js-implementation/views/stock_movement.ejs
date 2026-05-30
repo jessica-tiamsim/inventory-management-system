@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <%- include('sidebar_header') %>
+    <%- include('sidebar_header', { current: 'stock_movement' }) %>
 
     <div class="content">
         <div class="page-top-header">
@@ -30,9 +30,9 @@
 
                     <select name="type" id="type" onchange="this.form.submit()">
                         <option value="all" <%= typeof typeFilter !== 'undefined' && typeFilter === 'all' ? 'selected' : '' %>>All Types</option>
-                        <option value="IN" <%= typeof typeFilter !== 'undefined' && typeFilter === 'IN' ? 'selected' : '' %>>Stock In</option>
-                        <option value="OUT" <%= typeof typeFilter !== 'undefined' && typeFilter === 'OUT' ? 'selected' : '' %>>Stock Out</option>
-                        <option value="ADJUSTMENT" <%= typeof typeFilter !== 'undefined' && typeFilter === 'ADJUSTMENT' ? 'selected' : '' %>>Adjustment</option>
+                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter === 'IN' ? 'selected' : '' %>>Stock In</option>
+                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter === 'OUT' ? 'selected' : '' %>>Stock Out</option>
+                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter === 'ADJUSTMENT' ? 'selected' : '' %>>Adjustment</option>
                     </select>
                 </form>
             </div>
@@ -64,15 +64,15 @@
                                     <td><%= m.date %></td>
                                     <td><%= m.product_name %></td>
                                     <td>
-                                        <% if (m.type === 'IN') { %>
+                                        <% if (m.type === 'in') { %>
                                             <span class="badge-pill badge-in">Stock-In</span>
-                                        <% } else if (m.type === 'OUT') { %>
+                                        <% } else if (m.type === 'out') { %>
                                             <span class="badge-pill badge-out">Stock-Out</span>
                                         <% } else { %>
                                             <span class="badge-pill badge-adjustment">Adjustment</span>
                                         <% } %>
                                     </td>
-                                    <td class="qty-weight"><%= m.type === 'OUT' ? '-' : (m.type === 'IN' ? '+' : '') %><%= m.quantity %></td>
+                                    <td class="qty-weight"><%= m.type === 'out' ? '-' : (m.type === 'in' ? '+' : '') %><%= m.quantity %></td>
                                     <td class="note-text-dim"><%= m.note %></td>
                                     <td><%= m.recorded_by %></td>
                                 </tr>
@@ -117,9 +117,9 @@
                         <label>Movement Type *</label>
                         <select name="type" required>
                             <option value="" disabled selected>-- Select Type --</option>
-                            <option value="IN">Stock In (+)</option>
-                            <option value="OUT">Stock Out (-)</option>
-                            <option value="ADJUSTMENT">Adjustment (Correction)</option>
+                            <option value="in">Stock In (+)</option>
+                            <option value="out">Stock Out (-)</option>
+                            <option value="adjustment">Adjustment (Correction)</option>
                         </select>
                     </div>
                     <div class="field-block">
