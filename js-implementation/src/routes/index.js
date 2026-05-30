@@ -13,6 +13,10 @@ const valuationRoutes = require('./valuationRoutes');
 const movementLedgerRoutes = require('./movementledgerRoutes');
 const topMoversRoutes = require('./topmoversRoutes');
 
+router.get('/', (req, res) => {
+    res.redirect('/login');
+});
+
 // 1. Delegate the traffic!
 // Anything related to auth (login, logout) goes to loginRoutes.js
 router.use('/', loginRoutes); 
