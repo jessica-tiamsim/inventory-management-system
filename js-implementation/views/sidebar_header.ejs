@@ -46,7 +46,7 @@
                 <p id="role"><%= user.role.toUpperCase() %></p>
             </div>
         </div>
-        <a href="/logout">
+        <button type="button" onclick="openLogoutModal(event)">
             <img src="/assets/logout_icon.png" class="logout_image" alt="Logout">
             <p id="logout">Logout</p>
         </a>
@@ -70,3 +70,35 @@
             </div>
         </div>
     </header>
+
+<div class="logout_overlay" id="logoutOverlay">
+    <div class="logout_modal_card">
+        <h2 class="logout_title">Confirmation of <span class="highlight_red">Log Out</span></h2>
+        <p class="logout_message">Are you sure you want to log out?</p>
+        <div class="modal_actions">
+            <form action="/logout" method="POST" style="display: inline;">
+                <button type="submit" class="btn_logout">Log out</button>
+            </form>
+            <button type="button" class="btn_cancel" onclick="closeLogoutModal()">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openLogoutModal(event) {
+        event.preventDefault(); 
+        document.getElementById('logoutOverlay').style.setProperty('display', 'flex', 'important');
+    }
+
+    function closeLogoutModal() {
+        document.getElementById('logoutOverlay').style.setProperty('display', 'none', 'important');
+    }
+
+    // Dynamic background click dismiss hook
+    window.onclick = function(event) {
+        const overlay = document.getElementById('logoutOverlay');
+        if (event.target === overlay) {
+            closeLogoutModal();
+        }
+    }
+</script>

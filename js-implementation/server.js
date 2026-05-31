@@ -98,6 +98,13 @@ app.get('/profile', (req, res) => {
     });
 });
 
+app.post('/logout', (req, res) => {
+    if (req.session) {
+        req.session.destroy();
+    } 
+    res.redirect('/login'); 
+});
+
 // Fallback Error Middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
