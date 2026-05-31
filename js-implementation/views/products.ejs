@@ -19,18 +19,33 @@
             </div>
             <div class="content-lower">
                 <div class="filters-bar">
-                    <div class="search-wrapper">
-                        <input type="text" placeholder="Search by Product Name or SKU">
-                        <img class="prism_image" src="#">
-                    </div>
+                    <form action="/products" method="GET" class="search-wrapper">
+                        <input type="text" 
+                        name="search"
+                        placeholder="Search by Product Name or SKU"
+                        value="<%= typeof currentSearch !== 'undefined' ? currentSearch : '' %>"
+                        >
+                        <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
+                            <img class="prism_image" src="/assets/search_icon.png">
+                        </button>
+                    </form>
                     <select name="category_filter">
-                        <option value="">All Categories</option>
-                            <option value="#"></option>
+                        <option value="0">All Categories</option>
+                        <option value="1">Meat</option>
+                        <option value="2">Seafood</option>
+                        <option value="3">Vegetables</option>
+                        <option value="4">Fruits</option>
+                        <option value="5">Dairy Products</option>
+                        <option value="6">Dry Goods</option>
+                        <option value="7">Beverages</option>
+                        <option value="8">Frozen Goods</option>
+                        <option value="9">Condiments & Saues</option>
+                        <option value="10">Spice & Seasonings</option>
                     </select>
                     <select name="status_filter">
-                        <option value="2">All Status</option>
+                        <option value="0">All Status</option>
                         <option value="1">Active</option>
-                        <option value="0">Inactive</option>
+                        <option value="2">Inactive</option>
                     </select>
                     <button class="btn-new" onclick="openAddProductModal()"> 
                         <img src="#" class="add_image" alt="Add">New Product
@@ -60,7 +75,7 @@
                         <td><code><%= product.sku %></code></td>
                         <td><strong><%= product.name %></strong></td>
                         <td><%= product.description || 'N/A' %></td>
-                        <td><%= product.category_id || 'Unassigned' %></td>
+                        <td><%= product.category_name || 'Unassigned' %></td>
                         <td><%= parseFloat(product.unit_price).toFixed(2) %></td>
                         <td><%= parseFloat(product.unit_cost).toFixed(2) %></td>
                         <td><%= product.reorder_threshold %></td>
@@ -69,10 +84,10 @@
                             </span>
                         </td>
                         <td>
-                            <a href="/products/edit/<% products.id %>">
+                            <a href="/products/edit/<%= product.id %>">
                                 <img src="/assets/edit_icon.png" class="action-img" alt="Edit">
                             </a>
-                            <a href="/products/delete/<% products.id %>">
+                            <a href="/products/delete/<%= product.id %>">
                                 <img src="/assets/delete_icon.png" class="action-img" alt="Delete">
                             </a>
                         </td>
@@ -117,9 +132,7 @@
                 <div class="input-group">
                     <label for="category_id">Category</label>
                     <select id="category_id" name="category_id">
-                        <option value="">Select Category</option>
-                            <option value="1">NAME</option>
-                            <% if (typeof categories !== 'undefined') { %>
+                            <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
                                 <% categories.forEach(function(cat) { %>
                                     <option value="<%= cat.id %>"><%= cat.name %></option>
                                 <% }); %>
@@ -156,7 +169,6 @@
             </form>
         </div>
     </div>
-</div>
 
 <script>
     function openAddProductModal() {

@@ -44,9 +44,12 @@ const ProductModel = {
 
     getAllProducts: async () => {
         const query = `
-            SELECT id, sku, name, description, category_id, unit_price, unit_cost, reorder_threshold, supplier_name, is_active 
-            FROM products 
-            ORDER BY id DESC
+            SELECT p.id, p.sku, p.name, p.description, p.category_id, 
+                   c.name as category_name, p.unit_price, p.unit_cost, 
+                   p.reorder_threshold, p.supplier_name, p.is_active 
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.id
+            ORDER BY p.id DESC
         `;
         const [rows] = await db.execute(query);
         return rows;
@@ -54,10 +57,13 @@ const ProductModel = {
 
     searchProducts: async (term) => {
         const query = `
-            SELECT id, sku, name, description, category_id, unit_price, unit_cost, reorder_threshold, supplier_name, is_active 
-            FROM products 
-            WHERE name LIKE ? OR sku LIKE ?
-            ORDER BY id DESC
+            SELECT p.id, p.sku, p.name, p.description, p.category_id, 
+                   c.name as category_name, p.unit_price, p.unit_cost, 
+                   p.reorder_threshold, p.supplier_name, p.is_active 
+            FROM products p
+            LEFT JOIN categories c ON p.category_id = c.id
+            WHERE p.name LIKE ? OR p.sku LIKE ?
+            ORDER BY p.id DESC
         `;
         const formattedTerm = `%${term}%`;
         const [rows] = await db.execute(query, [formattedTerm, formattedTerm]);
@@ -89,6 +95,12 @@ const ProductModel = {
 
     getAllActiveProducts: async () => {
         const query = `SELECT id, name, sku FROM products WHERE is_active = 1 ORDER BY name ASC`;
+        const [rows] = await db.execute(query);
+        return rows;
+    },
+
+    getAllCategories: async () => {
+        const query = `SELECT id, name FROM categories ORDER BY name ASC`;
         const [rows] = await db.execute(query);
         return rows;
     }

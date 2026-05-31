@@ -13,11 +13,11 @@ const productController = {
                 results = await productModel.getAllProducts();
             }
 
-            // const categoriesList = await categoryModel.getAllCategories(); 
-
+            const categoriesList = await productModel.getAllCategories(); 
+            
             res.render('products', {
                 products: results,
-                categories: [], // Replace with categoriesList when ready
+                categories: categoriesList,
                 currentSearch: searchTerms,
                 currentPath: '/products'
             });
@@ -49,6 +49,7 @@ const productController = {
             console.error('Database insertion error dropped:', err);
             res.status(500).send('Failed adding item record down to database logs.');
         }
+        
     }
 };
 
