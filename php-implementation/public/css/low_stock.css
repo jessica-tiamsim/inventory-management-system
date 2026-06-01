@@ -1,12 +1,4 @@
-/* =========================================
-   BASE STYLES
-========================================= */
-.content {
-    padding: 30px;
-    overflow-y: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
+/* .content layout is handled by sidebar_header.css */
 
 /* =========================================
    CARDS & CONTAINERS
@@ -183,4 +175,53 @@ tbody tr:last-child td {
     text-align: center;
     padding: 50px !important;
     color: var(--gray);
+}
+
+/* =========================================
+   PAGINATION
+========================================= */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 20px;
+    padding-bottom: 10px;
+}
+
+.page-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+    color: var(--text-dark);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background 0.15s, color 0.15s;
+}
+
+.page-step:hover {
+    background-color: #f5f5f5;
+}
+
+.page-step.active-page {
+    background-color: var(--maroon);
+    color: white;
+    border-color: var(--maroon);
+    font-weight: 600;
+}
+
+.page-step.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Prev / Next buttons need auto width */
+.page-step:first-child,
+.page-step:last-child {
+    width: auto;
+    padding: 0 12px;
 }

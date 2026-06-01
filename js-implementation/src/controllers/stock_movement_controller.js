@@ -20,13 +20,19 @@ const stockController = {
 
             const totalPages = Math.ceil(total / limit);
 
+            // Read flash messages from query params set by redirects
+            const successMessage = req.query.success === 'recorded' ? 'Stock movement successfully recorded to the ledger!' : null;
+            const errorMessage   = req.query.error === 'insufficient_stock' ? 'Transaction Failed: Cannot dispatch more stock than you currently have on hand.' : null;
+
             res.render('stock_movement', {
                 products: productsList,
                 movements: matchingMovements,
                 skuFilter: skuFilter,
                 typeFilter: typeFilter,
                 currentPage: page,
-                totalPages: totalPages
+                totalPages: totalPages,
+                successMessage: successMessage,
+                errorMessage: errorMessage
             });
         } catch (err) {
             console.error('Failure rendering transaction ledger panel layout:', err);
@@ -35,18 +41,27 @@ const stockController = {
     },
 
     postRecordMovement: async (req, res) => {
-    try {
-        const { product_id, type, quantity, notes } = req.body;
-        const userId = req.session.user.id; 
+        try {
+            const { product_id, type, quantity, notes } = req.body;
+            const userId = req.session.user.id;
+            const parsedQty = parseInt(quantity, 10);
 
-        await stockModel.createTransaction(product_id, type, quantity, notes, userId);
-        
-        res.redirect('/stock_movement');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Transaction Error");
+            // Negative stock prevention — mirrors PHP implementation
+            if (type === 'out') {
+                const currentStock = await stockModel.getCurrentStock(product_id);
+                if (parsedQty > currentStock) {
+                    return res.redirect('/stock-movement?error=insufficient_stock');
+                }
+            }
+
+            await stockModel.createTransaction(product_id, type, parsedQty, notes, userId);
+
+            res.redirect('/stock-movement?success=recorded');
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Transaction Error");
+        }
     }
-}
 };
 
 module.exports = stockController;

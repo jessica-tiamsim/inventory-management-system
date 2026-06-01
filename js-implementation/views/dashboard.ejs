@@ -9,85 +9,121 @@
     <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <!--require sidebar header for php and ejs-->
     <%- include('sidebar_header', { current: 'dashboard' }) %>
     <div class="content">
-            <h1 class="welcome-text">Welcome back, <%= user.username %></h1>
+        <h1 class="welcome-text">Welcome back, <%= user.username %>!</h1>
 
-            <div class="stats-grid">
-                <div class="stat-card blue-border">
-                    <p class="card-label">ACTIVE PRODUCTS</p>
-                    <h2 class="card-value color-blue"><%= stats.activeProducts %></h2>
-                    <p class="card-sub"><%= stats.inactiveProducts %>Inactive</p>
-                </div>
-                <div class="stat-card red-border">
-                    <p class="card-label">UNITS IN STOCK</p>
-                    <h2 class="card-value color-red"><%= stats.totalUnits %></h2>
-                    <p class="card-sub">across all SKUs</p>
-                </div>
-                <div class="stat-card blue-border">
-                    <p class="card-label">INVENTORY VALUE</p>
-                    <h2 class="card-value color-blue">
-                        <%= stats.inventoryValue.toLocaleString('en-PH', { style: 'currency', currency: 'PHP'}) %></h2>
-                    <p class="card-sub">at unit cost</p>
-                </div>
-                <div class="stat-card green-border">
-                    <p class="card-label">LOW STOCK ALERTS</p>
-                    <h2 class="card-value color-green"><%= lowStockProducts.length %></h2>
-                    <p class="card-sub">at or below threshold</p>
-                </div>
+        <div class="stats-grid">
+            <div class="stat-card blue-border">
+                <p class="card-label">ACTIVE PRODUCTS</p>
+                <h2 class="card-value color-blue"><%= stats.activeProducts %></h2>
+                <p class="card-sub"><%= stats.inactiveProducts %> Inactive</p>
             </div>
-            <div class="main-grid">
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Low Stock</h3>
-                            <p class="sub-text">Products at or below reorder threshold</p>
-                        </div>
-                        <button class="view-report-btn" onclick="location.href='/reports/low_stock'">View Report</button>
-                    </div>
-                    <div class="list-container">
-                            <ul class="dashboard-list">
-                                <% if (lowStockProducts && lowStockProducts.length > 0) { %>
-                                    <% lowStockProducts.forEach(function(product) { %>
-                                    <li class="list-item alert-item">
-                                        <span><strong><%= product.name %></strong> </span>
-                                        <span class="badged-alert-text">Qty: <%= product.current_quantity %></span>
-                                    </li>
-                                    <% }); %>
-                                </ul>
-                            <% } else { %> 
-                                <p class="placeholder-text"> All stock levels are completely healthy.</p>
-                            <% } %>
-                    </div>
-                </section>
+            <div class="stat-card red-border">
+                <p class="card-label">UNITS IN STOCK</p>
+                <h2 class="card-value color-red"><%= stats.totalUnits.toLocaleString() %></h2>
+                <p class="card-sub">across all SKUs</p>
+            </div>
+            <div class="stat-card blue-border">
+                <p class="card-label">INVENTORY VALUE</p>
+                <h2 class="card-value color-blue">
+                    <%= stats.inventoryValue.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }) %>
+                </h2>
+                <p class="card-sub">at unit cost</p>
+            </div>
+            <div class="stat-card green-border">
+                <p class="card-label">LOW STOCK ALERTS</p>
+                <h2 class="card-value color-green"><%= lowStockProducts.length %></h2>
+                <p class="card-sub">at or below threshold</p>
+            </div>
+        </div>
 
-                <section class="content-card">
-                    <div class="card-header">
-                        <div>
-                            <h3>Recent Activity</h3>
-                            <p class="sub-text">Latest stock movements</p>
-                        </div>
+        <div class="main-grid">
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Low Stock</h3>
+                        <p class="sub-text">Products at or below reorder threshold</p>
                     </div>
-                    <div class="list-container">
-                        <% if (recentActivities && recentActivities.length > 0) { %>
-                            <ul class="dashboard-list">
-                                <% recentActivities.forEach(function(activity) { %>
-                                    <li class="list-item">
-                                        <div>
-                                            <span class="activity-badge badge-<%= activity.type %>"></span>
-                                            <span><strong><%= activity.quantity %></strong> units of <%= activity.productName %></span>
+                    <button class="view-report-btn" onclick="location.href='/reports/low_stock'">View Report</button>
+                </div>
+                <div class="list-container">
+                    <% if (lowStockProducts && lowStockProducts.length > 0) { %>
+                        <ul class="dashboard-list">
+                            <% lowStockProducts.forEach(function(product) { %>
+                                <%
+                                    var category = (product.category_name || '').toLowerCase();
+                                    var icon_file = 'alert_icon.png';
+                                    if (category.indexOf('meat') !== -1) icon_file = 'meat_icon.png';
+                                    else if (category.indexOf('seafood') !== -1) icon_file = 'seafood_icon.png';
+                                    else if (category.indexOf('vegetables') !== -1) icon_file = 'vegetables_icon.png';
+                                    else if (category.indexOf('fruits') !== -1) icon_file = 'fruits_icon.png';
+                                    else if (category.indexOf('dairy') !== -1) icon_file = 'dairyproducts_icon.png';
+                                    else if (category.indexOf('dry goods') !== -1) icon_file = 'drygoods_icon.png';
+                                    else if (category.indexOf('beverages') !== -1) icon_file = 'beverages_icon.png';
+                                    else if (category.indexOf('frozen') !== -1) icon_file = 'frozengoods_icon.png';
+                                    else if (category.indexOf('condiments') !== -1 || category.indexOf('sauces') !== -1) icon_file = 'condiments_icon.png';
+                                    else if (category.indexOf('spices') !== -1 || category.indexOf('seasonings') !== -1) icon_file = 'spices_icon.png';
+                                %>
+                                <li class="list-item alert-item">
+                                    <div class="item-info">
+                                        <span class="warning-icon" title="<%= product.category_name || 'Uncategorized' %>">
+                                            <img src="/assets/<%= icon_file %>" style="width:28px;height:28px;" alt="Icon">
+                                        </span>
+                                        <div class="item-text">
+                                            <strong><%= product.name %></strong>
+                                            <small class="sku-text"><%= product.sku %></small>
                                         </div>
-                                        <small class="time-stamp"><%= activity.timestamp %></small>
-                                    </li>
-                                <% }); %>
-                            </ul>
-                        <% } else { %>
-                            <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
-                        <% } %>
+                                    </div>
+                                    <div class="qty-badge">
+                                        <span class="current-qty"><%= product.current_quantity %> left</span>
+                                        <span class="threshold-qty">/ <%= product.reorder_threshold %> min</span>
+                                    </div>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p class="placeholder-text">✅ All stock levels are completely healthy.</p>
+                    <% } %>
+                </div>
+            </section>
+
+            <section class="content-card">
+                <div class="card-header">
+                    <div>
+                        <h3>Recent Activity</h3>
+                        <p class="sub-text">Latest stock movements</p>
                     </div>
-                </section>
-            </div>
+                </div>
+                <div class="list-container">
+                    <% if (recentActivities && recentActivities.length > 0) { %>
+                        <ul class="dashboard-list">
+                            <% recentActivities.forEach(function(activity) { %>
+                                <%
+                                    var type = (activity.type || '').toLowerCase();
+                                    var directionText = 'Adjusted';
+                                    var badgeText = 'ADJ';
+                                    if (type === 'in') { directionText = 'Added'; badgeText = 'IN'; }
+                                    else if (type === 'out') { directionText = 'Removed'; badgeText = 'OUT'; }
+                                %>
+                                <li class="list-item">
+                                    <div class="item-info">
+                                        <span class="badge-pill badge-<%= type %>"><%= badgeText %></span>
+                                        <div class="item-text">
+                                            <span><%= directionText %> <strong><%= activity.quantity %></strong> units</span>
+                                            <small class="sku-text"><%= activity.productName %></small>
+                                        </div>
+                                    </div>
+                                    <small class="time-stamp" style="color: var(--gray); font-size: 11px;"><%= activity.timestamp %></small>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    <% } else { %>
+                        <p class="placeholder-text">No recent stock activity found in the system ledger.</p>
+                    <% } %>
+                </div>
+            </section>
+        </div>
     </div>
 </body>
 </html>

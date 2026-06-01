@@ -2,13 +2,7 @@
    PRISM REPORTS MODULE (reports.css)
 ========================================= */
 
-/* 1. CONTENT AREA */
-.content {
-    padding: 30px;
-    width: 100%;
-    overflow-y: auto;
-    box-sizing: border-box;
-}
+/* .content layout is handled by sidebar_header.css */
 
 /* =========================================
    2. PAGE HEADER & TABS

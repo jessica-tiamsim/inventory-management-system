@@ -24,6 +24,9 @@ class ProductsController {
         $search = trim($_GET['search'] ?? '');
         $category_filter = $_GET['category_filter'] ?? '';
         $status_filter = $_GET['status_filter'] ?? '2'; // '2' is our custom code for "All Status"
+        $limit = 10;
+        $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+        $offset = ($page - 1) * $limit;
 
         // 2. Build dynamic database conditions
         $conditions = [];
@@ -49,16 +52,34 @@ class ProductsController {
 
         try {
             // 4. Run the combined query to fetch products
+            $count_sql = "
+                SELECT COUNT(*)
+                FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+                $where_clause
+            ";
+
+            $count_stmt = $this->pdo->prepare($count_sql);
+            $count_stmt->execute($params);
+            $total_rows = (int)$count_stmt->fetchColumn();
+            $total_pages = max(1, (int)ceil($total_rows / $limit));
+
             $catalog_sql = "
                 SELECT p.id, p.sku, p.name, p.description, p.unit_price, p.unit_cost, p.reorder_threshold, p.is_active, c.name as category_name 
                 FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
                 $where_clause
                 ORDER BY p.created_at DESC
+                LIMIT :limit OFFSET :offset
             ";
             
             $stmt = $this->pdo->prepare($catalog_sql);
-            $stmt->execute($params);
+            foreach ($params as $key => $val) {
+                $stmt->bindValue(":$key", $val);
+            }
+            $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+            $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+            $stmt->execute();
             $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             // Fetch categories to populate the dropdown filters and add/edit modals
@@ -68,6 +89,8 @@ class ProductsController {
             error_log("PRISM Catalog Controller Error: " . $e->getMessage());
             $products = [];
             $categories = [];
+            $page = 1;
+            $total_pages = 1;
         }
 
         // Load the view and pass the variables to the HTML
@@ -130,12 +153,18 @@ class ProductsController {
      * PROCESS PRODUCT EDIT
      */
     public function edit() {
+        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+            header("Location: " . BASE_URL . "/login?error=unauthorized");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $sql = "UPDATE products SET 
                         name = :name, description = :desc, category_id = :cat, 
                         unit_cost = :cost, unit_price = :price, 
-                        reorder_threshold = :thresh, supplier_name = :supp 
+                        reorder_threshold = :thresh, supplier_name = :supp,
+                        updated_at = NOW()
                         WHERE id = :id";
                 
                 $stmt = $this->pdo->prepare($sql);

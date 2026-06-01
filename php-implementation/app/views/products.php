@@ -22,7 +22,7 @@
                     <div class="filters-bar">
                         <div class="filters-bar">
                             <form method="GET" action="<?= BASE_URL ?>/products" style="display: flex; gap: 15px; align-items: center; margin: 0; width: 100%;">
-                                
+                                <input type="hidden" name="page" value="1">
                                 <div class="search-wrapper">
                                     <input type="text" name="search" placeholder="Search by Product Name or SKU" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
                                     
@@ -48,7 +48,7 @@
                             </form>
 
                             <button type="button" class="btn-new" onclick="openModal('addProductOverlay')"> 
-                                <img src="<?= BASE_URL ?>/assets/add_white.png" class="add_image" alt="Add">New Product
+                                <img src="<?= BASE_URL ?>/assets/add_red.png" class="add_image" alt="Add">New Product
                             </button>
                         </div>
                 </div>
@@ -115,6 +115,29 @@
                     </tbody>
                 </table>
             </div>
+            <?php if (isset($total_pages) && $total_pages > 1): ?>
+                <?php $page = $page ?? 1; ?>
+                <div class="pagination-container">
+                    <?php
+                        $base_params = $_GET;
+                        $prev_page   = max(1, $page - 1);
+                        $next_page   = min($total_pages, $page + 1);
+                    ?>
+                    <a href="<?= BASE_URL ?>/products?<?= http_build_query(array_merge($base_params, ['page' => $prev_page])) ?>"
+                       class="page-step<?= $page === 1 ? ' disabled' : '' ?>">&laquo; Prev</a>
+
+                    <?php for ($i = 1; $i <= $total_pages; $i++):
+                        $url_params = $_GET;
+                        $url_params['page'] = $i;
+                    ?>
+                        <a href="<?= BASE_URL ?>/products?<?= http_build_query($url_params) ?>"
+                           class="page-step <?= ($i === $page) ? 'active-page' : '' ?>"><?= $i ?></a>
+                    <?php endfor; ?>
+
+                    <a href="<?= BASE_URL ?>/products?<?= http_build_query(array_merge($base_params, ['page' => $next_page])) ?>"
+                       class="page-step<?= $page === $total_pages ? ' disabled' : '' ?>">Next &raquo;</a>
+                </div>
+            <?php endif; ?>
         
     </div>
 

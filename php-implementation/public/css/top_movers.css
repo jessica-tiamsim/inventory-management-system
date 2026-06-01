@@ -1,11 +1,4 @@
-/* =========================================
-   PRISM REPORTS CSS (Universal for all tabs)
-========================================= */
-.content {
-    padding: 25px;
-    overflow-y: auto;
-    width: 100%;
-}
+/* .content layout is handled by sidebar_header.css */
 
 .box1, .box2 {
     background: var(--white);
@@ -101,7 +94,8 @@
 }
 
 /* CSV Button */
-.excel {
+.excel,
+.btn-export {
     background: var(--maroon);
     color: var(--white);
     padding: 10px 20px;
@@ -115,7 +109,8 @@
     transition: background 0.2s;
 }
 
-.excel:hover {
+.excel:hover,
+.btn-export:hover {
     background: var(--maroon-dark);
 }
 

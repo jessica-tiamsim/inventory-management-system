@@ -82,6 +82,26 @@ const stockmovementModel = {
     },
 
     /**
+     * Calculates the current net stock level for a single product.
+     * Used for negative stock prevention before recording a stock-out.
+     */
+    getCurrentStock: async (productId) => {
+        const query = `
+            SELECT COALESCE(SUM(
+                CASE 
+                    WHEN movement_type = 'in'  THEN  quantity
+                    WHEN movement_type = 'out' THEN -quantity
+                    ELSE quantity
+                END
+            ), 0) AS current_stock
+            FROM stock_movements
+            WHERE product_id = ?
+        `;
+        const [rows] = await db.execute(query, [productId]);
+        return parseInt(rows[0].current_stock, 10);
+    },
+
+    /**
      * Fetches the latest 5 updates across all lines for the main landing page activity log module.
      */
     getRecentActivity: async () => {

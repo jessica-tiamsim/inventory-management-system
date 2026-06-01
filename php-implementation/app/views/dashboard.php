@@ -57,7 +57,7 @@
                                 $category = strtolower($item['category_name'] ?? '');
                                 
                                 // 2. The default fallback image if a category is missing
-                                $icon_file = 'default_icon.png'; 
+                                $icon_file = 'alert_icon.png'; 
                                 
                                 // 3. Match your exact PRISM categories
                                 if (strpos($category, 'meat') !== false) {
@@ -69,13 +69,13 @@
                                 } elseif (strpos($category, 'fruits') !== false) {
                                     $icon_file = 'fruits_icon.png';
                                 } elseif (strpos($category, 'dairy') !== false) {
-                                    $icon_file = 'dairy_icon.png';
-                                } elseif (strpos($category, 'dry goods') !== false) {
-                                    $icon_file = 'dry_goods_icon.png';
+                                    $icon_file = 'dairyproducts_icon.png';
+                                } elseif (strpos($category, 'dry goods') !== false || strpos($category, 'dry') !== false) {
+                                    $icon_file = 'drygoods_icon.png';
                                 } elseif (strpos($category, 'beverages') !== false) {
                                     $icon_file = 'beverages_icon.png';
                                 } elseif (strpos($category, 'frozen') !== false) {
-                                    $icon_file = 'frozen_icon.png';
+                                    $icon_file = 'frozengoods_icon.png';
                                 } elseif (strpos($category, 'condiments') !== false || strpos($category, 'sauces') !== false) {
                                     $icon_file = 'condiments_icon.png';
                                 } elseif (strpos($category, 'spices') !== false || strpos($category, 'seasonings') !== false) {

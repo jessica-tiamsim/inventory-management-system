@@ -1,39 +1,41 @@
 <aside>
     <div class="header_div">
         <div class="logo1">
-            <img src="/assets/logo.png" class="logo_image">
+            <img src="/assets/logo.png" class="logo_image" alt="PRISM Logo">
             <h1>PRISM</h1>
         </div>
         <div class="logo_user">
-            <p>Admin Portal</p>
+            <p><%= user && user.role === 'admin' ? 'Admin Portal' : 'Staff Portal' %></p>
         </div>
     </div>
     
     <nav>
-        <a href="/dashboard" class="<%= current === 'dashboard' ? 'active' :  '' %>">
+        <a href="/dashboard" class="<%= current === 'dashboard' ? 'active' : '' %>">
             <img src="/assets/dash_icon.png" alt="Dashboard">
             <p>Dashboard</p>
         </a>
         
-        <a href="/products" class="<%= current === 'products' ? 'active' :  '' %>">
+        <a href="/products" class="<%= current === 'products' ? 'active' : '' %>">
             <img src="/assets/products_icon.png" alt="Products">
             <p>Products</p>
         </a>
         
-        <a href="/stock_movement" class="<%= current === 'stock_movement' ? 'active' :  '' %>">
+        <a href="/stock-movement" class="<%= current === 'stock-movement' ? 'active' : '' %>">
             <img src="/assets/move_icon.png" alt="Stock Movements">
             <p>Stock Movements</p>
         </a>
         
-        <a href="/reports/low_stock" class="<%= current === 'low_stock' ? 'active' :  '' %>">
+        <a href="/reports/low_stock" class="<%= (current === 'low_stock' || current === 'reports' || current === 'valuation' || current === 'movement_ledger' || current === 'top_movers') ? 'active' : '' %>">
             <img src="/assets/report_icon.png" alt="Reports">
             <p>Reports</p>
         </a>
         
-        <a href="/profile" class="<%= current === 'profile' ? 'active' :  '' %>">
+        <% if (user && user.role === 'admin') { %>
+        <a href="/profile" class="<%= current === 'profile' ? 'active' : '' %>">
             <img src="/assets/profile_icon.png" alt="Profile">
             <p>Profile</p>
         </a>
+        <% } %>
     </nav>
 
     <div class="user-panel">
@@ -42,63 +44,42 @@
                 <img src="/assets/user_icon.png" class="logo_image" alt="User">
             </div>
             <div class="status">
-                <p><%= user.username %></p> 
-                <p id="role"><%= user.role.toUpperCase() %></p>
+                <p><%= user ? user.username : 'User' %></p>
+                <p id="role"><%= user ? user.role.toUpperCase() : 'STAFF' %></p>
             </div>
         </div>
-        <button type="button" onclick="openLogoutModal(event)">
+        <a href="#" onclick="document.getElementById('logoutOverlay').classList.add('show')" class="logout-link" style="display:flex; align-items:center; justify-content:center; gap:6px; width:100%; height:48px; margin-top:12px; border-radius:16px; background:rgba(255,255,255,0.1); text-decoration:none;">
             <img src="/assets/logout_icon.png" class="logout_image" alt="Logout">
             <p id="logout">Logout</p>
-        </button>
+        </a>
     </div>
 </aside>
 
-<div class="main">
-    <header>
-        <div class="header">
-            <div class="left">
-                <div><img src="/assets/sidebar_icon.png"></div>
-                <p>PRISM | Inventory Management</p>
-            </div>
-            <div class="right">
-                <div class="role">
-                    <p><%= user.role.toUpperCase() %></p>
-                </div>
-                <div class="user">
-                    <p><%= user.username %></p>
-                </div> 
-            </div>
-        </div>
-    </header>
-
-<div class="logout_overlay" id="logoutOverlay">
-    <div class="logout_modal_card">
-        <h2 class="logout_title">Confirmation of <span class="highlight_red">Log Out</span></h2>
-        <p class="logout_message">Are you sure you want to log out?</p>
-        <div class="modal_actions">
-            <form action="/logout" method="POST" style="display: inline;">
-                <button type="submit" class="btn_logout">Log out</button>
+<div class="prism-overlay" id="logoutOverlay">
+    <div class="prism-modal small">
+        <h3 class="confirm-title">Confirmation of <span class="text-maroon">Log Out</span></h3>
+        <p class="confirm-text">Are you sure you want to log out?</p>
+        <div class="modal-footer center">
+            <form action="/logout" method="POST" style="display:inline;">
+                <button type="submit" class="btn-action-solid">Log out</button>
             </form>
-            <button type="button" class="btn_cancel" onclick="closeLogoutModal()">Cancel</button>
+            <button type="button" class="btn-cancel-solid" onclick="document.getElementById('logoutOverlay').classList.remove('show')">Cancel</button>
         </div>
     </div>
 </div>
 
-<script>
-    function openLogoutModal(event) {
-        event.preventDefault(); 
-        document.getElementById('logoutOverlay').style.setProperty('display', 'flex', 'important');
-    }
-
-    function closeLogoutModal() {
-        document.getElementById('logoutOverlay').style.setProperty('display', 'none', 'important');
-    }
-
-    // Dynamic background click dismiss hook
-    window.onclick = function(event) {
-        const overlay = document.getElementById('logoutOverlay');
-        if (event.target === overlay) {
-            closeLogoutModal();
-        }
-    }
-</script>
+<div class="main">
+    <div class="header">
+        <div class="left">
+            <div><img src="/assets/sidebar_icon.png" alt="Menu"></div>
+            <p>PRISM | Inventory Management</p>
+        </div>
+        <div class="right">
+            <div class="role">
+                <p><%= user ? user.role.toUpperCase() : 'STAFF' %></p>
+            </div>
+            <div class="user">
+                <p><%= user ? user.username : 'User' %></p>
+            </div>
+        </div>
+    </div>

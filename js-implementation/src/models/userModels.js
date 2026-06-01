@@ -3,7 +3,7 @@ const db = require('../../config/db'); // Points to promise-based mysql2 pool
 const UserModel = {
     findByUsernameOrEmail: async (identifier) => {
         const query = `
-            SELECT id, username, email, password_hash, role 
+            SELECT id, username, email, password_hash, role, is_active 
             FROM users 
             WHERE username = ? OR email = ? LIMIT 1
         `;
@@ -26,7 +26,7 @@ getAllUsers: async () => {
 
     // 4. Writes registration payloads into your backend database
     createUser: async (username, email, passwordHash, role) => {
-        const query = 'INSERT INTO users (username, email, password_hash, role, status) VALUES (?, ?, ?, ?, "active")';
+        const query = 'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)';
         const [result] = await db.execute(query, [username, email, passwordHash, role || 'staff']);
         return result;
     }

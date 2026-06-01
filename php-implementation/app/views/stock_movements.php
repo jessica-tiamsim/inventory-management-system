@@ -103,8 +103,15 @@
                 </table>
             </div>
             
+            <?php $page = $page ?? 1; ?>
             <?php if (isset($total_pages) && $total_pages > 1): ?>
                 <div class="pagination-container" style="padding-bottom: 20px;">
+                    <?php 
+                        $base_params = $_GET;
+                        $prev_page = max(1, $page - 1);
+                        $next_page = min($total_pages, $page + 1);
+                    ?>
+                    <a href="?<?= http_build_query(array_merge($base_params, ['page' => $prev_page])) ?>" class="page-step">Prev</a>
                     <?php 
                     for ($i = 1; $i <= $total_pages; $i++): 
                         $url_params = $_GET;
@@ -114,6 +121,7 @@
                     ?>
                         <a href="?<?= $query_string ?>" class="page-step <?= $active_class ?>"><?= $i ?></a>
                     <?php endfor; ?>
+                    <a href="?<?= http_build_query(array_merge($base_params, ['page' => $next_page])) ?>" class="page-step">Next</a>
                 </div>
             <?php endif; ?>
         </div>
