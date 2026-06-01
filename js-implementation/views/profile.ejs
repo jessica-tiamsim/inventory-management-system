@@ -10,22 +10,24 @@
 </head>
 <body>
     <%- include('sidebar_header', { current: 'profile' }) %>
+
     <div class="content">
         <div class="action-bar">
             <div class="page-header">
                 <h1 class="page-title">Users</h1>
                 <p class="page-subtitle">Manage your Employees</p>
             </div>
-            
+
             <div class="search-and-button-group">
                 <form method="GET" action="/profile" class="search-form">
                     <div class="search-container">
                         <span class="search-icon">🔍</span>
-                        <input type="text" name="search" placeholder="Search by Username" class="search-input" value="">  
+                        <input type="text" name="search" placeholder="Search by Username" class="search-input"
+                            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
                     </div>
                 </form>
-                
-                <button class="create-btn" id="openUserOverlay">
+
+                <button class="create-btn" onclick="openModal('newUserOverlay')">
                     <span class="plus-icon">👤+</span> Create Account
                 </button>
             </div>
@@ -43,76 +45,65 @@
                     </thead>
                     <tbody>
                         <% if (typeof employees !== 'undefined' && employees.length > 0) { %>
-                        <% employees.forEach(function(employee) { %>
-                        <tr>
-                            <td><%= employee.username %></td>
-                            <td><%= employee.email %></td>
-                            <td><%= employee.role %></td>
-                        </tr>
-                        <% }); } %>
+                            <% employees.forEach(function(employee) { %>
+                                <tr>
+                                    <td><%= employee.username %></td>
+                                    <td><%= employee.email %></td>
+                                    <td><%= employee.role.charAt(0).toUpperCase() + employee.role.slice(1) %></td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="3" style="text-align:center; padding:40px; color:#a0aec0;">No employees found.</td>
+                            </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    <div class="modal-overlay" id="newUserOverlay">
-        <div class="modal-content">
-            <h2 class="modal-title">Create Account</h2>
-            
-            <form id="userForm" action="/users/add" method="POST">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" class="form-input" required placeholder="Enter Full Name">
+    <!-- Create Account Modal -->
+    <div class="prism-overlay" id="newUserOverlay">
+        <div class="prism-modal large">
+            <div class="modal-header"><h2>Create Account</h2></div>
+            <form action="/users/add" method="POST">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" name="username" required placeholder="Enter Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" name="email" required placeholder="example@gmail.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" required placeholder="••••••">
+                    </div>
+                    <div class="form-group">
+                        <label>System Role</label>
+                        <select name="role">
+                            <option value="staff">Staff</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" name="email" id="email" class="form-input" required placeholder="example@gmail.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-input" required placeholder="......">
-                </div>
-
-                <div class="form-group">
-                    <label for="role">System Role</label>
-                    <select name="role" id="role" class="form-select">
-                        <option value="staff">Staff</option>
-                        <option value="admin">Admin</option>
-                    </select>
-                </div>
-
-                <div class="modal-buttons">
-                    <button type="button" class="cancel-btn" id="closeUserOverlay">Cancel</button>
-                    <button type="submit" class="add-btn">Add Employee</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-outline" onclick="closeModal('newUserOverlay')">Cancel</button>
+                    <button type="submit" class="btn-save-maroon">Add Employee</button>
                 </div>
             </form>
         </div>
     </div>
 
     <script>
-        const modal = document.getElementById('newUserOverlay');
-        const openBtn = document.getElementById('openUserOverlay');
-        const closeBtn = document.getElementById('closeUserOverlay');
-
-        // Add the .show class from your CSS when opened
-        openBtn.addEventListener('click', () => {
-            modal.classList.add('show');
-        });
-
-        // Remove the .show class when closed
-        closeBtn.addEventListener('click', () => {
-            modal.classList.remove('remove'); // Fixed text tracking bug here
-            modal.classList.remove('show');
-        });
-
-        // Close if clicking outside the white box
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.classList.remove('show');
-            }
+        function openModal(id) { document.getElementById(id).classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+        document.querySelectorAll('.prism-overlay').forEach(function(overlay) {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) closeModal(overlay.id);
+            });
         });
     </script>
 </body>

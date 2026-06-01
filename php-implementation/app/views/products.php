@@ -48,7 +48,7 @@
                             </form>
 
                             <button type="button" class="btn-new" onclick="openModal('addProductOverlay')"> 
-                                <img src="<?= BASE_URL ?>/assets/add_white.png" class="add_image" alt="Add">New Product
+                                <img src="<?= BASE_URL ?>/assets/add_red.png" class="add_image" alt="Add">New Product
                             </button>
                         </div>
                 </div>

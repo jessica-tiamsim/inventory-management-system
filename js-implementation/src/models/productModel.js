@@ -4,18 +4,20 @@ const ProductModel = {
     getDashboardStats: async () => {
         const query = `
             SELECT 
-                COUNT(DISTINCT CASE WHEN p.is_active = 1 THEN p.id END) as activeProducts,
-                COUNT(DISTINCT CASE WHEN p.is_active = 0 THEN p.id END) as inactiveProducts,
+                COUNT(DISTINCT CASE WHEN p.is_active = 1 THEN p.id END) AS activeProducts,
+                COUNT(DISTINCT CASE WHEN p.is_active = 0 THEN p.id END) AS inactiveProducts,
                 COALESCE(SUM(CASE 
-                    WHEN m.movement_type = 'in' THEN m.quantity 
-                    WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                    WHEN m.movement_type = 'in'  THEN  m.quantity 
+                    WHEN m.movement_type = 'out' THEN -m.quantity
+                    WHEN m.movement_type = 'adjustment' THEN m.quantity
                     ELSE 0 
-                END), 0) as totalUnits,
+                END), 0) AS totalUnits,
                 COALESCE(SUM((CASE 
-                    WHEN m.movement_type = 'in' THEN m.quantity 
-                    WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                    WHEN m.movement_type = 'in'  THEN  m.quantity 
+                    WHEN m.movement_type = 'out' THEN -m.quantity
+                    WHEN m.movement_type = 'adjustment' THEN m.quantity
                     ELSE 0 
-                END) * p.unit_cost), 0) as inventoryValue
+                END) * p.unit_cost), 0) AS inventoryValue
             FROM products p 
             LEFT JOIN stock_movements m ON p.id = m.product_id
         `;
@@ -25,15 +27,19 @@ const ProductModel = {
 
     getLowStockProducts: async () => {
         const query = `
-            SELECT p.name, COALESCE(SUM(CASE 
-                WHEN m.movement_type = 'in' THEN m.quantity 
-                WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
-                ELSE 0 
-            END), 0) as current_quantity
+            SELECT 
+                p.id, p.sku, p.name, p.reorder_threshold, p.supplier_name,
+                c.name AS category_name,
+                COALESCE(SUM(CASE 
+                    WHEN m.movement_type = 'in' THEN m.quantity 
+                    WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                    ELSE 0 
+                END), 0) AS current_quantity
             FROM products p 
+            LEFT JOIN categories c ON p.category_id = c.id
             LEFT JOIN stock_movements m ON p.id = m.product_id 
             WHERE p.is_active = 1
-            GROUP BY p.id, p.name, p.reorder_threshold 
+            GROUP BY p.id, p.sku, p.name, p.reorder_threshold, p.supplier_name, c.name
             HAVING current_quantity <= p.reorder_threshold 
             ORDER BY current_quantity ASC 
             LIMIT 5
@@ -70,7 +76,7 @@ const ProductModel = {
         return rows;
     },
 
-    getFilteredProducts: async (searchTerm = '', productsFilter = 'all') => {
+    getFilteredProducts: async (searchTerm = '', categoryFilter = '', statusFilter = '2') => {
         try {
             let query = `
                 SELECT p.id, p.sku, p.name, p.description, p.category_id, 
@@ -90,10 +96,16 @@ const ProductModel = {
                 params.push(formattedTerm, formattedTerm);
             }
 
-            // 2. Handle Individual Product Dropdown Filter Condition
-            if (productsFilter && productsFilter !== 'all') {
-                conditions.push("p.id = ?");
-                params.push(parseInt(productsFilter, 10));
+            // 2. Handle Category Filter
+            if (categoryFilter && categoryFilter !== '') {
+                conditions.push("p.category_id = ?");
+                params.push(parseInt(categoryFilter, 10));
+            }
+
+            // 3. Handle Status Filter (0=inactive, 1=active, 2=all)
+            if (statusFilter === '0' || statusFilter === '1') {
+                conditions.push("p.is_active = ?");
+                params.push(parseInt(statusFilter, 10));
             }
 
             if (conditions.length > 0) {
@@ -143,6 +155,23 @@ const ProductModel = {
         const query = `SELECT id, name FROM categories ORDER BY name ASC`;
         const [rows] = await db.execute(query);
         return rows;
+    },
+
+    updateProduct: async (id, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name) => {
+        const query = `
+            UPDATE products 
+            SET name = ?, description = ?, category_id = ?, unit_cost = ?, unit_price = ?, 
+                reorder_threshold = ?, supplier_name = ?, updated_at = NOW()
+            WHERE id = ?
+        `;
+        const [result] = await db.execute(query, [name, description || null, category_id, unit_cost, unit_price, reorder_threshold, supplier_name || null, id]);
+        return result;
+    },
+
+    softDeleteProduct: async (id) => {
+        const query = `UPDATE products SET is_active = 0, updated_at = NOW() WHERE id = ?`;
+        const [result] = await db.execute(query, [id]);
+        return result;
     }
 };
 

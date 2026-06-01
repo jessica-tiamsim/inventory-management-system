@@ -26,7 +26,7 @@ getAllUsers: async () => {
 
     // 4. Writes registration payloads into your backend database
     createUser: async (username, email, passwordHash, role) => {
-        const query = 'INSERT INTO users (username, email, password_hash, role, status) VALUES (?, ?, ?, ?, "active")';
+        const query = 'INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)';
         const [result] = await db.execute(query, [username, email, passwordHash, role || 'staff']);
         return result;
     }
