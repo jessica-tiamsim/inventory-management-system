@@ -1,0 +1,168 @@
+/* =========================================
+   PRISM REPORTS CSS (Universal for all tabs)
+========================================= */
+.content {
+    padding: 25px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.box1, .box2 {
+    background: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.page-title {
+    color: var(--maroon);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 5px 0;
+}
+
+.section-title {
+    color: var(--maroon);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.box1_sub, .box2_sub {
+    font-size: 13px;
+    color: var(--gray);
+    margin: 0;
+}
+
+.choices {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.tab-link {
+    text-decoration: none;
+}
+
+.choices span {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+}
+
+.choices span.active {
+    background: var(--maroon);
+    color: var(--white);
+    border: none;
+}
+
+.choices span.inactive-tab {
+    background: var(--white);
+    color: var(--gray);
+}
+
+.choices span.inactive-tab:hover {
+    background: var(--border-light);
+}
+
+/* Date Filters */
+.date {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+#date1, #date2 {
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--white);
+    border: 1px solid var(--border-light);
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--gray);
+    outline: none;
+}
+
+.box2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+/* CSV Button */
+.excel {
+    background: var(--maroon);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.2s;
+}
+
+.excel:hover {
+    background: var(--maroon-dark);
+}
+
+/* Table Layout */
+.box3 {
+    width: 100%;
+    background: transparent; 
+}
+
+table {
+    width: 100%;
+    border-collapse: separate; 
+    border-spacing: 0;
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+thead th {
+    background: var(--maroon);
+    color: var(--white);
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+thead th:first-child { border-top-left-radius: 8px; }
+thead th:last-child { border-top-right-radius: 8px; }
+
+tbody td {
+    padding: 16px 20px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--white);
+    color: var(--gray);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+.empty-state {
+    text-align: center;
+    padding: 50px !important;
+    color: var(--gray);
+}
