@@ -1,0 +1,261 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;     /* Forces the body to exactly the window height */
+    width: 100vw;
+    overflow: hidden;  /* Prevents the whole browser from scrolling */
+}
+/*NAVIGATION*/
+/*sidebar*/
+aside {
+    width: 256px;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, var(--maroon), var(--dark-maroon));
+    display: flex;
+    flex-direction: column;
+}
+/*header div*/
+.header_div {
+    max-width: 256px;
+    max-height: 112px;
+    padding: 16px;
+    gap: 14px;
+    color: var(--white);
+    border-bottom: 1px solid var(--white-60);
+    display: flex;
+    flex-direction: column;
+}
+/*logo div*/
+.logo_div {
+    gap: 8px;
+    max-width: 256px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+/*logo h1 [PRISM]*/
+.logo h1 {
+    font-size: 32px;
+    font-weight: 700;
+    display: block;
+}
+/*logo image*/
+.logo_image {
+    width: 49px;
+    height: 41px;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+}
+/*logo h1 [PRISM]*/
+.logo_user {
+    height: 45px;
+    width: fit-content;
+}
+/*logo h1 [PRISM]*/
+.logo_user p {
+    font-size: 12px;
+    margin-left: 25px;
+    color: var(--white-60);
+}
+
+/*NAV BUTTONS*/
+/*nav div*/
+nav {
+    padding: 20px 10px;
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav a{
+    width: 220px;
+    height: 48px;
+    border-radius: 16px;
+    padding-left: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    gap: 12px;
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    text-decoration: none;
+}
+nav a.active {
+    background: var(--gold) !important;
+    color: var(--maroon);
+}
+
+nav img{
+    max-width: 20px;
+    max-height: 20px;
+    align-self: center;
+}
+
+nav a:hover {
+    background: var(--hover-dark);
+}
+
+/*logout panel*/
+.user-panel {
+    padding: 16px;
+    border-top: 1px solid var(--white-60);
+    margin-top: auto;
+    flex-direction: column;
+}
+.user{
+    gap: 12px;
+    display: flex;
+}
+.profile{
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    background-color: var(--gold);
+}
+.profile img {
+    max-width: 40px;
+    max-height: 40px;
+}
+.status{
+    display: grid;
+    justify-content: center;
+}
+
+.status p{
+    font-weight: 400;
+    height: 20px;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+}
+#role {
+    margin: 0px;
+    height: 20px;
+    color: var(--white-60);
+}
+.user-panel a {
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    height: 48px;
+    margin-top: 12px;
+    border-radius: 16px;
+    gap: 6px;
+    display: flex;
+    border: none;
+    justify-content: center !important;
+    text-decoration: none;
+    cursor: pointer;
+    background: var(--hover-dark);
+    box-sizing:border-box;
+}
+
+
+.logout_image {
+    max-width: 16px;
+    max-height: 16px;
+    align-self: center;
+}
+#logout{
+    width:fit-content;
+    align-content: center;
+    color: var(--white);
+    
+}
+
+/*HEADER*/
+header{
+    min-width: 100%;
+    height: 112px;
+    display: flex;
+    background-color: var(--white);
+    flex-direction: column;
+    align-content: center;
+
+}
+.header {
+    width: 100%;
+    height: 84px;
+    padding-left: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    background-color: var(--white);
+    box-sizing: border-box;
+}
+.left {
+    gap: 16px;
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    flex-direction: row;
+}
+.left img {
+    max-width: 33px;
+    max-height: 28px;
+    border: var(--black);
+    align-self: center;
+}
+.header .left p {
+    font-size: 20px;
+    font-weight: 600;
+}
+.right {
+    gap: 16px;
+    padding-left: 10px;
+    width: 200px;
+    align-items: center;
+    flex-direction: row;
+    margin-left: auto;
+    display: flex;
+}
+.role{
+    max-width: 75px;
+    max-height: 35px;
+    padding: 8px 14px;
+    border-radius: 32px;
+    color: var(--white);
+    background-color: var(--maroon);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+.role p {
+    font-size: 16px;
+    font-weight: 500;
+    padding: 0px;
+    margin: 0px;
+    justify-self: center;
+    align-self: center;
+}
+.user {
+    
+    width: 200px;
+    height: 40px;
+    margin-block-end: 0px;
+    display: flex;
+}
+.user p {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0px;
+    align-self: center;
+}
+
+.main {
+    flex: 1;
+    height: 100vh;     /* Matches the body height */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white);
+}
+
+.content {
+    flex: 1;           /* Takes up all remaining space under the header */
+    padding: 30px;
+    box-sizing: border-box;
+    background-color: var(--white-bg);
+    overflow-y: auto;  /* THE FIX: Forces the scrollbar to appear here! */
+}

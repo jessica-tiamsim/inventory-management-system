@@ -1,0 +1,268 @@
+/* Color Palette Configurations matching PRISM Branding Guidelines */
+.content {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Header Top Split Box Layout Engine Framework */
+.page-top-header {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--maroon);
+    margin: 0 0 4px 0;
+}
+
+.header-left .subtitle {
+    font-size: 14px;
+    color: var(--gray);
+    margin: 0 0 20px 0;
+}
+
+/* Dropdown Filters Styling */
+.filters-row {
+    gap: 12px;
+    display: flex;
+}
+
+.filters-row select {
+    padding: 10px 40px 10px 18px;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* Dropdown dynamic shadow filter depth */
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A1714' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+}
+
+/* Yellow Button Contours matching the specific design file context */
+.btn-record-movement {
+    background-color: var(--gold);
+    color: var(--dark-maroon); /* Dark contrast text inside button */
+    border: none;
+    padding: 0 24px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 24px; /* Perfect soft pill contour geometry */
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 3px 8px rgba(255, 191, 0, 0.3);
+    transition: all 0.15s ease;
+}
+.add_image  {
+    width: 24px;        /* Restrict icon size so it fits elegantly */
+    height: 24px;
+    pointer-events: none; /* Prevents the icon from blocking input clicks */
+}
+
+.btn-record-movement:active {
+    transform: scale(0.97);
+}
+
+.btn-record-movement .plus-icon {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* Master Data Grid Panel Context System Rules */
+.data-card-surface {
+    background: var(--surface-white);
+    border-radius: 14px;
+    overflow: hidden; /* Ensures the yellow background caps the rounded box edges perfectly */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-light);
+    width: 100%;
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+/* EXACT LOOK: Bright Gold Row Headers with Brown Typography */
+th {
+    background-color: var(--gold-accent);
+    color: #5A1424; 
+    font-size: 15px;
+    font-weight: 700;
+    text-transform: none; /* Keeps native capitalization clean */
+    padding: 16px 24px;
+    text-align: center; /* Centered layout columns style alignment */
+}
+
+/* Left-align first two column data titles explicitly for scannability balance */
+th:nth-child(1), td:nth-child(1),
+th:nth-child(2), td:nth-child(2) {
+    text-align: left;
+}
+
+td {
+    padding: 18px 24px;
+    font-size: 14px;
+    color: var(--text-primary);
+    border-bottom: 1px solid #F3F1EE;
+    text-align: center;
+}
+
+.qty-weight {
+    font-weight: 500;
+}
+
+.note-text-dim {
+    color: var(--text-dark);
+}
+
+/* Status Pill Contours */
+.badge-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.badge-in {
+    background-color: #DBFCE7;
+    color: #15A85A;
+    border-color: #BFF3D4;
+}
+
+.badge-out {
+    background-color: #FEE2E2;
+    color: #EF4444;
+    border-color: #FCA5A5;
+}
+
+.badge-adjustment {
+    background-color: #FEF3C7;
+    color: #D97706;
+    border-color: #FCD34D;
+}
+
+.empty-fallback-row {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 50px !important;
+}
+
+/* Modals & Backdrop Core System Overlays */
+/*I dont know the color choice needed for the modal */
+.modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(26, 23, 20, 0.4);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-surface-box {
+    background: var(--surface-white);
+    border-radius: 12px;
+    padding: 28px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.modal-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-top-bar h2 {
+    font-size: 20px;
+    color: var(--maroon-brand);
+    margin: 0;
+}
+
+.close-dismiss-btn {
+    background: none; 
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer; 
+    color: var(--text-muted);
+}
+
+.field-block {
+    display: flex; 
+    flex-direction: column; 
+    margin-bottom: 16px;
+}
+
+.field-block label {
+    font-size: 12px; 
+    font-weight: 700; 
+    color: var(--text-primary); 
+    margin-bottom: 6px; 
+    text-transform: uppercase;
+}
+
+.field-block input, .field-block select, .field-block textarea {
+    padding: 10px 14px; 
+    border: 1px solid var(--border-light); 
+    border-radius: 6px; 
+    font-size: 14px; 
+    outline: none;
+}
+
+.field-block textarea { height: 75px; resize: none; }
+.field-split-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+.form-action-buttons {
+    display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px;
+}
+
+.cancel-btn {
+    background: #EAE7E4; color: var(--text-primary); border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
+}
+
+.save-btn {
+    background: var(--maroon); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
+}
+
+/* Pagination Control Mechanics */
+.pagination-container {
+    display: flex; justify-content: center; gap: 6px; margin-top: 25px;
+}
+
+.page-step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--border-light);
+    color: var(--text-primary); text-decoration: none; font-size: 13px; font-weight: 500;
+}
+
+.page-step.active-page {
+    background-color: var(--maroon-brand); color: var(--surface-white); border-color: var(--maroon-brand);
+}

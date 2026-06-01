@@ -1,0 +1,106 @@
+
+/*BODY*/
+/* body for login page centered, bg red to dark red */
+body {
+    display: flex;
+    background: linear-gradient(180deg, var(--maroon) 0%, var(--dark-maroon) 100%);
+    align-items: center;
+    justify-content: center;
+}
+
+/*division*/
+/* login screen div, transparent, containg the logo and forms */
+.login_screen_div {
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    justify-items: center;
+}
+
+
+/*LOGO*/
+/* logo div containg text and logo */
+.logo_div {
+    color: var(--white); 
+    justify-items: center;
+    text-align: center; 
+}
+
+/* text [P R I S M]*/
+.logo_text {
+    letter-spacing: 2px; 
+    margin-block: 10px;
+}
+/* Image */
+.logo_img {
+    width: 120px; 
+    height: 100px;
+    display: block; 
+}
+
+/*FORMS*/
+/*forms div*/
+.forms_card {
+    padding: 32px 40px;
+    border-radius: 16px;
+    width: 450px; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    gap: 6px;
+    background: var(--white);
+    height: fit-content;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+/*forms h2*/
+.forms_card h2 {
+    font-size: 32px; /* resized*/
+    margin-block: 15px;
+    color: var(--maroon); 
+    justify-self: center;
+}
+/*forms input email and password*/
+form input {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    margin: 10px 0px;
+    border-radius: 16px;
+    border: 1px solid var(--border-light);
+    box-sizing: border-box;
+}
+/*forms label*/
+label {
+    font-size: 14px;
+    color: var(--text-dark);
+}
+/*button [login button]*/
+.button-gold {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 12px;
+    border-radius: 16px;
+    font-size: 16px;
+    background: var(--gold);
+    font-weight: bold;
+    border: none;
+}
+
+/* DESCRIPTION*/
+/*description*/
+.forms_description {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 16px;
+    padding: 10px;
+    background-color: var(--error-bg);
+    border: 2px solid var(--error-border);
+    text-align: left;
+    align-content: center;
+    box-sizing: border-box;
+}
+/*forms description paragraph*/
+.forms_description p {
+    padding: 4px 0px 0px 10px;
+    font-size: 14px;
+    color: var(--error-text);
+}
