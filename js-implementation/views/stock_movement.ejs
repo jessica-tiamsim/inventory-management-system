@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRISM | Stock Movements</title>
+    <link rel="stylesheet" href="/css/global.css">
+    <link rel="stylesheet" href="/css/stock_movement.css">
+    <link rel="stylesheet" href="/css/sidebar_header.css">
+</head>
+<body>
+    
+    <%- include('sidebar_header', { current: 'stock_movement' }) %>
+
+    <div class="content">
+        <div class="page-top-header">
+            <div class="header-left">
+                <h1>Stock Movements</h1>
+                <p class="subtitle">Immutable ledger of every stock change.</p>
+                
+                <form method="GET" action="/stock_movement" class="filters-row">
+                    <select name="sku" id="product" onchange="this.form.submit()">
+                        <option value="all" <%= typeof skuFilter !== 'undefined' && skuFilter === 'all' ? 'selected' : '' %>>All Products</option>
+                        <% if (typeof products !== 'undefined' && products.length > 0) { %>
+                            <% products.forEach(function(p) { %>
+                                <option value="<%= p.sku %>" <%= typeof skuFilter !== 'undefined' && skuFilter === p.sku ? 'selected' : '' %>><%= p.name %></option>
+                            <% }); %>
+                        <% } %>
+                    </select>
+
+                    <select name="type" id="type" onchange="this.form.submit()">
+                        <option value="all" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'all' ? 'selected' : '' %>>All Types</option>
+                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'in' ? 'selected' : '' %>>Stock In</option>
+                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'out' ? 'selected' : '' %>>Stock Out</option>
+                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'adjustment' ? 'selected' : '' %>>Adjustment</option>
+                    </select>
+                </form>
+            </div>
+            
+            <div class="header-right">
+                <button class="btn-record-movement" onclick="openMovementModal()">
+                    <img src="/assets/add_red.png" class="add_image" alt="Add"> Record Movement
+                </button>
+            </div>
+        </div>
+
+        <div class="data-card-surface">
+            <div class="table-scroll-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Product</th>
+                            <th>Type</th>
+                            <th>Quantity</th>
+                            <th>Note</th>
+                            <th>Recorded By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (typeof movements !== 'undefined' && movements.length > 0) { %>
+                            <% movements.forEach(function(m) { %>
+                                <tr>
+                                    <td><%= m.date %></td>
+                                    <td><%= m.product_name %></td>
+                                    <td>
+                                        <% if (m.type === 'in') { %>
+                                            <span class="badge-pill badge-in">Stock-In</span>
+                                        <% } else if (m.type === 'out') { %>
+                                            <span class="badge-pill badge-out">Stock-Out</span>
+                                        <% } else { %>
+                                            <span class="badge-pill badge-adjustment">Adjustment</span>
+                                        <% } %>
+                                    </td>
+                                    <td class="qty-weight"><%= m.type === 'out' ? '-' : (m.type === 'in' ? '+' : '') %><%= m.quantity %></td>
+                                    <td class="note-text-dim"><%= m.note %></td>
+                                    <td><%= m.recorded_by %></td>
+                                </tr>
+                            <% }); %>
+                        <% } else { %>
+                            <tr>
+                                <td colspan="6" class="empty-fallback-row">No stock movements recorded yet.</td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    <div class="pagination-container">
+    <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+        <% 
+            let currentSku = typeof skuFilter !== 'undefined' ? skuFilter : 'all'; 
+            let currentType = typeof typeFilter !== 'undefined' ? typeFilter : 'all';
+            let pageSafe = typeof currentPage !== 'undefined' ? currentPage : 1;
+        %>
+
+        <% if (pageSafe > 1) { %>
+            <a href="?page=<%= pageSafe - 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">&laquo; Prev</a>
+        <% } %>
+            
+        <% for(let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>&sku=<%= currentSku %>&type=<%= currentType %>" 
+                class="page-step <%= pageSafe === i ? 'active-page' : '' %>">
+                <%= i %>
+            </a>
+        <% } %>
+            
+        <% if (pageSafe < totalPages) { %>
+            <a href="?page=<%= pageSafe + 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">Next &raquo;</a>
+        <% } %>
+        <% } %>
+    </div>
+    </div>
+
+    <div id="movementModal" class="modal-backdrop">
+        <div class="modal-surface-box">
+            <div class="modal-top-bar">
+                <h2>Record Stock Movement</h2>
+                <button class="close-dismiss-btn" onclick="closeMovementModal()">&times;</button>
+            </div>
+            <form action="/stock_movement/add" method="POST" id="movementForm">
+                <div class="field-block">
+                    <label>Select Product *</label>
+                    <select name="product_id" required>
+                        <option value="" disabled selected>-- Choose a Product --</option>
+                        <% if (typeof products !== 'undefined' && products.length > 0) { %>
+                            <% products.forEach(function(p) { %>
+                                <option value="<%= p.id %>"><%= p.name %> (<%= p.sku %>)</option>
+                            <% }); %>
+                        <% } %>
+                    </select>
+                </div>
+                <div class="field-split-row">
+                    <div class="field-block">
+                        <label>Movement Type *</label>
+                        <select name="type" required>
+                            <option value="" disabled selected>-- Select Type --</option>
+                            <option value="in">Stock In (+)</option>
+                            <option value="out">Stock Out (-)</option>
+                            <option value="adjustment">Adjustment (Correction)</option>
+                        </select>
+                    </div>
+                    <div class="field-block">
+                        <label>Quantity *</label>
+                        <input type="number" name="quantity" min="1" placeholder="e.g. 50" required>
+                    </div>
+                </div>
+                <div class="field-block">
+                    <label>Reason / Notes</label>
+                    <textarea name="notes" placeholder="Provide context metadata..."></textarea>
+                </div>
+                <div class="form-action-buttons">
+                    <button type="button" class="cancel-btn" onclick="closeMovementModal()">Cancel</button>
+                    <button type="submit" class="save-btn">Save Transaction</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function openMovementModal() { 
+        document.getElementById('movementModal').style.display = 'flex'; 
+    }
+    function closeMovementModal() { 
+        document.getElementById('movementModal').style.display = 'none'; 
+        document.getElementById('movementForm').reset();
+    }
+    window.onclick = function(e) { 
+        if(e.target === document.getElementById('movementModal')) closeMovementModal(); 
+    }
+    </script>
+</body>
+</html>
