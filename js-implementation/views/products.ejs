@@ -28,25 +28,20 @@
                         <button type="submit" style="background: none; border: none; padding: 0; cursor: pointer;">
                             <img class="prism_image" src="/assets/search_icon.png">
                         </button>
-                    </form>
-                    <select name="category_filter">
-                        <option value="0">All Categories</option>
-                        <option value="1">Meat</option>
-                        <option value="2">Seafood</option>
-                        <option value="3">Vegetables</option>
-                        <option value="4">Fruits</option>
-                        <option value="5">Dairy Products</option>
-                        <option value="6">Dry Goods</option>
-                        <option value="7">Beverages</option>
-                        <option value="8">Frozen Goods</option>
-                        <option value="9">Condiments & Saues</option>
-                        <option value="10">Spice & Seasonings</option>
-                    </select>
-                    <select name="status_filter">
-                        <option value="0">All Status</option>
-                        <option value="1">Active</option>
-                        <option value="2">Inactive</option>
-                    </select>
+                        
+                    <select name="products_filter" onchange="this.form.submit()">
+            <option value="all" <%= (typeof currentProductFilter !== 'undefined' && currentProductFilter === 'all') ? 'selected' : '' %>>All Products</option>
+            
+            <% if (typeof allProducts !== 'undefined' && allProducts.length > 0) { %>
+                <% allProducts.forEach(function(p) { %>
+                    <option value="<%= p.id %>" <%= (typeof currentProductFilter !== 'undefined' && String(currentProductFilter) === String(p.id)) ? 'selected' : '' %>>
+                        <%= p.name %>
+                    </option>
+                <% }); %>
+            <% } %>
+        </select>
+    </form> 
+   
                     <button class="btn-new" onclick="openAddProductModal()"> 
                         <img src="#" class="add_image" alt="Add">New Product
                     </button>

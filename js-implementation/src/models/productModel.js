@@ -70,6 +70,46 @@ const ProductModel = {
         return rows;
     },
 
+    getFilteredProducts: async (searchTerm = '', productsFilter = 'all') => {
+        try {
+            let query = `
+                SELECT p.id, p.sku, p.name, p.description, p.category_id, 
+                       c.name as category_name, p.unit_price, p.unit_cost, 
+                       p.reorder_threshold, p.supplier_name, p.is_active 
+                FROM products p
+                LEFT JOIN categories c ON p.category_id = c.id
+            `;
+            
+            const params = [];
+            const conditions = [];
+
+            // 1. Handle Text Search Input Bar (Matches Name or SKU)
+            if (searchTerm && searchTerm.trim() !== '') {
+                conditions.push("(p.name LIKE ? OR p.sku LIKE ?)");
+                const formattedTerm = `%${searchTerm.trim()}%`;
+                params.push(formattedTerm, formattedTerm);
+            }
+
+            // 2. Handle Individual Product Dropdown Filter Condition
+            if (productsFilter && productsFilter !== 'all') {
+                conditions.push("p.id = ?");
+                params.push(parseInt(productsFilter, 10));
+            }
+
+            if (conditions.length > 0) {
+                query += " WHERE " + conditions.join(" AND ");
+            }
+
+            query += " ORDER BY p.id DESC";
+
+            const [rows] = await db.execute(query, params);
+            return rows;
+        } catch (error) {
+            console.error("Database query exception inside ProductModel.getFilteredProducts:", error);
+            throw error;
+        }
+    },
+    
     createProduct: async (sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name) => {
         const query = `
             INSERT INTO products (sku, name, description, category_id, unit_cost, unit_price, reorder_threshold, supplier_name, is_active) 

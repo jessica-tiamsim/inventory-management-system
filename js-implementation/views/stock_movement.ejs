@@ -85,32 +85,32 @@
                     </tbody>
                 </table>
             </div>
-
-           <div class="pagination-container">
-                <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
-                    <% 
-                       let currentSku = typeof skuFilter !== 'undefined' ? skuFilter : 'all'; 
-                       let currentType = typeof typeFilter !== 'undefined' ? typeFilter : 'all';
-                       let pageSafe = typeof currentPage !== 'undefined' ? currentPage : 1;
-                    %>
-
-                    <% if (pageSafe > 1) { %>
-                        <a href="?page=<%= pageSafe - 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">&laquo; Prev</a>
-                    <% } %>
-            
-                    <% for(let i = 1; i <= totalPages; i++) { %>
-                        <a href="?page=<%= i %>&sku=<%= currentSku %>&type=<%= currentType %>" 
-                           class="page-step <%= pageSafe === i ? 'active-page' : '' %>">
-                            <%= i %>
-                        </a>
-                    <% } %>
-            
-                    <% if (pageSafe < totalPages) { %>
-                        <a href="?page=<%= pageSafe + 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">Next &raquo;</a>
-                    <% } %>
-                <% } %>
-            </div>
         </div>
+
+    <div class="pagination-container">
+    <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+        <% 
+            let currentSku = typeof skuFilter !== 'undefined' ? skuFilter : 'all'; 
+            let currentType = typeof typeFilter !== 'undefined' ? typeFilter : 'all';
+            let pageSafe = typeof currentPage !== 'undefined' ? currentPage : 1;
+        %>
+
+        <% if (pageSafe > 1) { %>
+            <a href="?page=<%= pageSafe - 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">&laquo; Prev</a>
+        <% } %>
+            
+        <% for(let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>&sku=<%= currentSku %>&type=<%= currentType %>" 
+                class="page-step <%= pageSafe === i ? 'active-page' : '' %>">
+                <%= i %>
+            </a>
+        <% } %>
+            
+        <% if (pageSafe < totalPages) { %>
+            <a href="?page=<%= pageSafe + 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">Next &raquo;</a>
+        <% } %>
+        <% } %>
+    </div>
     </div>
 
     <div id="movementModal" class="modal-backdrop">

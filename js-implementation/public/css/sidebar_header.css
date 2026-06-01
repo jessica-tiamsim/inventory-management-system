@@ -250,6 +250,7 @@ header{
     flex-direction: column;
     box-sizing: border-box ;
     background-color: var(--white-bg);
+    overflow-y: auto;
 }
 
 .logout_overlay {

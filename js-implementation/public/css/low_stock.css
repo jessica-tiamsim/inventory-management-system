@@ -184,3 +184,62 @@ tbody tr:last-child td {
     padding: 50px !important;
     color: var(--gray);
 }
+
+.table-scroll-wrapper {
+    width: 100%;
+    max-height: 450px;  /* CHANGED from height to max-height */
+    overflow-y: auto;   /* Safe vertical scrolling only when rows exceed 450px */
+    overflow-x: auto;   /* Safe horizontal responsive scrolling */
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   PAGINATION STYLES (MATCHING STOCK MOVEMENTS)
+========================================= */
+.pagination-container {
+    display: flex !important; 
+    justify-content: center !important; /* Forces it to the absolute middle */
+    align-items: center;
+    width: 100%;             /* Ensures it spans the whole screen width to center properly */
+    gap: 6px; 
+    margin-top: 30px;        /* Pushes it safely down away from the table */
+    padding-bottom: 40px;    /* Gives it breathing room at the bottom of the screen */
+}
+
+/* Base style for each link/button */
+.page-step {
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    width: 34px; 
+    height: 34px; 
+    border-radius: 6px; 
+    border: 1px solid var(--border-light, #EAE7E4);
+    color: var(--text-primary, #1A1714); 
+    text-decoration: none; 
+    font-size: 13px; 
+    font-weight: 500;
+    background: var(--white, #ffffff);
+    transition: all 0.15s ease;
+}
+
+/* Hover effect for unselected buttons */
+.page-step:hover:not(.active-page) {
+    background-color: #F3F1EE;
+    border-color: #D1CFCB;
+}
+
+/* The active/current page button */
+.page-step.active-page {
+    background-color: var(--maroon, #801B32); 
+    color: var(--white, #ffffff); 
+    border-color: var(--maroon, #801B32);
+    font-weight: 600;
+}
+
+/* Override widths for "Prev" and "Next" text buttons so they don't squash */
+a.page-step:first-child,
+a.page-step:last-child {
+    width: auto;
+    padding: 0 12px;
+}

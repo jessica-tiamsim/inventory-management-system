@@ -5,16 +5,21 @@ const lowStockController = {
         try {
             const productId = req.query.product || 'all';
             const isExport = req.query.export === 'csv';
+            
+            // Set up pagination parameters
+            const page = parseInt(req.query.page) || 1;
+            const limit = 10; // Adjust this value to alter records shown per page view
+            const offset = (page - 1) * limit;
 
             // Fetch data from DB
             const products = await LowStockModel.getProductsList();
-            const lowStockData = await LowStockModel.getLowStockProducts(productId);
 
-            // Handle CSV Export
+            // Handle CSV Export (Bypass layout pagination controls)
             if (isExport) {
-                let csv = 'SKU,Product Name,Category,Quantity,Reorder Threshold,Supplier Name\n';
+                const { rows: allLowStockData } = await LowStockModel.getLowStockProducts(productId, null, 0);
                 
-                lowStockData.forEach(item => {
+                let csv = 'SKU,Product Name,Category,Quantity,Reorder Threshold,Supplier Name\n';
+                allLowStockData.forEach(item => {
                     const name = `"${(item.name || '').replace(/"/g, '""')}"`;
                     const supplier = `"${(item.supplier_name || '').replace(/"/g, '""')}"`;
                     const category = `"${(item.category_name || '').replace(/"/g, '""')}"`;
@@ -27,10 +32,16 @@ const lowStockController = {
                 return res.status(200).send(csv);
             }
 
+            // Normal browser UI view query paths
+            const { rows: lowStockData, total } = await LowStockModel.getLowStockProducts(productId, limit, offset);
+            const totalPages = Math.ceil(total / limit);
+
             res.render('reports/low_stock', {
-                products, // Variables updated from categories to products
+                products, 
                 lowStockData,
-                selectedProduct: productId
+                selectedProduct: productId,
+                currentPage: page,
+                totalPages: totalPages
             });
 
         } catch (error) {
