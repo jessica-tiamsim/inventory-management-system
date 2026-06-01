@@ -31,8 +31,9 @@ const ProductModel = {
                 p.id, p.sku, p.name, p.reorder_threshold, p.supplier_name,
                 c.name AS category_name,
                 COALESCE(SUM(CASE 
-                    WHEN m.movement_type = 'in' THEN m.quantity 
-                    WHEN m.movement_type IN ('out', 'adjustment') THEN -m.quantity 
+                    WHEN m.movement_type = 'in'         THEN  m.quantity 
+                    WHEN m.movement_type = 'out'        THEN -m.quantity 
+                    WHEN m.movement_type = 'adjustment' THEN  m.quantity
                     ELSE 0 
                 END), 0) AS current_quantity
             FROM products p 

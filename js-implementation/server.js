@@ -58,53 +58,6 @@ app.use((req, res, next) => {
 const mainRoutes = require('./src/routes/index');
 app.use('/', mainRoutes);
 
-// Dashboard Route
-app.get('/dashboard', (req, res) => {
-    res.render('dashboard', { 
-        user: req.user, 
-        current: 'dashboard' 
-    });
-});
-
-// Products Route
-app.get('/products', (req, res) => {
-    res.render('products', { 
-        user: req.user, 
-        current: 'products' 
-    });
-});
-
-// Stock Movements Route
-app.get('/stock_movement', (req, res) => {
-    res.render('stock_movement', { 
-        user: req.user, 
-        current: 'stock_movement' 
-    });
-});
-
-// Reports Route
-app.get('/reports/low_stock', (req, res) => {
-    res.render('low_stock', { 
-        user: req.user, 
-        current: 'reports' 
-    });
-});
-
-// Profile Route
-app.get('/profile', (req, res) => {
-    res.render('profile', { 
-        user: req.user, 
-        current: 'profile' 
-    });
-});
-
-app.post('/logout', (req, res) => {
-    if (req.session) {
-        req.session.destroy();
-    } 
-    res.redirect('/login'); 
-});
-
 // Fallback Error Middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);

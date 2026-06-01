@@ -3,7 +3,7 @@ const db = require('../../config/db'); // Points to promise-based mysql2 pool
 const UserModel = {
     findByUsernameOrEmail: async (identifier) => {
         const query = `
-            SELECT id, username, email, password_hash, role 
+            SELECT id, username, email, password_hash, role, is_active 
             FROM users 
             WHERE username = ? OR email = ? LIMIT 1
         `;

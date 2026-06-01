@@ -31,7 +31,7 @@ router.use('/dashboard', dashboardRoutes);
 router.use('/products', productsRoutes); 
 
 //
-router.use('/stock_movement', stockMovementRoutes); 
+router.use('/stock-movement', stockMovementRoutes);
 
 //
 router.use('/reports/low_stock', lowStockRoutes);

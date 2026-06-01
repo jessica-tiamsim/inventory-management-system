@@ -8,7 +8,6 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
 
 // 2. Secure Session Initialization
-/*
 session_set_cookie_params([
     'lifetime' => 3600,
     'path' => '/',
@@ -17,7 +16,6 @@ session_set_cookie_params([
     'httponly' => true, 
     'samesite' => 'Lax'
 ]);
-*/
 
 session_start();
 
@@ -45,6 +43,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 // A simple switch statement acts as our router matching clean URLs
 switch ($requestUri) {
     case '/':
+        header("Location: " . BASE_URL . "/login");
+        exit();
+
     case '/dashboard':
         require_once __DIR__ . '/../app/controllers/dashboard_controller.php';
         $controller = new DashboardController($pdo);

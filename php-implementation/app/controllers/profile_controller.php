@@ -20,8 +20,9 @@ class ProfileController {
         $params = [];
 
         if (!empty($search)) {
-            $where_clause = "WHERE username LIKE :search OR email LIKE :search";
-            $params['search'] = '%' . $search . '%';
+            $where_clause = "WHERE username LIKE :search_user OR email LIKE :search_email";
+            $params['search_user']  = '%' . $search . '%';
+            $params['search_email'] = '%' . $search . '%';
         }
 
         try {

@@ -85,6 +85,20 @@
                     <?php endif; ?>
                 </tbody>
             </table>
+
+            <?php if (isset($total_pages) && $total_pages > 1): ?>
+                <div class="pagination-container" style="padding: 16px 0;">
+                    <?php
+                    for ($i = 1; $i <= $total_pages; $i++):
+                        $url_params = $_GET;
+                        $url_params['page'] = $i;
+                        $query_string = http_build_query($url_params);
+                        $active_class = ($i === $page) ? 'active-page' : '';
+                    ?>
+                        <a href="?<?= $query_string ?>" class="page-step <?= $active_class ?>"><?= $i ?></a>
+                    <?php endfor; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
 </body>

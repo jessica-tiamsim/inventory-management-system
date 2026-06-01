@@ -130,12 +130,18 @@ class ProductsController {
      * PROCESS PRODUCT EDIT
      */
     public function edit() {
+        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+            header("Location: " . BASE_URL . "/login?error=unauthorized");
+            exit();
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             try {
                 $sql = "UPDATE products SET 
                         name = :name, description = :desc, category_id = :cat, 
                         unit_cost = :cost, unit_price = :price, 
-                        reorder_threshold = :thresh, supplier_name = :supp 
+                        reorder_threshold = :thresh, supplier_name = :supp,
+                        updated_at = NOW()
                         WHERE id = :id";
                 
                 $stmt = $this->pdo->prepare($sql);

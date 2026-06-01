@@ -35,18 +35,27 @@ const stockController = {
     },
 
     postRecordMovement: async (req, res) => {
-    try {
-        const { product_id, type, quantity, notes } = req.body;
-        const userId = req.session.user.id; 
+        try {
+            const { product_id, type, quantity, notes } = req.body;
+            const userId = req.session.user.id;
+            const parsedQty = parseInt(quantity, 10);
 
-        await stockModel.createTransaction(product_id, type, quantity, notes, userId);
-        
-        res.redirect('/stock_movement');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Transaction Error");
+            // Negative stock prevention — mirrors PHP implementation
+            if (type === 'out') {
+                const currentStock = await stockModel.getCurrentStock(product_id);
+                if (parsedQty > currentStock) {
+                    return res.redirect('/stock-movement?error=insufficient_stock');
+                }
+            }
+
+            await stockModel.createTransaction(product_id, type, parsedQty, notes, userId);
+
+            res.redirect('/stock-movement?success=recorded');
+        } catch (err) {
+            console.error(err);
+            res.status(500).send("Transaction Error");
+        }
     }
-}
 };
 
 module.exports = stockController;
