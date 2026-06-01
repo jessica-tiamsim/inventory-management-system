@@ -126,6 +126,28 @@
                 </tbody>
             </table>
         </div>
+
+        <div class="pagination-container">
+            <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+                
+                <% if (currentPage > 1) { %>
+                    <a href="?page=<%= currentPage - 1 %>&start_date=<%= startDate %>&end_date=<%= endDate %>&product=<%= selectedProduct %>&movement_type=<%= selectedType %>" class="page-step">&laquo; Prev</a>
+                <% } %>
+                    
+                <% for(let i = 1; i <= totalPages; i++) { %>
+                    <a href="?page=<%= i %>&start_date=<%= startDate %>&end_date=<%= endDate %>&product=<%= selectedProduct %>&movement_type=<%= selectedType %>" 
+                        class="page-step <%= currentPage === i ? 'active-page' : '' %>">
+                        <%= i %>
+                    </a>
+                <% } %>
+                    
+                <% if (currentPage < totalPages) { %>
+                    <a href="?page=<%= currentPage + 1 %>&start_date=<%= startDate %>&end_date=<%= endDate %>&product=<%= selectedProduct %>&movement_type=<%= selectedType %>" class="page-step">Next &raquo;</a>
+                <% } %>
+
+            <% } %>
+        </div>
+
     </div>
 </body>
 </html>
