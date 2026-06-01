@@ -92,6 +92,9 @@ class StockMovementsController {
     /**
      * 2. PROCESS NEW MOVEMENT (TRANSACTION)
      */
+    /**
+     * PROCESS NEW MOVEMENT (TRANSACTION)
+     */
     public function add() {
         if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
             header("Location: " . BASE_URL . "/login");
@@ -100,15 +103,34 @@ class StockMovementsController {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $product_id = (int)$_POST['product_id'];
-            // Convert uppercase HTML type to lowercase ENUM for database
-            $type = strtolower($_POST['type']); 
+            $type = strtolower($_POST['type']); // in, out, adjustment
             $quantity = (int)$_POST['quantity'];
             $notes = trim($_POST['notes'] ?? '');
-            
             $user_id = $_SESSION['user_id'] ?? 1; 
 
             try {
-                // Just log to the ledger! (We removed the broken update to `current_qty`)
+                // 1. NEGATIVE STOCK PREVENTION
+                if ($type === 'out') {
+                    // Check exactly how much stock we currently have
+                    $stock_check = $this->pdo->prepare("
+                        SELECT COALESCE(SUM(
+                            CASE WHEN movement_type = 'in' THEN quantity 
+                                 WHEN movement_type = 'out' THEN -quantity 
+                                 ELSE quantity END
+                        ), 0) 
+                        FROM stock_movements WHERE product_id = :pid
+                    ");
+                    $stock_check->execute(['pid' => $product_id]);
+                    $current_stock = (int)$stock_check->fetchColumn();
+
+                    // If they try to remove more than we have, abort the transaction!
+                    if ($quantity > $current_stock) {
+                        header("Location: " . BASE_URL . "/stock-movement?error=insufficient_stock");
+                        exit();
+                    }
+                }
+
+                // 2. If safe, log to the ledger
                 $stmt = $this->pdo->prepare("INSERT INTO stock_movements (product_id, user_id, movement_type, quantity, note) VALUES (:pid, :uid, :type, :qty, :notes)");
                 $stmt->execute([
                     'pid' => $product_id,

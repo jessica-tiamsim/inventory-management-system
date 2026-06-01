@@ -12,7 +12,7 @@
     <?php include __DIR__ . '/sidebar_header.php'; ?>
     
     <div class="content">
-        <div class="content-box">
+        
             <div class="content-header">
                 <div>
                     <h1>Products</h1>
@@ -47,13 +47,13 @@
                                 </select>
                             </form>
 
-                            <button type="button" class="btn-new" onclick="openAddProductModal()"> 
+                            <button type="button" class="btn-new" onclick="openModal('addProductOverlay')"> 
                                 <img src="<?= BASE_URL ?>/assets/add_white.png" class="add_image" alt="Add">New Product
                             </button>
                         </div>
                 </div>
-            </div>
-
+            </div>  
+        </div>
             <div class="table-container">
                 <table>
                     <thead>
@@ -85,12 +85,23 @@
                                     <td><?= number_format((int)$row['reorder_threshold']) ?></td>
                                     <td><span class="<?= $status_class ?>"><?= $status_text ?></span></td>
                                     <td>
-                                        <a href="<?= BASE_URL ?>/products/edit?id=<?= urlencode((int)$row['id']) ?>">
+                                        <button type="button" style="background:none; border:none; cursor:pointer; padding: 0;" onclick="openEditModal(
+                                            <?= (int)($row['id'] ?? 0) ?>, 
+                                            '<?= htmlspecialchars(addslashes($row['sku'] ?? '')) ?>', 
+                                            '<?= htmlspecialchars(addslashes($row['name'] ?? '')) ?>', 
+                                            '<?= htmlspecialchars(addslashes($row['description'] ?? '')) ?>', 
+                                            '<?= htmlspecialchars(addslashes($row['category_id'] ?? '')) ?>', 
+                                            <?= (float)($row['unit_cost'] ?? 0) ?>, 
+                                            <?= (float)($row['unit_price'] ?? 0) ?>, 
+                                            <?= (int)($row['reorder_threshold'] ?? 0) ?>, 
+                                            '<?= htmlspecialchars(addslashes($row['supplier_name'] ?? '')) ?>'
+                                        )">
                                             <img src="<?= BASE_URL ?>/assets/edit_icon.png" class="action-img" alt="Edit">
-                                        </a>
-                                        <a href="<?= BASE_URL ?>/products/delete?id=<?= urlencode((int)$row['id']) ?>" onclick="return confirm('Are you sure you want to delete this product?');">
+                                        </button>
+                                        
+                                        <button type="button" style="background:none; border:none; cursor:pointer; padding: 0;" onclick="openInactivateModal(<?= (int)($row['id'] ?? 0) ?>)">
                                             <img src="<?= BASE_URL ?>/assets/delete_icon.png" class="action-img" alt="Delete">
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -104,89 +115,110 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        
     </div>
 
-    <div id="addProductModal" class="modal-overlay">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h2>Add New Product</h2>
-                <button class="close-btn" onclick="closeAddProductModal()">&times;</button>
-            </div>
-            
-            <form method="POST" action="<?= BASE_URL ?>/products/add">
+    <div class="prism-overlay" id="addProductOverlay">
+        <div class="prism-modal large">
+            <div class="modal-header"><h2>Add New Product</h2></div>
+            <form action="<?= BASE_URL ?>/products/add" method="POST">
                 <div class="form-grid">
-                    <div class="input-group">
-                        <label for="sku">SKU Code *</label>
-                        <input type="text" id="sku" name="sku" placeholder="e.g., BEV-002" required>
+                    <div class="form-group"><label>SKU Code *</label><input type="text" name="sku" required></div>
+                    <div class="form-group"><label>Product Name *</label><input type="text" name="name" required></div>
+                    
+                    <div class="form-group full"><label>Description</label><textarea name="description"></textarea></div>
+                    
+                    <div class="form-group full"><label>Category *</label>
+                        <select name="category_id">
+                            <option value="" disabled selected>Select Category</option>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
-                    <div class="input-group">
-                        <label for="product_name">Product Name *</label>
-                        <input type="text" id="product_name" name="name" placeholder="e.g., Pepsi" required>
-                    </div>
+                    
+                    <div class="form-group"><label>Unit Cost (₱) *</label><input type="number" step="0.01" name="unit_cost" required></div>
+                    <div class="form-group"><label>Selling Price (₱) *</label><input type="number" step="0.01" name="unit_price" required></div>
+                    <div class="form-group"><label>Low Stock Threshold *</label><input type="number" name="reorder_threshold" required></div>
+                    <div class="form-group"><label>Supplier Name</label><input type="text" name="supplier_name"></div>
                 </div>
-
-                <div class="input-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" name="description" placeholder="Optional details..."></textarea>
-                </div>
-
-                <div class="input-group">
-                    <label for="category_id">Category</label>
-                    <select id="category_id" name="category_id">
-                        <option value="">Select Category</option>
-                        <?php foreach ($categories as $cat): ?>
-                            <option value="<?= htmlspecialchars($cat['id']) ?>"><?= htmlspecialchars($cat['name']) ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="unit_cost">Unit Cost (₱) *</label>
-                        <input type="number" id="unit_cost" name="unit_cost" step="0.01" min="0" placeholder="0.00" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="unit_price">Selling Price (₱) *</label>
-                        <input type="number" id="unit_price" name="unit_price" step="0.01" min="0" placeholder="0.00" required>
-                    </div>
-                </div>
-
-                <div class="form-grid">
-                    <div class="input-group">
-                        <label for="reorder_threshold">Low Stock Threshold *</label>
-                        <input type="number" id="reorder_threshold" name="reorder_threshold" min="0" value="10" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="supplier_name">Supplier Name</label>
-                        <input type="text" id="supplier_name" name="supplier_name" placeholder="e.g., Asia Brewery">
-                    </div>
-                </div>
-
-                <div class="modal-actions">
-                    <button type="button" class="btn-cancel" onclick="closeAddProductModal()">Cancel</button>
-                    <button type="submit" class="btn-save">Save Product</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-outline" onclick="closeModal('addProductOverlay')">Cancel</button>
+                    <button type="submit" class="btn-save-maroon">Save Product</button>
                 </div>
             </form>
         </div>
     </div>
 
-</div> 
-<script>
-function openAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'flex';
-}
+    <div class="prism-overlay" id="editProductOverlay">
+        <div class="prism-modal large">
+            <div class="modal-header"><h2>Edit Product</h2></div>
+            <form action="<?= BASE_URL ?>/products/edit" method="POST">
+                <input type="hidden" name="id" id="edit_id">
+                
+                <div class="form-grid">
+                    <div class="form-group"><label>SKU Code *</label><input type="text" name="sku" id="edit_sku" required readonly style="background:#f9f9f9;"></div>
+                    <div class="form-group"><label>Product Name *</label><input type="text" name="name" id="edit_name" required></div>
+                    
+                    <div class="form-group full"><label>Description</label><textarea name="description" id="edit_desc"></textarea></div>
+                    
+                    <div class="form-group full"><label>Category *</label>
+                        <select name="category_id" id="edit_category" required>
+                            <?php foreach ($categories as $cat): ?>
+                                <option value="<?= $cat['id'] ?>"><?= htmlspecialchars($cat['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group"><label>Unit Cost (₱) *</label><input type="number" step="0.01" name="unit_cost" id="edit_cost" required></div>
+                    <div class="form-group"><label>Selling Price (₱) *</label><input type="number" step="0.01" name="unit_price" id="edit_price" required></div>
+                    <div class="form-group"><label>Low Stock Threshold *</label><input type="number" name="reorder_threshold" id="edit_threshold" required></div>
+                    <div class="form-group"><label>Supplier Name</label><input type="text" name="supplier_name" id="edit_supplier"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn-cancel-outline" onclick="closeModal('editProductOverlay')">Cancel</button>
+                    <button type="submit" class="btn-save-maroon">Update Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
 
-function closeAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'none';
-}
+    <div class="prism-overlay" id="inactivateOverlay">
+        <div class="prism-modal small">
+            <h3 class="confirm-title">Confirmation of <span class="text-maroon">Product Inactivity</span></h3>
+            <p class="confirm-text">Are you sure you want to mark this<br>product as <strong>"Inactive"</strong>?</p>
+            
+            <form action="<?= BASE_URL ?>/products/delete" method="POST" class="modal-footer center">
+                <input type="hidden" name="id" id="inactivate_id">
+                <button type="submit" class="btn-action-solid">Mark Inactive</button>
+                <button type="button" class="btn-cancel-solid" onclick="closeModal('inactivateOverlay')">Cancel</button>
+            </form>
+        </div>
+    </div>
 
-window.onclick = function(event) {
-    let modal = document.getElementById('addProductModal');
-    if (event.target === modal) {
-        modal.style.display = 'none';
-    }
-}
-</script>
+    <script>
+        function openModal(id) { document.getElementById(id).classList.add('show'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+        // Triggered when clicking "Edit" in the table
+        function openEditModal(id, sku, name, desc, cat, cost, price, thresh, supp) {
+            document.getElementById('edit_id').value = id;
+            document.getElementById('edit_sku').value = sku;
+            document.getElementById('edit_name').value = name;
+            document.getElementById('edit_desc').value = desc;
+            document.getElementById('edit_category').value = cat;
+            document.getElementById('edit_cost').value = cost;
+            document.getElementById('edit_price').value = price;
+            document.getElementById('edit_threshold').value = thresh;
+            document.getElementById('edit_supplier').value = supp;
+            openModal('editProductOverlay');
+        }
+
+        // Triggered when clicking "Delete/Inactivate" in the table
+        function openInactivateModal(id) {
+            document.getElementById('inactivate_id').value = id;
+            openModal('inactivateOverlay');
+        }
+    </script>   
 </body>
 </html>

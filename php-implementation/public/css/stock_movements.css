@@ -10,11 +10,10 @@
     margin-bottom: 25px;
     display: flex;
     background: var(--white);
-    padding: 24px; /* Slightly increased padding so it breathes better */
+    padding: 24px; 
     border-radius: 8px;
     box-sizing: border-box;
     box-shadow: 0 2px 8px rgba(0,0,0,0.04);
-
     justify-content: space-between;
     align-items: flex-start;
 }
@@ -45,10 +44,10 @@
     border-radius: 20px;
     font-size: 14px;
     font-weight: 500;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06); /* Dropdown dynamic shadow filter depth */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06); 
     background-color: var(--white);
     color: var(--black);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     cursor: pointer;
     outline: none;
     appearance: none;
@@ -61,13 +60,13 @@
 /* Yellow Button Contours matching the specific design file context */
 .btn-record-movement {
     background-color: var(--gold);
-    color: var(--dark-maroon); /* Dark contrast text inside button */
+    color: var(--dark-maroon); 
     border: none;
     padding: 0 24px;
     height: 48px;
     font-size: 15px;
     font-weight: 700;
-    border-radius: 24px; /* Perfect soft pill contour geometry */
+    border-radius: 24px; 
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -76,28 +75,27 @@
     box-shadow: 0 3px 8px rgba(255, 191, 0, 0.3);
     transition: all 0.15s ease;
 }
+
 .add_image  {
-    width: 24px;        /* Restrict icon size so it fits elegantly */
-    height: 24px;
-    pointer-events: none; /* Prevents the icon from blocking input clicks */
+    width: 20px;      
+    height: 20px;
+    pointer-events: none; 
 }
 
 .btn-record-movement:active {
     transform: scale(0.97);
 }
 
-.btn-record-movement .plus-icon {
-    font-size: 20px;
-    font-weight: 600;
-}
 
-/* Master Data Grid Panel Context System Rules */
+/* =========================================
+   EXACT MATCH TABLE DESIGN
+========================================= */
 .data-card-surface {
-    background: var(--surface-white);
-    border-radius: 14px;
-    overflow: hidden; /* Ensures the yellow background caps the rounded box edges perfectly */
+    background: var(--white, #FFFFFF);
+    border-radius: 8px; /* Matched to the image's rounded edges */
+    overflow: hidden; 
     box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    border: 1px solid var(--border-light);
+    border: 1px solid var(--border-light, #EAE7E4);
     width: 100%;
 }
 
@@ -106,46 +104,45 @@
     overflow-x: auto;
 }
 
-table {
+.table-scroll-wrapper table {
     width: 100%;
-    border-collapse: collapse;
-    text-align: left;
+    border-collapse: separate; /* Changed to allow top border radius on the header */
+    border-spacing: 0;
 }
 
-/* EXACT LOOK: Bright Gold Row Headers with Brown Typography */
-th {
-    background-color: var(--gold-accent);
-    color: #5A1424; 
+/* Vibrant Gold Header matching the screenshot */
+.table-scroll-wrapper th {
+    background-color: var(--gold); /* Solid vibrant gold */
+    color: #5A1424; /* Maroon text */
     font-size: 15px;
     font-weight: 700;
-    text-transform: none; /* Keeps native capitalization clean */
-    padding: 16px 24px;
-    text-align: center; /* Centered layout columns style alignment */
+    padding: 16px 20px;
+    text-align: center; /* Centered to match the image */
+    border-bottom: none; 
 }
 
-/* Left-align first two column data titles explicitly for scannability balance */
-th:nth-child(1), td:nth-child(1),
-th:nth-child(2), td:nth-child(2) {
-    text-align: left;
+/* Round the top corners of the gold header bar */
+.table-scroll-wrapper th:first-child {
+    border-top-left-radius: 8px;
+}
+.table-scroll-wrapper th:last-child {
+    border-top-right-radius: 8px;
 }
 
-td {
-    padding: 18px 24px;
+.table-scroll-wrapper td {
+    padding: 18px 20px;
     font-size: 14px;
-    color: var(--text-primary);
+    color: #1A1714; /* Standard dark text */
     border-bottom: 1px solid #F3F1EE;
-    text-align: center;
+    text-align: center; /* Center alignment for all columns */
 }
 
-.qty-weight {
-    font-weight: 500;
+/* Removes the bottom border on the very last row */
+.table-scroll-wrapper tbody tr:last-child td {
+    border-bottom: none;
 }
 
-.note-text-dim {
-    color: var(--text-dark);
-}
-
-/* Status Pill Contours */
+/* Exact Pill Colors from the Image */
 .badge-pill {
     display: inline-block;
     padding: 6px 16px;
@@ -175,88 +172,9 @@ td {
 }
 
 .empty-fallback-row {
-    text-align: center;
-    color: var(--text-muted);
+    text-align: center !important;
+    color: var(--text-muted) !important;
     padding: 50px !important;
-}
-
-/* Modals & Backdrop Core System Overlays */
-/*I dont know the color choice needed for the modal */
-.modal-backdrop {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(26, 23, 20, 0.4);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-surface-box {
-    background: var(--surface-white);
-    border-radius: 12px;
-    padding: 28px;
-    width: 100%;
-    max-width: 480px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.modal-top-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-top-bar h2 {
-    font-size: 20px;
-    color: var(--maroon-brand);
-    margin: 0;
-}
-
-.close-dismiss-btn {
-    background: none; 
-    border: none; 
-    font-size: 24px; 
-    cursor: pointer; 
-    color: var(--text-muted);
-}
-
-.field-block {
-    display: flex; 
-    flex-direction: column; 
-    margin-bottom: 16px;
-}
-
-.field-block label {
-    font-size: 12px; 
-    font-weight: 700; 
-    color: var(--text-primary); 
-    margin-bottom: 6px; 
-    text-transform: uppercase;
-}
-
-.field-block input, .field-block select, .field-block textarea {
-    padding: 10px 14px; 
-    border: 1px solid var(--border-light); 
-    border-radius: 6px; 
-    font-size: 14px; 
-    outline: none;
-}
-
-.field-block textarea { height: 75px; resize: none; }
-.field-split-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-
-.form-action-buttons {
-    display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px;
-}
-
-.cancel-btn {
-    background: #EAE7E4; color: var(--text-primary); border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
-}
-
-.save-btn {
-    background: var(--maroon); color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer;
 }
 
 /* Pagination Control Mechanics */
@@ -271,5 +189,5 @@ td {
 }
 
 .page-step.active-page {
-    background-color: var(--maroon-brand); color: var(--surface-white); border-color: var(--maroon-brand);
+    background-color: var(--maroon); color: white; border-color: var(--maroon);
 }

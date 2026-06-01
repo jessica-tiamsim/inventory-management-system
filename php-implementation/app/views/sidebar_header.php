@@ -49,13 +49,22 @@
                 <p id="admin"><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
             </div>
         </div>
-        <a href="<?= BASE_URL ?>/logout">
-            <img src="<?= BASE_URL ?>/assets/logout_icon.png" class="logout_image" alt="Logout">
-            <p id="logout">Logout</p>
+        <a href="#" onclick="document.getElementById('logoutOverlay').classList.add('show')" class="logout-link">
+            <p id= "logout">Logout</p>
         </a>
     </div>
 </aside>
-
+    <div class="prism-overlay" id="logoutOverlay">
+        <div class="prism-modal small">
+            <h3 class="confirm-title">Confirmation of <span class="text-maroon">Log Out</span></h3>
+            <p class="confirm-text">Are you sure you want to log out?</p>
+            
+            <div class="modal-footer center">
+                <a href="<?= BASE_URL ?>/logout" class="btn-action-solid">Log out</a>
+                <button type="button" class="btn-cancel-solid" onclick="document.getElementById('logoutOverlay').classList.remove('show')">Cancel</button>
+            </div>
+        </div>
+    </div>
 <div class="main">
         <div class="header">
             <div class="left">

@@ -48,3 +48,55 @@ body {
     height: 776px;
 }
 
+/* =========================================
+   PRISM UNIFIED OVERLAY SYSTEM
+========================================= */
+.prism-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.4); z-index: 9999;
+    align-items: center; justify-content: center;
+    backdrop-filter: blur(2px);
+}
+.prism-overlay.show { display: flex; }
+
+/* The White Box */
+.prism-modal {
+    background: #FFFFFF;
+    border-radius: 12px;
+    padding: 30px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.prism-modal.large { max-width: 650px; }
+.prism-modal.small { max-width: 420px; padding: 40px 30px; text-align: center; }
+
+/* Headers */
+.modal-header { border-bottom: 1px solid #EAE7E4; padding-bottom: 15px; margin-bottom: 25px; }
+.modal-header h2 { font-size: 24px; font-weight: 700; color: #1A1714; margin: 0; }
+.confirm-title { font-size: 20px; font-weight: 700; color: #1A1714; margin-bottom: 15px; }
+.confirm-text { font-size: 16px; color: #333; margin-bottom: 30px; font-weight: 400; }
+.text-maroon { color: #801B32; }
+
+/* Form Grid */
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.form-group.full { grid-column: span 2; }
+.form-group label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 8px; color: #1A1714; }
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 15px; border: 1px solid #E0DCD9; border-radius: 6px;
+    font-size: 14px; box-sizing: border-box; font-family: 'Inter', sans-serif; outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #801B32; }
+.form-group textarea { height: 90px; resize: none; }
+
+/* Buttons */
+.modal-footer { border-top: 1px solid #EAE7E4; padding-top: 20px; display: flex; justify-content: flex-end; gap: 12px; margin-top: 10px; }
+.modal-footer.center { border-top: none; justify-content: center; padding-top: 0; gap: 20px; margin-top: 30px;}
+
+.btn-cancel-outline { background: #FFF; border: 1px solid #D1D1D1; padding: 10px 20px; border-radius: 6px; font-weight: 500; cursor: pointer; color: #1A1714; }
+.btn-save-maroon { background: #801B32; border: none; padding: 10px 24px; border-radius: 6px; font-weight: 500; cursor: pointer; color: #FFF; }
+
+.btn-cancel-solid { background: #8F8F8F; border: none; padding: 12px 30px; border-radius: 4px; font-weight: 600; cursor: pointer; color: #FFF; font-size: 15px; }
+.btn-action-solid { background: #801B32; border: none; padding: 12px 30px; border-radius: 4px; font-weight: 600; cursor: pointer; color: #FFF; font-size: 15px; text-decoration: none;}
+

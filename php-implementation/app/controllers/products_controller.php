@@ -127,101 +127,56 @@ class ProductsController {
     }
 
     /**
-     * 3. PROCESS DELETION
-     * Triggered by /products/delete?id=123
-     */
-    public function delete() {
-        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            header("Location: " . BASE_URL . "/login");
-            exit();
-        }
-
-        $id = $_GET['id'] ?? null;
-
-        if ($id) {
-            try {
-                // Delete the product from the database
-                $stmt = $this->pdo->prepare("DELETE FROM products WHERE id = :id");
-                $stmt->execute(['id' => $id]);
-                header("Location: " . BASE_URL . "/products?success=product_deleted");
-                exit();
-            } catch (PDOException $e) {
-                error_log("Failed to delete product: " . $e->getMessage());
-                header("Location: " . BASE_URL . "/products?error=delete_failed");
-                exit();
-            }
-        }
-        
-        header("Location: " . BASE_URL . "/products");
-        exit();
-    }
-
-    /**
-     * 4. DISPLAY EDIT FORM & PROCESS UPDATES
-     * Triggered by /products/edit?id=123
+     * PROCESS PRODUCT EDIT
      */
     public function edit() {
-        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-            header("Location: " . BASE_URL . "/login");
-            exit();
-        }
-
-        $id = $_GET['id'] ?? null;
-        if (!$id) {
-            header("Location: " . BASE_URL . "/products");
-            exit();
-        }
-
-        // If the form was submitted (POST), update the database!
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $sku = trim($_POST['sku']);
-            $name = trim($_POST['name']);
-            $description = trim($_POST['description']);
-            $category_id = !empty($_POST['category_id']) ? (int)$_POST['category_id'] : null;
-            $unit_cost = (float)$_POST['unit_cost'];
-            $unit_price = (float)$_POST['unit_price'];
-            $reorder_threshold = (int)$_POST['reorder_threshold'];
-            $supplier_name = trim($_POST['supplier_name']);
-            $is_active = isset($_POST['is_active']) ? 1 : 0;
-
             try {
                 $sql = "UPDATE products SET 
-                        sku = :sku, name = :name, description = :description, 
-                        category_id = :category_id, unit_price = :unit_price, 
-                        unit_cost = :unit_cost, reorder_threshold = :reorder_threshold, 
-                        supplier_name = :supplier_name, is_active = :is_active 
+                        name = :name, description = :desc, category_id = :cat, 
+                        unit_cost = :cost, unit_price = :price, 
+                        reorder_threshold = :thresh, supplier_name = :supp 
                         WHERE id = :id";
                 
                 $stmt = $this->pdo->prepare($sql);
                 $stmt->execute([
-                    'sku' => $sku, 'name' => $name, 'description' => $description,
-                    'category_id' => $category_id, 'unit_price' => $unit_price,
-                    'unit_cost' => $unit_cost, 'reorder_threshold' => $reorder_threshold,
-                    'supplier_name' => $supplier_name, 'is_active' => $is_active, 'id' => $id
+                    'name' => $_POST['name'],
+                    'desc' => $_POST['description'],
+                    'cat' => $_POST['category_id'],
+                    'cost' => $_POST['unit_cost'],
+                    'price' => $_POST['unit_price'],
+                    'thresh' => $_POST['reorder_threshold'],
+                    'supp' => $_POST['supplier_name'],
+                    'id' => $_POST['id']
                 ]);
-
-                header("Location: " . BASE_URL . "/products?success=product_updated");
+                
+                header("Location: " . BASE_URL . "/products?success=updated");
                 exit();
             } catch (PDOException $e) {
-                error_log("Failed to update product: " . $e->getMessage());
-                // In a real app, you might pass $error down to the view to show a red alert box
+                error_log("Edit Error: " . $e->getMessage());
+                header("Location: " . BASE_URL . "/products?error=update_failed");
+                exit();
             }
         }
+    }
 
-        // If not a POST request, fetch the product data to populate the HTML form
-        $stmt = $this->pdo->prepare("SELECT * FROM products WHERE id = :id");
-        $stmt->execute(['id' => $id]);
-        $product = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$product) {
-            header("Location: " . BASE_URL . "/products?error=not_found");
-            exit();
+    /**
+     * PROCESS PRODUCT INACTIVATION (SOFT DELETE)
+     */
+    public function delete() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                // We do NOT delete the row, we just set is_active = 0 so historical ledger data doesn't break!
+                $stmt = $this->pdo->prepare("UPDATE products SET is_active = 0 WHERE id = :id");
+                $stmt->execute(['id' => $_POST['id']]);
+                
+                header("Location: " . BASE_URL . "/products?success=inactivated");
+                exit();
+            } catch (PDOException $e) {
+                error_log("Inactivate Error: " . $e->getMessage());
+                header("Location: " . BASE_URL . "/products?error=inactivate_failed");
+                exit();
+            }
         }
-
-        // Fetch categories for the dropdown in the edit form
-        $categories = $this->pdo->query("SELECT id, name FROM categories ORDER BY name ASC")->fetchAll(PDO::FETCH_ASSOC);
-
-        // Load the Edit View
-        require_once __DIR__ . '/../views/edit_product.php';
     }
 }
