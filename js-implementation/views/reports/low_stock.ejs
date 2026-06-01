@@ -34,12 +34,14 @@
             <div class="box2_right">
                 <form method="GET" action="/reports/low_stock" class="filter-form">
                     <select name="product" id="product" onchange="this.form.submit()">
-                        <option value="all" <%= selectedProduct === 'all' ? 'selected' : '' %>>All Products</option>
-                        <% products.forEach(cat => { %>
-                            <option value="<%= cat.id %>" <%= selectedProduct == cat.id ? 'selected' : '' %>>
-                                 <%= cat.name %> 
+                        <option value="all" <%= selectedProduct !== 'undefined' && selectedProduct === 'all' ? 'selected' : '' %>>All Products</option>
+                        <% if (typeof products !== 'undefined' && products.length > 0) { %>
+                        <% products.forEach(function(p) { %>
+                            <option value="<%= p.id %>" <%= typeof selectedProduct !== 'undefined' && Number(selectedProduct) === p.id ? 'selected' : '' %>>
+                                <%= p.name %>
                             </option>
-                        <% }) %>
+                        <% }); %>
+                    <% } %>
                     </select>
                     
                     <a href="/reports/low_stock?export=csv" class="excel btn-export">
