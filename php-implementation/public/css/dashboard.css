@@ -245,3 +245,15 @@ h3 {
     color: #D97706;
     border-color: #FCD34D;
 }
+
+/* =========================================
+   CATEGORY ICON IN LOW STOCK LIST
+========================================= */
+.cat-img-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    border-radius: 6px;
+    background: #fff0f0;
+    padding: 4px;
+}
