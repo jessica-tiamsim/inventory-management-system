@@ -21,7 +21,7 @@ class ReportsController {
         $export = $_GET['export'] ?? false;
 
         // Pagination
-        $limit  = 25;
+        $limit  = 10;
         $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $offset = ($page - 1) * $limit;
 
@@ -161,8 +161,8 @@ class ReportsController {
 
         // Pagination
         $limit  = 25;
-        $page   = isset($_GET['page']) ? (int)$_GET['page'] : 1;
-        $offset = ($page - 1) * $limit;
+        $page   = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
+        $offset = 0;
 
         try {
             // Fetch all products for the dropdown
@@ -210,8 +210,10 @@ class ReportsController {
             // Count for pagination
             $count_stmt = $this->pdo->prepare("SELECT COUNT(*) $base_sql");
             $count_stmt->execute($params);
-            $total_rows  = $count_stmt->fetchColumn();
-            $total_pages = ceil($total_rows / $limit);
+            $total_rows  = (int)$count_stmt->fetchColumn();
+            $total_pages = max(1, (int)ceil($total_rows / $limit));
+            $page = min($page, $total_pages);
+            $offset = ($page - 1) * $limit;
 
             $sql = "SELECT m.created_at, p.sku, p.name as product_name, UPPER(m.movement_type) as type, m.quantity, u.username, m.note as notes $base_sql ORDER BY m.created_at DESC LIMIT :limit OFFSET :offset";
             $stmt = $this->pdo->prepare($sql);
@@ -227,6 +229,7 @@ class ReportsController {
             error_log("Movement Ledger Error: " . $e->getMessage());
             $ledger_items = [];
             $products     = [];
+            $page         = 1;
             $total_pages  = 1;
         }
 

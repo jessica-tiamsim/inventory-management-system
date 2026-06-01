@@ -18,7 +18,7 @@ class StockMovementsController {
         }
 
         // Initialize Filter & Pagination Variables
-        $limit = 25;
+        $limit = 10;
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         $offset = ($page - 1) * $limit;
         
@@ -55,7 +55,7 @@ class StockMovementsController {
             $count_stmt = $this->pdo->prepare($count_sql);
             $count_stmt->execute($params);
             $total_rows = $count_stmt->fetchColumn();
-            $total_pages = ceil($total_rows / $limit);
+            $total_pages = max(1, (int)ceil($total_rows / $limit));
 
             // Fetch the actual movement data
             // We use UPPER(m.movement_type) AS type and m.note AS notes so your HTML doesn't break!
@@ -82,6 +82,7 @@ class StockMovementsController {
             error_log("Stock Movement Load Error: " . $e->getMessage());
             $movements = [];
             $products = [];
+            $page = 1;
             $total_pages = 1;
         }
 

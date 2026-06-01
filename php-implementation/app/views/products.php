@@ -22,7 +22,7 @@
                     <div class="filters-bar">
                         <div class="filters-bar">
                             <form method="GET" action="<?= BASE_URL ?>/products" style="display: flex; gap: 15px; align-items: center; margin: 0; width: 100%;">
-                                
+                                <input type="hidden" name="page" value="1">
                                 <div class="search-wrapper">
                                     <input type="text" name="search" placeholder="Search by Product Name or SKU" value="<?= htmlspecialchars($_GET['search'] ?? '') ?>">
                                     
@@ -115,6 +115,28 @@
                     </tbody>
                 </table>
             </div>
+            <?php if (isset($total_pages) && $total_pages > 1): ?>
+                <?php $page = $page ?? 1; ?>
+                <div class="pagination-container" style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 16px 0;">
+                    <?php
+                        $base_params = $_GET;
+                        $base_params['page'] = 1;
+                        $prev_page = max(1, $page - 1);
+                        $next_page = min($total_pages, $page + 1);
+                    ?>
+                    <a href="<?= BASE_URL ?>/products?<?= http_build_query(array_merge($base_params, ['page' => $prev_page])) ?>" style="padding: 8px 10px; background:#F3F4F6; border-radius: 8px; text-decoration:none; color:#1F2937; border:1px solid #D1D5DB;">Prev</a>
+                    <?php for ($i = 1; $i <= $total_pages; $i++):
+                        $url_params = $_GET;
+                        $url_params['page'] = $i;
+                        $is_active = ($i === $page);
+                    ?>
+                        <a href="<?= BASE_URL ?>/products?<?= http_build_query($url_params) ?>" style="padding: 8px 10px; border-radius: 8px; text-decoration:none; color: <?= $is_active ? '#ffffff' : '#1F2937' ?>; background: <?= $is_active ? '#9F1239' : '#F3F4F6' ?>; border: 1px solid <?= $is_active ? '#9F1239' : '#D1D5DB' ?>;">
+                            <?= $i ?>
+                        </a>
+                    <?php endfor; ?>
+                    <a href="<?= BASE_URL ?>/products?<?= http_build_query(array_merge($base_params, ['page' => $next_page])) ?>" style="padding: 8px 10px; background:#F3F4F6; border-radius: 8px; text-decoration:none; color:#1F2937; border:1px solid #D1D5DB;">Next</a>
+                </div>
+            <?php endif; ?>
         
     </div>
 
