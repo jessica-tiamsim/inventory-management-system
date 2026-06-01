@@ -1,0 +1,193 @@
+/* Color Palette Configurations matching PRISM Branding Guidelines */
+.content {
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+/* Header Top Split Box Layout Engine Framework */
+.page-top-header {
+    width: 100%;
+    margin-bottom: 25px;
+    display: flex;
+    background: var(--white);
+    padding: 24px; 
+    border-radius: 8px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-left h1 {
+    color: var(--maroon);
+    font-size: 28px;
+    font-weight: 700;
+    padding: 0;
+    margin: 0 0 5px 0;
+}
+
+.header-left .subtitle {
+    font-size: 13px;
+    color: var(--gray);
+    margin: 0;
+}
+
+/* Dropdown Filters Styling */
+.filters-row {
+    gap: 12px;
+    display: flex;
+}
+
+.filters-row select {
+    padding: 10px 40px 10px 18px;
+    border: 1px solid var(--border-light);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06); 
+    background-color: var(--white);
+    color: var(--black);
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%231A1714' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    background-size: 12px;
+}
+
+/* Yellow Button Contours matching the specific design file context */
+.btn-record-movement {
+    background-color: var(--gold);
+    color: var(--dark-maroon); 
+    border: none;
+    padding: 0 24px;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 24px; 
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 3px 8px rgba(255, 191, 0, 0.3);
+    transition: all 0.15s ease;
+}
+
+.add_image  {
+    width: 20px;      
+    height: 20px;
+    pointer-events: none; 
+}
+
+.btn-record-movement:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================
+   EXACT MATCH TABLE DESIGN
+========================================= */
+.data-card-surface {
+    background: var(--white, #FFFFFF);
+    border-radius: 8px; /* Matched to the image's rounded edges */
+    overflow: hidden; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    border: 1px solid var(--border-light, #EAE7E4);
+    width: 100%;
+}
+
+.table-scroll-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-scroll-wrapper table {
+    width: 100%;
+    border-collapse: separate; /* Changed to allow top border radius on the header */
+    border-spacing: 0;
+}
+
+/* Vibrant Gold Header matching the screenshot */
+.table-scroll-wrapper th {
+    background-color: var(--gold); /* Solid vibrant gold */
+    color: #5A1424; /* Maroon text */
+    font-size: 15px;
+    font-weight: 700;
+    padding: 16px 20px;
+    text-align: center; /* Centered to match the image */
+    border-bottom: none; 
+}
+
+/* Round the top corners of the gold header bar */
+.table-scroll-wrapper th:first-child {
+    border-top-left-radius: 8px;
+}
+.table-scroll-wrapper th:last-child {
+    border-top-right-radius: 8px;
+}
+
+.table-scroll-wrapper td {
+    padding: 18px 20px;
+    font-size: 14px;
+    color: #1A1714; /* Standard dark text */
+    border-bottom: 1px solid #F3F1EE;
+    text-align: center; /* Center alignment for all columns */
+}
+
+/* Removes the bottom border on the very last row */
+.table-scroll-wrapper tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Exact Pill Colors from the Image */
+.badge-pill {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid transparent;
+}
+
+.badge-in {
+    background-color: #DBFCE7;
+    color: #15A85A;
+    border-color: #BFF3D4;
+}
+
+.badge-out {
+    background-color: #FEE2E2;
+    color: #EF4444;
+    border-color: #FCA5A5;
+}
+
+.badge-adjustment {
+    background-color: #FEF3C7;
+    color: #D97706;
+    border-color: #FCD34D;
+}
+
+.empty-fallback-row {
+    text-align: center !important;
+    color: var(--text-muted) !important;
+    padding: 50px !important;
+}
+
+/* Pagination Control Mechanics */
+.pagination-container {
+    display: flex; justify-content: center; gap: 6px; margin-top: 25px;
+}
+
+.page-step {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 6px; border: 1px solid var(--border-light);
+    color: var(--text-primary); text-decoration: none; font-size: 13px; font-weight: 500;
+}
+
+.page-step.active-page {
+    background-color: var(--maroon); color: white; border-color: var(--maroon);
+}
