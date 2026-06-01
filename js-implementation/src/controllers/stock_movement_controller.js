@@ -5,17 +5,28 @@ const stockController = {
     getStockMovements: async (req, res) => {
         try {
             const skuFilter = req.query.sku || 'all';
-            const typeFilter = req.query.type ? req.query.type.toLowerCase() : 'all';
+            const typeFilter = req.query.type || 'all';
             
-            // Simultaneously fetch options for modal dropdown selector rules
+            // Set up pagination parameters
+            const page = parseInt(req.query.page) || 1;
+            const limit = 10; // Adjust this number to change item rows displayed per page
+            const offset = (page - 1) * limit;
+            
+            // Simultaneously fetch options for modal dropdown selectors
             const productsList = await productModel.getAllActiveProducts();
-            const matchingMovements = await stockModel.getMovementsByFilters(skuFilter, typeFilter);
+            
+            // Destructure paginated items and master total count from the unified model response
+            const { rows: matchingMovements, total } = await stockModel.getMovementsByFilters(skuFilter, typeFilter, limit, offset);
+
+            const totalPages = Math.ceil(total / limit);
 
             res.render('stock_movement', {
                 products: productsList,
                 movements: matchingMovements,
                 skuFilter: skuFilter,
-                typeFilter: typeFilter
+                typeFilter: typeFilter,
+                currentPage: page,
+                totalPages: totalPages
             });
         } catch (err) {
             console.error('Failure rendering transaction ledger panel layout:', err);

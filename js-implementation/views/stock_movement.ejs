@@ -29,10 +29,10 @@
                     </select>
 
                     <select name="type" id="type" onchange="this.form.submit()">
-                        <option value="all" <%= typeof typeFilter !== 'undefined' && typeFilter === 'all' ? 'selected' : '' %>>All Types</option>
-                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter === 'in' ? 'selected' : '' %>>Stock In</option>
-                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter === 'out' ? 'selected' : '' %>>Stock Out</option>
-                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter === 'adjustment' ? 'selected' : '' %>>Adjustment</option>
+                        <option value="all" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'all' ? 'selected' : '' %>>All Types</option>
+                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'in' ? 'selected' : '' %>>Stock In</option>
+                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'out' ? 'selected' : '' %>>Stock Out</option>
+                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter.toLowerCase() === 'adjustment' ? 'selected' : '' %>>Adjustment</option>
                     </select>
                 </form>
             </div>
@@ -86,10 +86,29 @@
                 </table>
             </div>
 
-            <div class="pagination-container">
-                <a href="?page=1" class="page-step active-page">1</a>
-                <a href="?page=2" class="page-step">2</a>
-                <a href="?page=3" class="page-step">3</a>
+           <div class="pagination-container">
+                <% if (typeof totalPages !== 'undefined' && totalPages > 1) { %>
+                    <% 
+                       let currentSku = typeof skuFilter !== 'undefined' ? skuFilter : 'all'; 
+                       let currentType = typeof typeFilter !== 'undefined' ? typeFilter : 'all';
+                       let pageSafe = typeof currentPage !== 'undefined' ? currentPage : 1;
+                    %>
+
+                    <% if (pageSafe > 1) { %>
+                        <a href="?page=<%= pageSafe - 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">&laquo; Prev</a>
+                    <% } %>
+            
+                    <% for(let i = 1; i <= totalPages; i++) { %>
+                        <a href="?page=<%= i %>&sku=<%= currentSku %>&type=<%= currentType %>" 
+                           class="page-step <%= pageSafe === i ? 'active-page' : '' %>">
+                            <%= i %>
+                        </a>
+                    <% } %>
+            
+                    <% if (pageSafe < totalPages) { %>
+                        <a href="?page=<%= pageSafe + 1 %>&sku=<%= currentSku %>&type=<%= currentType %>" class="page-step">Next &raquo;</a>
+                    <% } %>
+                <% } %>
             </div>
         </div>
     </div>

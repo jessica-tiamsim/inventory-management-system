@@ -7,31 +7,49 @@ const stockmovementModel = {
      * @param {string} sku - Product stock keeping unit indicator or 'all'
      * @param {string} type - 'IN', 'OUT', 'ADJUSTMENT', or 'all'
      */
-    getMovementsByFilters: async (sku, type) => {
-        let query = `
+    
+    /**
+     * Traverses history logs matching filter row query states with server-side pagination boundaries.
+     */
+    getMovementsByFilters: async (sku, type, limit = 10, offset = 0) => {
+        let whereClause = ' WHERE 1=1';
+        const params = [];
+
+        if (sku && sku !== 'all') {
+            whereClause += ` AND p.sku = ?`;
+            params.push(sku);
+        }
+        if (type && type !== 'all') {
+            whereClause += ` AND sm.movement_type = LOWER(?)`;
+            params.push(type);
+        }
+
+        // 1. Get total records matching these filters
+        const countQuery = `
+            SELECT COUNT(*) AS total
+            FROM stock_movements sm
+            JOIN products p ON sm.product_id = p.id
+            ${whereClause}
+        `;
+        const [countRows] = await db.execute(countQuery, params);
+        const total = countRows[0].total;
+
+        // 2. Get the specific subset of paginated data rows
+        // Appending limit and offset values directly removes SQL placeholder driver casting issues
+        const dataQuery = `
             SELECT sm.*, sm.movement_type AS type, sm.note, 
             DATE_FORMAT(sm.created_at, '%Y-%m-%d %h:%i %p') AS date, 
             p.name AS product_name, p.sku, u.username AS recorded_by
             FROM stock_movements sm
             JOIN products p ON sm.product_id = p.id
             JOIN users u ON sm.user_id = u.id
-            WHERE 1=1
+            ${whereClause}
+            ORDER BY sm.id DESC
+            LIMIT ${parseInt(limit)} OFFSET ${parseInt(offset)}
         `;
-        const params = [];
-
-        if (sku && sku !== 'all') {
-            query += ` AND p.sku = ?`;
-            params.push(sku);
-        }
-        if (type && type !== 'all') {
-            // Converts incoming uppercase filter values to lowercase matching the database ENUM
-            query += ` AND sm.movement_type = LOWER(?)`;
-            params.push(type);
-        }
-
-        query += ` ORDER BY sm.id DESC`;
-        const [rows] = await db.execute(query, params);
-        return rows;
+        
+        const [rows] = await db.execute(dataQuery, params);
+        return { rows, total };
     },
 
     /**

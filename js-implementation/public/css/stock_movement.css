@@ -273,3 +273,18 @@ td {
 .page-step.active-page {
     background-color: var(--maroon-brand); color: var(--surface-white); border-color: var(--maroon-brand);
 }
+
+.table-scroll-wrapper {
+    width: 100%;
+    max-height: 350px;  /* CHANGED from height to max-height */
+    overflow-y: auto;   /* Safe vertical scrolling only when rows exceed 450px */
+    overflow-x: auto;   /* Safe horizontal responsive scrolling */
+    margin-bottom: 10px;
+}
+
+.pagination-container {
+    display: flex; 
+    justify-content: center; 
+    gap: 6px; 
+    padding: 15px 0 24px 0; /* ADDED padding so overflow:hidden doesn't clip the buttons */
+}
