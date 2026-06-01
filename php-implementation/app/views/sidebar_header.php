@@ -46,11 +46,12 @@
             </div>
             <div class="status">
                 <p><?= htmlspecialchars($_SESSION['username'] ?? 'User', ENT_QUOTES, 'UTF-8') ?></p>
-                <p id="admin"><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
+                <p id="admin"><?= strtoupper(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
             </div>
         </div>
         <a href="#" onclick="document.getElementById('logoutOverlay').classList.add('show')" class="logout-link">
-            <p id= "logout">Logout</p>
+            <img src="<?= BASE_URL ?>/assets/logout_icon.png" class="logout_image" alt="Logout">
+            <p id="logout">Logout</p>
         </a>
     </div>
 </aside>
@@ -73,7 +74,7 @@
             </div>
             <div class="right">
                 <div class="role">
-                    <p><?= ucfirst(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
+                    <p><?= strtoupper(htmlspecialchars($_SESSION['role'] ?? 'Staff', ENT_QUOTES, 'UTF-8')) ?></p>
                 </div>
                 <div class="user">
                     <p><?= htmlspecialchars($_SESSION['username'] ?? 'User Name', ENT_QUOTES, 'UTF-8') ?></p>

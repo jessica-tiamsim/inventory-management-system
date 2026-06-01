@@ -1,12 +1,4 @@
-/* =========================================
-   BASE STYLES
-========================================= */
-.content {
-    padding: 30px;
-    overflow-y: auto;
-    width: 100%;
-    box-sizing: border-box;
-}
+/* .content layout is handled by sidebar_header.css */
 
 /* =========================================
    CARDS & CONTAINERS
