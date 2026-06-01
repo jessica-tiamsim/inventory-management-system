@@ -30,9 +30,9 @@
 
                     <select name="type" id="type" onchange="this.form.submit()">
                         <option value="all" <%= typeof typeFilter !== 'undefined' && typeFilter === 'all' ? 'selected' : '' %>>All Types</option>
-                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter === 'IN' ? 'selected' : '' %>>Stock In</option>
-                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter === 'OUT' ? 'selected' : '' %>>Stock Out</option>
-                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter === 'ADJUSTMENT' ? 'selected' : '' %>>Adjustment</option>
+                        <option value="in" <%= typeof typeFilter !== 'undefined' && typeFilter === 'in' ? 'selected' : '' %>>Stock In</option>
+                        <option value="out" <%= typeof typeFilter !== 'undefined' && typeFilter === 'out' ? 'selected' : '' %>>Stock Out</option>
+                        <option value="adjustment" <%= typeof typeFilter !== 'undefined' && typeFilter === 'adjustment' ? 'selected' : '' %>>Adjustment</option>
                     </select>
                 </form>
             </div>

@@ -5,7 +5,7 @@ const stockController = {
     getStockMovements: async (req, res) => {
         try {
             const skuFilter = req.query.sku || 'all';
-            const typeFilter = req.query.type || 'all';
+            const typeFilter = req.query.type ? req.query.type.toLowerCase() : 'all';
             
             // Simultaneously fetch options for modal dropdown selector rules
             const productsList = await productModel.getAllActiveProducts();
