@@ -154,7 +154,7 @@ switch ($requestUri) {
         echo "<div style='text-align:center; padding:100px; font-family:sans-serif;'>";
         echo "<h1>404 - Page Not Found</h1>";
         echo "<p>The route <strong>" . htmlspecialchars(CURRENT_ROUTE) . "</strong> does not exist in the PRISM system.</p>";
-        echo "<a href='" . BASE_URL . "/dashboard' style='color:#801B32;'>Return to Dashboard</a>";
+        echo "<a href='" . BASE_URL . "/login' style='color:#801B32;'>Return to Dashboard</a>";
         echo "</div>";
         break;
 

@@ -6,20 +6,28 @@ const productController = {
      */
     getProductsPage: async (req, res) => {
         try {
-            const searchTerms = req.query.search || '';
+            const searchTerms    = req.query.search          || '';
             const categoryFilter = req.query.category_filter || '';
-            const statusFilter = req.query.status_filter || '2';
+            const statusFilter   = req.query.status_filter   || '2';
+            const page           = Math.max(1, parseInt(req.query.page) || 1);
+            const limit          = 10;
+            const offset         = (page - 1) * limit;
 
-            const filteredResults = await productModel.getFilteredProducts(searchTerms, categoryFilter, statusFilter);
+            const { rows: products, total } = await productModel.getFilteredProducts(
+                searchTerms, categoryFilter, statusFilter, limit, offset
+            );
             const categoriesList = await productModel.getAllCategories();
+            const totalPages     = Math.max(1, Math.ceil(total / limit));
 
             res.render('products', {
-                products: filteredResults,
-                categories: categoriesList,
-                currentSearch: searchTerms,
+                products,
+                categories:          categoriesList,
+                currentSearch:       searchTerms,
                 currentCategoryFilter: categoryFilter,
                 currentStatusFilter: statusFilter,
-                currentPath: '/products'
+                currentPage:         page,
+                totalPages,
+                currentPath:         '/products'
             });
         } catch (err) {
             console.error('Failed processing catalog view matrices:', err);

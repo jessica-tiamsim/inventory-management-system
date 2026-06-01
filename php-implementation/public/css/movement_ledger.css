@@ -111,13 +111,15 @@
     align-items: center; 
 }
 
-.dropdowns {
+.dropdowns,
+.filter-form {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 
-.dropdowns select {
+.dropdowns select,
+.filter-form select {
     padding: 10px 35px 10px 15px;
     border-radius: 8px;
     border: 1px solid var(--white);
@@ -135,7 +137,8 @@
     background-position: right 12px center;
 }
 
-.excel {
+.excel,
+.btn-export {
     background: var(--maroon);
     color: var(--white);
     padding: 10px 20px;
@@ -149,7 +152,8 @@
     transition: background 0.2s;
 }
 
-.excel:hover {
+.excel:hover,
+.btn-export:hover {
     background: var(--maroon-dark);
 }
 

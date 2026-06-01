@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/stock_movement.css">
 </head>
 <body>
-    <%- include('sidebar_header', { current: 'stock_movement' }) %>
+    <%- include('sidebar_header', { current: 'stock-movement' }) %>
 
     <div class="content">
         <% if (typeof successMessage !== 'undefined' && successMessage) { %>
@@ -28,7 +28,7 @@
                 <h1>Stock Movements</h1>
                 <p class="subtitle">Immutable ledger of every stock change.</p>
 
-                <form method="GET" action="/stock_movement" class="filters-row" style="margin-top: 15px;">
+                <form method="GET" action="/stock-movement" class="filters-row" style="margin-top: 15px;">
                     <select name="sku" onchange="this.form.submit()">
                         <option value="all" <%= (typeof skuFilter !== 'undefined' && skuFilter === 'all') ? 'selected' : '' %>>All Products</option>
                         <% if (typeof products !== 'undefined' && products.length > 0) { %>
@@ -131,7 +131,7 @@
     <div class="prism-overlay" id="movementModal">
         <div class="prism-modal large">
             <div class="modal-header"><h2>Record Stock Movement</h2></div>
-            <form action="/stock_movement/add" method="POST" id="movementForm">
+            <form action="/stock-movement/add" method="POST" id="movementForm">
                 <div class="form-grid">
                     <div class="form-group full"><label>Select Product *</label>
                         <select name="product_id" required>

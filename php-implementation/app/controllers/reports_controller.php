@@ -160,7 +160,7 @@ class ReportsController {
         $export        = $_GET['export']        ?? false;
 
         // Pagination
-        $limit  = 25;
+        $limit  = 10;
         $page   = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
         $offset = 0;
 

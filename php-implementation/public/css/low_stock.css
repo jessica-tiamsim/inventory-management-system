@@ -211,4 +211,17 @@ tbody tr:last-child td {
     background-color: var(--maroon);
     color: white;
     border-color: var(--maroon);
+    font-weight: 600;
+}
+
+.page-step.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Prev / Next buttons need auto width */
+.page-step:first-child,
+.page-step:last-child {
+    width: auto;
+    padding: 0 12px;
 }

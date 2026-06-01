@@ -87,16 +87,26 @@
             </table>
 
             <?php if (isset($total_pages) && $total_pages > 1): ?>
-                <div class="pagination-container" style="padding: 16px 0;">
+                <?php $page = $page ?? 1; ?>
+                <div class="pagination-container">
                     <?php
-                    for ($i = 1; $i <= $total_pages; $i++):
+                        $base_params = $_GET;
+                        $prev_page   = max(1, $page - 1);
+                        $next_page   = min($total_pages, $page + 1);
+                    ?>
+                    <a href="?<?= http_build_query(array_merge($base_params, ['page' => $prev_page])) ?>"
+                       class="page-step<?= $page === 1 ? ' disabled' : '' ?>">&laquo; Prev</a>
+
+                    <?php for ($i = 1; $i <= $total_pages; $i++):
                         $url_params = $_GET;
                         $url_params['page'] = $i;
-                        $query_string = http_build_query($url_params);
-                        $active_class = ($i === $page) ? 'active-page' : '';
                     ?>
-                        <a href="?<?= $query_string ?>" class="page-step <?= $active_class ?>"><?= $i ?></a>
+                        <a href="?<?= http_build_query($url_params) ?>"
+                           class="page-step <?= ($i === $page) ? 'active-page' : '' ?>"><?= $i ?></a>
                     <?php endfor; ?>
+
+                    <a href="?<?= http_build_query(array_merge($base_params, ['page' => $next_page])) ?>"
+                       class="page-step<?= $page === $total_pages ? ' disabled' : '' ?>">Next &raquo;</a>
                 </div>
             <?php endif; ?>
         </div>

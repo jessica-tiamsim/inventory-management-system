@@ -77,12 +77,9 @@ const ProductModel = {
         return rows;
     },
 
-    getFilteredProducts: async (searchTerm = '', categoryFilter = '', statusFilter = '2') => {
+    getFilteredProducts: async (searchTerm = '', categoryFilter = '', statusFilter = '2', limit = 10, offset = 0) => {
         try {
-            let query = `
-                SELECT p.id, p.sku, p.name, p.description, p.category_id, 
-                       c.name as category_name, p.unit_price, p.unit_cost, 
-                       p.reorder_threshold, p.supplier_name, p.is_active 
+            let baseQuery = `
                 FROM products p
                 LEFT JOIN categories c ON p.category_id = c.id
             `;
@@ -90,33 +87,39 @@ const ProductModel = {
             const params = [];
             const conditions = [];
 
-            // 1. Handle Text Search Input Bar (Matches Name or SKU)
             if (searchTerm && searchTerm.trim() !== '') {
                 conditions.push("(p.name LIKE ? OR p.sku LIKE ?)");
                 const formattedTerm = `%${searchTerm.trim()}%`;
                 params.push(formattedTerm, formattedTerm);
             }
-
-            // 2. Handle Category Filter
             if (categoryFilter && categoryFilter !== '') {
                 conditions.push("p.category_id = ?");
                 params.push(parseInt(categoryFilter, 10));
             }
-
-            // 3. Handle Status Filter (0=inactive, 1=active, 2=all)
             if (statusFilter === '0' || statusFilter === '1') {
                 conditions.push("p.is_active = ?");
                 params.push(parseInt(statusFilter, 10));
             }
 
             if (conditions.length > 0) {
-                query += " WHERE " + conditions.join(" AND ");
+                baseQuery += " WHERE " + conditions.join(" AND ");
             }
 
-            query += " ORDER BY p.id DESC";
+            // Count total rows
+            const [countRows] = await db.execute(`SELECT COUNT(*) AS total ${baseQuery}`, params);
+            const total = countRows[0].total;
 
-            const [rows] = await db.execute(query, params);
-            return rows;
+            // Fetch paginated rows
+            const dataQuery = `
+                SELECT p.id, p.sku, p.name, p.description, p.category_id, 
+                       c.name as category_name, p.unit_price, p.unit_cost, 
+                       p.reorder_threshold, p.supplier_name, p.is_active 
+                ${baseQuery}
+                ORDER BY p.id DESC
+                LIMIT ${parseInt(limit)} OFFSET ${parseInt(offset)}
+            `;
+            const [rows] = await db.execute(dataQuery, params);
+            return { rows, total };
         } catch (error) {
             console.error("Database query exception inside ProductModel.getFilteredProducts:", error);
             throw error;

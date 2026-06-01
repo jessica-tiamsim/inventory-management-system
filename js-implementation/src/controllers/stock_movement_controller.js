@@ -20,13 +20,19 @@ const stockController = {
 
             const totalPages = Math.ceil(total / limit);
 
+            // Read flash messages from query params set by redirects
+            const successMessage = req.query.success === 'recorded' ? 'Stock movement successfully recorded to the ledger!' : null;
+            const errorMessage   = req.query.error === 'insufficient_stock' ? 'Transaction Failed: Cannot dispatch more stock than you currently have on hand.' : null;
+
             res.render('stock_movement', {
                 products: productsList,
                 movements: matchingMovements,
                 skuFilter: skuFilter,
                 typeFilter: typeFilter,
                 currentPage: page,
-                totalPages: totalPages
+                totalPages: totalPages,
+                successMessage: successMessage,
+                errorMessage: errorMessage
             });
         } catch (err) {
             console.error('Failure rendering transaction ledger panel layout:', err);

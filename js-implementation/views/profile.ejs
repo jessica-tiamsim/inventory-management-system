@@ -23,7 +23,7 @@
                     <div class="search-container">
                         <span class="search-icon">🔍</span>
                         <input type="text" name="search" placeholder="Search by Username" class="search-input"
-                            value="<%= typeof searchQuery !== 'undefined' ? searchQuery : '' %>">
+                            value="<%= typeof currentSearch !== 'undefined' ? currentSearch : '' %>">
                     </div>
                 </form>
 
@@ -67,7 +67,7 @@
     <div class="prism-overlay" id="newUserOverlay">
         <div class="prism-modal large">
             <div class="modal-header"><h2>Create Account</h2></div>
-            <form action="/users/add" method="POST">
+            <form action="/profile/add" method="POST">
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Username</label>

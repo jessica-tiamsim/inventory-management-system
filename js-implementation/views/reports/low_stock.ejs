@@ -31,7 +31,7 @@
             </div>
             <div class="box2_right">
                 <form method="GET" action="/reports/low_stock" class="filter-form">
-                    <select name="category" onchange="this.form.submit()">
+                    <select id="product" name="category" onchange="this.form.submit()">
                         <option value="all" <%= (typeof selectedCategory === 'undefined' || selectedCategory === 'all') ? 'selected' : '' %>>All Categories</option>
                         <% if (typeof categories !== 'undefined' && categories.length > 0) { %>
                             <% categories.forEach(function(cat) { %>

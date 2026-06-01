@@ -55,14 +55,14 @@
             </div>
             <div class="box2_right">
                 <form method="GET" action="/reports/movement_ledger" class="filter-form">
-                    <select name="product" onchange="this.form.submit()">
+                    <select id="product" name="product" onchange="this.form.submit()">
                         <option value="all" <%= (typeof selectedProduct === 'undefined' || selectedProduct === 'all') ? 'selected' : '' %>>All Products</option>
                         <% if (typeof products !== 'undefined') { products.forEach(function(p) { %>
                             <option value="<%= p.id %>" <%= (typeof selectedProduct !== 'undefined' && String(selectedProduct) === String(p.id)) ? 'selected' : '' %>><%= p.name %></option>
                         <% }); } %>
                     </select>
 
-                    <select name="movement_type" onchange="this.form.submit()">
+                    <select id="movement_type" name="movement_type" onchange="this.form.submit()">
                         <option value="all" <%= (!selectedType || selectedType === 'all') ? 'selected' : '' %>>All Types</option>
                         <option value="in" <%= (selectedType === 'in') ? 'selected' : '' %>>Stock-In</option>
                         <option value="out" <%= (selectedType === 'out') ? 'selected' : '' %>>Stock-Out</option>

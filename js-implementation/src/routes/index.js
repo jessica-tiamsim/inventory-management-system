@@ -11,7 +11,7 @@ const stockMovementRoutes = require('./stockmovementRoutes');
 const lowStockRoutes = require('./lowStockRoutes');
 const valuationRoutes = require('./valuationRoutes');
 const movementLedgerRoutes = require('./movementledgerRoutes');
-const topMoversRoutes = require('./topmoversRoutes');
+const topMoversRoutes = require('./topMoversRoutes');
 
 router.get('/', (req, res) => {
     res.redirect('/login');
